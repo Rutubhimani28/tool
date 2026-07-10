@@ -1,38 +1,21 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { PictureAsPdf, DarkMode, LightMode } from "@mui/icons-material";
+import { useTheme } from "next-themes";
 
 export default function Navbar() {
-    const [darkMode, setDarkMode] = useState(false);
+    const [mounted, setMounted] = useState(false);
+    const { resolvedTheme, setTheme } = useTheme();
 
     useEffect(() => {
-        // Check local storage or system preference
-        const isDark =
-            localStorage.getItem("theme") === "dark" ||
-            (!("theme" in localStorage) &&
-                window.matchMedia("(prefers-color-scheme: dark)").matches);
-        setTimeout(() => {
-            setDarkMode(isDark);
-        }, 0);
-        if (isDark) {
-            document.documentElement.classList.add("dark");
-        } else {
-            document.documentElement.classList.remove("dark");
-        }
+        // eslint-disable-next-line
+        setMounted(true);
     }, []);
 
     const toggleDarkMode = () => {
-        if (darkMode) {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("theme", "light");
-            setDarkMode(false);
-        } else {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("theme", "dark");
-            setDarkMode(true);
-        }
+        setTheme(resolvedTheme === "dark" ? "light" : "dark");
     };
 
     return (
@@ -55,10 +38,14 @@ export default function Navbar() {
                         className="flex h-10 w-10 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-600 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 transition-all duration-200"
                         aria-label="Toggle dark mode"
                     >
-                        {darkMode ? (
-                            <LightMode className="h-5 w-5 text-amber-500" />
+                        {mounted ? (
+                            resolvedTheme === "dark" ? (
+                                <LightMode className="h-5 w-5 text-amber-500" />
+                            ) : (
+                                <DarkMode className="h-5 w-5 text-zinc-700" />
+                            )
                         ) : (
-                            <DarkMode className="h-5 w-5 text-zinc-700" />
+                            <div className="h-5 w-5 opacity-0" />
                         )}
                     </button>
                 </div>

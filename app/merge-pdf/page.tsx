@@ -22,13 +22,15 @@ export default function MergePDF() {
     const [files, setFiles] = useState<UploadedFile[]>([]);
     const [isProcessing, setIsProcessing] = useState(false);
     const [progress, setProgress] = useState(0);
+    const [mergedFileUrl, setMergedFileUrl] = useState<string | null>(null);
+    const [mergedFileSize, setMergedFileSize] = useState(0);
 
     const handleFilesSelected = async (selectedFiles: File[]) => {
         const newFiles: UploadedFile[] = [];
         for (const file of selectedFiles) {
             try {
                 const arrayBuffer = await file.arrayBuffer();
-                const pdfDoc = await PDFDocument.load(arrayBuffer);
+                const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
                 const pagesCount = pdfDoc.getPageCount();
                 newFiles.push({
                     id: Math.random().toString(36).substring(7),
@@ -70,7 +72,7 @@ export default function MergePDF() {
 
             for (const uploadedFile of files) {
                 const arrayBuffer = await uploadedFile.file.arrayBuffer();
-                const srcPdf = await PDFDocument.load(arrayBuffer);
+                const srcPdf = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
                 const copiedPages = await mergedPdf.copyPages(
                     srcPdf,
                     srcPdf.getPageIndices()
@@ -86,13 +88,13 @@ export default function MergePDF() {
 
             const blob = new Blob([mergedPdfBytes.buffer as ArrayBuffer], { type: "application/pdf" });
             const url = URL.createObjectURL(blob);
-            const link = document.createElement("a");
-            link.href = url;
-            link.download = "merged_document.pdf";
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
+
+            if (mergedFileUrl) {
+                URL.revokeObjectURL(mergedFileUrl);
+            }
+            setMergedFileUrl(url);
+            setMergedFileSize(mergedPdfBytes.length);
+            setFiles([]); // Clear input files
 
             setProgress(100);
             confetti({
@@ -109,12 +111,57 @@ export default function MergePDF() {
         }
     };
 
+    const handleDownload = () => {
+        if (!mergedFileUrl) return;
+        const link = document.createElement("a");
+        link.href = mergedFileUrl;
+        link.download = "merged_document.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+    const resetTool = () => {
+        if (mergedFileUrl) {
+            URL.revokeObjectURL(mergedFileUrl);
+        }
+        setMergedFileUrl(null);
+        setMergedFileSize(0);
+        setFiles([]);
+    };
+
     return (
         <ToolWrapper
             title="Merge PDF"
             description="Combine multiple PDF files into a single document in your preferred order."
         >
-            {files.length === 0 ? (
+            {mergedFileUrl ? (
+                <div className="flex flex-col items-center justify-center gap-6 py-8">
+                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-green-100 text-green-500 dark:bg-green-900/30 dark:text-green-400">
+                        <MergeIcon className="h-12 w-12" />
+                    </div>
+                    <div className="text-center">
+                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">PDFs Merged Successfully!</h3>
+                        <p className="mt-2 text-zinc-500 dark:text-zinc-400">
+                            Your files have been combined into a single document ({(mergedFileSize / 1024 / 1024).toFixed(2)} MB).
+                        </p>
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
+                        <button
+                            onClick={handleDownload}
+                            className="flex-1 rounded-xl bg-green-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-green-600 transition-colors"
+                        >
+                            Download Merged PDF
+                        </button>
+                        <button
+                            onClick={resetTool}
+                            className="flex-1 rounded-xl bg-zinc-100 px-4 py-3 text-sm font-semibold text-zinc-900 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
+                        >
+                            Merge More Files
+                        </button>
+                    </div>
+                </div>
+            ) : files.length === 0 ? (
                 <DropZone
                     onFilesSelected={handleFilesSelected}
                     accept=".pdf"
