@@ -1,5 +1,6 @@
 "use client";
 
+import toast from "react-hot-toast";
 import React, { useState } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
@@ -27,7 +28,7 @@ export default function SplitPDF() {
             setPageRange(`1-${pdfDoc.getPageCount()}`);
         } catch (error) {
             console.error("Error reading PDF file:", error);
-            alert("Error reading PDF file. It might be password-protected or corrupted.");
+            toast.error("Error reading PDF file. It might be password-protected or corrupted.");
         }
     };
 
@@ -71,7 +72,7 @@ export default function SplitPDF() {
             if (splitMode === "range") {
                 const pageIndices = parseRange(pageRange, pagesCount);
                 if (pageIndices.length === 0) {
-                    alert("Invalid page range. Please check your input.");
+                    toast.error("Invalid page range. Please check your input.");
                     setIsProcessing(false);
                     return;
                 }
@@ -128,7 +129,7 @@ export default function SplitPDF() {
             });
         } catch (error) {
             console.error("Error splitting PDF:", error);
-            alert("An error occurred while splitting the PDF file.");
+            toast.error("An error occurred while splitting the PDF file.");
         } finally {
             setIsProcessing(false);
             setTimeout(() => setProgress(0), 1000);

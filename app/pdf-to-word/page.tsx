@@ -1,5 +1,6 @@
 "use client";
 
+import toast from "react-hot-toast";
 import React, { useState } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
@@ -38,7 +39,7 @@ export default function PDFToWord() {
             const numPages = pdf.numPages;
             setProgress(30);
 
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+             
             const docChildren: any[] = [];
 
             for (let i = 1; i <= numPages; i++) {
@@ -177,7 +178,7 @@ export default function PDFToWord() {
             });
         } catch (error) {
             console.error("Error converting PDF to Word:", error);
-            alert("An error occurred while converting the PDF file. It might be scanned or protected.");
+            toast.error("An error occurred while converting the PDF file. It might be scanned or protected.");
         } finally {
             setIsProcessing(false);
             setTimeout(() => setProgress(0), 1000);

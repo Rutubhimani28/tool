@@ -1,5 +1,6 @@
 "use client";
 
+import toast from "react-hot-toast";
 import React, { useState } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
@@ -114,7 +115,7 @@ export default function JPGToPDF() {
             });
         } catch (error) {
             console.error("Error converting images to PDF:", error);
-            alert("An error occurred while converting the images to PDF.");
+            toast.error("An error occurred while converting the images to PDF.");
         } finally {
             setIsProcessing(false);
             setTimeout(() => setProgress(0), 1000);
@@ -144,7 +145,7 @@ export default function JPGToPDF() {
                                 className="group relative flex flex-col rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50 overflow-hidden"
                             >
                                 <div className="relative aspect-square w-full overflow-hidden bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center">
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    { }
                                     <img
                                         src={imgObj.previewUrl}
                                         alt={imgObj.file.name}

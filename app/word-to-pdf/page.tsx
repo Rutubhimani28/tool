@@ -1,5 +1,6 @@
 "use client";
 
+import toast from "react-hot-toast";
 import React, { useState } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
@@ -31,43 +32,156 @@ export default function WordToPDF() {
             const htmlContent = result.value;
             setProgress(60);
 
-            // Dynamically import html2pdf.js to avoid SSR issues
-            const html2pdf = (await import("html2pdf.js")).default;
-            setProgress(75);
-
-            // Create a temporary container to hold the HTML content
-            const container = document.createElement("div");
-            container.innerHTML = htmlContent;
-            container.style.padding = "40px";
-            container.style.fontFamily = "Arial, sans-serif";
-            container.style.lineHeight = "1.6";
-            container.style.color = "#333";
-            container.style.backgroundColor = "#fff";
-            container.style.width = "800px"; // standard width for rendering
+            const tempContainer = document.createElement("div");
+            tempContainer.innerHTML = htmlContent;
 
             // Apply basic styling to headings and paragraphs
-            const headings = container.querySelectorAll("h1, h2, h3, h4, h5, h6");
+            const headings = tempContainer.querySelectorAll("h1, h2, h3, h4, h5, h6");
             headings.forEach((h) => {
                 (h as HTMLElement).style.marginTop = "20px";
                 (h as HTMLElement).style.marginBottom = "10px";
                 (h as HTMLElement).style.fontWeight = "bold";
             });
 
-            const paragraphs = container.querySelectorAll("p");
+            const paragraphs = tempContainer.querySelectorAll("p");
             paragraphs.forEach((p) => {
                 (p as HTMLElement).style.marginBottom = "12px";
             });
 
-            const options = {
-                margin: 10,
-                filename: `${file.name.replace(".docx", "").replace(".doc", "")}.pdf`,
-                image: { type: "jpeg" as const, quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true },
-                jsPDF: { unit: "mm" as const, format: "a4", orientation: "portrait" as const },
-            };
+            // Split content into chunks of 30 elements to avoid canvas size limits on large files
+            const chunks: string[] = [];
+            let currentChunk = document.createElement("div");
+            currentChunk.style.padding = "40px";
+            currentChunk.style.fontFamily = "Arial, sans-serif";
+            currentChunk.style.lineHeight = "1.6";
+            currentChunk.style.color = "#333";
+            currentChunk.style.backgroundColor = "#fff";
+            currentChunk.style.width = "800px";
 
-            setProgress(85);
-            await html2pdf().from(container).set(options).save();
+            Array.from(tempContainer.children).forEach((child, index) => {
+                currentChunk.appendChild(child.cloneNode(true));
+                if ((index + 1) % 30 === 0 || index === tempContainer.children.length - 1) {
+                    chunks.push(currentChunk.outerHTML);
+                    currentChunk = document.createElement("div");
+                    currentChunk.style.padding = "40px";
+                    currentChunk.style.fontFamily = "Arial, sans-serif";
+                    currentChunk.style.lineHeight = "1.6";
+                    currentChunk.style.color = "#333";
+                    currentChunk.style.backgroundColor = "#fff";
+                    currentChunk.style.width = "800px";
+                }
+            });
+
+            setProgress(75);
+
+            const filename = `${file.name.replace(".docx", "").replace(".doc", "")}.pdf`;
+
+            // Create an isolated iframe to prevent html2canvas from seeing Tailwind CSS v4 lab/oklch colors
+            const iframe = document.createElement("iframe");
+            iframe.style.position = "absolute";
+            iframe.style.width = "800px";
+            iframe.style.height = "1122px";
+            iframe.style.left = "-10000px";
+            iframe.style.top = "-10000px";
+            iframe.style.border = "none";
+            document.body.appendChild(iframe);
+
+            const iframeDoc = iframe.contentWindow?.document;
+            if (!iframeDoc) throw new Error("Could not create isolated frame for rendering");
+
+            await new Promise<void>((resolve, reject) => {
+                // We define a message listener to track progress from inside the iframe
+                const handleMessage = (event: MessageEvent) => {
+                    if (event.data && event.data.type === "progress") {
+                        setProgress(75 + Math.floor((event.data.current / event.data.total) * 20));
+                    }
+                };
+                window.addEventListener("message", handleMessage);
+
+                iframe.onload = async () => {
+                    try {
+                        // @ts-expect-error - generatePDF is defined in the iframe script
+                        const blob = await iframe.contentWindow.generatePDF(filename, chunks);
+                        const url = URL.createObjectURL(blob);
+                        const link = document.createElement("a");
+                        link.href = url;
+                        link.download = filename;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        URL.revokeObjectURL(url);
+                        window.removeEventListener("message", handleMessage);
+                        resolve();
+                    } catch (err) {
+                        window.removeEventListener("message", handleMessage);
+                        reject(err);
+                    }
+                };
+
+                iframeDoc.open();
+                iframeDoc.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+                        <style>
+                            body { padding: 0; margin: 0; background-color: #fff; }
+                            div { box-sizing: border-box; }
+                            h1, h2, h3, h4, h5, h6 { margin-top: 20px; margin-bottom: 10px; font-weight: bold; }
+                            p { margin-bottom: 12px; }
+                            img { max-width: 100%; height: auto; display: block; margin: 10px 0; }
+                            table { border-collapse: collapse; width: 100%; margin-bottom: 12px; }
+                            td, th { border: 1px solid #ddd; padding: 6px 10px; }
+                        </style>
+                    </head>
+                    <body>
+                        <script>
+                            window.generatePDF = function(filename, chunks) {
+                                return new Promise(function(resolve, reject) {
+                                    var options = {
+                                        margin: 10,
+                                        filename: filename,
+                                        image: { type: 'jpeg', quality: 0.98 },
+                                        html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+                                        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                                    };
+
+                                    var worker = html2pdf().set(options);
+
+                                    // Process chunks sequentially
+                                    var processChunk = function(index) {
+                                        if (index >= chunks.length) {
+                                            worker.outputPdf('blob').then(resolve).catch(reject);
+                                            return;
+                                        }
+
+                                        // Notify parent window of progress
+                                        window.parent.postMessage({ type: 'progress', current: index + 1, total: chunks.length }, '*');
+
+                                        if (index === 0) {
+                                            worker = worker.from(chunks[index]).toPdf();
+                                        } else {
+                                            worker = worker.get('pdf').then(function(pdf) {
+                                                pdf.addPage();
+                                            }).from(chunks[index]).toContainer().toCanvas().toPdf();
+                                        }
+
+                                        worker.then(function() {
+                                            processChunk(index + 1);
+                                        }).catch(reject);
+                                    };
+
+                                    processChunk(0);
+                                });
+                            };
+                        </script>
+                    </body>
+                    </html>
+                `);
+                iframeDoc.close();
+            });
+
+            document.body.removeChild(iframe);
             setProgress(100);
 
             confetti({
@@ -77,10 +191,13 @@ export default function WordToPDF() {
             });
         } catch (error) {
             console.error("Error converting Word to PDF:", error);
-            alert("An error occurred while converting the Word document.");
+            toast.error("An error occurred while converting the Word document.");
         } finally {
             setIsProcessing(false);
-            setTimeout(() => setProgress(0), 1000);
+            setTimeout(() => {
+                setProgress(0);
+                setFile(null);
+            }, 2500);
         }
     };
 

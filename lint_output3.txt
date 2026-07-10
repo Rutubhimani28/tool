@@ -1,0 +1,11 @@
+
+> tool@0.1.0 lint
+> eslint
+
+
+C:\Users\davra\OneDrive\Desktop\Tool\tool\replace_alerts.js
+  1:12  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  2:14  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+✖ 2 problems (2 errors, 0 warnings)
+

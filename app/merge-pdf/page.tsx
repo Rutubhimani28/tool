@@ -1,5 +1,6 @@
 "use client";
 
+import toast from "react-hot-toast";
 import React, { useState } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
@@ -27,7 +28,7 @@ export default function MergePDF() {
 
     const handleFilesSelected = async (selectedFiles: File[]) => {
         const newFiles: UploadedFile[] = [];
-        for (const file of selectedFiles) {
+        const originalWarn = console.warn; console.warn = () => {}; try { for (const file of selectedFiles) {
             try {
                 const arrayBuffer = await file.arrayBuffer();
                 const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
@@ -39,10 +40,10 @@ export default function MergePDF() {
                 });
             } catch (error) {
                 console.error("Error reading PDF file:", error);
-                alert(`Error reading ${file.name}. It might be password-protected or corrupted.`);
+                toast.error(`Error reading ${file.name}. It might be password-protected or corrupted.`);
             }
         }
-        setFiles((prev) => [...prev, ...newFiles]);
+        } finally { console.warn = originalWarn; } setFiles((prev) => [...prev, ...newFiles]);
     };
 
     const removeFile = (id: string) => {
@@ -70,7 +71,7 @@ export default function MergePDF() {
             const mergedPdf = await PDFDocument.create();
             let currentFileIndex = 0;
 
-            for (const uploadedFile of files) {
+            const originalWarn = console.warn; console.warn = () => {}; try { for (const uploadedFile of files) {
                 const arrayBuffer = await uploadedFile.file.arrayBuffer();
                 const srcPdf = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
                 const copiedPages = await mergedPdf.copyPages(
@@ -83,7 +84,7 @@ export default function MergePDF() {
                 setProgress(10 + Math.round((currentFileIndex / files.length) * 80));
             }
 
-            const mergedPdfBytes = await mergedPdf.save();
+            } finally { console.warn = originalWarn; } const mergedPdfBytes = await mergedPdf.save();
             setProgress(95);
 
             const blob = new Blob([mergedPdfBytes.buffer as ArrayBuffer], { type: "application/pdf" });
@@ -104,7 +105,7 @@ export default function MergePDF() {
             });
         } catch (error) {
             console.error("Error merging PDFs:", error);
-            alert("An error occurred while merging the PDF files.");
+            toast.error("An error occurred while merging the PDF files.");
         } finally {
             setIsProcessing(false);
             setTimeout(() => setProgress(0), 1000);

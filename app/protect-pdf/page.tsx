@@ -1,5 +1,6 @@
 "use client";
 
+import toast from "react-hot-toast";
 import React, { useState } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
@@ -61,7 +62,7 @@ export default function ProtectPDF() {
             });
         } catch (error) {
             console.error("Error protecting PDF:", error);
-            alert("An error occurred while password-protecting the PDF.");
+            toast.error("An error occurred while password-protecting the PDF.");
         } finally {
             setIsProcessing(false);
             setTimeout(() => setProgress(0), 1000);

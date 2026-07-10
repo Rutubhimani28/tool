@@ -1,5 +1,6 @@
 "use client";
 
+import toast from "react-hot-toast";
 import React, { useState } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
@@ -74,7 +75,7 @@ export default function RotatePDF() {
             setThumbnails(thumbs);
         } catch (error) {
             console.error("Error loading PDF for rotation:", error);
-            alert("Error loading PDF file.");
+            toast.error("Error loading PDF file.");
             setFile(null);
         } finally {
             setIsLoadingThumbnails(false);
@@ -142,7 +143,7 @@ export default function RotatePDF() {
             });
         } catch (error) {
             console.error("Error saving rotated PDF:", error);
-            alert("An error occurred while saving the rotated PDF.");
+            toast.error("An error occurred while saving the rotated PDF.");
         } finally {
             setIsProcessing(false);
             setTimeout(() => setProgress(0), 1000);
@@ -214,7 +215,7 @@ export default function RotatePDF() {
                                         className="flex flex-col items-center p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/30 hover:border-teal-500/50 transition-all duration-200"
                                     >
                                         <div className="relative flex items-center justify-center h-40 w-full bg-white dark:bg-zinc-950 rounded-xl border border-zinc-100 dark:border-zinc-900 overflow-hidden p-2">
-                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            { }
                                             <img
                                                 src={thumb.dataUrl}
                                                 alt={`Page ${thumb.pageNumber}`}

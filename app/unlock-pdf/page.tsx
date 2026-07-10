@@ -1,5 +1,6 @@
 "use client";
 
+import toast from "react-hot-toast";
 import React, { useState } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
@@ -31,7 +32,7 @@ export default function UnlockPDF() {
             await PDFDocument.load(arrayBuffer);
             // If it succeeds, it's not encrypted
             setIsEncrypted(false);
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+             
         } catch (error: any) {
             // If it throws an error, it's likely encrypted
             console.warn("PDF load error (checking encryption):", error);
@@ -96,7 +97,7 @@ export default function UnlockPDF() {
                     pdfBytes = await pdfDoc.save();
                 } catch (err) {
                     console.error("Decryption error:", err);
-                    alert("Incorrect password or decryption failed. Please try again.");
+                    toast.error("Incorrect password or decryption failed. Please try again.");
                     setIsProcessing(false);
                     return;
                 }
@@ -124,7 +125,7 @@ export default function UnlockPDF() {
             });
         } catch (error) {
             console.error("Error unlocking PDF:", error);
-            alert("An error occurred while unlocking the PDF.");
+            toast.error("An error occurred while unlocking the PDF.");
         } finally {
             setIsProcessing(false);
             setTimeout(() => setProgress(0), 1000);

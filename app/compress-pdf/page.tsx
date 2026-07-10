@@ -1,5 +1,6 @@
 "use client";
 
+import toast from "react-hot-toast";
 import React, { useState } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
@@ -59,7 +60,7 @@ export default function CompressPDF() {
             confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
         } catch (error) {
             console.error("Error compressing PDF:", error);
-            alert("An error occurred while compressing the PDF file.");
+            toast.error("An error occurred while compressing the PDF file.");
         } finally {
             setIsProcessing(false);
             setTimeout(() => setProgress(0), 1000);

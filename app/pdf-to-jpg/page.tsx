@@ -1,5 +1,6 @@
 "use client";
 
+import toast from "react-hot-toast";
 import React, { useState } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
@@ -27,7 +28,7 @@ export default function PDFToJPG() {
             setFile(selectedFile);
         } catch (error) {
             console.error("Error reading PDF file:", error);
-            alert("Error reading PDF file. It might be password-protected or corrupted.");
+            toast.error("Error reading PDF file. It might be password-protected or corrupted.");
         }
     };
 
@@ -93,7 +94,7 @@ export default function PDFToJPG() {
             });
         } catch (error) {
             console.error("Error converting PDF to JPG:", error);
-            alert("An error occurred while converting the PDF to JPG.");
+            toast.error("An error occurred while converting the PDF to JPG.");
         } finally {
             setIsProcessing(false);
             setTimeout(() => setProgress(0), 1000);
