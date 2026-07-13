@@ -22,7 +22,7 @@ export default function Footer() {
     return (
         <footer className="w-full border-t border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 transition-colors duration-300">
             <div className="mx-auto max-w-[1600px] px-4 py-12 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 gap-10 sm:grid-cols-3">
+                <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
                     {/* Brand */}
                     <div className="flex flex-col gap-4">
                         <Link href="/" className="flex items-center gap-2 group w-fit">
@@ -71,6 +71,18 @@ export default function Footer() {
                             ))}
                         </ul>
                     </div>
+                    {/* Company */}
+                    <div>
+                        <h3 className="text-sm font-semibold text-zinc-900 dark:text-white mb-4">Company</h3>
+                        <ul className="flex flex-col gap-2">
+                            <li>
+                                <Link href="/about" className="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">About Us</Link>
+                            </li>
+                            <li>
+                                <Link href="/contact" className="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Contact Us</Link>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
                 {/* Bottom bar */}
@@ -79,8 +91,8 @@ export default function Footer() {
                         © {new Date().getFullYear()} PDFImageConvert. All rights reserved.
                     </p>
                     <div className="flex gap-5 text-xs text-zinc-400 dark:text-zinc-500">
-                        <span className="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors cursor-pointer">Privacy Policy</span>
-                        <span className="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors cursor-pointer">Terms of Service</span>
+                        <Link href="/privacy" className="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Privacy Policy</Link>
+                        <Link href="/terms" className="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Terms of Service</Link>
                     </div>
                 </div>
             </div>

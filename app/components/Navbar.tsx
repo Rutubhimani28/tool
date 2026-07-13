@@ -9,7 +9,8 @@ const navLinks = [
     { label: "Merge PDF", href: "/merge-pdf" },
     { label: "Split PDF", href: "/split-pdf" },
     { label: "Compress PDF", href: "/compress-pdf" },
-    { label: "Word to PDF", href: "/word-to-pdf" },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
