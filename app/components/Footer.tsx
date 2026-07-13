@@ -76,6 +76,9 @@ export default function Footer() {
                         <h3 className="text-sm font-semibold text-zinc-900 dark:text-white mb-4">Company</h3>
                         <ul className="flex flex-col gap-2">
                             <li>
+                                <Link href="/blog" className="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Blog</Link>
+                            </li>
+                            <li>
                                 <Link href="/about" className="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">About Us</Link>
                             </li>
                             <li>

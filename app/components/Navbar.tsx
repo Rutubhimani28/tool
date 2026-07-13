@@ -9,8 +9,6 @@ const navLinks = [
     { label: "Merge PDF", href: "/merge-pdf" },
     { label: "Split PDF", href: "/split-pdf" },
     { label: "Compress PDF", href: "/compress-pdf" },
-    { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -60,6 +58,27 @@ export default function Navbar() {
 
                 {/* Right side */}
                 <div className="flex items-center gap-2">
+                    <div className="hidden md:flex items-center gap-1 mr-1">
+                        <Link
+                            href="/blog"
+                            className="px-3 py-2 rounded-lg text-sm font-medium text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-800 transition-all duration-150"
+                        >
+                            Blog
+                        </Link>
+                        <Link
+                            href="/about"
+                            className="px-3 py-2 rounded-lg text-sm font-medium text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-800 transition-all duration-150"
+                        >
+                            About
+                        </Link>
+                        <Link
+                            href="/contact"
+                            className="px-3 py-2 rounded-lg text-sm font-medium text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-800 transition-all duration-150"
+                        >
+                            Contact
+                        </Link>
+                    </div>
+
                     {/* Dark mode toggle */}
                     <button
                         suppressHydrationWarning
@@ -111,6 +130,28 @@ export default function Navbar() {
                         className="px-3 py-2.5 rounded-lg text-sm font-medium text-zinc-700 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800 transition-all duration-150"
                     >
                         All Tools →
+                    </Link>
+                    <div className="h-px w-full bg-zinc-200 dark:bg-zinc-800 my-1" />
+                    <Link
+                        href="/blog"
+                        onClick={() => setMobileOpen(false)}
+                        className="px-3 py-2.5 rounded-lg text-sm font-medium text-zinc-700 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800 transition-all duration-150"
+                    >
+                        Blog
+                    </Link>
+                    <Link
+                        href="/about"
+                        onClick={() => setMobileOpen(false)}
+                        className="px-3 py-2.5 rounded-lg text-sm font-medium text-zinc-700 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800 transition-all duration-150"
+                    >
+                        About Us
+                    </Link>
+                    <Link
+                        href="/contact"
+                        onClick={() => setMobileOpen(false)}
+                        className="px-3 py-2.5 rounded-lg text-sm font-medium text-zinc-700 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800 transition-all duration-150"
+                    >
+                        Contact Us
                     </Link>
                 </nav>
             </div>
