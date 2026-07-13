@@ -26,15 +26,15 @@ export default function Footer() {
                     {/* Brand */}
                     <div className="flex flex-col gap-4">
                         <Link href="/" className="flex items-center gap-2 group w-fit">
-                            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-red-500 to-rose-600 text-white shadow-md shadow-red-500/20">
-                                <PictureAsPdf className="h-5 w-5" />
+                            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white border border-zinc-200 dark:border-zinc-700 shadow-md shadow-red-500/20 overflow-hidden">
+                                <img src="/icon.svg" alt="Logo" className="h-full w-full object-contain scale-[1.6]" />
                             </div>
                             <span className="text-lg font-bold text-zinc-900 dark:text-white">
                                 PDFImage<span className="text-red-500">Convert</span>
                             </span>
                         </Link>
                         <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                            Free, fast, and easy PDF and image tools. Convert, compress, merge, and edit your files in seconds.
+                            Your all-in-one platform for managing documents and images. Secure, fast, and completely free to use directly in your browser.
                         </p>
                     </div>
 

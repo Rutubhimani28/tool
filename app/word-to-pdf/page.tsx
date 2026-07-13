@@ -108,52 +108,76 @@ export default function WordToPDF() {
                     <!DOCTYPE html>
                     <html>
                     <head>
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
                         <style>
                             body { padding: 0; margin: 0; background-color: #fff; }
                             div { box-sizing: border-box; }
+                            section.docx { margin: 0 !important; box-shadow: none !important; }
                         </style>
                     </head>
                     <body>
                         <script>
-                            window.generatePDF = function(filename, chunks) {
-                                return new Promise(function(resolve, reject) {
-                                    var options = {
-                                        margin: 10,
-                                        filename: filename,
-                                        image: { type: 'jpeg', quality: 0.98 },
-                                        html2canvas: { scale: 2, useCORS: true, letterRendering: true },
-                                        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-                                        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-                                    };
+                            window.generatePDF = async function(filename, chunks) {
+                                try {
+                                    const { jsPDF } = window.jspdf;
+                                    const pdf = new jsPDF('p', 'mm', 'a4');
+                                    const pdfWidth = pdf.internal.pageSize.getWidth();
+                                    const pdfHeight = pdf.internal.pageSize.getHeight();
 
-                                    var worker = html2pdf().set(options);
-
-                                    // Process chunks sequentially
-                                    var processChunk = function(index) {
-                                        if (index >= chunks.length) {
-                                            worker.outputPdf('blob').then(resolve).catch(reject);
-                                            return;
+                                    for (let i = 0; i < chunks.length; i++) {
+                                        window.parent.postMessage({ type: 'progress', current: i + 1, total: chunks.length }, '*');
+                                        
+                                        const container = document.createElement('div');
+                                        container.innerHTML = chunks[i];
+                                        // Ensure container has a white background and fits the content
+                                        container.style.backgroundColor = '#ffffff';
+                                        container.style.position = 'absolute';
+                                        container.style.top = '0';
+                                        container.style.left = '0';
+                                        container.style.zIndex = '-1';
+                                        document.body.appendChild(container);
+                                        
+                                        const canvas = await html2canvas(container, { 
+                                            scale: 2, 
+                                            useCORS: true, 
+                                            logging: false,
+                                            backgroundColor: '#ffffff'
+                                        });
+                                        document.body.removeChild(container);
+                                        
+                                        const imgData = canvas.toDataURL('image/jpeg', 0.98);
+                                        
+                                        if (i > 0) {
+                                            pdf.addPage();
                                         }
-
-                                        // Notify parent window of progress
-                                        window.parent.postMessage({ type: 'progress', current: index + 1, total: chunks.length }, '*');
-
-                                        if (index === 0) {
-                                            worker = worker.from(chunks[index]).toPdf();
+                                        
+                                        // Calculate dimensions to fit exactly on the page, preserving aspect ratio
+                                        const imgProps = pdf.getImageProperties(imgData);
+                                        const ratio = imgProps.width / imgProps.height;
+                                        const pdfRatio = pdfWidth / pdfHeight;
+                                        
+                                        let finalWidth = pdfWidth;
+                                        let finalHeight = pdfHeight;
+                                        
+                                        if (ratio > pdfRatio) {
+                                            finalHeight = pdfWidth / ratio;
                                         } else {
-                                            worker = worker.get('pdf').then(function(pdf) {
-                                                pdf.addPage();
-                                            }).from(chunks[index]).toContainer().toCanvas().toPdf();
+                                            finalWidth = pdfHeight * ratio;
                                         }
-
-                                        worker.then(function() {
-                                            processChunk(index + 1);
-                                        }).catch(reject);
-                                    };
-
-                                    processChunk(0);
-                                });
+                                        
+                                        // Center the image on the page
+                                        const x = (pdfWidth - finalWidth) / 2;
+                                        const y = (pdfHeight - finalHeight) / 2;
+                                        
+                                        pdf.addImage(imgData, 'JPEG', x, y, finalWidth, finalHeight);
+                                    }
+                                    
+                                    return pdf.output('blob');
+                                } catch (e) {
+                                    console.error("Error in iframe generatePDF:", e);
+                                    throw e;
+                                }
                             };
                         </script>
                     </body>

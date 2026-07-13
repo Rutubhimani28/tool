@@ -188,12 +188,12 @@ const tools: Tool[] = [
 ];
 
 const categories = [
-  { id: "all", name: "All Tools", count: tools.length },
-  { id: "organize", name: "Organize", count: tools.filter((t) => t.category === "organize").length },
-  { id: "convert", name: "Convert", count: tools.filter((t) => t.category === "convert").length },
-  { id: "optimize", name: "Optimize", count: tools.filter((t) => t.category === "optimize").length },
-  { id: "security", name: "Security", count: tools.filter((t) => t.category === "security").length },
-  { id: "image", name: "Image Tools", count: tools.filter((t) => t.category === "image").length },
+  { id: "all", name: "All Tools" },
+  { id: "organize", name: "Organize" },
+  { id: "convert", name: "Convert" },
+  { id: "optimize", name: "Optimize" },
+  { id: "security", name: "Security" },
+  { id: "image", name: "Image Tools" },
 ];
 
 const categoryColorMap: Record<string, string> = {
@@ -264,14 +264,6 @@ export default function Home() {
                   }`}
               >
                 {category.name}
-                <span
-                  className={`rounded-full px-1.5 py-0.5 text-xs font-semibold ${selectedCategory === category.id
-                    ? "bg-white/20 text-white dark:bg-zinc-900/20 dark:text-zinc-900"
-                    : "bg-zinc-100 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-500"
-                    }`}
-                >
-                  {category.count}
-                </span>
               </button>
             ))}
           </div>

@@ -30,8 +30,8 @@ export default function Navbar() {
             <div className="mx-auto flex h-16 max-w-[1600px] items-center justify-between px-4 sm:px-6 lg:px-8">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-red-500 to-rose-600 text-white shadow-md shadow-red-500/20 transition-transform group-hover:scale-105">
-                        <PictureAsPdf className="h-5 w-5" />
+                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white border border-zinc-200 dark:border-zinc-700 shadow-md shadow-red-500/20 transition-transform group-hover:scale-105 overflow-hidden">
+                        <img src="/icon.svg" alt="Logo" className="h-full w-full object-contain scale-[1.6]" />
                     </div>
                     <span className="text-xl font-bold bg-gradient-to-r from-zinc-900 to-zinc-700 bg-clip-text text-transparent dark:from-white dark:to-zinc-300">
                         PDFImage<span className="text-red-500">Convert</span>

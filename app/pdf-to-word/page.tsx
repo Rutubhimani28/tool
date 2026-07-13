@@ -4,14 +4,16 @@ import toast from "react-hot-toast";
 import React, { useState } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
-import { Document, Packer, Paragraph, TextRun, HeadingLevel } from "docx";
+import { Document, Packer, Paragraph, TextRun, HeadingLevel, ImageRun } from "docx";
 import confetti from "canvas-confetti";
 import { TextSnippet } from "@mui/icons-material";
+import Tesseract from "tesseract.js";
 
 export default function PDFToWord() {
     const [file, setFile] = useState<File | null>(null);
     const [isProcessing, setIsProcessing] = useState(false);
     const [progress, setProgress] = useState(0);
+    const [processingStatus, setProcessingStatus] = useState("");
     const [resultUrl, setResultUrl] = useState<string | null>(null);
     const [resultFileName, setResultFileName] = useState("");
 
@@ -24,6 +26,7 @@ export default function PDFToWord() {
         if (!file) return;
         setIsProcessing(true);
         setProgress(10);
+        setProcessingStatus("Loading PDF...");
 
         try {
             const arrayBuffer = await file.arrayBuffer();
@@ -41,6 +44,7 @@ export default function PDFToWord() {
             const docChildren: any[] = [];
 
             for (let i = 1; i <= numPages; i++) {
+                setProcessingStatus(`Extracting text from page ${i} of ${numPages}...`);
                 const page = await pdf.getPage(i);
 
                 // --- Extract text ---
@@ -50,7 +54,8 @@ export default function PDFToWord() {
                 const lines: { [key: number]: string[] } = {};
 
                 items.forEach((item) => {
-                    const y = Math.round(item.transform[5]);
+                    if (!item.str) return;
+                    const y = Math.round(item.transform[5] / 5) * 5;
                     if (!lines[y]) {
                         lines[y] = [];
                     }
@@ -77,6 +82,81 @@ export default function PDFToWord() {
                     }
                 });
 
+                if (!hasTextOnPage) {
+                    // Fallback to OCR for scanned pages
+                    setProcessingStatus(`Running OCR on page ${i} (this may take a while)...`);
+                    const viewport = page.getViewport({ scale: 1.5 });
+                    const canvas = document.createElement("canvas");
+                    const context = canvas.getContext("2d");
+                    if (context) {
+                        canvas.height = viewport.height;
+                        canvas.width = viewport.width;
+                        await page.render({
+                            canvasContext: context,
+                            viewport: viewport,
+                            canvas: canvas,
+                        }).promise;
+
+                        try {
+                            const { data: { text } } = await Tesseract.recognize(
+                                canvas,
+                                'eng',
+                                {
+                                    logger: m => {
+                                        if (m.status === 'recognizing text') {
+                                            setProgress(30 + Math.round((i / numPages) * 50) - 5 + Math.round(m.progress * 5));
+                                        }
+                                    }
+                                }
+                            );
+
+                            if (text && text.trim()) {
+                                const ocrLines = text.split('\n');
+                                ocrLines.forEach(line => {
+                                    if (line.trim()) {
+                                        docChildren.push(
+                                            new Paragraph({
+                                                children: [new TextRun(line.trim())],
+                                                spacing: { after: 120 },
+                                            })
+                                        );
+                                    }
+                                });
+                                hasTextOnPage = true;
+                            }
+                        } catch (ocrError) {
+                            console.error("OCR failed:", ocrError);
+                        }
+
+                        if (!hasTextOnPage) {
+                            // If OCR fails or returns empty, fallback to image
+                            setProcessingStatus(`Inserting image for page ${i}...`);
+                            const blob = await new Promise<Blob | null>((resolve) =>
+                                canvas.toBlob((b) => resolve(b), "image/jpeg", 0.8)
+                            );
+
+                            if (blob) {
+                                const imgArrayBuffer = await blob.arrayBuffer();
+                                docChildren.push(
+                                    new Paragraph({
+                                        children: [
+                                            new ImageRun({
+                                                data: imgArrayBuffer,
+                                                transformation: {
+                                                    width: 500,
+                                                    height: (500 * canvas.height) / canvas.width,
+                                                },
+                                                type: "jpg",
+                                            }),
+                                        ],
+                                    })
+                                );
+                                hasTextOnPage = true; // Mark as having content
+                            }
+                        }
+                    }
+                }
+
                 // Add page break between pages except the last one
                 if (hasTextOnPage && i < numPages) {
                     docChildren.push(
@@ -91,6 +171,7 @@ export default function PDFToWord() {
             }
 
             // Create Word document
+            setProcessingStatus("Generating Word document...");
             const doc = new Document({
                 sections: [
                     {
@@ -102,6 +183,7 @@ export default function PDFToWord() {
             setProgress(90);
 
             // Generate blob
+            setProcessingStatus("Finalizing...");
             const docBlob = await Packer.toBlob(doc);
             setProgress(95);
 
@@ -207,7 +289,7 @@ export default function PDFToWord() {
                         {isProcessing ? (
                             <div className="w-full">
                                 <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
-                                    <span>Converting to Word...</span>
+                                    <span>{processingStatus || "Converting to Word..."}</span>
                                     <span>{progress}%</span>
                                 </div>
                                 <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
