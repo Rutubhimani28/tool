@@ -16,6 +16,8 @@ export default function ProtectPDF() {
     const [allowModifying, setAllowModifying] = useState(true);
     const [isProcessing, setIsProcessing] = useState(false);
     const [progress, setProgress] = useState(0);
+    const [resultUrl, setResultUrl] = useState<string | null>(null);
+    const [resultFileName, setResultFileName] = useState("");
 
     const handleFileSelected = (selectedFiles: File[]) => {
         if (selectedFiles.length === 0) return;
@@ -46,13 +48,9 @@ export default function ProtectPDF() {
 
             const blob = new Blob([encryptedBytes.buffer as ArrayBuffer], { type: "application/pdf" });
             const url = URL.createObjectURL(blob);
-            const link = document.createElement("a");
-            link.href = url;
-            link.download = `${file.name.replace(".pdf", "")}_protected.pdf`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
+            setResultUrl(url);
+            setResultFileName(`${file.name.replace(".pdf", "")}_protected.pdf`);
+            setFile(null);
 
             setProgress(100);
             confetti({
@@ -74,7 +72,44 @@ export default function ProtectPDF() {
             title="Protect PDF"
             description="Encrypt your PDF document with a secure password to restrict access and permissions."
         >
-            {!file ? (
+            {resultUrl ? (
+                <div className="flex flex-col items-center justify-center gap-6 py-8">
+                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-yellow-100 text-yellow-500 dark:bg-yellow-900/30 dark:text-yellow-400">
+                        <Lock className="h-12 w-12" />
+                    </div>
+                    <div className="text-center">
+                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">PDF Protected Successfully!</h3>
+                        <p className="mt-2 text-zinc-500 dark:text-zinc-400">
+                            Your file has been encrypted with the password.
+                        </p>
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
+                        <button
+                            onClick={() => {
+                                const link = document.createElement("a");
+                                link.href = resultUrl;
+                                link.download = resultFileName;
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                            }}
+                            className="flex-1 rounded-xl bg-yellow-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-yellow-600 transition-colors"
+                        >
+                            Download PDF
+                        </button>
+                        <button
+                            onClick={() => {
+                                URL.revokeObjectURL(resultUrl);
+                                setResultUrl(null);
+                                setResultFileName("");
+                            }}
+                            className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
+                        >
+                            Protect Another
+                        </button>
+                    </div>
+                </div>
+            ) : !file ? (
                 <DropZone
                     onFilesSelected={handleFileSelected}
                     accept=".pdf"

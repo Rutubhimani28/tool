@@ -34,7 +34,7 @@ export default function Navbar() {
                         <PictureAsPdf className="h-5 w-5" />
                     </div>
                     <span className="text-xl font-bold bg-gradient-to-r from-zinc-900 to-zinc-700 bg-clip-text text-transparent dark:from-white dark:to-zinc-300">
-                        PDF<span className="text-red-500">Craft</span>
+                        PDFImage<span className="text-red-500">Convert</span>
                     </span>
                 </Link>
 
@@ -61,6 +61,7 @@ export default function Navbar() {
                 <div className="flex items-center gap-2">
                     {/* Dark mode toggle */}
                     <button
+                        suppressHydrationWarning
                         onClick={toggleDarkMode}
                         className="flex h-9 w-9 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-600 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 transition-all duration-200"
                         aria-label="Toggle dark mode"

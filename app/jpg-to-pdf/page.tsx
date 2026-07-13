@@ -23,6 +23,8 @@ export default function JPGToPDF() {
     const [images, setImages] = useState<UploadedImage[]>([]);
     const [isProcessing, setIsProcessing] = useState(false);
     const [progress, setProgress] = useState(0);
+    const [resultUrl, setResultUrl] = useState<string | null>(null);
+    const [resultFileName, setResultFileName] = useState("");
 
     const handleFilesSelected = (selectedFiles: File[]) => {
         const newImages = selectedFiles.map((file) => ({
@@ -99,13 +101,9 @@ export default function JPGToPDF() {
 
             const blob = new Blob([pdfBytes.buffer as ArrayBuffer], { type: "application/pdf" });
             const url = URL.createObjectURL(blob);
-            const link = document.createElement("a");
-            link.href = url;
-            link.download = "images_converted.pdf";
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
+            setResultUrl(url);
+            setResultFileName("images_converted.pdf");
+            setImages([]);
 
             setProgress(100);
             confetti({
@@ -127,7 +125,44 @@ export default function JPGToPDF() {
             title="JPG to PDF"
             description="Convert JPG and PNG images into a single PDF document in your preferred order."
         >
-            {images.length === 0 ? (
+            {resultUrl ? (
+                <div className="flex flex-col items-center justify-center gap-6 py-8">
+                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-purple-100 text-purple-500 dark:bg-purple-900/30 dark:text-purple-400">
+                        <div className="text-4xl">📄</div>
+                    </div>
+                    <div className="text-center">
+                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">Images to PDF Converted!</h3>
+                        <p className="mt-2 text-zinc-500 dark:text-zinc-400">
+                            Your images have been combined into a PDF.
+                        </p>
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
+                        <button
+                            onClick={() => {
+                                const link = document.createElement("a");
+                                link.href = resultUrl;
+                                link.download = resultFileName;
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                            }}
+                            className="flex-1 rounded-xl bg-green-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-green-600 transition-colors"
+                        >
+                            Download PDF
+                        </button>
+                        <button
+                            onClick={() => {
+                                URL.revokeObjectURL(resultUrl);
+                                setResultUrl(null);
+                                setResultFileName("");
+                            }}
+                            className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
+                        >
+                            Convert More
+                        </button>
+                    </div>
+                </div>
+            ) : images.length === 0 ? (
                 <DropZone
                     onFilesSelected={handleFilesSelected}
                     accept="image/jpeg,image/png"

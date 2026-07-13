@@ -4,13 +4,9 @@ import toast from "react-hot-toast";
 import React, { useState } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
-import * as pdfjsLib from "pdfjs-dist";
 import { Document, Packer, Paragraph, TextRun, ImageRun, HeadingLevel } from "docx";
 import confetti from "canvas-confetti";
 import { TextSnippet } from "@mui/icons-material";
-
-// Set worker source for pdfjs-dist
-pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/6.1.200/pdf.worker.min.mjs`;
 
 export default function PDFToWord() {
     const [file, setFile] = useState<File | null>(null);
@@ -34,12 +30,14 @@ export default function PDFToWord() {
             setProgress(20);
 
             // Load PDF document
+            const pdfjsLib = await import("pdfjs-dist");
+            pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/6.1.200/pdf.worker.min.mjs`;
             const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
             const pdf = await loadingTask.promise;
             const numPages = pdf.numPages;
             setProgress(30);
 
-             
+
             const docChildren: any[] = [];
 
             for (let i = 1; i <= numPages; i++) {
@@ -82,7 +80,7 @@ export default function PDFToWord() {
                     const ctx = canvas.getContext("2d");
 
                     if (ctx) {
-                        await page.render({ canvasContext: ctx, viewport }).promise;
+                        await page.render({ canvasContext: ctx, viewport, canvas }).promise;
 
                         // Convert canvas to PNG blob
                         const blob = await new Promise<Blob | null>((resolve) => {

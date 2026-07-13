@@ -233,7 +233,7 @@ export default function Home() {
   return (
     <div className="flex-1 bg-zinc-50 dark:bg-zinc-950 transition-colors duration-300">
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-16 text-center sm:py-24">
+      <section className="relative overflow-hidden py-7 text-center sm:py-7">
         {/* Background decoration */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[600px] h-[400px] bg-gradient-to-b from-red-500/5 to-transparent rounded-full blur-3xl" />
@@ -241,7 +241,7 @@ export default function Home() {
 
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Heading */}
-          <h1 className="mx-auto max-w-4xl text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-white sm:text-6xl lg:text-7xl leading-tight">
+          <h1 className="mx-auto max-w-4xl text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-white sm:text-4xl lg:text-4xl leading-tight">
             Craft Your PDFs & Images
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed">
@@ -249,7 +249,7 @@ export default function Home() {
           </p>
 
           {/* Search Bar */}
-          <div className="mx-auto mt-10 max-w-lg">
+          <div className="mx-auto mt-8 max-w-lg">
             <div className="relative flex items-center rounded-2xl border border-zinc-200 bg-white px-4 shadow-md shadow-zinc-100/50 dark:border-zinc-800 dark:bg-zinc-900 dark:shadow-none focus-within:border-red-400 focus-within:ring-1 focus-within:ring-red-400 transition-all duration-200">
               <Search className="h-5 w-5 flex-shrink-0 text-zinc-400" />
               <input
@@ -301,14 +301,14 @@ export default function Home() {
                 Merge, split, compress, convert, and secure your PDF documents.
               </p>
             </div>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 sm:gap-8">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 sm:gap-8">
               {pdfTools.map((tool) => {
                 const Icon = tool.icon;
                 return (
                   <Link
                     key={tool.id}
                     href={tool.href}
-                    className="group relative flex flex-col rounded-2xl sm:rounded-3xl border border-zinc-200 bg-white p-6 sm:p-8 shadow-sm hover:shadow-lg dark:border-zinc-800 dark:bg-zinc-900 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
+                    className="group relative flex flex-col rounded-2xl sm:rounded-3xl border border-zinc-200 bg-white p-5 sm:p-6 shadow-sm hover:shadow-lg dark:border-zinc-800 dark:bg-zinc-900 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
                   >
                     <div className={`absolute inset-0 bg-gradient-to-br ${tool.gradient} opacity-0 group-hover:opacity-[0.04] transition-opacity duration-300 rounded-2xl sm:rounded-3xl`} />
                     <div className="relative">
@@ -326,10 +326,7 @@ export default function Home() {
                       <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed flex-1">
                         {tool.description}
                       </p>
-                      <div className="mt-5 flex items-center text-sm font-semibold text-red-500 dark:text-red-400">
-                        <span>Open Tool</span>
-                        <span className="ml-1.5 transition-transform group-hover:translate-x-1 inline-block">→</span>
-                      </div>
+                      
                     </div>
                   </Link>
                 );
@@ -349,14 +346,14 @@ export default function Home() {
                 Compress, resize, crop, convert, and remove backgrounds from images.
               </p>
             </div>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 sm:gap-8">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 sm:gap-8">
               {imageTools.map((tool) => {
                 const Icon = tool.icon;
                 return (
                   <Link
                     key={tool.id}
                     href={tool.href}
-                    className="group relative flex flex-col rounded-2xl sm:rounded-3xl border border-zinc-200 bg-white p-6 sm:p-8 shadow-sm hover:shadow-lg dark:border-zinc-800 dark:bg-zinc-900 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
+                    className="group relative flex flex-col rounded-2xl sm:rounded-3xl border border-zinc-200 bg-white p-5 sm:p-6 shadow-sm hover:shadow-lg dark:border-zinc-800 dark:bg-zinc-900 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
                   >
                     <div className={`absolute inset-0 bg-gradient-to-br ${tool.gradient} opacity-0 group-hover:opacity-[0.04] transition-opacity duration-300 rounded-2xl sm:rounded-3xl`} />
                     <div className="relative">
@@ -374,10 +371,7 @@ export default function Home() {
                       <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed flex-1">
                         {tool.description}
                       </p>
-                      <div className="mt-5 flex items-center text-sm font-semibold text-red-500 dark:text-red-400">
-                        <span>Open Tool</span>
-                        <span className="ml-1.5 transition-transform group-hover:translate-x-1 inline-block">→</span>
-                      </div>
+                      
                     </div>
                   </Link>
                 );

@@ -30,7 +30,7 @@ export default function Footer() {
                                 <PictureAsPdf className="h-5 w-5" />
                             </div>
                             <span className="text-lg font-bold text-zinc-900 dark:text-white">
-                                PDF<span className="text-red-500">Craft</span>
+                                PDFImage<span className="text-red-500">Convert</span>
                             </span>
                         </Link>
                         <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
@@ -76,7 +76,7 @@ export default function Footer() {
                 {/* Bottom bar */}
                 <div className="mt-10 pt-6 border-t border-zinc-100 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-3">
                     <p className="text-xs text-zinc-400 dark:text-zinc-500">
-                        © {new Date().getFullYear()} PDFCraft. All rights reserved.
+                        © {new Date().getFullYear()} PDFImageConvert. All rights reserved.
                     </p>
                     <div className="flex gap-5 text-xs text-zinc-400 dark:text-zinc-500">
                         <span className="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors cursor-pointer">Privacy Policy</span>

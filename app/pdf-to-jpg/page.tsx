@@ -4,24 +4,24 @@ import toast from "react-hot-toast";
 import React, { useState } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
-import * as pdfjsLib from "pdfjs-dist";
 import JSZip from "jszip";
 import confetti from "canvas-confetti";
 import { Collections } from "@mui/icons-material";
-
-// Set worker source for pdfjs-dist
-pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/6.1.200/pdf.worker.min.mjs`;
 
 export default function PDFToJPG() {
     const [file, setFile] = useState<File | null>(null);
     const [pagesCount, setPagesCount] = useState(0);
     const [isProcessing, setIsProcessing] = useState(false);
     const [progress, setProgress] = useState(0);
+    const [resultUrl, setResultUrl] = useState<string | null>(null);
+    const [resultFileName, setResultFileName] = useState("");
 
     const handleFileSelected = async (selectedFiles: File[]) => {
         if (selectedFiles.length === 0) return;
         const selectedFile = selectedFiles[0];
         try {
+            const pdfjsLib = await import("pdfjs-dist");
+            pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/6.1.200/pdf.worker.min.mjs`;
             const arrayBuffer = await selectedFile.arrayBuffer();
             const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
             setPagesCount(pdf.numPages);
@@ -38,6 +38,8 @@ export default function PDFToJPG() {
         setProgress(10);
 
         try {
+            const pdfjsLib = await import("pdfjs-dist");
+            pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/6.1.200/pdf.worker.min.mjs`;
             const arrayBuffer = await file.arrayBuffer();
             const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
             const zip = new JSZip();
@@ -78,13 +80,9 @@ export default function PDFToJPG() {
             setProgress(95);
 
             const url = URL.createObjectURL(zipBlob);
-            const link = document.createElement("a");
-            link.href = url;
-            link.download = `${file.name.replace(".pdf", "")}_images.zip`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
+            setResultUrl(url);
+            setResultFileName(`${file.name.replace(".pdf", "")}_images.zip`);
+            setFile(null);
 
             setProgress(100);
             confetti({
@@ -106,7 +104,44 @@ export default function PDFToJPG() {
             title="PDF to JPG"
             description="Convert PDF pages into high-quality JPG images and download them as a ZIP file."
         >
-            {!file ? (
+            {resultUrl ? (
+                <div className="flex flex-col items-center justify-center gap-6 py-8">
+                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-pink-100 text-pink-500 dark:bg-pink-900/30 dark:text-pink-400">
+                        <div className="text-4xl">🖼️</div>
+                    </div>
+                    <div className="text-center">
+                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">PDF to JPG Converted!</h3>
+                        <p className="mt-2 text-zinc-500 dark:text-zinc-400">
+                            Your images have been packaged into a ZIP file.
+                        </p>
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
+                        <button
+                            onClick={() => {
+                                const link = document.createElement("a");
+                                link.href = resultUrl;
+                                link.download = resultFileName;
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                            }}
+                            className="flex-1 rounded-xl bg-green-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-green-600 transition-colors"
+                        >
+                            Download ZIP
+                        </button>
+                        <button
+                            onClick={() => {
+                                URL.revokeObjectURL(resultUrl);
+                                setResultUrl(null);
+                                setResultFileName("");
+                            }}
+                            className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
+                        >
+                            Convert Another
+                        </button>
+                    </div>
+                </div>
+            ) : !file ? (
                 <DropZone
                     onFilesSelected={handleFileSelected}
                     accept=".pdf"

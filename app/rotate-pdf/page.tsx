@@ -5,12 +5,8 @@ import React, { useState } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
 import { PDFDocument, degrees } from "pdf-lib";
-import * as pdfjsLib from "pdfjs-dist";
 import confetti from "canvas-confetti";
 import { RotateRight, Refresh } from "@mui/icons-material";
-
-// Set worker source for pdfjs-dist
-pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/6.1.200/pdf.worker.min.mjs`;
 
 interface PageThumbnail {
     pageNumber: number;
@@ -26,6 +22,8 @@ export default function RotatePDF() {
     const [isProcessing, setIsProcessing] = useState(false);
     const [isLoadingThumbnails, setIsLoadingThumbnails] = useState(false);
     const [progress, setProgress] = useState(0);
+    const [resultUrl, setResultUrl] = useState<string | null>(null);
+    const [resultFileName, setResultFileName] = useState("");
 
     const handleFileSelected = async (selectedFiles: File[]) => {
         if (selectedFiles.length === 0) return;
@@ -44,6 +42,8 @@ export default function RotatePDF() {
             setPagesCount(count);
 
             // Load for pdfjs-dist to render thumbnails
+            const pdfjsLib = await import("pdfjs-dist");
+            pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/6.1.200/pdf.worker.min.mjs`;
             const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
             const thumbs: PageThumbnail[] = [];
 
@@ -127,13 +127,9 @@ export default function RotatePDF() {
 
             const blob = new Blob([pdfBytes.buffer as ArrayBuffer], { type: "application/pdf" });
             const url = URL.createObjectURL(blob);
-            const link = document.createElement("a");
-            link.href = url;
-            link.download = `${file.name.replace(".pdf", "")}_rotated.pdf`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
+            setResultUrl(url);
+            setResultFileName(`${file.name.replace(".pdf", "")}_rotated.pdf`);
+            setFile(null);
 
             setProgress(100);
             confetti({
@@ -155,7 +151,44 @@ export default function RotatePDF() {
             title="Rotate PDF"
             description="Rotate individual pages or all pages of your PDF document clockwise."
         >
-            {!file ? (
+            {resultUrl ? (
+                <div className="flex flex-col items-center justify-center gap-6 py-8">
+                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-teal-100 text-teal-500 dark:bg-teal-900/30 dark:text-teal-400">
+                        <RotateRight className="h-12 w-12" />
+                    </div>
+                    <div className="text-center">
+                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">PDF Rotated Successfully!</h3>
+                        <p className="mt-2 text-zinc-500 dark:text-zinc-400">
+                            Your file has been rotated and is ready for download.
+                        </p>
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
+                        <button
+                            onClick={() => {
+                                const link = document.createElement("a");
+                                link.href = resultUrl;
+                                link.download = resultFileName;
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                            }}
+                            className="flex-1 rounded-xl bg-teal-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-teal-600 transition-colors"
+                        >
+                            Download PDF
+                        </button>
+                        <button
+                            onClick={() => {
+                                URL.revokeObjectURL(resultUrl);
+                                setResultUrl(null);
+                                setResultFileName("");
+                            }}
+                            className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
+                        >
+                            Rotate Another
+                        </button>
+                    </div>
+                </div>
+            ) : !file ? (
                 <DropZone
                     onFilesSelected={handleFileSelected}
                     accept=".pdf"

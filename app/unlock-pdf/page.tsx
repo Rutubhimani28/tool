@@ -5,12 +5,8 @@ import React, { useState } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
 import { PDFDocument } from "pdf-lib";
-import * as pdfjsLib from "pdfjs-dist";
 import confetti from "canvas-confetti";
 import { LockOpen } from "@mui/icons-material";
-
-// Set worker source for pdfjs-dist
-pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/6.1.200/pdf.worker.min.mjs`;
 
 export default function UnlockPDF() {
     const [file, setFile] = useState<File | null>(null);
@@ -18,6 +14,8 @@ export default function UnlockPDF() {
     const [isEncrypted, setIsEncrypted] = useState(false);
     const [isProcessing, setIsProcessing] = useState(false);
     const [progress, setProgress] = useState(0);
+    const [resultUrl, setResultUrl] = useState<string | null>(null);
+    const [resultFileName, setResultFileName] = useState("");
 
     const handleFileSelected = async (selectedFiles: File[]) => {
         if (selectedFiles.length === 0) return;
@@ -32,7 +30,7 @@ export default function UnlockPDF() {
             await PDFDocument.load(arrayBuffer);
             // If it succeeds, it's not encrypted
             setIsEncrypted(false);
-             
+
         } catch (error: any) {
             // If it throws an error, it's likely encrypted
             console.warn("PDF load error (checking encryption):", error);
@@ -54,6 +52,8 @@ export default function UnlockPDF() {
             if (isEncrypted) {
                 try {
                     // Load PDF document using pdfjs-dist with password
+                    const pdfjsLib = await import("pdfjs-dist");
+                    pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/6.1.200/pdf.worker.min.mjs`;
                     const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer, password });
                     const pdf = await loadingTask.promise;
                     const numPages = pdf.numPages;
@@ -109,13 +109,9 @@ export default function UnlockPDF() {
 
             const blob = new Blob([pdfBytes.buffer as ArrayBuffer], { type: "application/pdf" });
             const url = URL.createObjectURL(blob);
-            const link = document.createElement("a");
-            link.href = url;
-            link.download = `${file.name.replace(".pdf", "")}_unlocked.pdf`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
+            setResultUrl(url);
+            setResultFileName(`${file.name.replace(".pdf", "")}_unlocked.pdf`);
+            setFile(null);
 
             setProgress(100);
             confetti({
@@ -137,7 +133,44 @@ export default function UnlockPDF() {
             title="Unlock PDF"
             description="Remove password protection, security, and restrictions from your PDF document."
         >
-            {!file ? (
+            {resultUrl ? (
+                <div className="flex flex-col items-center justify-center gap-6 py-8">
+                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-zinc-100 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400">
+                        <LockOpen className="h-12 w-12" />
+                    </div>
+                    <div className="text-center">
+                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">PDF Unlocked Successfully!</h3>
+                        <p className="mt-2 text-zinc-500 dark:text-zinc-400">
+                            Your file has been unlocked and is ready for download.
+                        </p>
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
+                        <button
+                            onClick={() => {
+                                const link = document.createElement("a");
+                                link.href = resultUrl;
+                                link.download = resultFileName;
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                            }}
+                            className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-zinc-900 dark:bg-zinc-700 dark:hover:bg-zinc-600 transition-colors"
+                        >
+                            Download PDF
+                        </button>
+                        <button
+                            onClick={() => {
+                                URL.revokeObjectURL(resultUrl);
+                                setResultUrl(null);
+                                setResultFileName("");
+                            }}
+                            className="flex-1 rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm font-semibold text-zinc-900 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white dark:hover:bg-zinc-800 transition-colors"
+                        >
+                            Unlock Another
+                        </button>
+                    </div>
+                </div>
+            ) : !file ? (
                 <DropZone
                     onFilesSelected={handleFileSelected}
                     accept=".pdf"

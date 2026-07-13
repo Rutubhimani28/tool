@@ -12,6 +12,8 @@ export default function WordToPDF() {
     const [file, setFile] = useState<File | null>(null);
     const [isProcessing, setIsProcessing] = useState(false);
     const [progress, setProgress] = useState(0);
+    const [resultUrl, setResultUrl] = useState<string | null>(null);
+    const [resultFileName, setResultFileName] = useState("");
 
     const handleFileSelected = (selectedFiles: File[]) => {
         if (selectedFiles.length === 0) return;
@@ -103,13 +105,9 @@ export default function WordToPDF() {
                         // @ts-expect-error - generatePDF is defined in the iframe script
                         const blob = await iframe.contentWindow.generatePDF(filename, chunks);
                         const url = URL.createObjectURL(blob);
-                        const link = document.createElement("a");
-                        link.href = url;
-                        link.download = filename;
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                        URL.revokeObjectURL(url);
+                        setResultUrl(url);
+                        setResultFileName(filename);
+                        setFile(null);
                         window.removeEventListener("message", handleMessage);
                         resolve();
                     } catch (err) {
@@ -206,7 +204,44 @@ export default function WordToPDF() {
             title="Word to PDF"
             description="Convert Microsoft Word documents (.docx) to high-quality PDF files."
         >
-            {!file ? (
+            {resultUrl ? (
+                <div className="flex flex-col items-center justify-center gap-6 py-8">
+                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-blue-100 text-blue-500 dark:bg-blue-900/30 dark:text-blue-400">
+                        <div className="text-4xl">📄</div>
+                    </div>
+                    <div className="text-center">
+                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">Word to PDF Converted!</h3>
+                        <p className="mt-2 text-zinc-500 dark:text-zinc-400">
+                            Your document has been successfully converted.
+                        </p>
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
+                        <button
+                            onClick={() => {
+                                const link = document.createElement("a");
+                                link.href = resultUrl;
+                                link.download = resultFileName;
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                            }}
+                            className="flex-1 rounded-xl bg-green-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-green-600 transition-colors"
+                        >
+                            Download PDF
+                        </button>
+                        <button
+                            onClick={() => {
+                                URL.revokeObjectURL(resultUrl);
+                                setResultUrl(null);
+                                setResultFileName("");
+                            }}
+                            className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
+                        >
+                            Convert Another
+                        </button>
+                    </div>
+                </div>
+            ) : !file ? (
                 <DropZone
                     onFilesSelected={handleFileSelected}
                     accept=".docx,.doc"

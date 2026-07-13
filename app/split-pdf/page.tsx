@@ -16,13 +16,15 @@ export default function SplitPDF() {
     const [pageRange, setPageRange] = useState("");
     const [isProcessing, setIsProcessing] = useState(false);
     const [progress, setProgress] = useState(0);
+    const [resultUrl, setResultUrl] = useState<string | null>(null);
+    const [resultFileName, setResultFileName] = useState("");
 
     const handleFileSelected = async (selectedFiles: File[]) => {
         if (selectedFiles.length === 0) return;
         const selectedFile = selectedFiles[0];
         try {
             const arrayBuffer = await selectedFile.arrayBuffer();
-            const pdfDoc = await PDFDocument.load(arrayBuffer);
+            const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
             setPagesCount(pdfDoc.getPageCount());
             setFile(selectedFile);
             setPageRange(`1-${pdfDoc.getPageCount()}`);
@@ -67,7 +69,7 @@ export default function SplitPDF() {
 
         try {
             const arrayBuffer = await file.arrayBuffer();
-            const srcPdf = await PDFDocument.load(arrayBuffer);
+            const srcPdf = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
 
             if (splitMode === "range") {
                 const pageIndices = parseRange(pageRange, pagesCount);
@@ -88,13 +90,9 @@ export default function SplitPDF() {
 
                 const blob = new Blob([pdfBytes.buffer as ArrayBuffer], { type: "application/pdf" });
                 const url = URL.createObjectURL(blob);
-                const link = document.createElement("a");
-                link.href = url;
-                link.download = `${file.name.replace(".pdf", "")}_extracted.pdf`;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                URL.revokeObjectURL(url);
+                setResultUrl(url);
+                setResultFileName(`${file.name.replace(".pdf", "")}_extracted.pdf`);
+                setFile(null);
             } else {
                 // Split all pages into a ZIP file
                 const zip = new JSZip();
@@ -112,13 +110,9 @@ export default function SplitPDF() {
                 setProgress(95);
 
                 const url = URL.createObjectURL(zipBlob);
-                const link = document.createElement("a");
-                link.href = url;
-                link.download = `${file.name.replace(".pdf", "")}_split_pages.zip`;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                URL.revokeObjectURL(url);
+                setResultUrl(url);
+                setResultFileName(`${file.name.replace(".pdf", "")}_extracted.pdf`);
+                setFile(null);
             }
 
             setProgress(100);
@@ -141,7 +135,44 @@ export default function SplitPDF() {
             title="Split PDF"
             description="Extract specific pages or split every page into individual PDF files."
         >
-            {!file ? (
+            {resultUrl ? (
+                <div className="flex flex-col items-center justify-center gap-6 py-8">
+                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-green-100 text-green-500 dark:bg-green-900/30 dark:text-green-400">
+                        <div className="text-4xl">✂️</div>
+                    </div>
+                    <div className="text-center">
+                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">PDF Split Successfully!</h3>
+                        <p className="mt-2 text-zinc-500 dark:text-zinc-400">
+                            Your file has been split and is ready for download.
+                        </p>
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
+                        <button
+                            onClick={() => {
+                                const link = document.createElement("a");
+                                link.href = resultUrl;
+                                link.download = resultFileName;
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                            }}
+                            className="flex-1 rounded-xl bg-green-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-green-600 transition-colors"
+                        >
+                            Download File
+                        </button>
+                        <button
+                            onClick={() => {
+                                URL.revokeObjectURL(resultUrl);
+                                setResultUrl(null);
+                                setResultFileName("");
+                            }}
+                            className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
+                        >
+                            Split Another
+                        </button>
+                    </div>
+                </div>
+            ) : !file ? (
                 <DropZone
                     onFilesSelected={handleFileSelected}
                     accept=".pdf"
