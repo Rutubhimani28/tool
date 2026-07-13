@@ -21,7 +21,7 @@ const moreLinks = [
 export default function Footer() {
     return (
         <footer className="w-full border-t border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 transition-colors duration-300">
-            <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-[1600px] px-4 py-12 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 gap-10 sm:grid-cols-3">
                     {/* Brand */}
                     <div className="flex flex-col gap-4">

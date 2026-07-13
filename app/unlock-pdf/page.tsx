@@ -33,7 +33,7 @@ export default function UnlockPDF() {
 
         } catch (error: any) {
             // If it throws an error, it's likely encrypted
-            console.warn("PDF load error (checking encryption):", error);
+
             setIsEncrypted(true);
         }
     };
@@ -135,7 +135,7 @@ export default function UnlockPDF() {
         >
             {resultUrl ? (
                 <div className="flex flex-col items-center justify-center gap-6 py-8">
-                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-zinc-100 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400">
+                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-purple-100 text-purple-500 dark:bg-purple-900/30 dark:text-purple-400">
                         <LockOpen className="h-12 w-12" />
                     </div>
                     <div className="text-center">
@@ -154,7 +154,7 @@ export default function UnlockPDF() {
                                 link.click();
                                 document.body.removeChild(link);
                             }}
-                            className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-zinc-900 dark:bg-zinc-700 dark:hover:bg-zinc-600 transition-colors"
+                            className="flex-1 rounded-xl bg-purple-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-purple-600 transition-colors"
                         >
                             Download PDF
                         </button>
@@ -183,7 +183,7 @@ export default function UnlockPDF() {
                     {/* File Info */}
                     <div className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
                         <div className="flex items-center gap-4 min-w-0">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-200 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 font-bold text-xs">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-100 text-purple-600 dark:bg-purple-950/30 dark:text-purple-400 font-bold text-xs">
                                 PDF
                             </div>
                             <div className="min-w-0">
@@ -233,7 +233,7 @@ export default function UnlockPDF() {
                                 </div>
                                 <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
                                     <div
-                                        className="bg-zinc-700 dark:bg-zinc-600 h-full transition-all duration-300"
+                                        className="bg-purple-500 h-full transition-all duration-300"
                                         style={{ width: `${progress}%` }}
                                     />
                                 </div>
@@ -241,7 +241,7 @@ export default function UnlockPDF() {
                         ) : (
                             <button
                                 onClick={handleUnlock}
-                                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-zinc-800 py-4 text-base font-semibold text-white shadow-lg shadow-zinc-800/20 hover:bg-zinc-900 dark:bg-zinc-700 dark:hover:bg-zinc-600 transition-all duration-200"
+                                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-purple-500 py-4 text-base font-semibold text-white shadow-lg shadow-purple-500/20 hover:bg-purple-600 transition-all duration-200"
                             >
                                 <LockOpen className="h-5 w-5" />
                                 Unlock PDF

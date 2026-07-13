@@ -79,7 +79,7 @@ export default function ImageResizer() {
                         if (blob) {
                             const url = URL.createObjectURL(blob);
                             setResizedUrl(url);
-                            setResultFileName(file.name.replace(/\.[^/.]+$/, "") + `_${width}x${height}` + file.name.substring(file.name.lastIndexOf(".")));
+                            setResultFileName(file.name);
                             confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
                         }
                         setIsProcessing(false);

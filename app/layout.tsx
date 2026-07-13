@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "PDFImageConvert – Free Online PDF & Image Tools",
   description:
     "Free, fast, and easy PDF and image tools. Convert, compress, merge, and edit your files in seconds.",
-  keywords: ["PDF tools", "image tools", "merge PDF", "compress PDF", "PDF to Word", "image compressor", "background remover"],
+  keywords: ["PDF tools", "image tools", "merge PDF", "compress PDF", "PDF to Word", "image compressor"],
 };
 
 import Navbar from "@/app/components/Navbar";
@@ -33,19 +33,44 @@ export default function RootLayout({
       suppressHydrationWarning
       data-scroll-behavior="smooth"
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (typeof window !== 'undefined') {
+                console.log = function() {};
+                console.warn = function() {};
+                console.error = function() {};
+                console.info = function() {};
+                console.debug = function() {};
+              }
+            `,
+          }}
+        />
+      </head>
       <body suppressHydrationWarning className={`${ibmPlexSans.className} antialiased min-h-full flex flex-col bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-300`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
           <main className="flex-1 flex flex-col">{children}</main>
           <Footer />
           <Toaster
-            position="bottom-right"
+            position="top-center"
             toastOptions={{
-              className: '!bg-white !text-zinc-900 dark:!bg-zinc-800 dark:!text-white border border-zinc-200 dark:border-zinc-700',
+              className: '!bg-zinc-900 !text-white dark:!bg-zinc-800 dark:!text-white border border-zinc-800 dark:border-zinc-700 shadow-2xl rounded-2xl font-medium px-5 py-4',
+              error: {
+                icon: '❌',
+                className: '!bg-red-600 !text-white !border-red-700 dark:!bg-red-900 dark:!text-red-100 dark:!border-red-800 shadow-2xl shadow-red-900/50 rounded-2xl font-medium px-5 py-4',
+                duration: 5000,
+              },
+              success: {
+                icon: '✅',
+                className: '!bg-green-600 !text-white !border-green-700 dark:!bg-green-900 dark:!text-green-100 dark:!border-green-800 shadow-2xl shadow-green-900/50 rounded-2xl font-medium px-5 py-4',
+                duration: 4000,
+              }
             }}
           />
         </ThemeProvider>
       </body>
-    </html>
+    </html >
   );
 }

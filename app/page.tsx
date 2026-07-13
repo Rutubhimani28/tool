@@ -15,7 +15,6 @@ import {
   Lock,
   Search,
   AspectRatio,
-  AutoFixHigh,
   Transform,
   Crop,
 } from "@mui/icons-material";
@@ -155,16 +154,7 @@ const tools: Tool[] = [
     gradient: "from-blue-400 to-indigo-500",
     shadow: "shadow-blue-400/20",
   },
-  {
-    id: "background-remover",
-    name: "Background Remover",
-    description: "Remove the background from your images automatically using AI.",
-    category: "image",
-    icon: AutoFixHigh,
-    href: "/background-remover",
-    gradient: "from-purple-500 to-fuchsia-600",
-    shadow: "shadow-purple-500/20",
-  },
+
   {
     id: "png-to-jpg",
     name: "Convert PNG to JPG",
@@ -233,7 +223,7 @@ export default function Home() {
   return (
     <div className="flex-1 bg-zinc-50 dark:bg-zinc-950 transition-colors duration-300">
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-7 text-center sm:py-7">
+      <section className="relative overflow-hidden bg-white px-4 pt-12 pb-2 sm:px-6 sm:pt-16 sm:pb-4 lg:px-8 dark:bg-zinc-950 text-center">
         {/* Background decoration */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[600px] h-[400px] bg-gradient-to-b from-red-500/5 to-transparent rounded-full blur-3xl" />
@@ -289,7 +279,7 @@ export default function Home() {
       </section>
 
       {/* Tools Sections */}
-      <section className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8 flex flex-col gap-16">
+      <section className="mx-auto max-w-[1600px] px-4 pt-8 pb-24 sm:px-6 lg:px-8 flex flex-col gap-16">
         {/* PDF Tools Section */}
         {pdfTools.length > 0 && (
           <div>
@@ -326,7 +316,7 @@ export default function Home() {
                       <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed flex-1">
                         {tool.description}
                       </p>
-                      
+
                     </div>
                   </Link>
                 );
@@ -371,7 +361,7 @@ export default function Home() {
                       <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed flex-1">
                         {tool.description}
                       </p>
-                      
+
                     </div>
                   </Link>
                 );

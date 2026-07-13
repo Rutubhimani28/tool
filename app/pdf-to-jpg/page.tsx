@@ -81,7 +81,7 @@ export default function PDFToJPG() {
 
             const url = URL.createObjectURL(zipBlob);
             setResultUrl(url);
-            setResultFileName(`${file.name.replace(".pdf", "")}_images.zip`);
+            setResultFileName(`${file.name.replace(".pdf", "")}.zip`);
             setFile(null);
 
             setProgress(100);

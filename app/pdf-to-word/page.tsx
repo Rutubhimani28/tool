@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import React, { useState } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
-import { Document, Packer, Paragraph, TextRun, ImageRun, HeadingLevel } from "docx";
+import { Document, Packer, Paragraph, TextRun, HeadingLevel } from "docx";
 import confetti from "canvas-confetti";
 import { TextSnippet } from "@mui/icons-material";
 
@@ -61,71 +61,13 @@ export default function PDFToWord() {
                     .map(Number)
                     .sort((a, b) => b - a);
 
-                // Add page header
-                docChildren.push(
-                    new Paragraph({
-                        children: [new TextRun({ text: `— Page ${i} —`, bold: true, size: 20, color: "888888" })],
-                        spacing: { before: i > 1 ? 400 : 0, after: 200 },
-                        heading: HeadingLevel.HEADING_3,
-                    })
-                );
+                let hasTextOnPage = false;
 
-                // --- Render page as image ---
-                try {
-                    const scale = 2; // Higher scale = better quality
-                    const viewport = page.getViewport({ scale });
-                    const canvas = document.createElement("canvas");
-                    canvas.width = viewport.width;
-                    canvas.height = viewport.height;
-                    const ctx = canvas.getContext("2d");
-
-                    if (ctx) {
-                        await page.render({ canvasContext: ctx, viewport, canvas }).promise;
-
-                        // Convert canvas to PNG blob
-                        const blob = await new Promise<Blob | null>((resolve) => {
-                            canvas.toBlob((b) => resolve(b), "image/png", 0.92);
-                        });
-
-                        if (blob) {
-                            const imgArrayBuffer = await blob.arrayBuffer();
-                            const imgUint8Array = new Uint8Array(imgArrayBuffer);
-
-                            // Calculate dimensions to fit within A4 page width (~595 points at 72dpi)
-                            // docx uses EMU (English Metric Units): 1 inch = 914400 EMU
-                            // A4 width ~= 6.27 inches usable (after margins)
-                            const maxWidthInches = 6.27;
-                            const imgWidthInches = viewport.width / (scale * 72);
-                            const imgHeightInches = viewport.height / (scale * 72);
-                            const ratio = Math.min(1, maxWidthInches / imgWidthInches);
-                            const finalWidth = Math.round(imgWidthInches * ratio * 914400);
-                            const finalHeight = Math.round(imgHeightInches * ratio * 914400);
-
-                            docChildren.push(
-                                new Paragraph({
-                                    children: [
-                                        new ImageRun({
-                                            data: imgUint8Array,
-                                            transformation: {
-                                                width: Math.round(finalWidth / 9525), // Convert EMU to points for docx
-                                                height: Math.round(finalHeight / 9525),
-                                            },
-                                            type: "png",
-                                        }),
-                                    ],
-                                    spacing: { after: 200 },
-                                })
-                            );
-                        }
-                    }
-                } catch (imgErr) {
-                    console.warn(`Could not render page ${i} as image:`, imgErr);
-                }
-
-                // Add text content below the image
+                // Add text content
                 sortedY.forEach((y) => {
                     const lineText = lines[y].join(" ").trim();
                     if (lineText) {
+                        hasTextOnPage = true;
                         docChildren.push(
                             new Paragraph({
                                 children: [new TextRun(lineText)],
@@ -136,7 +78,7 @@ export default function PDFToWord() {
                 });
 
                 // Add page break between pages except the last one
-                if (i < numPages) {
+                if (hasTextOnPage && i < numPages) {
                     docChildren.push(
                         new Paragraph({
                             pageBreakBefore: true,
@@ -153,7 +95,7 @@ export default function PDFToWord() {
                 sections: [
                     {
                         properties: {},
-                        children: docChildren.length > 0 ? docChildren : [new Paragraph("No content found in PDF.")],
+                        children: docChildren.length > 0 ? docChildren : [new Paragraph({ children: [new TextRun("No content found in PDF.")] })],
                     },
                 ],
             });
@@ -169,6 +111,7 @@ export default function PDFToWord() {
             setFile(null);
 
             setProgress(100);
+            await new Promise((resolve) => setTimeout(resolve, 500));
             confetti({
                 particleCount: 100,
                 spread: 70,

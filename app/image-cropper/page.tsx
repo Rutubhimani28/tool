@@ -56,6 +56,7 @@ export default function ImageCropper() {
 
     const handleMouseDown = (e: React.MouseEvent, handle: string) => {
         e.preventDefault();
+        e.stopPropagation();
         setIsDragging(true);
         setActiveHandle(handle);
         setDragStart({ x: e.clientX, y: e.clientY });
@@ -163,40 +164,15 @@ export default function ImageCropper() {
             const cropW = cropBox.w * scaleX;
             const cropH = cropBox.h * scaleY;
 
-            // Handle rotation
-            if (rotation === 0) {
-                canvas.width = cropW;
-                canvas.height = cropH;
-                ctx.drawImage(img, cropX, cropY, cropW, cropH, 0, 0, cropW, cropH);
-            } else {
-                // For simplicity, we rotate the full image first, then crop
-                const rotCanvas = document.createElement("canvas");
-                const rotCtx = rotCanvas.getContext("2d");
-                if (rotCtx) {
-                    if (rotation === 90 || rotation === 270) {
-                        rotCanvas.width = img.naturalHeight;
-                        rotCanvas.height = img.naturalWidth;
-                    } else {
-                        rotCanvas.width = img.naturalWidth;
-                        rotCanvas.height = img.naturalHeight;
-                    }
-
-                    rotCtx.translate(rotCanvas.width / 2, rotCanvas.height / 2);
-                    rotCtx.rotate((rotation * Math.PI) / 180);
-                    rotCtx.drawImage(img, -img.naturalWidth / 2, -img.naturalHeight / 2);
-
-                    // Now crop from the rotated canvas
-                    canvas.width = cropW;
-                    canvas.height = cropH;
-                    ctx.drawImage(rotCanvas, cropX, cropY, cropW, cropH, 0, 0, cropW, cropH);
-                }
-            }
+            canvas.width = cropW;
+            canvas.height = cropH;
+            ctx.drawImage(img, cropX, cropY, cropW, cropH, 0, 0, cropW, cropH);
 
             canvas.toBlob((blob) => {
                 if (blob) {
                     const url = URL.createObjectURL(blob);
                     setCroppedUrl(url);
-                    setResultFileName(file.name.replace(/\.[^/.]+$/, "") + "_cropped" + file.name.substring(file.name.lastIndexOf(".")));
+                    setResultFileName(file.name);
                     confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
                 }
                 setIsProcessing(false);
@@ -304,8 +280,8 @@ export default function ImageCropper() {
                                         key={preset.label}
                                         onClick={() => setAspectRatio(preset.value as any)}
                                         className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all duration-200 ${aspectRatio === preset.value
-                                                ? "bg-pink-500 border-pink-500 text-white"
-                                                : "bg-white border-zinc-200 text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-900 dark:border-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                                            ? "bg-pink-500 border-pink-500 text-white"
+                                            : "bg-white border-zinc-200 text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-900 dark:border-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-800"
                                             }`}
                                     >
                                         {preset.label}
@@ -316,7 +292,24 @@ export default function ImageCropper() {
 
                         {/* Rotation */}
                         <button
-                            onClick={() => setRotation((prev) => (prev + 90) % 360)}
+                            onClick={() => {
+                                if (!imgRef.current) return;
+                                const img = imgRef.current;
+                                const canvas = document.createElement("canvas");
+                                const ctx = canvas.getContext("2d");
+                                if (!ctx) return;
+
+                                canvas.width = img.naturalHeight;
+                                canvas.height = img.naturalWidth;
+
+                                ctx.translate(canvas.width / 2, canvas.height / 2);
+                                ctx.rotate((90 * Math.PI) / 180);
+                                ctx.drawImage(img, -img.naturalWidth / 2, -img.naturalHeight / 2);
+
+                                const newUrl = canvas.toDataURL(file?.type || "image/png");
+                                setPreviewUrl(newUrl);
+                                setRotation(0); // Reset CSS rotation just in case
+                            }}
                             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-900 dark:border-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-all duration-200"
                         >
                             <RotateRight className="h-4 w-4" /> Rotate 90°
@@ -327,15 +320,14 @@ export default function ImageCropper() {
                     <div className="flex justify-center items-center p-4 border border-zinc-200 dark:border-zinc-800 rounded-2xl bg-zinc-900 overflow-hidden min-h-[300px] relative">
                         <div
                             ref={containerRef}
-                            className="relative max-w-full max-h-[400px] select-none"
-                            style={{ transform: `rotate(${rotation}deg)`, transition: "transform 0.2s ease" }}
+                            className="relative inline-block max-w-full max-h-[400px] select-none"
                         >
                             {previewUrl && (
                                 <img
                                     ref={imgRef}
                                     src={previewUrl}
                                     alt="Crop Preview"
-                                    className="max-w-full max-h-[400px] object-contain pointer-events-none"
+                                    className="block max-w-full max-h-[400px] w-auto h-auto pointer-events-none"
                                 />
                             )}
 

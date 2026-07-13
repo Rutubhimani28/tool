@@ -102,7 +102,7 @@ export default function JPGToPDF() {
             const blob = new Blob([pdfBytes.buffer as ArrayBuffer], { type: "application/pdf" });
             const url = URL.createObjectURL(blob);
             setResultUrl(url);
-            setResultFileName("images_converted.pdf");
+            setResultFileName(images[0].file.name.replace(/\.[^/.]+$/, "") + ".pdf");
             setImages([]);
 
             setProgress(100);

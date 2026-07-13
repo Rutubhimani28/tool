@@ -27,7 +27,7 @@ export default function Navbar() {
 
     return (
         <header className="sticky top-0 z-50 w-full border-b border-zinc-200/80 bg-white/80 backdrop-blur-md dark:border-zinc-800/80 dark:bg-zinc-950/80 transition-colors duration-300">
-            <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto flex h-16 max-w-[1600px] items-center justify-between px-4 sm:px-6 lg:px-8">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
                     <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-red-500 to-rose-600 text-white shadow-md shadow-red-500/20 transition-transform group-hover:scale-105">

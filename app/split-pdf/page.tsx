@@ -91,7 +91,7 @@ export default function SplitPDF() {
                 const blob = new Blob([pdfBytes.buffer as ArrayBuffer], { type: "application/pdf" });
                 const url = URL.createObjectURL(blob);
                 setResultUrl(url);
-                setResultFileName(`${file.name.replace(".pdf", "")}_extracted.pdf`);
+                setResultFileName(file.name);
                 setFile(null);
             } else {
                 // Split all pages into a ZIP file

@@ -128,7 +128,7 @@ export default function RotatePDF() {
             const blob = new Blob([pdfBytes.buffer as ArrayBuffer], { type: "application/pdf" });
             const url = URL.createObjectURL(blob);
             setResultUrl(url);
-            setResultFileName(`${file.name.replace(".pdf", "")}_rotated.pdf`);
+            setResultFileName(file.name);
             setFile(null);
 
             setProgress(100);

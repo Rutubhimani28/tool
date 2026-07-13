@@ -32,13 +32,23 @@ export default function ProtectPDF() {
 
         try {
             const arrayBuffer = await file.arrayBuffer();
+            setProgress(30);
+
+            // Normalize PDF with pdf-lib first to prevent encryption corruption
+            const { PDFDocument } = await import("pdf-lib");
+            const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
+            const normalizedPdfBytes = await pdfDoc.save();
             setProgress(50);
+
+            // Generate a random owner password so the user password has restricted permissions
+            const ownerPassword = Math.random().toString(36).slice(-10) + Date.now().toString(36);
 
             // Encrypt PDF using @pdfsmaller/pdf-encrypt
             const encryptedBytes = await encryptPDF(
-                new Uint8Array(arrayBuffer),
+                new Uint8Array(normalizedPdfBytes),
                 password,
                 {
+                    ownerPassword,
                     allowPrinting,
                     allowCopying,
                     allowModifying,
@@ -49,7 +59,7 @@ export default function ProtectPDF() {
             const blob = new Blob([encryptedBytes.buffer as ArrayBuffer], { type: "application/pdf" });
             const url = URL.createObjectURL(blob);
             setResultUrl(url);
-            setResultFileName(`${file.name.replace(".pdf", "")}_protected.pdf`);
+            setResultFileName(file.name);
             setFile(null);
 
             setProgress(100);
@@ -213,7 +223,7 @@ export default function ProtectPDF() {
                                 className="flex w-full items-center justify-center gap-2 rounded-2xl bg-yellow-500 py-4 text-base font-semibold text-white shadow-lg shadow-yellow-500/20 hover:bg-yellow-600 disabled:opacity-50 disabled:hover:bg-yellow-500 disabled:shadow-none transition-all duration-200"
                             >
                                 <Lock className="h-5 w-5" />
-                                Encrypt & Download PDF
+                                Encrypt PDF
                             </button>
                         )}
                     </div>
