@@ -61,7 +61,7 @@ export default function PDFToWord() {
                             canvas: canvas,
                         }).promise;
 
-                        const blob = await new Promise((resolve) =>
+                        const blob = await new Promise<Blob | null>((resolve) =>
                             canvas.toBlob((b) => resolve(b), "image/jpeg", 0.9)
                         );
 
