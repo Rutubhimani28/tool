@@ -50,7 +50,6 @@ export default function BlogPage() {
                         "from-teal-100 via-emerald-100 to-green-100 dark:from-teal-900/30 dark:via-emerald-900/30 dark:to-green-900/30",
                     ];
                     const gradient = gradients[index % gradients.length];
-                    const dateObj = new Date(article.date);
 
                     return (
                         <Link

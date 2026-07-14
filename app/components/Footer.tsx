@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { PictureAsPdf } from "@mui/icons-material";
 
 const quickLinks = [
     { label: "Merge PDF", href: "/merge-pdf" },
