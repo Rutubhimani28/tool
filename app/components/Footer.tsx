@@ -21,9 +21,9 @@ export default function Footer() {
     return (
         <footer className="w-full border-t border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 transition-colors duration-300">
             <div className="mx-auto max-w-[1600px] px-4 py-12 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-5">
                     {/* Brand */}
-                    <div className="flex flex-col gap-4 items-center sm:items-start text-center sm:text-left">
+                    <div className="flex flex-col gap-4 items-center sm:items-start text-center sm:text-left md:col-span-2">
                         <Link href="/" className="flex items-center gap-2 group w-fit">
                             <div className="flex h-12 w-12 items-center justify-center transition-transform group-hover:scale-105 overflow-hidden">
                                 <img src="/download.png" alt="Logo" className="h-full w-full object-contain scale-[1.6]" />
