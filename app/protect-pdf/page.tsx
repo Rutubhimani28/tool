@@ -6,11 +6,16 @@ import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
 import { encryptPDF } from "@pdfsmaller/pdf-encrypt";
 import confetti from "canvas-confetti";
-import { Lock } from "@mui/icons-material";
+import { Lock, Visibility, VisibilityOff } from "@mui/icons-material";
 
 export default function ProtectPDF() {
     const [file, setFile] = useState<File | null>(null);
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [passwordError, setPasswordError] = useState("");
+    const [isAlreadyEncrypted, setIsAlreadyEncrypted] = useState(false);
     const [allowPrinting, setAllowPrinting] = useState(true);
     const [allowCopying, setAllowCopying] = useState(true);
     const [allowModifying, setAllowModifying] = useState(true);
@@ -19,14 +24,49 @@ export default function ProtectPDF() {
     const [resultUrl, setResultUrl] = useState<string | null>(null);
     const [resultFileName, setResultFileName] = useState("");
 
-    const handleFileSelected = (selectedFiles: File[]) => {
+    const handleFileSelected = async (selectedFiles: File[]) => {
         if (selectedFiles.length === 0) return;
-        setFile(selectedFiles[0]);
+        const selectedFile = selectedFiles[0];
+        setFile(selectedFile);
         setPassword("");
+        setConfirmPassword("");
+        setPasswordError("");
+
+        try {
+            const arrayBuffer = await selectedFile.arrayBuffer();
+            const { PDFDocument } = await import("pdf-lib");
+            const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
+            setIsAlreadyEncrypted(pdfDoc.isEncrypted);
+        } catch (error) {
+            console.error("Error checking PDF encryption:", error);
+            setIsAlreadyEncrypted(false);
+        }
+    };
+
+    const validatePassword = (pass: string) => {
+        if (pass.length < 8) return "Password must be at least 8 characters long.";
+        if (!/[A-Z]/.test(pass)) return "Password must contain at least one uppercase letter.";
+        if (!/[a-z]/.test(pass)) return "Password must contain at least one lowercase letter.";
+        if (!/[0-9]/.test(pass)) return "Password must contain at least one number.";
+        if (!/[!@#$%^&*(),.?":{}|<>]/.test(pass)) return "Password must contain at least one special character.";
+        return "";
     };
 
     const handleProtect = async () => {
         if (!file || !password) return;
+
+        const error = validatePassword(password);
+        if (error) {
+            setPasswordError(error);
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            setPasswordError("Passwords do not match.");
+            return;
+        }
+
+        setPasswordError("");
         setIsProcessing(true);
         setProgress(20);
 
@@ -152,81 +192,140 @@ export default function ProtectPDF() {
                         </button>
                     </div>
 
-                    {/* Password Input */}
-                    <div className="flex flex-col gap-2">
-                        <label className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
-                            Set PDF Password
-                        </label>
-                        <input
-                            type="password"
-                            placeholder="Enter password to open PDF"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white"
-                        />
-                    </div>
-
-                    {/* Permissions */}
-                    <div className="flex flex-col gap-3 p-4 rounded-2xl border border-zinc-200 bg-zinc-50/50 dark:border-zinc-800 dark:bg-zinc-900/20">
-                        <h4 className="text-sm font-bold text-zinc-900 dark:text-white">Permissions</h4>
-
-                        <label className="flex items-center gap-3 cursor-pointer">
-                            <input
-                                type="checkbox"
-                                checked={allowPrinting}
-                                onChange={(e) => setAllowPrinting(e.target.checked)}
-                                className="rounded border-zinc-300 text-yellow-500 focus:ring-yellow-500 dark:border-zinc-700"
-                            />
-                            <span className="text-sm text-zinc-700 dark:text-zinc-300">Allow Printing</span>
-                        </label>
-
-                        <label className="flex items-center gap-3 cursor-pointer">
-                            <input
-                                type="checkbox"
-                                checked={allowCopying}
-                                onChange={(e) => setAllowCopying(e.target.checked)}
-                                className="rounded border-zinc-300 text-yellow-500 focus:ring-yellow-500 dark:border-zinc-700"
-                            />
-                            <span className="text-sm text-zinc-700 dark:text-zinc-300">Allow Copying Text & Images</span>
-                        </label>
-
-                        <label className="flex items-center gap-3 cursor-pointer">
-                            <input
-                                type="checkbox"
-                                checked={allowModifying}
-                                onChange={(e) => setAllowModifying(e.target.checked)}
-                                className="rounded border-zinc-300 text-yellow-500 focus:ring-yellow-500 dark:border-zinc-700"
-                            />
-                            <span className="text-sm text-zinc-700 dark:text-zinc-300">Allow Modifying Document</span>
-                        </label>
-                    </div>
-
-                    {/* Action Button & Progress */}
-                    <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
-                        {isProcessing ? (
-                            <div className="w-full">
-                                <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
-                                    <span>Encrypting PDF...</span>
-                                    <span>{progress}%</span>
+                    {/* Password Input & Action */}
+                    {isAlreadyEncrypted ? (
+                        <div className="p-4 rounded-2xl bg-yellow-50 border border-yellow-100 dark:bg-yellow-950/10 dark:border-yellow-900/30 text-sm text-yellow-700 dark:text-yellow-400">
+                            This PDF is already password-protected. You cannot protect it again. If you want to change the password, please unlock it first.
+                        </div>
+                    ) : (
+                        <>
+                            {/* Password Input */}
+                            <div className="flex flex-col gap-4">
+                                <div className="flex flex-col gap-2">
+                                    <label htmlFor="pdf-password" className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
+                                        Set PDF Password
+                                    </label>
+                                    <div className="relative">
+                                        <input
+                                            id="pdf-password"
+                                            name="pdf-password"
+                                            type={showPassword ? "text" : "password"}
+                                            placeholder="Enter strong password"
+                                            value={password}
+                                            onChange={(e) => {
+                                                setPassword(e.target.value);
+                                                if (passwordError) setPasswordError("");
+                                            }}
+                                            autoComplete="new-password"
+                                            className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 pr-12 text-sm text-zinc-900 focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white"
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                            className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors"
+                                        >
+                                            {showPassword ? <VisibilityOff className="h-5 w-5" /> : <Visibility className="h-5 w-5" />}
+                                        </button>
+                                    </div>
+                                    <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
+                                        Password must be at least 8 characters long and contain an uppercase letter, a lowercase letter, a number, and a special character.
+                                    </p>
                                 </div>
-                                <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
-                                    <div
-                                        className="bg-yellow-500 h-full transition-all duration-300"
-                                        style={{ width: `${progress}%` }}
-                                    />
+                                <div className="flex flex-col gap-2">
+                                    <label htmlFor="pdf-confirm-password" className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
+                                        Confirm Password
+                                    </label>
+                                    <div className="relative">
+                                        <input
+                                            id="pdf-confirm-password"
+                                            name="pdf-confirm-password"
+                                            type={showConfirmPassword ? "text" : "password"}
+                                            placeholder="Re-enter password"
+                                            value={confirmPassword}
+                                            onChange={(e) => {
+                                                setConfirmPassword(e.target.value);
+                                                if (passwordError) setPasswordError("");
+                                            }}
+                                            autoComplete="new-password"
+                                            className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 pr-12 text-sm text-zinc-900 focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white"
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                            className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors"
+                                        >
+                                            {showConfirmPassword ? <VisibilityOff className="h-5 w-5" /> : <Visibility className="h-5 w-5" />}
+                                        </button>
+                                    </div>
                                 </div>
+                                {passwordError && (
+                                    <p className="text-sm text-red-500 dark:text-red-400">{passwordError}</p>
+                                )}
                             </div>
-                        ) : (
-                            <button
-                                onClick={handleProtect}
-                                disabled={!password}
-                                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-yellow-500 py-4 text-base font-semibold text-white shadow-lg shadow-yellow-500/20 hover:bg-yellow-600 disabled:opacity-50 disabled:hover:bg-yellow-500 disabled:shadow-none transition-all duration-200"
-                            >
-                                <Lock className="h-5 w-5" />
-                                Encrypt PDF
-                            </button>
-                        )}
-                    </div>
+
+                            {/* Permissions */}
+                            <div className="flex flex-col gap-3 p-4 rounded-2xl border border-zinc-200 bg-zinc-50/50 dark:border-zinc-800 dark:bg-zinc-900/20">
+                                <h4 className="text-sm font-bold text-zinc-900 dark:text-white">Permissions</h4>
+
+                                <label className="flex items-center gap-3 cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        checked={allowPrinting}
+                                        onChange={(e) => setAllowPrinting(e.target.checked)}
+                                        className="rounded border-zinc-300 text-yellow-500 focus:ring-yellow-500 dark:border-zinc-700"
+                                    />
+                                    <span className="text-sm text-zinc-700 dark:text-zinc-300">Allow Printing</span>
+                                </label>
+
+                                <label className="flex items-center gap-3 cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        checked={allowCopying}
+                                        onChange={(e) => setAllowCopying(e.target.checked)}
+                                        className="rounded border-zinc-300 text-yellow-500 focus:ring-yellow-500 dark:border-zinc-700"
+                                    />
+                                    <span className="text-sm text-zinc-700 dark:text-zinc-300">Allow Copying Text & Images</span>
+                                </label>
+
+                                <label className="flex items-center gap-3 cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        checked={allowModifying}
+                                        onChange={(e) => setAllowModifying(e.target.checked)}
+                                        className="rounded border-zinc-300 text-yellow-500 focus:ring-yellow-500 dark:border-zinc-700"
+                                    />
+                                    <span className="text-sm text-zinc-700 dark:text-zinc-300">Allow Modifying Document</span>
+                                </label>
+                            </div>
+
+                            {/* Action Button & Progress */}
+                            <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
+                                {isProcessing ? (
+                                    <div className="w-full">
+                                        <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
+                                            <span>Encrypting PDF...</span>
+                                            <span>{progress}%</span>
+                                        </div>
+                                        <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
+                                            <div
+                                                className="bg-yellow-500 h-full transition-all duration-300"
+                                                style={{ width: `${progress}%` }}
+                                            />
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <button
+                                        onClick={handleProtect}
+                                        disabled={!password || !confirmPassword}
+                                        className="flex w-full items-center justify-center gap-2 rounded-2xl bg-yellow-500 py-4 text-base font-semibold text-white shadow-lg shadow-yellow-500/20 hover:bg-yellow-600 disabled:opacity-50 disabled:hover:bg-yellow-500 disabled:shadow-none transition-all duration-200"
+                                    >
+                                        <Lock className="h-5 w-5" />
+                                        Encrypt PDF
+                                    </button>
+                                )}
+                            </div>
+                        </>
+                    )}
                 </div>
             )}
         </ToolWrapper>

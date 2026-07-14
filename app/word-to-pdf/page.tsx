@@ -12,6 +12,7 @@ export default function WordToPDF() {
     const [file, setFile] = useState<File | null>(null);
     const [isProcessing, setIsProcessing] = useState(false);
     const [progress, setProgress] = useState(0);
+    const [processingStatus, setProcessingStatus] = useState("");
     const [resultUrl, setResultUrl] = useState<string | null>(null);
     const [resultFileName, setResultFileName] = useState("");
 
@@ -26,8 +27,10 @@ export default function WordToPDF() {
         setProgress(20);
 
         try {
+            setProcessingStatus("Reading file...");
             const arrayBuffer = await file.arrayBuffer();
             setProgress(40);
+            setProcessingStatus("Parsing Word document...");
 
             // Render docx using docx-preview
             const tempContainer = document.createElement("div");
@@ -45,6 +48,7 @@ export default function WordToPDF() {
                 debug: false,
             });
             setProgress(60);
+            setProcessingStatus("Extracting pages...");
 
             // Extract pages rendered by docx-preview
             const chunks: string[] = [];
@@ -62,6 +66,7 @@ export default function WordToPDF() {
             }
 
             setProgress(75);
+            setProcessingStatus("Initializing PDF engine...");
 
             const filename = `${file.name.replace(".docx", "").replace(".doc", "")}.pdf`;
 
@@ -83,6 +88,7 @@ export default function WordToPDF() {
                 const handleMessage = (event: MessageEvent) => {
                     if (event.data && event.data.type === "progress") {
                         setProgress(75 + Math.floor((event.data.current / event.data.total) * 20));
+                        if (event.data.status) setProcessingStatus(event.data.status);
                     }
                 };
                 window.addEventListener("message", handleMessage);
@@ -179,6 +185,13 @@ export default function WordToPDF() {
                                                 currentSliceHeight = sliceHeight; // Fallback to prevent infinite loop
                                             }
 
+                                            window.parent.postMessage({ 
+                                                type: 'progress', 
+                                                current: i + (currentY / containerHeight), 
+                                                total: chunks.length,
+                                                status: \`Rendering PDF page \${pagesAdded + 1}...\` 
+                                            }, '*');
+
                                             const canvas = await html2canvas(container, { 
                                                 scale: 1.5, 
                                                 useCORS: true, 
@@ -242,6 +255,7 @@ export default function WordToPDF() {
 
             document.body.removeChild(iframe);
             setProgress(100);
+            setProcessingStatus("Done!");
 
             confetti({
                 particleCount: 100,
@@ -337,7 +351,7 @@ export default function WordToPDF() {
                         {isProcessing ? (
                             <div className="w-full">
                                 <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
-                                    <span>Converting to PDF...</span>
+                                    <span>{processingStatus || "Converting to PDF..."}</span>
                                     <span>{progress}%</span>
                                 </div>
                                 <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">

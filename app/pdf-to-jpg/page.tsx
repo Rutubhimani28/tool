@@ -7,6 +7,7 @@ import DropZone from "@/app/components/DropZone";
 import JSZip from "jszip";
 import confetti from "canvas-confetti";
 import { Collections } from "@mui/icons-material";
+import { PDFDocument } from "pdf-lib";
 
 export default function PDFToJPG() {
     const [file, setFile] = useState<File | null>(null);
@@ -20,15 +21,20 @@ export default function PDFToJPG() {
         if (selectedFiles.length === 0) return;
         const selectedFile = selectedFiles[0];
         try {
-            const pdfjsLib = await import("pdfjs-dist");
-            pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/6.1.200/pdf.worker.min.mjs`;
             const arrayBuffer = await selectedFile.arrayBuffer();
-            const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-            setPagesCount(pdf.numPages);
+
+            // Check if encrypted using pdf-lib
+            const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
+            if (pdfDoc.isEncrypted) {
+                toast.error("This PDF is password-protected. Please unlock it first using the Unlock PDF tool.");
+                return;
+            }
+
+            setPagesCount(pdfDoc.getPageCount());
             setFile(selectedFile);
         } catch (error) {
             console.error("Error reading PDF file:", error);
-            toast.error("Error reading PDF file. It might be password-protected or corrupted.");
+            toast.error("Error reading PDF file. It might be corrupted.");
         }
     };
 

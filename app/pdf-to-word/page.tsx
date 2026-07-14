@@ -6,7 +6,7 @@ import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
 import { Document, Packer, Paragraph, TextRun, HeadingLevel, ImageRun } from "docx";
 import confetti from "canvas-confetti";
-import { TextSnippet } from "@mui/icons-material";
+import { TextSnippet, Image as ImageIcon } from "@mui/icons-material";
 import Tesseract from "tesseract.js";
 
 export default function PDFToWord() {
@@ -22,7 +22,7 @@ export default function PDFToWord() {
         setFile(selectedFiles[0]);
     };
 
-    const handleConvert = async () => {
+    const handleConvert = async (mode: "editable" | "exact" = "editable") => {
         if (!file) return;
         setIsProcessing(true);
         setProgress(10);
@@ -44,48 +44,12 @@ export default function PDFToWord() {
             const docChildren: any[] = [];
 
             for (let i = 1; i <= numPages; i++) {
-                setProcessingStatus(`Extracting text from page ${i} of ${numPages}...`);
+                setProcessingStatus(`Processing page ${i} of ${numPages}...`);
                 const page = await pdf.getPage(i);
 
-                // --- Extract text ---
-                const textContent = await page.getTextContent();
-                interface TextItem { str: string; transform: number[] }
-                const items = textContent.items as TextItem[];
-                const lines: { [key: number]: string[] } = {};
-
-                items.forEach((item) => {
-                    if (!item.str) return;
-                    const y = Math.round(item.transform[5] / 5) * 5;
-                    if (!lines[y]) {
-                        lines[y] = [];
-                    }
-                    lines[y].push(item.str);
-                });
-
-                const sortedY = Object.keys(lines)
-                    .map(Number)
-                    .sort((a, b) => b - a);
-
-                let hasTextOnPage = false;
-
-                // Add text content
-                sortedY.forEach((y) => {
-                    const lineText = lines[y].join(" ").trim();
-                    if (lineText) {
-                        hasTextOnPage = true;
-                        docChildren.push(
-                            new Paragraph({
-                                children: [new TextRun(lineText)],
-                                spacing: { after: 120 },
-                            })
-                        );
-                    }
-                });
-
-                if (!hasTextOnPage) {
-                    // Fallback to OCR for scanned pages
-                    setProcessingStatus(`Running OCR on page ${i} (this may take a while)...`);
-                    const viewport = page.getViewport({ scale: 1.5 });
+                if (mode === 'exact') {
+                    setProcessingStatus(`Rendering page ${i} as image...`);
+                    const viewport = page.getViewport({ scale: 2.0 });
                     const canvas = document.createElement("canvas");
                     const context = canvas.getContext("2d");
                     if (context) {
@@ -97,85 +61,250 @@ export default function PDFToWord() {
                             canvas: canvas,
                         }).promise;
 
-                        try {
-                            const { data: { text } } = await Tesseract.recognize(
-                                canvas,
-                                'eng',
-                                {
-                                    logger: m => {
-                                        if (m.status === 'recognizing text') {
-                                            setProgress(30 + Math.round((i / numPages) * 50) - 5 + Math.round(m.progress * 5));
+                        const blob = await new Promise((resolve) =>
+                            canvas.toBlob((b) => resolve(b), "image/jpeg", 0.9)
+                        );
+
+                        if (blob) {
+                            const imgArrayBuffer = await blob.arrayBuffer();
+                            const targetWidth = 600;
+                            const targetHeight = (targetWidth * canvas.height) / canvas.width;
+
+                            docChildren.push(
+                                new Paragraph({
+                                    children: [
+                                        new ImageRun({
+                                            data: imgArrayBuffer,
+                                            transformation: {
+                                                width: targetWidth,
+                                                height: targetHeight,
+                                            },
+                                            type: "jpg",
+                                        }),
+                                    ],
+                                })
+                            );
+                        }
+                    }
+                } else {
+
+                    let hasContentOnPage = false;
+
+                    // --- 1. Extract text ---
+                    const textContent = await page.getTextContent();
+                    interface TextItem { str: string; transform: number[] }
+                    const items = textContent.items as TextItem[];
+                    const lines: { [key: number]: string[] } = {};
+
+                    items.forEach((item) => {
+                        if (!item.str.trim()) return;
+                        // Group text by Y coordinate (rounded to nearest 5 to handle slight misalignments)
+                        const y = Math.round(item.transform[5] / 5) * 5;
+                        if (!lines[y]) {
+                            lines[y] = [];
+                        }
+                        lines[y].push(item.str);
+                    });
+
+                    const sortedY = Object.keys(lines)
+                        .map(Number)
+                        .sort((a, b) => b - a); // Sort top to bottom
+
+                    // Add text content
+                    sortedY.forEach((y) => {
+                        const lineText = lines[y].join(" ").trim();
+                        if (lineText) {
+                            hasContentOnPage = true;
+                            docChildren.push(
+                                new Paragraph({
+                                    children: [new TextRun({ text: lineText, size: 24 })], // size 24 = 12pt
+                                    spacing: { after: 120 }, // Add some spacing between lines
+                                })
+                            );
+                        }
+                    });
+
+                    // --- 2. Extract Images ---
+                    try {
+                        const operatorList = await page.getOperatorList();
+                        for (let j = 0; j < operatorList.fnArray.length; j++) {
+                            if (
+                                operatorList.fnArray[j] === pdfjsLib.OPS.paintImageXObject ||
+                                operatorList.fnArray[j] === pdfjsLib.OPS.paintInlineImageXObject
+                            ) {
+                                const objId = operatorList.argsArray[j][0];
+                                try {
+                                    if (!page.objs.has(objId)) {
+                                        continue;
+                                    }
+                                    const img = await page.objs.get(objId);
+                                    if (img) {
+                                        const canvas = document.createElement("canvas");
+                                        canvas.width = img.width;
+                                        canvas.height = img.height;
+                                        const ctx = canvas.getContext("2d");
+                                        if (ctx) {
+                                            if (img.data && img.data.length > 0) {
+                                                let data = img.data;
+                                                if (data.length === img.width * img.height * 3) {
+                                                    const rgba = new Uint8ClampedArray(img.width * img.height * 4);
+                                                    for (let k = 0, l = 0; k < data.length; k += 3, l += 4) {
+                                                        rgba[l] = data[k];
+                                                        rgba[l + 1] = data[k + 1];
+                                                        rgba[l + 2] = data[k + 2];
+                                                        rgba[l + 3] = 255;
+                                                    }
+                                                    data = rgba;
+                                                }
+                                                const imgData = new ImageData(new Uint8ClampedArray(data), img.width, img.height);
+                                                ctx.putImageData(imgData, 0, 0);
+                                            } else if (img.bitmap) {
+                                                ctx.drawImage(img.bitmap, 0, 0);
+                                            }
+
+                                            const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/jpeg", 0.9));
+                                            if (blob) {
+                                                const imgArrayBuffer = await blob.arrayBuffer();
+                                                const maxWidth = 550; // Max width for Word document
+                                                let finalWidth = img.width;
+                                                let finalHeight = img.height;
+                                                if (finalWidth > maxWidth) {
+                                                    finalHeight = (maxWidth / finalWidth) * finalHeight;
+                                                    finalWidth = maxWidth;
+                                                }
+
+                                                docChildren.push(
+                                                    new Paragraph({
+                                                        children: [
+                                                            new ImageRun({
+                                                                data: imgArrayBuffer,
+                                                                transformation: {
+                                                                    width: finalWidth,
+                                                                    height: finalHeight,
+                                                                },
+                                                                type: "jpg",
+                                                            }),
+                                                        ],
+                                                        spacing: { before: 200, after: 200 },
+                                                    })
+                                                );
+                                                hasContentOnPage = true;
+                                            }
                                         }
                                     }
+                                } catch (e) {
+                                    console.error("Failed to extract specific image", e);
                                 }
-                            );
-
-                            if (text && text.trim()) {
-                                const ocrLines = text.split('\n');
-                                ocrLines.forEach(line => {
-                                    if (line.trim()) {
-                                        docChildren.push(
-                                            new Paragraph({
-                                                children: [new TextRun(line.trim())],
-                                                spacing: { after: 120 },
-                                            })
-                                        );
-                                    }
-                                });
-                                hasTextOnPage = true;
                             }
-                        } catch (ocrError) {
-                            console.error("OCR failed:", ocrError);
                         }
+                    } catch (e) {
+                        console.error("Failed to parse operator list for images", e);
+                    }
 
-                        if (!hasTextOnPage) {
-                            // If OCR fails or returns empty, fallback to image
-                            setProcessingStatus(`Inserting image for page ${i}...`);
-                            const blob = await new Promise<Blob | null>((resolve) =>
-                                canvas.toBlob((b) => resolve(b), "image/jpeg", 0.8)
-                            );
+                    // --- 3. Fallback to OCR if page is completely empty (Scanned PDF) ---
+                    if (!hasContentOnPage) {
+                        setProcessingStatus(`Running OCR on page ${i} (this may take a while)...`);
+                        const viewport = page.getViewport({ scale: 1.5 });
+                        const canvas = document.createElement("canvas");
+                        const context = canvas.getContext("2d");
+                        if (context) {
+                            canvas.height = viewport.height;
+                            canvas.width = viewport.width;
+                            await page.render({
+                                canvasContext: context,
+                                viewport: viewport,
+                                canvas: canvas,
+                            }).promise;
 
-                            if (blob) {
-                                const imgArrayBuffer = await blob.arrayBuffer();
-                                docChildren.push(
-                                    new Paragraph({
-                                        children: [
-                                            new ImageRun({
-                                                data: imgArrayBuffer,
-                                                transformation: {
-                                                    width: 500,
-                                                    height: (500 * canvas.height) / canvas.width,
-                                                },
-                                                type: "jpg",
-                                            }),
-                                        ],
-                                    })
+                            try {
+                                const { data: { text } } = await Tesseract.recognize(
+                                    canvas,
+                                    'eng',
+                                    {
+                                        logger: m => {
+                                            if (m.status === 'recognizing text') {
+                                                setProgress(30 + Math.round((i / numPages) * 50) - 5 + Math.round(m.progress * 5));
+                                            }
+                                        }
+                                    }
                                 );
-                                hasTextOnPage = true; // Mark as having content
+
+                                if (text && text.trim()) {
+                                    const ocrLines = text.split('\n');
+                                    ocrLines.forEach(line => {
+                                        if (line.trim()) {
+                                            docChildren.push(
+                                                new Paragraph({
+                                                    children: [new TextRun({ text: line.trim(), size: 24 })],
+                                                    spacing: { after: 120 },
+                                                })
+                                            );
+                                        }
+                                    });
+                                    hasContentOnPage = true;
+                                }
+                            } catch (ocrError) {
+                                console.error("OCR failed:", ocrError);
+                            }
+
+                            if (!hasContentOnPage) {
+                                // If OCR fails, insert the whole page as an image
+                                setProcessingStatus(`Inserting scanned image for page ${i}...`);
+                                const blob = await new Promise<Blob | null>((resolve) =>
+                                    canvas.toBlob((b) => resolve(b), "image/jpeg", 0.8)
+                                );
+
+                                if (blob) {
+                                    const imgArrayBuffer = await blob.arrayBuffer();
+                                    docChildren.push(
+                                        new Paragraph({
+                                            children: [
+                                                new ImageRun({
+                                                    data: imgArrayBuffer,
+                                                    transformation: {
+                                                        width: 550,
+                                                        height: (550 * canvas.height) / canvas.width,
+                                                    },
+                                                    type: "jpg",
+                                                }),
+                                            ],
+                                        })
+                                    );
+                                    hasContentOnPage = true;
+                                }
                             }
                         }
                     }
-                }
 
-                // Add page break between pages except the last one
-                if (hasTextOnPage && i < numPages) {
-                    docChildren.push(
-                        new Paragraph({
-                            pageBreakBefore: true,
-                            children: [],
-                        })
-                    );
-                }
+                    // Add page break between pages except the last one
+                    if (hasContentOnPage && i < numPages) {
+                        docChildren.push(
+                            new Paragraph({
+                                pageBreakBefore: true,
+                                children: [],
+                            })
+                        );
+                    }
 
+                }
                 setProgress(30 + Math.round((i / numPages) * 50));
             }
 
-            // Create Word document
+            // Create Word document with Margins
             setProcessingStatus("Generating Word document...");
             const doc = new Document({
                 sections: [
                     {
-                        properties: {},
+                        properties: {
+                            page: {
+                                margin: {
+                                    top: mode === 'exact' ? 720 : 1440,
+                                    right: mode === 'exact' ? 720 : 1440,
+                                    bottom: mode === 'exact' ? 720 : 1440,
+                                    left: mode === 'exact' ? 720 : 1440,
+                                },
+                            },
+                        },
                         children: docChildren.length > 0 ? docChildren : [new Paragraph({ children: [new TextRun("No content found in PDF.")] })],
                     },
                 ],
@@ -300,13 +429,22 @@ export default function PDFToWord() {
                                 </div>
                             </div>
                         ) : (
-                            <button
-                                onClick={handleConvert}
-                                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-cyan-500 py-4 text-base font-semibold text-white shadow-lg shadow-cyan-500/20 hover:bg-cyan-600 transition-all duration-200"
-                            >
-                                <TextSnippet className="h-5 w-5" />
-                                Convert to Word
-                            </button>
+                            <div className="flex flex-col sm:flex-row gap-4">
+                                <button
+                                    onClick={() => handleConvert('editable')}
+                                    className="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-cyan-500 py-4 text-base font-semibold text-white shadow-lg shadow-cyan-500/20 hover:bg-cyan-600 transition-all duration-200"
+                                >
+                                    <TextSnippet className="h-5 w-5" />
+                                    Convert to Editable Text
+                                </button>
+                                <button
+                                    onClick={() => handleConvert('exact')}
+                                    className="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-indigo-500 py-4 text-base font-semibold text-white shadow-lg shadow-indigo-500/20 hover:bg-indigo-600 transition-all duration-200"
+                                >
+                                    <ImageIcon className="h-5 w-5" />
+                                    Convert to Exact Copy
+                                </button>
+                            </div>
                         )}
                     </div>
                 </div>

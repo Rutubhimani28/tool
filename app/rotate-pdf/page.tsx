@@ -37,7 +37,13 @@ export default function RotatePDF() {
             const arrayBuffer = await selectedFile.arrayBuffer();
 
             // Load for pdf-lib to get page count
-            const pdfDoc = await PDFDocument.load(arrayBuffer);
+            const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
+            if (pdfDoc.isEncrypted) {
+                toast.error("This PDF is password-protected. Please unlock it first using the Unlock PDF tool.");
+                setFile(null);
+                setIsLoadingThumbnails(false);
+                return;
+            }
             const count = pdfDoc.getPageCount();
             setPagesCount(count);
 
@@ -108,7 +114,7 @@ export default function RotatePDF() {
             const arrayBuffer = await file.arrayBuffer();
             setProgress(40);
 
-            const pdfDoc = await PDFDocument.load(arrayBuffer);
+            const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
             const pages = pdfDoc.getPages();
             setProgress(60);
 

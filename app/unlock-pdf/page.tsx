@@ -6,11 +6,12 @@ import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
 import { PDFDocument } from "pdf-lib";
 import confetti from "canvas-confetti";
-import { LockOpen } from "@mui/icons-material";
+import { LockOpen, Visibility, VisibilityOff } from "@mui/icons-material";
 
 export default function UnlockPDF() {
     const [file, setFile] = useState<File | null>(null);
     const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     const [isEncrypted, setIsEncrypted] = useState(false);
     const [isProcessing, setIsProcessing] = useState(false);
     const [progress, setProgress] = useState(0);
@@ -26,15 +27,16 @@ export default function UnlockPDF() {
 
         try {
             const arrayBuffer = await selectedFile.arrayBuffer();
-            // Try to load without password to check if encrypted
-            await PDFDocument.load(arrayBuffer);
-            // If it succeeds, it's not encrypted
-            setIsEncrypted(false);
+            const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
 
+            if (pdfDoc.isEncrypted) {
+                setIsEncrypted(true);
+            } else {
+                setIsEncrypted(false);
+            }
         } catch (error: any) {
-            // If it throws an error, it's likely encrypted
-
-            setIsEncrypted(true);
+            console.error("Error loading PDF:", error);
+            toast.error("Failed to load the PDF file.");
         }
     };
 
@@ -206,16 +208,27 @@ export default function UnlockPDF() {
                     {/* Password Input */}
                     {isEncrypted ? (
                         <div className="flex flex-col gap-2">
-                            <label className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
+                            <label htmlFor="unlock-password" className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
                                 Enter PDF Password
                             </label>
-                            <input
-                                type="password"
-                                placeholder="Password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white"
-                            />
+                            <div className="relative">
+                                <input
+                                    id="unlock-password"
+                                    name="unlock-password"
+                                    type={showPassword ? "text" : "password"}
+                                    placeholder="Password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 pr-12 text-sm text-zinc-900 focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white"
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors"
+                                >
+                                    {showPassword ? <VisibilityOff className="h-5 w-5" /> : <Visibility className="h-5 w-5" />}
+                                </button>
+                            </div>
                         </div>
                     ) : (
                         <div className="p-4 rounded-2xl bg-green-50 border border-green-100 dark:bg-green-950/10 dark:border-green-900/30 text-sm text-green-700 dark:text-green-400">
