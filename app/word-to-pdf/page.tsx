@@ -68,8 +68,8 @@ export default function WordToPDF() {
             // Create an isolated iframe to prevent html2canvas from seeing Tailwind CSS v4 lab/oklch colors
             const iframe = document.createElement("iframe");
             iframe.style.position = "absolute";
-            iframe.style.width = "800px";
-            iframe.style.height = "1122px";
+            iframe.style.width = "2000px";
+            iframe.style.height = "2000px";
             iframe.style.left = "-10000px";
             iframe.style.top = "-10000px";
             iframe.style.border = "none";
@@ -125,52 +125,106 @@ export default function WordToPDF() {
                                     const pdfWidth = pdf.internal.pageSize.getWidth();
                                     const pdfHeight = pdf.internal.pageSize.getHeight();
 
+                                    let pagesAdded = 0;
                                     for (let i = 0; i < chunks.length; i++) {
                                         window.parent.postMessage({ type: 'progress', current: i + 1, total: chunks.length }, '*');
                                         
                                         const container = document.createElement('div');
                                         container.innerHTML = chunks[i];
-                                        // Ensure container has a white background and fits the content
                                         container.style.backgroundColor = '#ffffff';
                                         container.style.position = 'absolute';
                                         container.style.top = '0';
                                         container.style.left = '0';
                                         container.style.zIndex = '-1';
+                                        container.style.width = 'max-content';
                                         document.body.appendChild(container);
                                         
-                                        const canvas = await html2canvas(container, { 
-                                            scale: 2, 
-                                            useCORS: true, 
-                                            logging: false,
-                                            backgroundColor: '#ffffff'
-                                        });
+                                        const contentWidth = container.scrollWidth || 816;
+                                        const containerHeight = container.scrollHeight || 1056;
+                                        const sliceHeight = Math.floor(contentWidth * 1.414); // Standard A4 height at 96 DPI
+                                        
+                                        const containerRect = container.getBoundingClientRect();
+                                        let currentY = 0;
+                                        
+                                        while (currentY < containerHeight) {
+                                            let currentSliceHeight = Math.min(sliceHeight, containerHeight - currentY);
+                                            
+                                            // Smart page breaking: avoid cutting elements in half
+                                            if (currentSliceHeight === sliceHeight) {
+                                                const endY = currentY + sliceHeight;
+                                                const elements = container.querySelectorAll('p, img, table, tr, li, h1, h2, h3, h4, h5, h6');
+                                                let safeCutY = endY;
+                                                
+                                                for (let e = 0; e < elements.length; e++) {
+                                                    const el = elements[e];
+                                                    const rect = el.getBoundingClientRect();
+                                                    const elTop = rect.top - containerRect.top;
+                                                    const elBottom = rect.bottom - containerRect.top;
+                                                    
+                                                    // If element crosses the boundary
+                                                    if (elTop < endY && elBottom > endY) {
+                                                        // Only adjust if the element itself fits in a page
+                                                        if (elBottom - elTop < sliceHeight) {
+                                                            if (elTop > currentY) {
+                                                                safeCutY = Math.min(safeCutY, elTop);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                
+                                                currentSliceHeight = safeCutY - currentY;
+                                            }
+                                            
+                                            if (currentSliceHeight <= 0) {
+                                                currentSliceHeight = sliceHeight; // Fallback to prevent infinite loop
+                                            }
+
+                                            const canvas = await html2canvas(container, { 
+                                                scale: 1.5, 
+                                                useCORS: true, 
+                                                logging: false,
+                                                backgroundColor: '#ffffff',
+                                                y: currentY,
+                                                height: currentSliceHeight,
+                                                windowWidth: contentWidth,
+                                                width: contentWidth
+                                            });
+                                            
+                                            if (canvas.width > 0 && canvas.height > 0) {
+                                                const imgData = canvas.toDataURL('image/jpeg', 0.8);
+                                                
+                                                if (imgData && imgData.length > 100 && imgData !== 'data:,') {
+                                                    if (pagesAdded > 0) {
+                                                        pdf.addPage();
+                                                    }
+                                                    
+                                                    const imgProps = pdf.getImageProperties(imgData);
+                                                    const ratio = imgProps.width / imgProps.height;
+                                                    
+                                                    let finalWidth = pdfWidth;
+                                                    let finalHeight = pdfWidth / ratio;
+                                                    
+                                                    if (finalHeight > pdfHeight) {
+                                                        finalHeight = pdfHeight;
+                                                        finalWidth = pdfHeight * ratio;
+                                                    }
+                                                    
+                                                    const x = (pdfWidth - finalWidth) / 2;
+                                                    const y = 0; // Align to top to leave space at the bottom
+                                                    
+                                                    pdf.addImage(imgData, 'JPEG', x, y, finalWidth, finalHeight);
+                                                    pagesAdded++;
+                                                }
+                                            }
+                                            
+                                            currentY += currentSliceHeight;
+                                        }
+                                        
                                         document.body.removeChild(container);
-                                        
-                                        const imgData = canvas.toDataURL('image/jpeg', 0.98);
-                                        
-                                        if (i > 0) {
-                                            pdf.addPage();
-                                        }
-                                        
-                                        // Calculate dimensions to fit exactly on the page, preserving aspect ratio
-                                        const imgProps = pdf.getImageProperties(imgData);
-                                        const ratio = imgProps.width / imgProps.height;
-                                        const pdfRatio = pdfWidth / pdfHeight;
-                                        
-                                        let finalWidth = pdfWidth;
-                                        let finalHeight = pdfHeight;
-                                        
-                                        if (ratio > pdfRatio) {
-                                            finalHeight = pdfWidth / ratio;
-                                        } else {
-                                            finalWidth = pdfHeight * ratio;
-                                        }
-                                        
-                                        // Center the image on the page
-                                        const x = (pdfWidth - finalWidth) / 2;
-                                        const y = (pdfHeight - finalHeight) / 2;
-                                        
-                                        pdf.addImage(imgData, 'JPEG', x, y, finalWidth, finalHeight);
+                                    }
+                                    
+                                    if (pagesAdded === 0) {
+                                        throw new Error("No valid pages could be generated from the document.");
                                     }
                                     
                                     return pdf.output('blob');
@@ -199,10 +253,7 @@ export default function WordToPDF() {
             toast.error("An error occurred while converting the Word document.");
         } finally {
             setIsProcessing(false);
-            setTimeout(() => {
-                setProgress(0);
-                setFile(null);
-            }, 2500);
+            setTimeout(() => setProgress(0), 1000);
         }
     };
 
