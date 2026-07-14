@@ -37,7 +37,7 @@ export default function ContactPage() {
                             <div className="min-w-0 w-full">
                                 <h3 className="font-semibold text-zinc-900 dark:text-white">Email Us</h3>
                                 <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400 truncate">
-                                    vishvas.prolink@gmail.com
+                                    support@pdfimageconvert.com
                                 </p>
                             </div>
                         </div>
@@ -66,7 +66,7 @@ export default function ContactPage() {
                         const subject = (document.getElementById('subject') as HTMLInputElement).value;
                         const message = (document.getElementById('message') as HTMLTextAreaElement).value;
 
-                        const mailtoLink = `mailto:vishvas.prolink@gmail.com?subject=${encodeURIComponent(subject || 'Contact from PDFImageConvert')}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+                        const mailtoLink = `mailto:support@pdfimageconvert.com?subject=${encodeURIComponent(subject || 'Contact from PDFImageConvert')}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
                         window.location.href = mailtoLink;
                     }}>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
