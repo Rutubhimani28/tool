@@ -43,6 +43,9 @@ export default function PDFToJPG() {
         setIsProcessing(true);
         setProgress(10);
 
+        const originalWarn = console.warn;
+        console.warn = () => {};
+
         try {
             const pdfjsLib = await import("pdfjs-dist");
             pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/6.1.200/pdf.worker.min.mjs`;
@@ -61,6 +64,10 @@ export default function PDFToJPG() {
 
                 canvas.height = viewport.height;
                 canvas.width = viewport.width;
+
+                // Fill with white background
+                context.fillStyle = "#ffffff";
+                context.fillRect(0, 0, canvas.width, canvas.height);
 
                 // Render PDF page to canvas
                 await page.render({
@@ -100,6 +107,7 @@ export default function PDFToJPG() {
             console.error("Error converting PDF to JPG:", error);
             toast.error("An error occurred while converting the PDF to JPG.");
         } finally {
+            console.warn = originalWarn;
             setIsProcessing(false);
             setTimeout(() => setProgress(0), 1000);
         }

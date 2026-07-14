@@ -25,6 +25,10 @@ export default function SplitPDF() {
         try {
             const arrayBuffer = await selectedFile.arrayBuffer();
             const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
+            if (pdfDoc.isEncrypted) {
+                toast.error("This PDF is password-protected. Please unlock it first.");
+                return;
+            }
             setPagesCount(pdfDoc.getPageCount());
             setFile(selectedFile);
             setPageRange(`1-${pdfDoc.getPageCount()}`);
@@ -241,10 +245,12 @@ export default function SplitPDF() {
                     {/* Range Input */}
                     {splitMode === "range" && (
                         <div className="flex flex-col gap-2">
-                            <label className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
+                            <label htmlFor="page-range" className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
                                 Page Range
                             </label>
                             <input
+                                id="page-range"
+                                name="page-range"
                                 type="text"
                                 placeholder="e.g., 1-3, 5, 7-9"
                                 value={pageRange}

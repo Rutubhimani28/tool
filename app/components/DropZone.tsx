@@ -81,11 +81,14 @@ export default function DropZone({
             onDrop={handleDrop}
             onClick={onButtonClick}
             className={`group relative flex flex-col items-center justify-center rounded-2xl border-2 border-dashed p-8 sm:p-12 text-center transition-all duration-300 cursor-pointer select-none ${isDragActive
-                    ? "border-red-500 bg-red-50/60 dark:bg-red-950/20 scale-[1.01]"
-                    : "border-zinc-300 bg-zinc-50/50 hover:border-red-400 hover:bg-zinc-100/50 dark:border-zinc-700 dark:bg-zinc-900/30 dark:hover:border-red-500/60 dark:hover:bg-zinc-900/50"
+                ? "border-red-500 bg-red-50/60 dark:bg-red-950/20 scale-[1.01]"
+                : "border-zinc-300 bg-zinc-50/50 hover:border-red-400 hover:bg-zinc-100/50 dark:border-zinc-700 dark:bg-zinc-900/30 dark:hover:border-red-500/60 dark:hover:bg-zinc-900/50"
                 }`}
         >
             <input
+                id="file-upload"
+                name="file-upload"
+                aria-label="File upload"
                 ref={fileInputRef}
                 type="file"
                 className="hidden"

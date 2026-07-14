@@ -33,6 +33,9 @@ export default function RotatePDF() {
         setThumbnails([]);
         setRotations({});
 
+        const originalWarn = console.warn;
+        console.warn = () => {};
+
         try {
             const arrayBuffer = await selectedFile.arrayBuffer();
 
@@ -84,6 +87,7 @@ export default function RotatePDF() {
             toast.error("Error loading PDF file.");
             setFile(null);
         } finally {
+            console.warn = originalWarn;
             setIsLoadingThumbnails(false);
         }
     };

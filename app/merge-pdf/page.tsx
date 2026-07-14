@@ -28,22 +28,32 @@ export default function MergePDF() {
 
     const handleFilesSelected = async (selectedFiles: File[]) => {
         const newFiles: UploadedFile[] = [];
-        const originalWarn = console.warn; console.warn = () => {}; try { for (const file of selectedFiles) {
-            try {
-                const arrayBuffer = await file.arrayBuffer();
-                const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
-                const pagesCount = pdfDoc.getPageCount();
-                newFiles.push({
-                    id: Math.random().toString(36).substring(7),
-                    file,
-                    pagesCount,
-                });
-            } catch (error) {
-                console.error("Error reading PDF file:", error);
-                toast.error(`Error reading ${file.name}. It might be password-protected or corrupted.`);
+        const originalWarn = console.warn;
+        console.warn = () => { };
+        try {
+            for (const file of selectedFiles) {
+                try {
+                    const arrayBuffer = await file.arrayBuffer();
+                    const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
+                    if (pdfDoc.isEncrypted) {
+                        toast.error(`This PDF (${file.name}) is password-protected. Please unlock it first.`);
+                        continue;
+                    }
+                    const pagesCount = pdfDoc.getPageCount();
+                    newFiles.push({
+                        id: Math.random().toString(36).substring(7),
+                        file,
+                        pagesCount,
+                    });
+                } catch (error) {
+                    console.error("Error reading PDF file:", error);
+                    toast.error(`Error reading ${file.name}. It might be corrupted.`);
+                }
             }
+        } finally {
+            console.warn = originalWarn;
         }
-        } finally { console.warn = originalWarn; } setFiles((prev) => [...prev, ...newFiles]);
+        setFiles((prev) => [...prev, ...newFiles]);
     };
 
     const removeFile = (id: string) => {
@@ -71,18 +81,19 @@ export default function MergePDF() {
             const mergedPdf = await PDFDocument.create();
             let currentFileIndex = 0;
 
-            const originalWarn = console.warn; console.warn = () => {}; try { for (const uploadedFile of files) {
-                const arrayBuffer = await uploadedFile.file.arrayBuffer();
-                const srcPdf = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
-                const copiedPages = await mergedPdf.copyPages(
-                    srcPdf,
-                    srcPdf.getPageIndices()
-                );
-                copiedPages.forEach((page) => mergedPdf.addPage(page));
+            const originalWarn = console.warn; console.warn = () => { }; try {
+                for (const uploadedFile of files) {
+                    const arrayBuffer = await uploadedFile.file.arrayBuffer();
+                    const srcPdf = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
+                    const copiedPages = await mergedPdf.copyPages(
+                        srcPdf,
+                        srcPdf.getPageIndices()
+                    );
+                    copiedPages.forEach((page) => mergedPdf.addPage(page));
 
-                currentFileIndex++;
-                setProgress(10 + Math.round((currentFileIndex / files.length) * 80));
-            }
+                    currentFileIndex++;
+                    setProgress(10 + Math.round((currentFileIndex / files.length) * 80));
+                }
 
             } finally { console.warn = originalWarn; } const mergedPdfBytes = await mergedPdf.save();
             setProgress(95);

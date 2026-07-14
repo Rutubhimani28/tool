@@ -1,0 +1,114 @@
+﻿
+> tool@0.1.0 lint
+> eslint
+
+node.exe : 
+At line:1 char:1
++ & "C:\Program Files
+\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (:String   
+ ) [], RemoteExce    
+ption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+Oops! Something went 
+wrong! :(
+
+ESLint: 10.7.0
+
+TypeError: Error 
+while loading rule 'r
+eact/display-name': c
+ontextOrFilename.getF
+ilename is not a 
+function
+Occurred while 
+linting C:\Users\davr
+a\OneDrive\Desktop\To
+ol\tool\add_exact_cop
+y.js
+    at 
+resolveBasedir (C:\Us
+ers\davra\OneDrive\De
+sktop\Tool\tool\node_
+modules\eslint-config
+-next\node_modules\es
+lint-plugin-react\lib
+\util\version.js:31:1
+00)
+    at 
+detectReactVersion (C
+:\Users\davra\OneDriv
+e\Desktop\Tool\tool\n
+ode_modules\eslint-co
+nfig-next\node_module
+s\eslint-plugin-react
+\lib\util\version.js:
+85:19)
+    at getReactVersio
+nFromContext (C:\User
+s\davra\OneDrive\Desk
+top\Tool\tool\node_mo
+dules\eslint-config-n
+ext\node_modules\esli
+nt-plugin-react\lib\u
+til\version.js:116:25
+)
+    at 
+testReactVersion (C:\
+Users\davra\OneDrive\
+Desktop\Tool\tool\nod
+e_modules\eslint-conf
+ig-next\node_modules\
+eslint-plugin-react\l
+ib\util\version.js:18
+1:28)
+    at usedPropTypesI
+nstructions (C:\Users
+\davra\OneDrive\Deskt
+op\Tool\tool\node_mod
+ules\eslint-config-ne
+xt\node_modules\eslin
+t-plugin-react\lib\ut
+il\usedPropTypes.js:3
+07:36)
+    at Components.com
+ponentRule (C:\Users\
+davra\OneDrive\Deskto
+p\Tool\tool\node_modu
+les\eslint-config-nex
+t\node_modules\eslint
+-plugin-react\lib\uti
+l\Components.js:940:3
+7)
+    at 
+createRuleListeners (
+C:\Users\davra\OneDri
+ve\Desktop\Tool\tool\
+node_modules\eslint\l
+ib\linter\linter.js:4
+97:15)
+    at C:\Users\davra
+\OneDrive\Desktop\Too
+l\tool\node_modules\e
+slint\lib\linter\lint
+er.js:623:7
+    at Array.forEach 
+(<anonymous>)
+    at runRules (C:\U
+sers\davra\OneDrive\D
+esktop\Tool\tool\node
+_modules\eslint\lib\l
+inter\linter.js:557:3
+1)

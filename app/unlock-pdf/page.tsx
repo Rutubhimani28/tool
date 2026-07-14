@@ -52,6 +52,8 @@ export default function UnlockPDF() {
             let pdfBytes: Uint8Array;
 
             if (isEncrypted) {
+                const originalWarn = console.warn;
+                console.warn = () => { };
                 try {
                     // Load PDF document using pdfjs-dist with password
                     const pdfjsLib = await import("pdfjs-dist");
@@ -73,6 +75,10 @@ export default function UnlockPDF() {
 
                         canvas.height = viewport.height;
                         canvas.width = viewport.width;
+
+                        // Fill with white background to prevent transparent/black pages
+                        context.fillStyle = "#ffffff";
+                        context.fillRect(0, 0, canvas.width, canvas.height);
 
                         await page.render({
                             canvasContext: context,
@@ -102,6 +108,8 @@ export default function UnlockPDF() {
                     toast.error("Incorrect password or decryption failed. Please try again.");
                     setIsProcessing(false);
                     return;
+                } finally {
+                    console.warn = originalWarn;
                 }
             } else {
                 const pdfDoc = await PDFDocument.load(arrayBuffer);
@@ -207,15 +215,24 @@ export default function UnlockPDF() {
 
                     {/* Password Input */}
                     {isEncrypted ? (
-                        <div className="flex flex-col gap-2">
+                        <form
+                            onSubmit={(e) => {
+                                e.preventDefault();
+                                handleUnlock();
+                            }}
+                            className="flex flex-col gap-2"
+                        >
                             <label htmlFor="unlock-password" className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
                                 Enter PDF Password
                             </label>
                             <div className="relative">
+                                {/* Hidden username field to prevent autofill warnings */}
+                                <input type="text" name="username" id="username" autoComplete="username" className="hidden" />
                                 <input
                                     id="unlock-password"
                                     name="unlock-password"
                                     type={showPassword ? "text" : "password"}
+                                    autoComplete="current-password"
                                     placeholder="Password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
@@ -229,7 +246,7 @@ export default function UnlockPDF() {
                                     {showPassword ? <VisibilityOff className="h-5 w-5" /> : <Visibility className="h-5 w-5" />}
                                 </button>
                             </div>
-                        </div>
+                        </form>
                     ) : (
                         <div className="p-4 rounded-2xl bg-green-50 border border-green-100 dark:bg-green-950/10 dark:border-green-900/30 text-sm text-green-700 dark:text-green-400">
                             This PDF is not password-protected. You can save it to remove any other restrictions.

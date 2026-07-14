@@ -205,6 +205,7 @@ export default function ProtectPDF() {
                                     <label htmlFor="pdf-password" className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
                                         Set PDF Password
                                     </label>
+                                    <input type="text" name="username" autoComplete="username" className="hidden" aria-hidden="true" />
                                     <div className="relative">
                                         <input
                                             id="pdf-password"
@@ -267,8 +268,10 @@ export default function ProtectPDF() {
                             <div className="flex flex-col gap-3 p-4 rounded-2xl border border-zinc-200 bg-zinc-50/50 dark:border-zinc-800 dark:bg-zinc-900/20">
                                 <h4 className="text-sm font-bold text-zinc-900 dark:text-white">Permissions</h4>
 
-                                <label className="flex items-center gap-3 cursor-pointer">
+                                <label htmlFor="allow-printing" className="flex items-center gap-3 cursor-pointer">
                                     <input
+                                        id="allow-printing"
+                                        name="allow-printing"
                                         type="checkbox"
                                         checked={allowPrinting}
                                         onChange={(e) => setAllowPrinting(e.target.checked)}
@@ -277,8 +280,10 @@ export default function ProtectPDF() {
                                     <span className="text-sm text-zinc-700 dark:text-zinc-300">Allow Printing</span>
                                 </label>
 
-                                <label className="flex items-center gap-3 cursor-pointer">
+                                <label htmlFor="allow-copying" className="flex items-center gap-3 cursor-pointer">
                                     <input
+                                        id="allow-copying"
+                                        name="allow-copying"
                                         type="checkbox"
                                         checked={allowCopying}
                                         onChange={(e) => setAllowCopying(e.target.checked)}
@@ -287,8 +292,10 @@ export default function ProtectPDF() {
                                     <span className="text-sm text-zinc-700 dark:text-zinc-300">Allow Copying Text & Images</span>
                                 </label>
 
-                                <label className="flex items-center gap-3 cursor-pointer">
+                                <label htmlFor="allow-modifying" className="flex items-center gap-3 cursor-pointer">
                                     <input
+                                        id="allow-modifying"
+                                        name="allow-modifying"
                                         type="checkbox"
                                         checked={allowModifying}
                                         onChange={(e) => setAllowModifying(e.target.checked)}

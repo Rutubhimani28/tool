@@ -17,9 +17,21 @@ export default function PDFToWord() {
     const [resultUrl, setResultUrl] = useState<string | null>(null);
     const [resultFileName, setResultFileName] = useState("");
 
-    const handleFileSelected = (selectedFiles: File[]) => {
+    const handleFileSelected = async (selectedFiles: File[]) => {
         if (selectedFiles.length === 0) return;
-        setFile(selectedFiles[0]);
+        const selectedFile = selectedFiles[0];
+        try {
+            const arrayBuffer = await selectedFile.arrayBuffer();
+            const { PDFDocument } = await import("pdf-lib");
+            const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
+            if (pdfDoc.isEncrypted) {
+                toast.error("This PDF is password-protected. Please unlock it first.");
+                return;
+            }
+        } catch (error) {
+            console.error("Error checking PDF encryption:", error);
+        }
+        setFile(selectedFile);
     };
 
     const handleConvert = async (mode: "editable" | "exact" = "editable") => {
@@ -27,6 +39,9 @@ export default function PDFToWord() {
         setIsProcessing(true);
         setProgress(10);
         setProcessingStatus("Loading PDF...");
+
+        const originalWarn = console.warn;
+        console.warn = () => {};
 
         try {
             const arrayBuffer = await file.arrayBuffer();
@@ -332,6 +347,7 @@ export default function PDFToWord() {
             console.error("Error converting PDF to Word:", error);
             toast.error("An error occurred while converting the PDF file. It might be scanned or protected.");
         } finally {
+            console.warn = originalWarn;
             setIsProcessing(false);
             setTimeout(() => setProgress(0), 1000);
         }
