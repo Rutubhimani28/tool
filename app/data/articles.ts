@@ -1,20 +1,20 @@
 export interface Article {
-    slug: string;
-    title: string;
-    description: string;
-    date: string;
-    category: string;
-    content: string;
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+  category: string;
+  content: string;
 }
 
 export const articles: Article[] = [
-    {
-        slug: "how-to-compress-pdf-files-without-losing-quality",
-        title: "How to Compress PDF Files Without Losing Quality",
-        description: "Learn the best techniques to reduce your PDF file size while maintaining high resolution and readability.",
-        date: "2023-10-01",
-        category: "PDF Tools",
-        content: `
+  {
+    slug: "how-to-compress-pdf-files-without-losing-quality",
+    title: "How to Compress PDF Files Without Losing Quality",
+    description: "Learn the best techniques to reduce your PDF file size while maintaining high resolution and readability.",
+    date: "2023-10-01",
+    category: "PDF Tools",
+    content: `
       <h2>The Importance of PDF Compression</h2>
       <p>In today's digital age, sharing documents quickly and efficiently is crucial. However, high-resolution PDFs, especially those containing images or scanned pages, can easily exceed email attachment limits. This is where PDF compression comes in. Compressing a PDF reduces its file size, making it easier to share, upload, and store.</p>
       
@@ -35,14 +35,14 @@ export const articles: Article[] = [
       </ol>
       <p>By understanding how compression works and choosing the right settings, you can easily manage your PDF files without sacrificing their professional appearance.</p>
     `
-    },
-    {
-        slug: "ultimate-guide-to-merging-pdf-documents",
-        title: "The Ultimate Guide to Merging PDF Documents",
-        description: "Discover why merging PDFs is essential for organization and how to combine multiple files seamlessly.",
-        date: "2023-10-05",
-        category: "PDF Tools",
-        content: `
+  },
+  {
+    slug: "ultimate-guide-to-merging-pdf-documents",
+    title: "The Ultimate Guide to Merging PDF Documents",
+    description: "Discover why merging PDFs is essential for organization and how to combine multiple files seamlessly.",
+    date: "2023-10-05",
+    category: "PDF Tools",
+    content: `
       <h2>Why Merge PDF Files?</h2>
       <p>Managing multiple PDF files can be a nightmare, especially when dealing with reports, invoices, or project documentation. Merging PDFs into a single document offers several significant advantages:</p>
       <ul>
@@ -62,14 +62,14 @@ export const articles: Article[] = [
       <h2>The Merging Process</h2>
       <p>Using a tool like PDFImageConvert, merging is incredibly simple. You just upload your files, arrange them in the desired order, and click 'Merge'. The tool processes the files instantly in your browser, ensuring your data remains secure and private. The result is a clean, single PDF document ready for sharing or archiving.</p>
     `
-    },
-    {
-        slug: "why-convert-word-documents-to-pdf",
-        title: "Why You Should Convert Word Documents to PDF",
-        description: "Explore the benefits of converting your Word documents to PDF format for sharing, printing, and archiving.",
-        date: "2023-10-10",
-        category: "Convert",
-        content: `
+  },
+  {
+    slug: "why-convert-word-documents-to-pdf",
+    title: "Why You Should Convert Word Documents to PDF",
+    description: "Explore the benefits of converting your Word documents to PDF format for sharing, printing, and archiving.",
+    date: "2023-10-10",
+    category: "Convert",
+    content: `
       <h2>The Universal Standard: PDF</h2>
       <p>Microsoft Word is an excellent tool for creating and editing documents, but it's not always the best format for sharing them. The Portable Document Format (PDF) was created specifically to solve the problems associated with sharing documents across different devices and operating systems.</p>
 
@@ -84,14 +84,14 @@ export const articles: Article[] = [
       <h2>When to Use Which Format</h2>
       <p>As a general rule: use Word (.docx) when the document is a work in progress and needs to be edited by multiple people. Convert it to PDF when the document is finalized and ready to be shared, printed, or published online. Tools like PDFImageConvert make this conversion process instant and hassle-free.</p>
     `
-    },
-    {
-        slug: "jpg-vs-png-vs-webp-which-image-format-is-best",
-        title: "JPG vs PNG vs WebP: Which Image Format is Best?",
-        description: "A comprehensive comparison of popular image formats to help you choose the right one for your needs.",
-        date: "2023-10-15",
-        category: "Image Tools",
-        content: `
+  },
+  {
+    slug: "jpg-vs-png-vs-webp-which-image-format-is-best",
+    title: "JPG vs PNG vs WebP: Which Image Format is Best?",
+    description: "A comprehensive comparison of popular image formats to help you choose the right one for your needs.",
+    date: "2023-10-15",
+    category: "Image Tools",
+    content: `
       <h2>Understanding Image Formats</h2>
       <p>Choosing the right image format is crucial for web performance, storage, and visual quality. The three most common formats you'll encounter are JPG, PNG, and WebP. Each has its own strengths and weaknesses.</p>
 
@@ -122,14 +122,14 @@ export const articles: Article[] = [
       <h2>Conclusion</h2>
       <p>For web development, WebP is generally the best choice for performance. For professional photography, high-quality JPGs are standard. For graphics with transparency, PNG is reliable. If you need to switch between these formats, an Image Converter tool can easily handle the job.</p>
     `
-    },
-    {
-        slug: "how-to-protect-sensitive-pdf-documents-with-passwords",
-        title: "How to Protect Your Sensitive PDF Documents with Passwords",
-        description: "Learn how to secure your confidential PDFs using strong encryption and password protection.",
-        date: "2023-10-20",
-        category: "Security",
-        content: `
+  },
+  {
+    slug: "how-to-protect-sensitive-pdf-documents-with-passwords",
+    title: "How to Protect Your Sensitive PDF Documents with Passwords",
+    description: "Learn how to secure your confidential PDFs using strong encryption and password protection.",
+    date: "2023-10-20",
+    category: "Security",
+    content: `
       <h2>The Need for PDF Security</h2>
       <p>In an era where data breaches and identity theft are common, protecting sensitive information is paramount. Whether you are handling financial records, legal contracts, medical documents, or personal information, sending unsecured PDFs over email or storing them on shared drives poses a significant risk. Password protecting your PDFs is a simple yet highly effective way to secure your data.</p>
 
@@ -148,14 +148,14 @@ export const articles: Article[] = [
       <h2>How to Protect Your PDF</h2>
       <p>Using a tool like our Protect PDF utility, securing your document takes seconds. You simply upload the file, enter your strong password, and download the encrypted version. Remember to share the password with the intended recipient through a secure, separate channel (like a phone call or a secure messaging app), not in the same email as the document itself.</p>
     `
-    },
-    {
-        slug: "benefits-of-splitting-large-pdf-files",
-        title: "The Benefits of Splitting Large PDF Files",
-        description: "Find out why splitting massive PDF documents can improve your workflow and make file sharing easier.",
-        date: "2023-10-25",
-        category: "PDF Tools",
-        content: `
+  },
+  {
+    slug: "benefits-of-splitting-large-pdf-files",
+    title: "The Benefits of Splitting Large PDF Files",
+    description: "Find out why splitting massive PDF documents can improve your workflow and make file sharing easier.",
+    date: "2023-10-25",
+    category: "PDF Tools",
+    content: `
       <h2>The Problem with Large PDFs</h2>
       <p>We've all been there: you receive a massive 500-page PDF document, but you only need pages 42 to 45. Or you try to email a comprehensive report, but the file size exceeds the 25MB limit of your email provider. Large PDF files can be cumbersome to navigate, slow to load, and difficult to share. This is where splitting PDFs becomes incredibly useful.</p>
 
@@ -170,14 +170,14 @@ export const articles: Article[] = [
       <h2>Common Use Cases</h2>
       <p>Splitting PDFs is commonly used in legal professions (extracting specific exhibits from a case file), education (separating chapters of a textbook for students), and business (extracting a specific invoice from a monthly billing statement). With a reliable Split PDF tool, you can easily extract specific page ranges or split a document into individual pages in just a few clicks.</p>
     `
-    },
-    {
-        slug: "how-to-extract-high-quality-images-from-pdf-files",
-        title: "How to Extract High-Quality Images from PDF Files",
-        description: "Learn the best methods for pulling images out of PDF documents without losing their original resolution.",
-        date: "2023-10-30",
-        category: "Convert",
-        content: `
+  },
+  {
+    slug: "how-to-extract-high-quality-images-from-pdf-files",
+    title: "How to Extract High-Quality Images from PDF Files",
+    description: "Learn the best methods for pulling images out of PDF documents without losing their original resolution.",
+    date: "2023-10-30",
+    category: "Convert",
+    content: `
       <h2>The Challenge of PDF Image Extraction</h2>
       <p>PDFs are designed to lock content in place, making them great for sharing but notoriously difficult when you need to extract specific elements. If you've ever tried to right-click and save an image from a PDF, you know it rarely works. Taking a screenshot is a common workaround, but it drastically reduces the image quality, limiting it to your screen's resolution.</p>
 
@@ -190,14 +190,14 @@ export const articles: Article[] = [
       <h2>Using PDF to JPG Converters</h2>
       <p>A PDF to JPG converter is the most efficient way to handle this. These tools render each page of the PDF into a high-quality image file. This is perfect if the PDF is a scanned document or a presentation slide. For the best results, look for tools that allow you to adjust the output quality or DPI, ensuring you get crisp, clear images ready for any use case.</p>
     `
-    },
-    {
-        slug: "beginners-guide-to-image-compression-for-web",
-        title: "A Beginner's Guide to Image Compression for Web Performance",
-        description: "Understand how image compression impacts website speed and SEO, and how to optimize your images effectively.",
-        date: "2023-11-04",
-        category: "Optimize",
-        content: `
+  },
+  {
+    slug: "beginners-guide-to-image-compression-for-web",
+    title: "A Beginner's Guide to Image Compression for Web Performance",
+    description: "Understand how image compression impacts website speed and SEO, and how to optimize your images effectively.",
+    date: "2023-11-04",
+    category: "Optimize",
+    content: `
       <h2>Why Image Compression Matters</h2>
       <p>Images often account for the majority of a webpage's downloaded bytes. Unoptimized, large images can drastically slow down your website's loading speed. In today's fast-paced digital world, a slow website leads to higher bounce rates, frustrated users, and lower search engine rankings. Google explicitly uses page speed as a ranking factor, making image optimization a critical SEO practice.</p>
 
@@ -214,14 +214,14 @@ export const articles: Article[] = [
       <h2>Tools of the Trade</h2>
       <p>Using an Image Compressor tool allows you to easily apply lossy compression to your JPG, PNG, or WebP files before uploading them to your website. By making image compression a standard part of your web workflow, you'll ensure a faster, more user-friendly, and SEO-optimized website.</p>
     `
-    },
-    {
-        slug: "how-to-convert-images-to-pdf-for-easy-sharing",
-        title: "How to Convert Images to PDF for Easy Sharing",
-        description: "Discover the easiest ways to compile multiple images into a single, professional PDF document.",
-        date: "2023-11-09",
-        category: "Convert",
-        content: `
+  },
+  {
+    slug: "how-to-convert-images-to-pdf-for-easy-sharing",
+    title: "How to Convert Images to PDF for Easy Sharing",
+    description: "Discover the easiest ways to compile multiple images into a single, professional PDF document.",
+    date: "2023-11-09",
+    category: "Convert",
+    content: `
       <h2>The Hassle of Sharing Multiple Images</h2>
       <p>Whether you're a student submitting photos of handwritten assignments, a freelancer sending a portfolio of design mockups, or someone sharing scanned receipts for expenses, sending multiple individual image files (JPGs or PNGs) can be a hassle. Recipients have to download and open each file separately, and the order of the images can easily get mixed up.</p>
 
@@ -239,14 +239,14 @@ export const articles: Article[] = [
       <h2>How to Do It</h2>
       <p>With a JPG to PDF converter, the process is effortless. You simply select the images you want to include, drag them into the correct order, and click convert. The tool compiles them into a neat, multi-page PDF document, ready to be emailed or uploaded.</p>
     `
-    },
-    {
-        slug: "importance-of-removing-passwords-from-pdfs",
-        title: "The Importance of Removing Passwords from PDFs (Safely)",
-        description: "Learn when and how to safely remove password protection from your PDF files for easier access.",
-        date: "2023-11-14",
-        category: "Security",
-        content: `
+  },
+  {
+    slug: "importance-of-removing-passwords-from-pdfs",
+    title: "The Importance of Removing Passwords from PDFs (Safely)",
+    description: "Learn when and how to safely remove password protection from your PDF files for easier access.",
+    date: "2023-11-14",
+    category: "Security",
+    content: `
       <h2>When Protection Becomes a Hindrance</h2>
       <p>Password protecting sensitive PDFs is a crucial security practice. However, there are times when that protection becomes an obstacle. For instance, you might receive a password-protected bank statement that you need to forward to your accountant, or you might have archived old tax returns with passwords you struggle to remember every year. In these cases, if the document is now stored in a secure location, the PDF password is just an annoyance.</p>
 
@@ -264,14 +264,14 @@ export const articles: Article[] = [
       <h2>Security Considerations</h2>
       <p>Only remove passwords from documents if you are storing the unlocked version in a secure environment (like an encrypted hard drive or a secure cloud storage vault). Never use online unlock tools for highly classified documents unless you are certain the tool processes files locally in your browser, ensuring the file never touches an external server.</p>
     `
-    },
-    {
-        slug: "how-to-resize-images-for-social-media-perfectly",
-        title: "How to Resize Images for Social Media Perfectly",
-        description: "A guide to understanding aspect ratios and resizing images to look perfect on every social platform.",
-        date: "2023-11-19",
-        category: "Image Tools",
-        content: `
+  },
+  {
+    slug: "how-to-resize-images-for-social-media-perfectly",
+    title: "How to Resize Images for Social Media Perfectly",
+    description: "A guide to understanding aspect ratios and resizing images to look perfect on every social platform.",
+    date: "2023-11-19",
+    category: "Image Tools",
+    content: `
       <h2>The Social Media Image Dilemma</h2>
       <p>Every social media platform has its own preferred image dimensions and aspect ratios. An image that looks stunning on Instagram might get awkwardly cropped on Twitter, or look blurry on a Facebook cover photo. Uploading incorrectly sized images can result in pixelation, weird cropping, and a generally unprofessional appearance.</p>
 
@@ -290,14 +290,14 @@ export const articles: Article[] = [
       <h2>Best Practices for Resizing</h2>
       <p>To get the best results, use an Image Resizer tool. If your original image doesn't match the target aspect ratio, you'll need to crop it first, or use a tool that adds padding (letterboxing) to fit the dimensions without distorting the image. Always start with the highest resolution image possible to avoid blurriness when resizing.</p>
     `
-    },
-    {
-        slug: "why-webp-is-the-future-of-web-images",
-        title: "Why WebP is the Future of Web Images",
-        description: "Explore the technical advantages of the WebP format and why you should start using it on your website.",
-        date: "2023-11-24",
-        category: "Image Tools",
-        content: `
+  },
+  {
+    slug: "why-webp-is-the-future-of-web-images",
+    title: "Why WebP is the Future of Web Images",
+    description: "Explore the technical advantages of the WebP format and why you should start using it on your website.",
+    date: "2023-11-24",
+    category: "Image Tools",
+    content: `
       <h2>The Evolution of Web Images</h2>
       <p>For decades, the web has relied on JPGs for photographs and PNGs for graphics with transparency. While these formats have served us well, they were developed long before the modern, mobile-first web existed. Enter WebP, an image format developed by Google specifically optimized for the internet.</p>
 
@@ -315,14 +315,14 @@ export const articles: Article[] = [
       <h2>Adoption and Conversion</h2>
       <p>Today, WebP is supported by all major modern web browsers (Chrome, Firefox, Safari, Edge). If you manage a website, converting your existing JPG and PNG assets to WebP is one of the most effective performance optimizations you can make. You can easily do this using a WebP Converter tool, ensuring your site is fast and future-proof.</p>
     `
-    },
-    {
-        slug: "how-to-crop-images-like-a-pro",
-        title: "How to Crop Images Like a Pro",
-        description: "Master the art of cropping to improve composition, focus attention, and enhance your photos.",
-        date: "2023-11-29",
-        category: "Image Tools",
-        content: `
+  },
+  {
+    slug: "how-to-crop-images-like-a-pro",
+    title: "How to Crop Images Like a Pro",
+    description: "Master the art of cropping to improve composition, focus attention, and enhance your photos.",
+    date: "2023-11-29",
+    category: "Image Tools",
+    content: `
       <h2>Cropping is More Than Just Resizing</h2>
       <p>Cropping is one of the most powerful yet underutilized tools in image editing. It's not just about making an image fit a specific dimension; it's about composition, storytelling, and directing the viewer's eye. A good crop can turn a mediocre snapshot into a compelling photograph.</p>
 
@@ -335,14 +335,14 @@ export const articles: Article[] = [
       <h2>Changing the Narrative</h2>
       <p>Cropping can completely change the story an image tells. A wide shot of a person in a busy street tells a story of isolation in a crowd. Cropping tightly on that person's face changes the story to one of personal emotion. Experiment with different crops to see how the feeling of the image changes.</p>
     `
-    },
-    {
-        slug: "best-ways-to-organize-digital-documents",
-        title: "The Best Ways to Organize Your Digital Documents",
-        description: "Practical tips and strategies for keeping your digital files, PDFs, and images perfectly organized.",
-        date: "2023-12-04",
-        category: "Organize",
-        content: `
+  },
+  {
+    slug: "best-ways-to-organize-digital-documents",
+    title: "The Best Ways to Organize Your Digital Documents",
+    description: "Practical tips and strategies for keeping your digital files, PDFs, and images perfectly organized.",
+    date: "2023-12-04",
+    category: "Organize",
+    content: `
       <h2>The Digital Clutter Problem</h2>
       <p>A cluttered digital workspace can be just as stressful and counterproductive as a messy physical desk. When files are scattered across your desktop, downloads folder, and random cloud drives, finding that one important PDF invoice or specific image becomes a frustrating time-sink. Implementing a solid organizational system is essential for productivity.</p>
 
@@ -360,14 +360,14 @@ export const articles: Article[] = [
       <h2>Utilize PDF Organization Tools</h2>
       <p>Sometimes, the files themselves are the problem. If you have a folder full of single-page PDF receipts, use a Merge PDF tool to combine them into a single "October_Receipts.pdf" file. Conversely, if you have a massive 100-page manual but only need the troubleshooting section, use a Split PDF tool to extract just what you need and delete the rest. Managing your files actively keeps your digital life clean and efficient.</p>
     `
-    },
-    {
-        slug: "how-to-rotate-pdf-pages-quickly-and-easily",
-        title: "How to Rotate PDF Pages Quickly and Easily",
-        description: "A quick guide on fixing upside-down or sideways pages in your PDF documents.",
-        date: "2023-12-09",
-        category: "Organize",
-        content: `
+  },
+  {
+    slug: "how-to-rotate-pdf-pages-quickly-and-easily",
+    title: "How to Rotate PDF Pages Quickly and Easily",
+    description: "A quick guide on fixing upside-down or sideways pages in your PDF documents.",
+    date: "2023-12-09",
+    category: "Organize",
+    content: `
       <h2>The Upside-Down PDF Problem</h2>
       <p>We've all experienced it: you scan a document, open the resulting PDF, and realize half the pages are upside down or sideways. Or perhaps you receive a report where a wide spreadsheet was inserted in portrait mode, making it impossible to read without craning your neck. While PDF readers allow you to temporarily rotate the view, this doesn't fix the underlying file.</p>
 
@@ -382,5 +382,5 @@ export const articles: Article[] = [
       </ul>
       <p>Once you apply the rotation and save the file, the new orientation is permanently written into the PDF's metadata. The next time anyone opens the file, it will display perfectly, saving everyone from a stiff neck.</p>
     `
-    }
+  }
 ];

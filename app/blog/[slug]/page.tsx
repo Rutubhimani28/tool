@@ -36,9 +36,6 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                         <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600 dark:bg-blue-950/30 dark:text-blue-400">
                             {article.category}
                         </span>
-                        <span className="text-sm text-zinc-500 dark:text-zinc-400">
-                            {new Date(article.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-                        </span>
                     </div>
                     <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-white leading-tight">
                         {article.title}
