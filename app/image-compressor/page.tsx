@@ -10,7 +10,6 @@ import { Compress, Photo } from "@mui/icons-material";
 export default function ImageCompressor() {
     const [file, setFile] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-    const [quality, setQuality] = useState(80);
     const [format, setFormat] = useState<"image/jpeg" | "image/webp">("image/jpeg");
     const [isProcessing, setIsProcessing] = useState(false);
     const [compressedUrl, setCompressedUrl] = useState<string | null>(null);
@@ -57,7 +56,7 @@ export default function ImageCompressor() {
                                 setCompressedUrl(url);
                                 setCompressedSize(blob.size);
                                 setResultFileName(
-                                    file.name.replace(/\\.[^/.]+$/, "") +
+                                    file.name.replace(/\.[^/.]+$/, "") +
                                     (format === "image/jpeg" ? "_compressed.jpg" : "_compressed.webp")
                                 );
                             }
@@ -66,7 +65,7 @@ export default function ImageCompressor() {
                         setIsProcessing(false);
                     },
                     format,
-                    quality / 100
+                    0.75
                 );
             };
             img.onerror = () => {
@@ -172,7 +171,7 @@ export default function ImageCompressor() {
                             Remove
                         </button>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/20">
+                    <div className="flex flex-col gap-4 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/20">
                         <div className="flex flex-col gap-2">
                             <label className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">Output Format</label>
                             <div className="flex gap-2">
@@ -188,24 +187,6 @@ export default function ImageCompressor() {
                                 >
                                     WebP (Best compression)
                                 </button>
-                            </div>
-                        </div>
-                        <div className="flex flex-col gap-2">
-                            <div className="flex justify-between">
-                                <label className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">Compression Quality</label>
-                                <span className="text-sm font-bold text-green-600 dark:text-green-400">{quality}%</span>
-                            </div>
-                            <input
-                                type="range"
-                                min="10"
-                                max="100"
-                                value={quality}
-                                onChange={(e) => setQuality(Number(e.target.value))}
-                                className="w-full h-2 bg-zinc-200 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-green-500"
-                            />
-                            <div className="flex justify-between text-xs text-zinc-400">
-                                <span>Small file (Low quality)</span>
-                                <span>High quality</span>
                             </div>
                         </div>
                     </div>

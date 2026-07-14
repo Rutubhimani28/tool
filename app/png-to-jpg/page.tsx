@@ -11,7 +11,6 @@ export default function PNGToJPG() {
     const [file, setFile] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const [bgColor, setBgColor] = useState("#ffffff");
-    const [quality, setQuality] = useState(90);
     const [isProcessing, setIsProcessing] = useState(false);
     const [resultUrl, setResultUrl] = useState<string | null>(null);
     const [resultFileName, setResultFileName] = useState("");
@@ -57,7 +56,7 @@ export default function PNGToJPG() {
                             setIsProcessing(false);
                         },
                         "image/jpeg",
-                        quality / 100
+                        0.80
                     );
                 } else {
                     setIsProcessing(false);
@@ -150,7 +149,7 @@ export default function PNGToJPG() {
                     </div>
 
                     {/* Settings */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/20">
+                    <div className="flex flex-col gap-4 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/20">
                         {/* Background Color Picker */}
                         <div className="flex flex-col gap-2">
                             <label className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">Background Fill Color</label>
@@ -169,22 +168,6 @@ export default function PNGToJPG() {
                                 />
                                 <span className="text-xs text-zinc-400">Fills transparent pixels</span>
                             </div>
-                        </div>
-
-                        {/* Quality Slider */}
-                        <div className="flex flex-col gap-2">
-                            <div className="flex justify-between">
-                                <label className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">JPG Quality</label>
-                                <span className="text-sm font-bold text-cyan-600 dark:text-cyan-400">{quality}%</span>
-                            </div>
-                            <input
-                                type="range"
-                                min="50"
-                                max="100"
-                                value={quality}
-                                onChange={(e) => setQuality(Number(e.target.value))}
-                                className="w-full h-2 bg-zinc-200 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-cyan-500"
-                            />
                         </div>
                     </div>
 

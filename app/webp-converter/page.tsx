@@ -11,7 +11,6 @@ export default function WebPConverter() {
     const [file, setFile] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const [targetFormat, setTargetFormat] = useState<"image/webp" | "image/png" | "image/jpeg">("image/webp");
-    const [quality, setQuality] = useState(90);
     const [isProcessing, setIsProcessing] = useState(false);
     const [resultUrl, setResultUrl] = useState<string | null>(null);
     const [resultFileName, setResultFileName] = useState("");
@@ -65,7 +64,7 @@ export default function WebPConverter() {
                             setIsProcessing(false);
                         },
                         targetFormat,
-                        quality / 100
+                        0.80
                     );
                 } else {
                     setIsProcessing(false);
@@ -164,7 +163,7 @@ export default function WebPConverter() {
                     </div>
 
                     {/* Settings */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/20">
+                    <div className="flex flex-col gap-4 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/20">
                         {/* Target Format */}
                         <div className="flex flex-col gap-2">
                             <label className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">Target Format</label>
@@ -178,8 +177,8 @@ export default function WebPConverter() {
                                             disabled={isDisabled}
                                             onClick={() => setTargetFormat(format as any)}
                                             className={`flex-1 py-2.5 rounded-xl text-sm font-medium border transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed ${targetFormat === format
-                                                    ? "bg-purple-500 border-purple-500 text-white"
-                                                    : "bg-white border-zinc-200 text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-900 dark:border-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                                                ? "bg-purple-500 border-purple-500 text-white"
+                                                : "bg-white border-zinc-200 text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-900 dark:border-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-800"
                                                 }`}
                                         >
                                             {label}
@@ -187,27 +186,6 @@ export default function WebPConverter() {
                                     );
                                 })}
                             </div>
-                        </div>
-
-                        {/* Quality Slider (only for WebP/JPG) */}
-                        <div className="flex flex-col gap-2">
-                            <div className="flex justify-between">
-                                <label className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
-                                    Quality {targetFormat === "image/png" && <span className="text-xs text-zinc-400 font-normal">(Lossless)</span>}
-                                </label>
-                                {targetFormat !== "image/png" && (
-                                    <span className="text-sm font-bold text-purple-600 dark:text-purple-400">{quality}%</span>
-                                )}
-                            </div>
-                            <input
-                                type="range"
-                                min="50"
-                                max="100"
-                                disabled={targetFormat === "image/png"}
-                                value={quality}
-                                onChange={(e) => setQuality(Number(e.target.value))}
-                                className="w-full h-2 bg-zinc-200 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-purple-500 disabled:opacity-30"
-                            />
                         </div>
                     </div>
 
