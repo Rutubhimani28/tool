@@ -50,7 +50,7 @@ export default function PDFToWord() {
             // Load PDF document
             const pdfjsLib = await import("pdfjs-dist");
             pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/6.1.200/pdf.worker.min.mjs`;
-            const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
+            const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer, verbosity: 0 });
             const pdf = await loadingTask.promise;
             const numPages = pdf.numPages;
             setProgress(30);

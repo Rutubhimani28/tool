@@ -50,7 +50,7 @@ export default function PDFToJPG() {
             const pdfjsLib = await import("pdfjs-dist");
             pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/6.1.200/pdf.worker.min.mjs`;
             const arrayBuffer = await file.arrayBuffer();
-            const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+            const pdf = await pdfjsLib.getDocument({ data: arrayBuffer, verbosity: 0 }).promise;
             const zip = new JSZip();
 
             for (let i = 1; i <= pagesCount; i++) {

@@ -53,7 +53,7 @@ export default function RotatePDF() {
             // Load for pdfjs-dist to render thumbnails
             const pdfjsLib = await import("pdfjs-dist");
             pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/6.1.200/pdf.worker.min.mjs`;
-            const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+            const pdf = await pdfjsLib.getDocument({ data: arrayBuffer, verbosity: 0 }).promise;
             const thumbs: PageThumbnail[] = [];
 
             for (let i = 1; i <= count; i++) {

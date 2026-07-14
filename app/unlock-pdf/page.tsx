@@ -58,7 +58,7 @@ export default function UnlockPDF() {
                     // Load PDF document using pdfjs-dist with password
                     const pdfjsLib = await import("pdfjs-dist");
                     pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/6.1.200/pdf.worker.min.mjs`;
-                    const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer, password });
+                    const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer, password, verbosity: 0 });
                     const pdf = await loadingTask.promise;
                     const numPages = pdf.numPages;
                     setProgress(40);
