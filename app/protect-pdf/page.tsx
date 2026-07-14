@@ -200,7 +200,7 @@ export default function ProtectPDF() {
                     ) : (
                         <>
                             {/* Password Input */}
-                            <div className="flex flex-col gap-4">
+                            <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-4">
                                 <div className="flex flex-col gap-2">
                                     <label htmlFor="pdf-password" className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
                                         Set PDF Password
@@ -261,7 +261,7 @@ export default function ProtectPDF() {
                                 {passwordError && (
                                     <p className="text-sm text-red-500 dark:text-red-400">{passwordError}</p>
                                 )}
-                            </div>
+                            </form>
 
                             {/* Permissions */}
                             <div className="flex flex-col gap-3 p-4 rounded-2xl border border-zinc-200 bg-zinc-50/50 dark:border-zinc-800 dark:bg-zinc-900/20">
