@@ -23,7 +23,7 @@ export default function Footer() {
             <div className="mx-auto max-w-[1600px] px-4 py-12 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
                     {/* Brand */}
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-4 items-center sm:items-start text-center sm:text-left">
                         <Link href="/" className="flex items-center gap-2 group w-fit">
                             <div className="flex h-12 w-12 items-center justify-center transition-transform group-hover:scale-105 overflow-hidden">
                                 <img src="/download.png" alt="Logo" className="h-full w-full object-contain scale-[1.6]" />
@@ -38,7 +38,7 @@ export default function Footer() {
                     </div>
 
                     {/* Quick Links */}
-                    <div>
+                    <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
                         <h3 className="text-sm font-semibold text-zinc-900 dark:text-white mb-4">Popular Tools</h3>
                         <ul className="flex flex-col gap-2">
                             {quickLinks.map((link) => (
@@ -55,7 +55,7 @@ export default function Footer() {
                     </div>
 
                     {/* More Tools */}
-                    <div>
+                    <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
                         <h3 className="text-sm font-semibold text-zinc-900 dark:text-white mb-4">More Tools</h3>
                         <ul className="flex flex-col gap-2">
                             {moreLinks.map((link) => (
@@ -71,7 +71,7 @@ export default function Footer() {
                         </ul>
                     </div>
                     {/* Company */}
-                    <div>
+                    <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
                         <h3 className="text-sm font-semibold text-zinc-900 dark:text-white mb-4">Company</h3>
                         <ul className="flex flex-col gap-2">
                             <li>
@@ -88,11 +88,11 @@ export default function Footer() {
                 </div>
 
                 {/* Bottom bar */}
-                <div className="mt-10 pt-6 border-t border-zinc-100 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div className="mt-10 pt-6 border-t border-zinc-100 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
                     <p className="text-xs text-zinc-400 dark:text-zinc-500">
                         © {new Date().getFullYear()} PDFImageConvert. All rights reserved.
                     </p>
-                    <div className="flex gap-5 text-xs text-zinc-400 dark:text-zinc-500">
+                    <div className="flex gap-5 text-xs text-zinc-400 dark:text-zinc-500 justify-center sm:justify-start">
                         <Link href="/privacy" className="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Privacy Policy</Link>
                         <Link href="/terms" className="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Terms of Service</Link>
                     </div>

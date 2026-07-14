@@ -129,7 +129,7 @@ export default function Navbar() {
 
             {/* Mobile Menu */}
             <div
-                className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${mobileOpen ? "max-h-64 border-t border-zinc-200 dark:border-zinc-800" : "max-h-0"
+                className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${mobileOpen ? "max-h-[500px] border-t border-zinc-200 dark:border-zinc-800" : "max-h-0"
                     }`}
             >
                 <nav className="flex flex-col px-4 py-3 gap-1 bg-white dark:bg-zinc-950">
