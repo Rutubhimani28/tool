@@ -32,7 +32,7 @@ export default function BlogPage() {
 
             <div className="mb-12 text-center">
                 <h1 className="text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-white sm:text-5xl mb-4">
-                    Our Blog
+                    Our Insights
                 </h1>
                 <p className="text-lg text-zinc-500 dark:text-zinc-400 max-w-2xl mx-auto">
                     Discover tips, guides, and insights on managing PDFs, optimizing images, and improving your digital workflow.
@@ -78,16 +78,6 @@ export default function BlogPage() {
 
                             {/* Content Area */}
                             <div className="flex flex-col flex-1 p-6 sm:p-8 relative bg-white dark:bg-zinc-900 z-10">
-                                {/* Floating Date Badge */}
-                                <div className="absolute -top-8 right-6 bg-white dark:bg-zinc-900 rounded-2xl shadow-lg px-4 py-3 border border-zinc-100 dark:border-zinc-800 text-center transform group-hover:-translate-y-1 transition-transform duration-300">
-                                    <span className="block text-xl font-black text-zinc-900 dark:text-white leading-none">
-                                        {dateObj.getDate()}
-                                    </span>
-                                    <span className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mt-1">
-                                        {dateObj.toLocaleDateString('en-US', { month: 'short' })}
-                                    </span>
-                                </div>
-
                                 <h2 className="text-2xl font-extrabold text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 mb-4 line-clamp-2 mt-2 leading-tight">
                                     {article.title}
                                 </h2>

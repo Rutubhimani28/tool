@@ -26,7 +26,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                     className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-white transition-colors group"
                 >
                     <ArrowBack className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-                    Back to Blog
+                    Back to Insights
                 </Link>
             </div>
 

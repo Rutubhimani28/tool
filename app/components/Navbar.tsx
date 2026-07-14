@@ -29,16 +29,31 @@ export default function Navbar() {
             <div className="mx-auto flex h-16 max-w-[1600px] items-center justify-between px-4 sm:px-6 lg:px-8">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-xl  dark:border-zinc-700 shadow-md shadow-red-500/20 transition-transform group-hover:scale-105 overflow-hidden">
+                    <div className="flex h-12 w-12 items-center justify-center transition-transform group-hover:scale-105 overflow-hidden">
                         <img src="/download.png" alt="Logo" className="h-full w-full object-contain scale-[1.6]" />
                     </div>
-                    {/* <span className="text-xl font-bold bg-gradient-to-r from-zinc-900 to-zinc-700 bg-clip-text text-transparent dark:from-white dark:to-zinc-300">
-                        PDFImage<span className="text-red-500">Convert</span>
-                    </span> */}
                 </Link>
 
                 {/* Desktop Nav Links */}
                 <nav className="hidden md:flex items-center gap-1">
+                    <Link
+                        href="/"
+                        className="ml-1 px-3 py-2 rounded-lg text-sm font-medium text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-800 transition-all duration-150"
+                    >
+                        All Tools
+                    </Link>
+                    <Link
+                        href="/about"
+                        className="px-3 py-2 rounded-lg text-sm font-medium text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-800 transition-all duration-150"
+                    >
+                        About
+                    </Link>
+                    <Link
+                        href="/blog"
+                        className="px-3 py-2 rounded-lg text-sm font-medium text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-800 transition-all duration-150"
+                    >
+                        Insights
+                    </Link>
                     {navLinks.map((link) => (
                         <Link
                             key={link.href}
@@ -49,36 +64,15 @@ export default function Navbar() {
                         </Link>
                     ))}
                     <Link
-                        href="/"
-                        className="ml-1 px-3 py-2 rounded-lg text-sm font-medium text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-800 transition-all duration-150"
+                        href="/contact"
+                        className="px-3 py-2 rounded-lg text-sm font-medium text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-800 transition-all duration-150"
                     >
-                        All Tools
+                        Contact
                     </Link>
                 </nav>
 
                 {/* Right side */}
                 <div className="flex items-center gap-2">
-                    <div className="hidden md:flex items-center gap-1 mr-1">
-                        <Link
-                            href="/blog"
-                            className="px-3 py-2 rounded-lg text-sm font-medium text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-800 transition-all duration-150"
-                        >
-                            Blog
-                        </Link>
-                        <Link
-                            href="/about"
-                            className="px-3 py-2 rounded-lg text-sm font-medium text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-800 transition-all duration-150"
-                        >
-                            About
-                        </Link>
-                        <Link
-                            href="/contact"
-                            className="px-3 py-2 rounded-lg text-sm font-medium text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-800 transition-all duration-150"
-                        >
-                            Contact
-                        </Link>
-                    </div>
-
                     {/* Dark mode toggle */}
                     <button
                         suppressHydrationWarning
@@ -137,7 +131,7 @@ export default function Navbar() {
                         onClick={() => setMobileOpen(false)}
                         className="px-3 py-2.5 rounded-lg text-sm font-medium text-zinc-700 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800 transition-all duration-150"
                     >
-                        Blog
+                        Insights
                     </Link>
                     <Link
                         href="/about"

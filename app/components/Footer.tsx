@@ -26,8 +26,8 @@ export default function Footer() {
                     {/* Brand */}
                     <div className="flex flex-col gap-4">
                         <Link href="/" className="flex items-center gap-2 group w-fit">
-                            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white border border-zinc-200 dark:border-zinc-700 shadow-md shadow-red-500/20 overflow-hidden">
-                                <img src="/icon.svg" alt="Logo" className="h-full w-full object-contain scale-[1.6]" />
+                            <div className="flex h-12 w-12 items-center justify-center transition-transform group-hover:scale-105 overflow-hidden">
+                                <img src="/download.png" alt="Logo" className="h-full w-full object-contain scale-[1.6]" />
                             </div>
                             <span className="text-lg font-bold text-zinc-900 dark:text-white">
                                 PDFImage<span className="text-red-500">Convert</span>
@@ -76,7 +76,7 @@ export default function Footer() {
                         <h3 className="text-sm font-semibold text-zinc-900 dark:text-white mb-4">Company</h3>
                         <ul className="flex flex-col gap-2">
                             <li>
-                                <Link href="/blog" className="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Blog</Link>
+                                <Link href="/blog" className="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Insights</Link>
                             </li>
                             <li>
                                 <Link href="/about" className="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">About Us</Link>
