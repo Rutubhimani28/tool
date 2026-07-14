@@ -243,6 +243,7 @@ export default function Home() {
             <div className="relative flex items-center rounded-2xl border border-zinc-200 bg-white px-4 shadow-md shadow-zinc-100/50 dark:border-zinc-800 dark:bg-zinc-900 dark:shadow-none focus-within:border-red-400 focus-within:ring-1 focus-within:ring-red-400 transition-all duration-200">
               <Search className="h-5 w-5 flex-shrink-0 text-zinc-400" />
               <input
+                name="input"
                 type="text"
                 placeholder="Search tools..."
                 value={searchQuery}
