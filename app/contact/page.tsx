@@ -27,38 +27,8 @@ export default function ContactPage() {
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="md:col-span-1 flex flex-col gap-6">
-                    <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-950">
-                        <div className="flex flex-col items-center text-center gap-3">
-                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-600 dark:bg-blue-950/30 dark:text-blue-400">
-                                <Email className="h-6 w-6" />
-                            </div>
-                            <div className="min-w-0 w-full">
-                                <h3 className="font-semibold text-zinc-900 dark:text-white">Email Us</h3>
-                                <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400 truncate">
-                                    support@pdfimageconvert.com
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-950">
-                        <div className="flex flex-col items-center text-center gap-3">
-                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 dark:bg-emerald-950/30 dark:text-emerald-400">
-                                <LocationOn className="h-6 w-6" />
-                            </div>
-                            <div className="min-w-0 w-full">
-                                <h3 className="font-semibold text-zinc-900 dark:text-white">Location</h3>
-                                <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400 truncate">
-                                    Global Remote Team
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="md:col-span-2 rounded-2xl sm:rounded-3xl border border-zinc-200 bg-white p-6 sm:p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-950">
+            <div className="max-w-6xl">
+                <div className="rounded-2xl sm:rounded-3xl border border-zinc-200 bg-white p-6 sm:p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-950">
                     <form className="flex flex-col gap-5" onSubmit={(e) => {
                         e.preventDefault();
                         const name = (document.getElementById('name') as HTMLInputElement).value;

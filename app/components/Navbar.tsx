@@ -2,13 +2,12 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { DarkMode, LightMode, Menu, Close, MoreVert } from "@mui/icons-material";
+import { DarkMode, LightMode, Menu, Close, ChevronRight } from "@mui/icons-material";
 import { useTheme } from "next-themes";
 
 const navLinks = [
-    { label: "Merge PDF", href: "/merge-pdf" },
-    { label: "Split PDF", href: "/split-pdf" },
-    { label: "Compress PDF", href: "/compress-pdf" },
+    { label: "About Us", href: "/about" },
+    { label: "Contact Us", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -17,6 +16,7 @@ export default function Navbar() {
     const [desktopMenuOpen, setDesktopMenuOpen] = useState(false);
     const { resolvedTheme, setTheme } = useTheme();
     const menuRef = useRef<HTMLDivElement>(null);
+    const [helpHovered, setHelpHovered] = useState(false);
 
     useEffect(() => {
         setMounted(true);
@@ -55,7 +55,7 @@ export default function Navbar() {
                         href="/blog"
                         className="px-3 py-2 rounded-lg text-sm font-medium text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-800 transition-all duration-150"
                     >
-                        Insights
+                        Blog
                     </Link>
                     {navLinks.map((link) => (
                         <Link
@@ -69,52 +69,40 @@ export default function Navbar() {
                 </nav>
 
                 {/* Right side */}
-                <div className="flex items-center gap-2">
-                    {/* Desktop More Menu */}
-                    <div className="hidden md:block relative" ref={menuRef}>
-                        <button
-                            onClick={() => setDesktopMenuOpen(!desktopMenuOpen)}
-                            className="flex h-9 w-9 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-600 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 transition-all duration-200"
-                            aria-label="More options"
-                        >
-                            <MoreVert className="h-4 w-4" />
-                        </button>
-
-                        {desktopMenuOpen && (
-                            <div className="absolute right-0 mt-2 w-48 rounded-xl border border-zinc-200 bg-white shadow-lg dark:border-zinc-800 dark:bg-zinc-950 py-2 z-50">
-                                <Link
-                                    href="/about"
-                                    onClick={() => setDesktopMenuOpen(false)}
-                                    className="block px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800"
-                                >
-                                    About Us
-                                </Link>
-                                <Link
-                                    href="/contact"
-                                    onClick={() => setDesktopMenuOpen(false)}
-                                    className="block px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800"
-                                >
-                                    Contact Us
-                                </Link>
-                                <div className="h-px w-full bg-zinc-200 dark:bg-zinc-800 my-1" />
-                                <button
-                                    onClick={() => {
-                                        toggleDarkMode();
-                                    }}
-                                    className="w-full text-left px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800 flex items-center justify-between"
-                                >
-                                    <span>Theme</span>
-                                    {mounted ? (
-                                        resolvedTheme === "dark" ? (
-                                            <LightMode className="h-4 w-4 text-amber-500" />
-                                        ) : (
-                                            <DarkMode className="h-4 w-4 text-zinc-700" />
-                                        )
-                                    ) : null}
-                                </button>
-                            </div>
+                <div className="flex items-center gap-2 relative" ref={menuRef}>
+                    {/* Desktop Theme Toggle */}
+                    <button
+                        onClick={toggleDarkMode}
+                        className="hidden md:flex h-9 w-9 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-600 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 transition-all duration-200"
+                        aria-label="Toggle theme"
+                    >
+                        {mounted ? (
+                            resolvedTheme === "dark" ? (
+                                <LightMode className="h-4 w-4 text-amber-500" />
+                            ) : (
+                                <DarkMode className="h-4 w-4 text-zinc-700" />
+                            )
+                        ) : (
+                            <div className="h-4 w-4" />
                         )}
-                    </div>
+                    </button>
+
+                    {/* Desktop Burger Menu */}
+                    <button
+                        onClick={() => setDesktopMenuOpen(!desktopMenuOpen)}
+                        className="hidden md:flex h-9 w-9 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-600 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 transition-all duration-200"
+                        aria-label="Toggle menu"
+                    >
+                        {desktopMenuOpen ? <Close className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+                    </button>
+
+                    {/* Desktop Dropdown */}
+                    {desktopMenuOpen && (
+                        <div className="absolute right-0 top-full mt-2 w-48 rounded-xl border border-zinc-200 bg-white shadow-lg dark:border-zinc-800 dark:bg-zinc-950 py-2 hidden md:block">
+                            <Link href="/faq" onClick={() => setDesktopMenuOpen(false)} className="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-900 transition-colors">FAQ</Link>
+                            <Link href="/tools" onClick={() => setDesktopMenuOpen(false)} className="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-900 transition-colors">Tools List</Link>
+                        </div>
+                    )}
 
                     {/* Hamburger (mobile only) */}
                     <button
@@ -133,6 +121,20 @@ export default function Navbar() {
                     }`}
             >
                 <nav className="flex flex-col px-4 py-3 gap-1 bg-white dark:bg-zinc-950">
+                    <Link
+                        href="/"
+                        onClick={() => setMobileOpen(false)}
+                        className="px-3 py-2.5 rounded-lg text-sm font-medium text-zinc-700 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800 transition-all duration-150"
+                    >
+                        All Tools
+                    </Link>
+                    <Link
+                        href="/blog"
+                        onClick={() => setMobileOpen(false)}
+                        className="px-3 py-2.5 rounded-lg text-sm font-medium text-zinc-700 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800 transition-all duration-150"
+                    >
+                        Insights
+                    </Link>
                     {navLinks.map((link) => (
                         <Link
                             key={link.href}
@@ -143,34 +145,20 @@ export default function Navbar() {
                             {link.label}
                         </Link>
                     ))}
-                    <Link
-                        href="/"
-                        onClick={() => setMobileOpen(false)}
-                        className="px-3 py-2.5 rounded-lg text-sm font-medium text-zinc-700 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800 transition-all duration-150"
-                    >
-                        All Tools →
-                    </Link>
                     <div className="h-px w-full bg-zinc-200 dark:bg-zinc-800 my-1" />
                     <Link
-                        href="/blog"
+                        href="/faq"
                         onClick={() => setMobileOpen(false)}
                         className="px-3 py-2.5 rounded-lg text-sm font-medium text-zinc-700 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800 transition-all duration-150"
                     >
-                        Insights
+                        FAQ
                     </Link>
                     <Link
-                        href="/about"
+                        href="/tools"
                         onClick={() => setMobileOpen(false)}
                         className="px-3 py-2.5 rounded-lg text-sm font-medium text-zinc-700 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800 transition-all duration-150"
                     >
-                        About Us
-                    </Link>
-                    <Link
-                        href="/contact"
-                        onClick={() => setMobileOpen(false)}
-                        className="px-3 py-2.5 rounded-lg text-sm font-medium text-zinc-700 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800 transition-all duration-150"
-                    >
-                        Contact Us
+                        Tools List
                     </Link>
                     <div className="h-px w-full bg-zinc-200 dark:bg-zinc-800 my-1" />
                     <button
