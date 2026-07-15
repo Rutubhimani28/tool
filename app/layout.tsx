@@ -18,6 +18,7 @@ export const metadata: Metadata = {
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import { ThemeProvider } from "next-themes";
+import Script from "next/script";
 
 import { Toaster } from "react-hot-toast";
 
@@ -34,7 +35,9 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <head>
-        <script
+        <Script
+          id="suppress-logs"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               if (typeof window !== 'undefined') {
@@ -48,7 +51,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body suppressHydrationWarning className={`${ibmPlexSans.className} antialiased min-h-full flex flex-col bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-300`}>
+      <body suppressHydrationWarning className={`${ibmPlexSans.className} antialiased min-h-full flex flex-col bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-300 overflow-x-hidden`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
           <main className="flex-1 flex flex-col">{children}</main>

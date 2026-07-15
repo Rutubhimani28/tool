@@ -11,7 +11,7 @@ export default function ImageCropper() {
     const [file, setFile] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const [rotation, setRotation] = useState(0); // 0, 90, 180, 270
-    const [aspectRatio, setAspectRatio] = useState<"free" | 1 | 1.77777777778 | 1.33333333333>("free");
+    const [aspectRatio, setAspectRatio] = useState<"free" | number>("free");
     const [isProcessing, setIsProcessing] = useState(false);
     const [croppedUrl, setCroppedUrl] = useState<string | null>(null);
     const [resultFileName, setResultFileName] = useState("");
@@ -24,6 +24,8 @@ export default function ImageCropper() {
     const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
     const [dragBoxStart, setDragBoxStart] = useState({ x: 0, y: 0, w: 0, h: 0 });
     const [activeHandle, setActiveHandle] = useState<string | null>(null); // "move", "tl", "tr", "bl", "br"
+    const [imageLoaded, setImageLoaded] = useState(false);
+    const [manualInputs, setManualInputs] = useState({ x: 0, y: 0, w: 0, h: 0 });
 
     const handleFileSelected = (selectedFiles: File[]) => {
         if (selectedFiles.length === 0) return;
@@ -33,42 +35,158 @@ export default function ImageCropper() {
         setCroppedUrl(null);
         setRotation(0);
         setCropBox({ x: 10, y: 10, w: 80, h: 80 });
+        setImageLoaded(false);
     };
 
-    // Adjust crop box when aspect ratio changes
+    // Update manual inputs when cropBox or image changes
     useEffect(() => {
-        if (aspectRatio === "free") return;
-        const ratio = aspectRatio;
-        setCropBox((prev) => {
-            let newW = prev.w;
-            let newH = prev.w / ratio;
-            if (prev.y + newH > 100) {
-                newH = 100 - prev.y;
-                newW = newH * ratio;
-            }
-            if (prev.x + newW > 100) {
-                newW = 100 - prev.x;
-                newH = newW / ratio;
-            }
-            return { ...prev, w: newW, h: newH };
+        if (!imgRef.current || !imageLoaded) return;
+        const img = imgRef.current;
+        setManualInputs({
+            x: Math.round((cropBox.x / 100) * img.naturalWidth),
+            y: Math.round((cropBox.y / 100) * img.naturalHeight),
+            w: Math.round((cropBox.w / 100) * img.naturalWidth),
+            h: Math.round((cropBox.h / 100) * img.naturalHeight),
         });
-    }, [aspectRatio]);
+    }, [cropBox, imageLoaded]);
 
-    const handleMouseDown = (e: React.MouseEvent, handle: string) => {
+    const handleManualInputChange = (field: 'x' | 'y' | 'w' | 'h', value: string) => {
+        if (!imgRef.current || !imageLoaded) return;
+        const img = imgRef.current;
+
+        if (value === '') {
+            setManualInputs(prev => ({ ...prev, [field]: '' }));
+            return;
+        }
+
+        const numValue = parseInt(value);
+        if (isNaN(numValue)) return;
+
+        let newInputs = {
+            x: Number(manualInputs.x) || 0,
+            y: Number(manualInputs.y) || 0,
+            w: Number(manualInputs.w) || 10,
+            h: Number(manualInputs.h) || 10,
+            [field]: numValue
+        };
+
+        // Respect aspect ratio if not free
+        if (aspectRatio !== "free") {
+            const ratio = aspectRatio as number;
+            if (field === 'w') {
+                newInputs.h = Math.round(newInputs.w / ratio);
+            } else if (field === 'h') {
+                newInputs.w = Math.round(newInputs.h * ratio);
+            }
+        }
+
+        if (newInputs.w < 10) {
+            newInputs.w = 10;
+            if (aspectRatio !== "free") newInputs.h = Math.round(10 / (aspectRatio as number));
+        }
+        if (newInputs.h < 10) {
+            newInputs.h = 10;
+            if (aspectRatio !== "free") newInputs.w = Math.round(10 * (aspectRatio as number));
+        }
+        if (newInputs.x < 0) newInputs.x = 0;
+        if (newInputs.y < 0) newInputs.y = 0;
+
+        if (newInputs.x + newInputs.w > img.naturalWidth) {
+            if (field === 'x') {
+                newInputs.w = img.naturalWidth - newInputs.x;
+                if (aspectRatio !== "free") newInputs.h = Math.round(newInputs.w / (aspectRatio as number));
+            } else {
+                newInputs.x = img.naturalWidth - newInputs.w;
+            }
+        }
+        if (newInputs.y + newInputs.h > img.naturalHeight) {
+            if (field === 'y') {
+                newInputs.h = img.naturalHeight - newInputs.y;
+                if (aspectRatio !== "free") newInputs.w = Math.round(newInputs.h * (aspectRatio as number));
+            } else {
+                newInputs.y = img.naturalHeight - newInputs.h;
+            }
+        }
+
+        setManualInputs(newInputs);
+        setCropBox({
+            x: (newInputs.x / img.naturalWidth) * 100,
+            y: (newInputs.y / img.naturalHeight) * 100,
+            w: (newInputs.w / img.naturalWidth) * 100,
+            h: (newInputs.h / img.naturalHeight) * 100,
+        });
+    };
+
+    // Adjust crop box when aspect ratio changes or image loads
+    useEffect(() => {
+        if (aspectRatio === "free" || !imgRef.current || !imageLoaded) return;
+
+        const img = imgRef.current;
+        const targetRatio = aspectRatio as number;
+        const imageRatio = img.naturalWidth / img.naturalHeight;
+
+        let newW_px, newH_px;
+
+        if (targetRatio > imageRatio) {
+            // Width is maxed out (90% of image width to leave a small margin)
+            newW_px = img.naturalWidth * 0.9;
+            newH_px = newW_px / targetRatio;
+        } else {
+            // Height is maxed out (90% of image height to leave a small margin)
+            newH_px = img.naturalHeight * 0.9;
+            newW_px = newH_px * targetRatio;
+        }
+
+        // Center the crop box
+        const newX_px = (img.naturalWidth - newW_px) / 2;
+        const newY_px = (img.naturalHeight - newH_px) / 2;
+
+        setCropBox({
+            x: (newX_px / img.naturalWidth) * 100,
+            y: (newY_px / img.naturalHeight) * 100,
+            w: (newW_px / img.naturalWidth) * 100,
+            h: (newH_px / img.naturalHeight) * 100,
+        });
+    }, [aspectRatio, imageLoaded, previewUrl]);
+
+    const handlePointerDown = (e: React.MouseEvent | React.TouchEvent, handle: string) => {
         e.preventDefault();
         e.stopPropagation();
         setIsDragging(true);
         setActiveHandle(handle);
-        setDragStart({ x: e.clientX, y: e.clientY });
+
+        let clientX, clientY;
+        if ('touches' in e) {
+            clientX = e.touches[0].clientX;
+            clientY = e.touches[0].clientY;
+        } else {
+            clientX = e.clientX;
+            clientY = e.clientY;
+        }
+
+        setDragStart({ x: clientX, y: clientY });
         setDragBoxStart({ ...cropBox });
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-        if (!isDragging || !containerRef.current) return;
+    const handlePointerMove = (e: MouseEvent | TouchEvent) => {
+        if (!isDragging || !containerRef.current || !imgRef.current) return;
+
+        let clientX, clientY;
+        if ('touches' in e) {
+            clientX = e.touches[0].clientX;
+            clientY = e.touches[0].clientY;
+        } else {
+            clientX = (e as MouseEvent).clientX;
+            clientY = (e as MouseEvent).clientY;
+        }
 
         const rect = containerRef.current.getBoundingClientRect();
-        const dx = ((e.clientX - dragStart.x) / rect.width) * 100;
-        const dy = ((e.clientY - dragStart.y) / rect.height) * 100;
+        const dx = ((clientX - dragStart.x) / rect.width) * 100;
+        const dy = ((clientY - dragStart.y) / rect.height) * 100;
+
+        const img = imgRef.current;
+        const containerRatio = img.naturalWidth / img.naturalHeight;
+        const pctRatio = aspectRatio === "free" ? 1 : (aspectRatio as number) / containerRatio;
 
         setCropBox((prev) => {
             let { x, y, w, h } = dragBoxStart;
@@ -78,19 +196,19 @@ export default function ImageCropper() {
                 y = Math.max(0, Math.min(100 - h, y + dy));
             } else if (activeHandle === "br") {
                 w = Math.max(10, Math.min(100 - x, w + dx));
-                h = aspectRatio === "free" ? Math.max(10, Math.min(100 - y, h + dy)) : w / (aspectRatio as number);
+                h = aspectRatio === "free" ? Math.max(10, Math.min(100 - y, h + dy)) : w / pctRatio;
                 if (y + h > 100) {
                     h = 100 - y;
-                    w = aspectRatio === "free" ? w : h * (aspectRatio as number);
+                    w = aspectRatio === "free" ? w : h * pctRatio;
                 }
             } else if (activeHandle === "bl") {
                 const originalRight = x + w;
                 x = Math.max(0, Math.min(originalRight - 10, x + dx));
                 w = originalRight - x;
-                h = aspectRatio === "free" ? Math.max(10, Math.min(100 - y, h + dy)) : w / (aspectRatio as number);
+                h = aspectRatio === "free" ? Math.max(10, Math.min(100 - y, h + dy)) : w / pctRatio;
                 if (y + h > 100) {
                     h = 100 - y;
-                    w = aspectRatio === "free" ? w : h * (aspectRatio as number);
+                    w = aspectRatio === "free" ? w : h * pctRatio;
                     x = originalRight - w;
                 }
             } else if (activeHandle === "tr") {
@@ -99,12 +217,12 @@ export default function ImageCropper() {
                 y = Math.max(0, Math.min(originalBottom - 10, y + dy));
                 h = originalBottom - y;
                 if (aspectRatio !== "free") {
-                    h = w / (aspectRatio as number);
+                    h = w / pctRatio;
                     y = originalBottom - h;
                     if (y < 0) {
                         y = 0;
                         h = originalBottom;
-                        w = h * (aspectRatio as number);
+                        w = h * pctRatio;
                     }
                 }
             } else if (activeHandle === "tl") {
@@ -115,12 +233,12 @@ export default function ImageCropper() {
                 y = Math.max(0, Math.min(originalBottom - 10, y + dy));
                 h = originalBottom - y;
                 if (aspectRatio !== "free") {
-                    h = w / (aspectRatio as number);
+                    h = w / pctRatio;
                     y = originalBottom - h;
                     if (y < 0) {
                         y = 0;
                         h = originalBottom;
-                        w = h * (aspectRatio as number);
+                        w = h * pctRatio;
                         x = originalRight - w;
                     }
                 }
@@ -130,19 +248,23 @@ export default function ImageCropper() {
         });
     };
 
-    const handleMouseUp = () => {
+    const handlePointerUp = () => {
         setIsDragging(false);
         setActiveHandle(null);
     };
 
     useEffect(() => {
         if (isDragging) {
-            window.addEventListener("mousemove", handleMouseMove);
-            window.addEventListener("mouseup", handleMouseUp);
+            window.addEventListener("mousemove", handlePointerMove, { passive: false });
+            window.addEventListener("mouseup", handlePointerUp);
+            window.addEventListener("touchmove", handlePointerMove, { passive: false });
+            window.addEventListener("touchend", handlePointerUp);
         }
         return () => {
-            window.removeEventListener("mousemove", handleMouseMove);
-            window.removeEventListener("mouseup", handleMouseUp);
+            window.removeEventListener("mousemove", handlePointerMove);
+            window.removeEventListener("mouseup", handlePointerUp);
+            window.removeEventListener("touchmove", handlePointerMove);
+            window.removeEventListener("touchend", handlePointerUp);
         };
     }, [isDragging, dragStart, dragBoxStart, activeHandle]);
 
@@ -265,55 +387,93 @@ export default function ImageCropper() {
                     </div>
 
                     {/* Toolbar */}
-                    <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/20">
-                        {/* Aspect Ratios */}
-                        <div className="flex items-center gap-2">
-                            <span className="text-xs font-semibold text-zinc-500 uppercase">Aspect Ratio:</span>
-                            <div className="flex gap-1.5">
-                                {[
-                                    { label: "Free", value: "free" },
-                                    { label: "1:1", value: 1 },
-                                    { label: "16:9", value: 1.77777777778 },
-                                    { label: "4:3", value: 1.33333333333 },
-                                ].map((preset) => (
-                                    <button
-                                        key={preset.label}
-                                        onClick={() => setAspectRatio(preset.value as any)}
-                                        className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all duration-200 ${aspectRatio === preset.value
-                                            ? "bg-pink-500 border-pink-500 text-white"
-                                            : "bg-white border-zinc-200 text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-900 dark:border-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-800"
-                                            }`}
-                                    >
-                                        {preset.label}
-                                    </button>
-                                ))}
+                    <div className="flex flex-col gap-4 p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/20">
+                        <div className="flex flex-wrap items-center justify-between gap-4">
+                            {/* Aspect Ratios Dropdown */}
+                            <div className="flex items-center gap-3">
+                                <span className="text-xs font-semibold text-zinc-500 uppercase">Aspect Ratio:</span>
+                                <select
+                                    value={aspectRatio}
+                                    onChange={(e) => setAspectRatio(e.target.value === "free" ? "free" : parseFloat(e.target.value))}
+                                    className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm text-zinc-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
+                                >
+                                    <option value="free">Free</option>
+                                    <option value={1}>1:1 (Square)</option>
+                                    <option value={1.77777777778}>16:9 (Widescreen)</option>
+                                    <option value={1.33333333333}>4:3 (Standard)</option>
+                                    <option value={1.5}>3:2 (Classic Photo)</option>
+                                    <option value={0.66666666667}>2:3 (Portrait Photo)</option>
+                                    <option value={0.5625}>9:16 (Story/Reel)</option>
+                                    <option value={1.25}>5:4</option>
+                                    <option value={0.8}>4:5</option>
+                                </select>
                             </div>
+
+                            {/* Rotation */}
+                            <button
+                                onClick={() => {
+                                    if (!imgRef.current) return;
+                                    const img = imgRef.current;
+                                    const canvas = document.createElement("canvas");
+                                    const ctx = canvas.getContext("2d");
+                                    if (!ctx) return;
+
+                                    canvas.width = img.naturalHeight;
+                                    canvas.height = img.naturalWidth;
+
+                                    ctx.translate(canvas.width / 2, canvas.height / 2);
+                                    ctx.rotate((90 * Math.PI) / 180);
+                                    ctx.drawImage(img, -img.naturalWidth / 2, -img.naturalHeight / 2);
+
+                                    const newUrl = canvas.toDataURL(file?.type || "image/png");
+                                    setPreviewUrl(newUrl);
+                                    setRotation(0); // Reset CSS rotation just in case
+                                }}
+                                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-900 dark:border-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-all duration-200"
+                            >
+                                <RotateRight className="h-4 w-4" /> Rotate 90°
+                            </button>
                         </div>
 
-                        {/* Rotation */}
-                        <button
-                            onClick={() => {
-                                if (!imgRef.current) return;
-                                const img = imgRef.current;
-                                const canvas = document.createElement("canvas");
-                                const ctx = canvas.getContext("2d");
-                                if (!ctx) return;
-
-                                canvas.width = img.naturalHeight;
-                                canvas.height = img.naturalWidth;
-
-                                ctx.translate(canvas.width / 2, canvas.height / 2);
-                                ctx.rotate((90 * Math.PI) / 180);
-                                ctx.drawImage(img, -img.naturalWidth / 2, -img.naturalHeight / 2);
-
-                                const newUrl = canvas.toDataURL(file?.type || "image/png");
-                                setPreviewUrl(newUrl);
-                                setRotation(0); // Reset CSS rotation just in case
-                            }}
-                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-900 dark:border-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-all duration-200"
-                        >
-                            <RotateRight className="h-4 w-4" /> Rotate 90°
-                        </button>
+                        {/* Manual Inputs */}
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
+                            <div className="flex flex-col gap-1">
+                                <label className="text-xs font-semibold text-zinc-500 uppercase">Width (px)</label>
+                                <input
+                                    type="number"
+                                    value={manualInputs.w}
+                                    onChange={(e) => handleManualInputChange('w', e.target.value)}
+                                    className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm text-zinc-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
+                                />
+                            </div>
+                            <div className="flex flex-col gap-1">
+                                <label className="text-xs font-semibold text-zinc-500 uppercase">Height (px)</label>
+                                <input
+                                    type="number"
+                                    value={manualInputs.h}
+                                    onChange={(e) => handleManualInputChange('h', e.target.value)}
+                                    className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm text-zinc-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
+                                />
+                            </div>
+                            <div className="flex flex-col gap-1">
+                                <label className="text-xs font-semibold text-zinc-500 uppercase">X Position</label>
+                                <input
+                                    type="number"
+                                    value={manualInputs.x}
+                                    onChange={(e) => handleManualInputChange('x', e.target.value)}
+                                    className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm text-zinc-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
+                                />
+                            </div>
+                            <div className="flex flex-col gap-1">
+                                <label className="text-xs font-semibold text-zinc-500 uppercase">Y Position</label>
+                                <input
+                                    type="number"
+                                    value={manualInputs.y}
+                                    onChange={(e) => handleManualInputChange('y', e.target.value)}
+                                    className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm text-zinc-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
+                                />
+                            </div>
+                        </div>
                     </div>
 
                     {/* Interactive Crop Area */}
@@ -327,6 +487,7 @@ export default function ImageCropper() {
                                     ref={imgRef}
                                     src={previewUrl}
                                     alt="Crop Preview"
+                                    onLoad={() => setImageLoaded(true)}
                                     className="block max-w-full max-h-[400px] w-auto h-auto pointer-events-none"
                                 />
                             )}
@@ -340,24 +501,29 @@ export default function ImageCropper() {
                                     width: `${cropBox.w}%`,
                                     height: `${cropBox.h}%`,
                                 }}
-                                onMouseDown={(e) => handleMouseDown(e, "move")}
+                                onMouseDown={(e) => handlePointerDown(e, "move")}
+                                onTouchStart={(e) => handlePointerDown(e, "move")}
                             >
                                 {/* Drag Handles */}
                                 <div
                                     className="absolute -top-1.5 -left-1.5 h-3 w-3 rounded-full bg-white border border-pink-500 cursor-nwse-resize"
-                                    onMouseDown={(e) => handleMouseDown(e, "tl")}
+                                    onMouseDown={(e) => handlePointerDown(e, "tl")}
+                                    onTouchStart={(e) => handlePointerDown(e, "tl")}
                                 />
                                 <div
                                     className="absolute -top-1.5 -right-1.5 h-3 w-3 rounded-full bg-white border border-pink-500 cursor-nesw-resize"
-                                    onMouseDown={(e) => handleMouseDown(e, "tr")}
+                                    onMouseDown={(e) => handlePointerDown(e, "tr")}
+                                    onTouchStart={(e) => handlePointerDown(e, "tr")}
                                 />
                                 <div
                                     className="absolute -bottom-1.5 -left-1.5 h-3 w-3 rounded-full bg-white border border-pink-500 cursor-nesw-resize"
-                                    onMouseDown={(e) => handleMouseDown(e, "bl")}
+                                    onMouseDown={(e) => handlePointerDown(e, "bl")}
+                                    onTouchStart={(e) => handlePointerDown(e, "bl")}
                                 />
                                 <div
                                     className="absolute -bottom-1.5 -right-1.5 h-3 w-3 rounded-full bg-white border border-pink-500 cursor-nwse-resize"
-                                    onMouseDown={(e) => handleMouseDown(e, "br")}
+                                    onMouseDown={(e) => handlePointerDown(e, "br")}
+                                    onTouchStart={(e) => handlePointerDown(e, "br")}
                                 />
                             </div>
                         </div>

@@ -63,7 +63,7 @@ export default function ContactPage() {
                             </div>
                             <div className="flex flex-col gap-1.5">
                                 <label htmlFor="email" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Email Address</label>
-                                <input required type="email" id="email" name="email" autoComplete="email" className="rounded-xl border border-zinc-300 bg-transparent px-4 py-2.5 text-sm text-zinc-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-zinc-700 dark:text-white" placeholder="john@example.com" disabled={isSubmitting} />
+                                <input required type="email" id="email" name="email" autoComplete="email" pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$" title="Please enter a valid email address (e.g. name@example.com)" className="rounded-xl border border-zinc-300 bg-transparent px-4 py-2.5 text-sm text-zinc-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-zinc-700 dark:text-white" placeholder="john@example.com" disabled={isSubmitting} />
                             </div>
                         </div>
                         <div className="flex flex-col gap-1.5">

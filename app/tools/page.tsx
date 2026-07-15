@@ -32,7 +32,7 @@ export default function ToolsPage() {
                 {tools.map((tool) => {
                     const Icon = tool.icon;
                     return (
-                        <div key={tool.id} className="group flex flex-col h-full rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-700">
+                        <Link href={tool.href} key={tool.id} className="group flex flex-col h-full rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-700">
                             <div className="flex items-center gap-4 mb-4">
                                 <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-tr ${tool.gradient} text-white shadow-md ${tool.shadow} transition-transform duration-300 group-hover:rotate-3`}>
                                     <Icon className="h-6 w-6" />
@@ -44,7 +44,7 @@ export default function ToolsPage() {
                             <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed flex-1">
                                 {tool.description}
                             </p>
-                        </div>
+                        </Link>
                     );
                 })}
             </div>
