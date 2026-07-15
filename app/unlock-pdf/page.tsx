@@ -154,6 +154,12 @@ export default function UnlockPDF() {
                             Your file has been unlocked and is ready for download.
                         </p>
                     </div>
+
+                    {/* Preview */}
+                    <div className="w-full max-w-2xl h-[500px] rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-zinc-50 dark:bg-zinc-900">
+                        <iframe src={`${resultUrl}#toolbar=0`} className="w-full h-full" title="PDF Preview" />
+                    </div>
+
                     <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
                         <button
                             onClick={() => {
@@ -227,7 +233,7 @@ export default function UnlockPDF() {
                             </label>
                             <div className="relative">
                                 {/* Hidden username field to prevent autofill warnings */}
-                                <input type="text" name="username" id="username" autoComplete="username" className="hidden" />
+                                <input type="text" name="username" id="username" aria-label="Username" autoComplete="username" className="hidden" />
                                 <input
                                     id="unlock-password"
                                     name="unlock-password"

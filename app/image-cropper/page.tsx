@@ -438,8 +438,10 @@ export default function ImageCropper() {
                         {/* Manual Inputs */}
                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
                             <div className="flex flex-col gap-1">
-                                <label className="text-xs font-semibold text-zinc-500 uppercase">Width (px)</label>
+                                <label htmlFor="crop-width" className="text-xs font-semibold text-zinc-500 uppercase">Width (px)</label>
                                 <input
+                                    id="crop-width"
+                                    name="crop-width"
                                     type="number"
                                     value={manualInputs.w}
                                     onChange={(e) => handleManualInputChange('w', e.target.value)}
@@ -447,8 +449,10 @@ export default function ImageCropper() {
                                 />
                             </div>
                             <div className="flex flex-col gap-1">
-                                <label className="text-xs font-semibold text-zinc-500 uppercase">Height (px)</label>
+                                <label htmlFor="crop-height" className="text-xs font-semibold text-zinc-500 uppercase">Height (px)</label>
                                 <input
+                                    id="crop-height"
+                                    name="crop-height"
                                     type="number"
                                     value={manualInputs.h}
                                     onChange={(e) => handleManualInputChange('h', e.target.value)}
@@ -456,8 +460,10 @@ export default function ImageCropper() {
                                 />
                             </div>
                             <div className="flex flex-col gap-1">
-                                <label className="text-xs font-semibold text-zinc-500 uppercase">X Position</label>
+                                <label htmlFor="crop-x" className="text-xs font-semibold text-zinc-500 uppercase">X Position</label>
                                 <input
+                                    id="crop-x"
+                                    name="crop-x"
                                     type="number"
                                     value={manualInputs.x}
                                     onChange={(e) => handleManualInputChange('x', e.target.value)}
@@ -465,8 +471,10 @@ export default function ImageCropper() {
                                 />
                             </div>
                             <div className="flex flex-col gap-1">
-                                <label className="text-xs font-semibold text-zinc-500 uppercase">Y Position</label>
+                                <label htmlFor="crop-y" className="text-xs font-semibold text-zinc-500 uppercase">Y Position</label>
                                 <input
+                                    id="crop-y"
+                                    name="crop-y"
                                     type="number"
                                     value={manualInputs.y}
                                     onChange={(e) => handleManualInputChange('y', e.target.value)}

@@ -188,6 +188,8 @@ export default function ImageResizer() {
                                     <Straighten className="h-4 w-4 text-zinc-400" /> Width (px)
                                 </label>
                                 <input
+                                    id="resize-width"
+                                    name="resize-width"
                                     type="number"
                                     value={width || ""}
                                     onChange={(e) => handleWidthChange(Number(e.target.value))}
@@ -199,6 +201,8 @@ export default function ImageResizer() {
                                     <Height className="h-4 w-4 text-zinc-400" /> Height (px)
                                 </label>
                                 <input
+                                    id="resize-height"
+                                    name="resize-height"
                                     type="number"
                                     value={height || ""}
                                     onChange={(e) => handleHeightChange(Number(e.target.value))}
@@ -224,8 +228,10 @@ export default function ImageResizer() {
                         </div>
 
                         {/* Aspect Ratio Lock */}
-                        <label className="flex items-center gap-2.5 cursor-pointer text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                        <label htmlFor="maintain-aspect-ratio" className="flex items-center gap-2.5 cursor-pointer text-sm font-medium text-zinc-700 dark:text-zinc-300">
                             <input
+                                id="maintain-aspect-ratio"
+                                name="maintain-aspect-ratio"
                                 type="checkbox"
                                 checked={lockAspectRatio}
                                 onChange={(e) => setLockAspectRatio(e.target.checked)}

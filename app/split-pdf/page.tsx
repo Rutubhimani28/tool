@@ -17,6 +17,7 @@ export default function SplitPDF() {
     const [isProcessing, setIsProcessing] = useState(false);
     const [progress, setProgress] = useState(0);
     const [resultUrl, setResultUrl] = useState<string | null>(null);
+    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const [resultFileName, setResultFileName] = useState("");
 
     const handleFileSelected = async (selectedFiles: File[]) => {
@@ -95,17 +96,25 @@ export default function SplitPDF() {
                 const blob = new Blob([pdfBytes.buffer as ArrayBuffer], { type: "application/pdf" });
                 const url = URL.createObjectURL(blob);
                 setResultUrl(url);
+                setPreviewUrl(url);
                 setResultFileName(file.name);
                 setFile(null);
             } else {
                 // Split all pages into a ZIP file
                 const zip = new JSZip();
+                let firstPageUrl = null;
                 for (let i = 0; i < pagesCount; i++) {
                     const newPdf = await PDFDocument.create();
                     const [copiedPage] = await newPdf.copyPages(srcPdf, [i]);
                     newPdf.addPage(copiedPage);
                     const pdfBytes = await newPdf.save();
                     zip.file(`${file.name.replace(".pdf", "")}_page_${i + 1}.pdf`, pdfBytes);
+
+                    if (i === 0) {
+                        const blob = new Blob([pdfBytes.buffer as ArrayBuffer], { type: "application/pdf" });
+                        firstPageUrl = URL.createObjectURL(blob);
+                    }
+
                     setProgress(10 + Math.round((i / pagesCount) * 70));
                 }
 
@@ -115,7 +124,8 @@ export default function SplitPDF() {
 
                 const url = URL.createObjectURL(zipBlob);
                 setResultUrl(url);
-                setResultFileName(`${file.name.replace(".pdf", "")}_extracted.pdf`);
+                setPreviewUrl(firstPageUrl);
+                setResultFileName(`${file.name.replace(".pdf", "")}_extracted.zip`);
                 setFile(null);
             }
 
@@ -150,6 +160,19 @@ export default function SplitPDF() {
                             Your file has been split and is ready for download.
                         </p>
                     </div>
+
+                    {/* Preview */}
+                    {previewUrl && (
+                        <div className="w-full max-w-2xl h-[500px] rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-zinc-50 dark:bg-zinc-900 flex flex-col">
+                            {splitMode === "all" && (
+                                <div className="bg-zinc-100 dark:bg-zinc-800 px-4 py-2 text-xs font-medium text-zinc-500 dark:text-zinc-400 border-b border-zinc-200 dark:border-zinc-700">
+                                    Previewing first extracted page
+                                </div>
+                            )}
+                            <iframe src={`${previewUrl}#toolbar=0`} className="w-full flex-1" title="PDF Preview" />
+                        </div>
+                    )}
+
                     <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
                         <button
                             onClick={() => {
@@ -167,7 +190,11 @@ export default function SplitPDF() {
                         <button
                             onClick={() => {
                                 URL.revokeObjectURL(resultUrl);
+                                if (previewUrl && previewUrl !== resultUrl) {
+                                    URL.revokeObjectURL(previewUrl);
+                                }
                                 setResultUrl(null);
+                                setPreviewUrl(null);
                                 setResultFileName("");
                             }}
                             className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"

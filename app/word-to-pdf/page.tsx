@@ -287,6 +287,12 @@ export default function WordToPDF() {
                             Your document has been successfully converted.
                         </p>
                     </div>
+
+                    {/* Preview */}
+                    <div className="w-full max-w-2xl h-[500px] rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-zinc-50 dark:bg-zinc-900">
+                        <iframe src={`${resultUrl}#toolbar=0`} className="w-full h-full" title="PDF Preview" />
+                    </div>
+
                     <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
                         <button
                             onClick={() => {

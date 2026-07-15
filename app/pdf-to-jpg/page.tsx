@@ -16,6 +16,7 @@ export default function PDFToJPG() {
     const [progress, setProgress] = useState(0);
     const [resultUrl, setResultUrl] = useState<string | null>(null);
     const [resultFileName, setResultFileName] = useState("");
+    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
     const handleFileSelected = async (selectedFiles: File[]) => {
         if (selectedFiles.length === 0) return;
