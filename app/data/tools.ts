@@ -1,0 +1,184 @@
+import {
+    Merge,
+    CallSplit,
+    Compress,
+    Description,
+    TextSnippet,
+    Image as ImageIcon,
+    Collections,
+    RotateRight,
+    LockOpen,
+    Lock,
+    AspectRatio,
+    Transform,
+    Crop,
+} from "@mui/icons-material";
+import React from "react";
+
+export interface Tool {
+    id: string;
+    name: string;
+    description: string;
+    category: "organize" | "convert" | "optimize" | "security" | "image";
+    icon: React.ComponentType<{ className?: string }>;
+    href: string;
+    gradient: string;
+    shadow: string;
+}
+
+export const tools: Tool[] = [
+    // PDF Tools
+    {
+        id: "merge-pdf",
+        name: "Merge PDF",
+        description: "Combine multiple PDF files into a single document in seconds.",
+        category: "organize",
+        icon: Merge,
+        href: "/merge-pdf",
+        gradient: "from-red-500 to-rose-600",
+        shadow: "shadow-red-500/20",
+    },
+    {
+        id: "split-pdf",
+        name: "Split PDF",
+        description: "Extract specific pages or split a PDF into separate files.",
+        category: "organize",
+        icon: CallSplit,
+        href: "/split-pdf",
+        gradient: "from-orange-500 to-amber-600",
+        shadow: "shadow-orange-500/20",
+    },
+    {
+        id: "compress-pdf",
+        name: "Compress PDF",
+        description: "Reduce the file size of your PDF while maintaining quality.",
+        category: "optimize",
+        icon: Compress,
+        href: "/compress-pdf",
+        gradient: "from-green-500 to-emerald-600",
+        shadow: "shadow-green-500/20",
+    },
+    {
+        id: "word-to-pdf",
+        name: "Word to PDF",
+        description: "Convert Microsoft Word documents (.docx) to PDF format.",
+        category: "convert",
+        icon: Description,
+        href: "/word-to-pdf",
+        gradient: "from-blue-500 to-indigo-600",
+        shadow: "shadow-blue-500/20",
+    },
+    {
+        id: "pdf-to-word",
+        name: "PDF to Word",
+        description: "Extract text from PDF and convert it back to Word format.",
+        category: "convert",
+        icon: TextSnippet,
+        href: "/pdf-to-word",
+        gradient: "from-cyan-500 to-blue-600",
+        shadow: "shadow-cyan-500/20",
+    },
+    {
+        id: "jpg-to-pdf",
+        name: "JPG to PDF",
+        description: "Convert images (JPG, PNG) into a single PDF document.",
+        category: "convert",
+        icon: ImageIcon,
+        href: "/jpg-to-pdf",
+        gradient: "from-purple-500 to-violet-600",
+        shadow: "shadow-purple-500/20",
+    },
+    {
+        id: "pdf-to-jpg",
+        name: "PDF to JPG",
+        description: "Extract pages of a PDF as high-quality JPG images.",
+        category: "convert",
+        icon: Collections,
+        href: "/pdf-to-jpg",
+        gradient: "from-pink-500 to-rose-600",
+        shadow: "shadow-pink-500/20",
+    },
+    {
+        id: "rotate-pdf",
+        name: "Rotate PDF",
+        description: "Rotate pages in your PDF document and save the changes.",
+        category: "organize",
+        icon: RotateRight,
+        href: "/rotate-pdf",
+        gradient: "from-teal-500 to-emerald-600",
+        shadow: "shadow-teal-500/20",
+    },
+    {
+        id: "unlock-pdf",
+        name: "Unlock PDF",
+        description: "Remove password protection and restrictions from your PDF.",
+        category: "security",
+        icon: LockOpen,
+        href: "/unlock-pdf",
+        gradient: "from-zinc-600 to-zinc-800",
+        shadow: "shadow-zinc-500/20",
+    },
+    {
+        id: "protect-pdf",
+        name: "Protect PDF",
+        description: "Encrypt your PDF with a secure password to prevent unauthorized access.",
+        category: "security",
+        icon: Lock,
+        href: "/protect-pdf",
+        gradient: "from-yellow-500 to-amber-600",
+        shadow: "shadow-yellow-500/20",
+    },
+
+    // Image Tools
+    {
+        id: "image-compressor",
+        name: "Image Compressor",
+        description: "Compress JPG, PNG, or WebP images to reduce file size.",
+        category: "image",
+        icon: Compress,
+        href: "/image-compressor",
+        gradient: "from-emerald-500 to-teal-600",
+        shadow: "shadow-emerald-500/20",
+    },
+    {
+        id: "image-resizer",
+        name: "Image Resizer",
+        description: "Resize your images to custom dimensions or scale them by percentage.",
+        category: "image",
+        icon: AspectRatio,
+        href: "/image-resizer",
+        gradient: "from-blue-400 to-indigo-500",
+        shadow: "shadow-blue-400/20",
+    },
+
+    {
+        id: "png-to-jpg",
+        name: "Convert PNG to JPG",
+        description: "Convert PNG images to JPG format with custom background fill.",
+        category: "image",
+        icon: Transform,
+        href: "/png-to-jpg",
+        gradient: "from-cyan-400 to-sky-500",
+        shadow: "shadow-cyan-400/20",
+    },
+    {
+        id: "webp-converter",
+        name: "WebP Converter",
+        description: "Convert images to WebP format, or convert WebP files back to PNG/JPG.",
+        category: "image",
+        icon: Transform,
+        href: "/webp-converter",
+        gradient: "from-violet-500 to-purple-600",
+        shadow: "shadow-violet-500/20",
+    },
+    {
+        id: "image-cropper",
+        name: "Image Cropper",
+        description: "Crop and rotate your images interactively in your browser.",
+        category: "image",
+        icon: Crop,
+        href: "/image-cropper",
+        gradient: "from-pink-500 to-rose-600",
+        shadow: "shadow-pink-500/20",
+    },
+];
