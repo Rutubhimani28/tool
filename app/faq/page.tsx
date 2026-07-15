@@ -6,24 +6,36 @@ import { ArrowBack, ExpandMore } from "@mui/icons-material";
 
 const faqs = [
     {
-        question: "Is PDFImageConvert free to use?",
-        answer: "Yes, our core PDF and image conversion tools are completely free to use without any hidden charges or watermarks."
+        question: "Is PDFImageConvert really free to use?",
+        answer: "Yes, our core PDF and image conversion tools are completely free to use. There are no hidden charges, no subscription fees, and we do not add any watermarks to your processed documents. We believe in providing accessible tools for everyone."
     },
     {
-        question: "Are my files secure?",
-        answer: "Absolutely. We prioritize your privacy. All uploaded files are processed securely and are automatically deleted from our servers within 1 hour after conversion."
+        question: "Are my files secure and private?",
+        answer: "Absolutely. We prioritize your privacy above all else. Many of our tools process files locally in your browser, meaning your data never leaves your device. For tools that require server processing, files are uploaded securely via HTTPS and are automatically and permanently deleted immediately after processing. We do not keep backups or logs of your files."
     },
     {
-        question: "What file formats are supported?",
-        answer: "We support a wide range of formats including PDF, JPG, PNG, WEBP, GIF, and more. You can easily convert between these formats using our tools."
+        question: "What file formats are supported by your platform?",
+        answer: "We support a wide range of popular document and image formats. This includes PDF, Word (DOC/DOCX), JPG, PNG, WEBP, and GIF. Our platform allows you to seamlessly convert between these formats, such as PDF to JPG, Word to PDF, and PNG to JPG."
     },
     {
-        question: "Is there a file size limit?",
-        answer: "Currently, the maximum file size limit for free users is 50MB per file. This ensures fast processing times for everyone."
+        question: "Is there a file size limit for uploads?",
+        answer: "To ensure fast processing times and optimal performance for all users, we currently have a maximum file size limit of 50MB per file. This limit is sufficient for the vast majority of standard documents and images."
     },
     {
-        question: "Do I need to install any software?",
-        answer: "No, PDFImageConvert is a 100% web-based tool. You can use it directly from your browser on any device (Windows, Mac, Linux, iOS, Android)."
+        question: "Do I need to install any software or extensions?",
+        answer: "No, PDFImageConvert is a 100% web-based platform. You do not need to download or install any software, plugins, or browser extensions. You can access and use all our tools directly from your web browser on any device, including Windows, Mac, Linux, iOS, and Android."
+    },
+    {
+        question: "Can I use PDFImageConvert on my mobile device?",
+        answer: "Yes! Our website is fully responsive and optimized for mobile devices. You can easily merge PDFs, compress images, and convert formats using your smartphone or tablet's web browser, just as you would on a desktop computer."
+    },
+    {
+        question: "How do I merge multiple PDF files into one?",
+        answer: "Merging PDFs is simple. Navigate to our 'Merge PDF' tool, select or drag-and-drop the PDF files you want to combine, arrange them in your preferred order, and click the merge button. Your combined PDF will be ready to download in seconds."
+    },
+    {
+        question: "Why should I convert my images to WebP format?",
+        answer: "WebP is a modern image format that provides superior lossless and lossy compression for images on the web. Converting your JPG or PNG images to WebP can significantly reduce file sizes without sacrificing quality, leading to faster website loading times and reduced bandwidth usage."
     }
 ];
 

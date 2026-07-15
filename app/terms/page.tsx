@@ -21,7 +21,7 @@ export default function TermsPage() {
                     Terms & Conditions
                 </h1>
                 <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
-                    Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                    Effective Date: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                 </p>
             </div>
 
@@ -31,32 +31,47 @@ export default function TermsPage() {
                         Welcome to PDFImageConvert. By accessing or using our website and tools, you agree to be bound by these Terms & Conditions. If you disagree with any part of these terms, you may not access the service.
                     </p>
 
-                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">1. Use of Service</h2>
+                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">1. Use of Service and User Responsibilities</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-4 leading-relaxed">
-                        PDFImageConvert provides a suite of online tools for processing PDF documents and images. You agree to use these tools only for lawful purposes and in a way that does not infringe the rights of, restrict, or inhibit anyone else's use and enjoyment of the website.
+                        PDFImageConvert provides a suite of online tools for processing PDF documents and images. You agree to use these tools responsibly and in compliance with all applicable laws.
                     </p>
                     <ul className="list-disc pl-5 space-y-2 text-zinc-600 dark:text-zinc-300 mb-6">
                         <li>You must not use our tools to process illegal, copyrighted (without permission), or malicious content.</li>
                         <li>You are solely responsible for the files you upload and process using our service.</li>
-                        <li>We reserve the right to refuse service, terminate accounts, or restrict access at our discretion.</li>
+                        <li>You agree not to attempt to disrupt, exploit, or gain unauthorized access to our servers or infrastructure.</li>
                     </ul>
 
-                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">2. Intellectual Property</h2>
+                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">2. Privacy and Cookies</h2>
+                    <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
+                        Your use of PDFImageConvert is also governed by our <Link href="/privacy" className="text-blue-600 hover:underline dark:text-blue-400">Privacy Policy</Link>. By using our service, you consent to the practices described in the Privacy Policy, including our use of cookies to enhance your experience and analyze site traffic.
+                    </p>
+
+                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">3. Intellectual Property</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
                         The website, its original content, features, and functionality are owned by PDFImageConvert and are protected by international copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws. You retain all rights to the files you process using our tools.
                     </p>
 
-                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">3. Disclaimer of Warranties</h2>
+                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">4. Termination</h2>
+                    <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
+                        We may terminate or suspend your access to our service immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach these Terms. Upon termination, your right to use the service will immediately cease.
+                    </p>
+
+                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">5. Disclaimer of Warranties</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
                         Our service is provided on an "AS IS" and "AS AVAILABLE" basis. PDFImageConvert makes no representations or warranties of any kind, express or implied, regarding the operation of the service, the accuracy of the tools, or the information, content, or materials included on the website. We do not warrant that the service will be uninterrupted, secure, or error-free.
                     </p>
 
-                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">4. Limitation of Liability</h2>
+                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">6. Limitation of Liability</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
                         In no event shall PDFImageConvert, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the service.
                     </p>
 
-                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">5. Changes to Terms</h2>
+                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">7. Governing Law and Jurisdiction</h2>
+                    <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
+                        These Terms shall be governed and construed in accordance with the laws of the jurisdiction in which PDFImageConvert operates, without regard to its conflict of law provisions. Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights.
+                    </p>
+
+                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">8. Changes to Terms</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
                         We reserve the right, at our sole discretion, to modify or replace these Terms at any time. By continuing to access or use our service after those revisions become effective, you agree to be bound by the revised terms.
                     </p>

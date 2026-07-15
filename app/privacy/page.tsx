@@ -33,34 +33,51 @@ export default function PrivacyPage() {
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">1. File Processing and Storage</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-4 leading-relaxed">
-                        Our core principle is that your files belong to you. When you use our tools to convert, merge, compress, or edit PDFs and images:
+                        Our core principle is that your files belong to you. We employ different processing methods depending on the tool you use:
                     </p>
                     <ul className="list-disc pl-5 space-y-2 text-zinc-600 dark:text-zinc-300 mb-6">
-                        <li><strong>Local Processing:</strong> Whenever technically possible, files are processed locally within your web browser. In these cases, your files never leave your device.</li>
-                        <li><strong>Server Processing:</strong> For tools that require server-side processing, your files are uploaded over a secure, encrypted connection (HTTPS).</li>
-                        <li><strong>Automatic Deletion:</strong> Any files uploaded to our servers are automatically and permanently deleted immediately after processing is complete. We do not keep backups or copies of your documents.</li>
+                        <li><strong>Local Processing:</strong> For many of our tools, files are processed entirely locally within your web browser using JavaScript or WebAssembly. In these cases, your files never leave your device and are never uploaded to our servers.</li>
+                        <li><strong>Server Processing:</strong> For certain complex operations that require server-side processing, your files are uploaded over a secure, encrypted connection (HTTPS).</li>
+                        <li><strong>Automatic Deletion:</strong> Any files uploaded to our servers for processing are automatically and permanently deleted immediately after the processing is complete. We do not keep backups, logs, or copies of your documents under any circumstances.</li>
                     </ul>
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">2. Information We Collect</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-4 leading-relaxed">
-                        We collect minimal information to ensure our service functions correctly:
+                        We collect minimal information to ensure our service functions correctly and to improve user experience:
                     </p>
                     <ul className="list-disc pl-5 space-y-2 text-zinc-600 dark:text-zinc-300 mb-6">
-                        <li><strong>Usage Data:</strong> We may collect anonymous analytics data (such as pages visited, tools used, and browser type) to help us improve our platform.</li>
+                        <li><strong>Usage Data:</strong> We collect anonymous analytics data (such as pages visited, tools used, and browser type) to help us improve our platform.</li>
                         <li><strong>Contact Information:</strong> If you reach out to us via our Contact Us page, we will collect your name and email address solely for the purpose of responding to your inquiry.</li>
                     </ul>
 
-                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">3. Cookies</h2>
+                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">3. Data Retention</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
-                        We use essential cookies to remember your preferences (such as dark mode settings). We do not use tracking cookies for targeted advertising. You can disable cookies in your browser settings, though some features of the site may not function properly.
+                        <strong>Contact Retention:</strong> Information submitted through our contact forms is retained only as long as necessary to resolve your inquiry. Once the matter is resolved, we routinely delete these communications.
+                        <br />
+                        <strong>File Retention:</strong> As stated above, files processed on our servers are deleted immediately after processing. We retain zero user files.
                     </p>
 
-                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">4. Third-Party Services</h2>
+                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">4. Cookies and Tracking</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
-                        We do not sell, trade, or rent your personal information or files to third parties. We may use trusted third-party service providers for hosting and analytics, who are bound by strict confidentiality agreements.
+                        We use essential cookies to remember your preferences (such as dark mode settings). We also use third-party analytics cookies to understand how users interact with our site. You can disable cookies in your browser settings, though some features of the site may not function properly.
                     </p>
 
-                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">5. Changes to This Policy</h2>
+                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">5. Third-Party Services</h2>
+                    <p className="text-zinc-600 dark:text-zinc-300 mb-4 leading-relaxed">
+                        We do not sell, trade, or rent your personal information or files to third parties. We use trusted third-party service providers to operate our platform:
+                    </p>
+                    <ul className="list-disc pl-5 space-y-2 text-zinc-600 dark:text-zinc-300 mb-6">
+                        <li><strong>Vercel Hosting:</strong> Our website is hosted on Vercel, which provides secure and fast content delivery.</li>
+                        <li><strong>Cloudflare:</strong> We use Cloudflare for DNS management, security, and performance optimization.</li>
+                        <li><strong>Google Analytics:</strong> We use Google Analytics to understand website traffic and usage patterns. This data is anonymized and aggregated.</li>
+                    </ul>
+
+                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">6. Your Rights (GDPR & CCPA)</h2>
+                    <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
+                        Depending on your location, you may have specific rights regarding your personal data under regulations like the General Data Protection Regulation (GDPR) or the California Consumer Privacy Act (CCPA). These rights may include the right to access, correct, or delete your personal data. Since we do not create user accounts or store personal files, the data we hold is limited to contact inquiries and anonymous analytics. If you wish to exercise your rights regarding any contact information you have provided, please contact us.
+                    </p>
+
+                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">7. Changes to This Policy</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
                         We reserve the right to update this Privacy Policy at any time. Any changes will be posted on this page with an updated revision date.
                     </p>
