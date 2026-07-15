@@ -61,7 +61,7 @@ export default function Home() {
   return (
     <div className="flex-1 bg-zinc-50 dark:bg-zinc-950 transition-colors duration-300">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white px-4 pt-16 pb-12 sm:px-6 sm:pt-24 sm:pb-16 lg:px-8 dark:bg-zinc-950 text-center">
+      <section className="relative overflow-hidden bg-white px-4 pt-16 pb-12 sm:px-6 sm:pt-6 sm:pb-16 lg:px-8 dark:bg-zinc-950 text-center">
         {/* Background decoration */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-b from-red-500/10 to-transparent rounded-full blur-3xl" />
@@ -112,7 +112,7 @@ export default function Home() {
       </section>
 
       {/* How It Works & Supported Formats */}
-      <section className="bg-zinc-50 dark:bg-zinc-900/50 py-16 sm:py-24 border-b border-zinc-200 dark:border-zinc-800">
+      <section className="bg-zinc-50 dark:bg-zinc-900/50 py-16 sm:py-6 border-b border-zinc-200 dark:border-zinc-800">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* How It Works */}
