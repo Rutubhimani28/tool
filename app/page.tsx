@@ -91,7 +91,7 @@ export default function Home() {
   return (
     <div className="flex-1 bg-zinc-50 dark:bg-zinc-950 transition-colors duration-300">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white px-4 pt-8 pb-8 sm:px-6 sm:pt-12 sm:pb-16 lg:px-8 dark:bg-zinc-950">
+      <section className="relative overflow-hidden bg-white px-4 pt-8 pb-4 sm:px-6 sm:pt-12 sm:pb-8 lg:px-8 dark:bg-zinc-950">
         {/* Background decoration */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[1000px] h-[600px] bg-gradient-to-b from-red-500/10 to-transparent rounded-full blur-3xl" />
@@ -162,7 +162,7 @@ export default function Home() {
       </section>
 
       {/* Privacy First: 100% Local Processing Feature Section */}
-      <section className="bg-white dark:bg-zinc-950 py-16 sm:py-10 border-b border-zinc-200 dark:border-zinc-800">
+      <section className="bg-white dark:bg-zinc-950 py-16 sm:py-4 border-b border-zinc-200 dark:border-zinc-800">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl mb-6">
             100% Local Processing
