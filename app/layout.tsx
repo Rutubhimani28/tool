@@ -35,6 +35,8 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <head>
+      </head>
+      <body suppressHydrationWarning className={`${ibmPlexSans.className} antialiased min-h-full flex flex-col bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-300 overflow-x-hidden`}>
         <Script
           id="suppress-logs"
           strategy="beforeInteractive"
@@ -50,8 +52,6 @@ export default function RootLayout({
             `,
           }}
         />
-      </head>
-      <body suppressHydrationWarning className={`${ibmPlexSans.className} antialiased min-h-full flex flex-col bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-300 overflow-x-hidden`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
           <main className="flex-1 flex flex-col">{children}</main>

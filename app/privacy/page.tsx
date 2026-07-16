@@ -33,12 +33,11 @@ export default function PrivacyPage() {
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">1. File Processing and Storage</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-4 leading-relaxed">
-                        Our core principle is that your files belong to you. We employ different processing methods depending on the tool you use:
+                        Our core principle is that your files belong to you. All our tools process files locally in your browser.
                     </p>
                     <ul className="list-disc pl-5 space-y-2 text-zinc-600 dark:text-zinc-300 mb-6">
-                        <li><strong>Local Processing:</strong> For many of our tools, files are processed entirely locally within your web browser using JavaScript or WebAssembly. In these cases, your files never leave your device and are never uploaded to our servers.</li>
-                        <li><strong>Server Processing:</strong> For certain complex operations that require server-side processing, your files are uploaded over a secure, encrypted connection (HTTPS).</li>
-                        <li><strong>Automatic Deletion:</strong> Any files uploaded to our servers for processing are automatically and permanently deleted immediately after the processing is complete. We do not keep backups, logs, or copies of your documents under any circumstances.</li>
+                        <li><strong>Local Processing:</strong> All our tools process files entirely locally within your web browser using JavaScript or WebAssembly. Your files never leave your device and are never uploaded to our servers.</li>
+                        <li><strong>Zero Uploads:</strong> Because processing happens locally, we do not upload, store, or retain any user files. We do not keep backups, logs, or copies of your documents under any circumstances.</li>
                     </ul>
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">2. Information We Collect</h2>
@@ -54,7 +53,7 @@ export default function PrivacyPage() {
                     <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
                         <strong>Contact Retention:</strong> Information submitted through our contact forms is retained only as long as necessary to resolve your inquiry. Once the matter is resolved, we routinely delete these communications.
                         <br />
-                        <strong>File Retention:</strong> As stated above, files processed on our servers are deleted immediately after processing. We retain zero user files.
+                        <strong>File Retention:</strong> As stated above, all files are processed locally on your device. We do not upload or retain any user files.
                     </p>
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">4. Cookies and Tracking</h2>

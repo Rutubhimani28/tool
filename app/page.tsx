@@ -46,6 +46,35 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [faqIndex, setFaqIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent | React.MouseEvent) => {
+    const clientX = 'touches' in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
+    setTouchEnd(null);
+    setTouchStart(clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent | React.MouseEvent) => {
+    if (!touchStart) return;
+    const clientX = 'touches' in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
+    setTouchEnd(clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+    if (isLeftSwipe) {
+      setFaqIndex((prev) => (prev + 1) % 6);
+    }
+    if (isRightSwipe) {
+      setFaqIndex((prev) => (prev - 1 + 6) % 6);
+    }
+    setTouchStart(null);
+    setTouchEnd(null);
+  };
 
   const filteredTools = tools.filter((tool) => {
     const matchesSearch =
@@ -62,7 +91,7 @@ export default function Home() {
   return (
     <div className="flex-1 bg-zinc-50 dark:bg-zinc-950 transition-colors duration-300">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white px-4 pt-16 pb-12 sm:px-6 sm:pt-20 sm:pb-24 lg:px-8 dark:bg-zinc-950">
+      <section className="relative overflow-hidden bg-white px-4 pt-8 pb-8 sm:px-6 sm:pt-12 sm:pb-16 lg:px-8 dark:bg-zinc-950">
         {/* Background decoration */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[1000px] h-[600px] bg-gradient-to-b from-red-500/10 to-transparent rounded-full blur-3xl" />
@@ -88,8 +117,8 @@ export default function Home() {
               </div>
 
               {/* Trust Indicators */}
-              <div className="mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800 flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-4 text-sm font-medium text-zinc-600 dark:text-zinc-400">
-                <div className="flex items-center gap-2">
+              <div className="mt-10 pt-8 border-t border-zinc-200 dark:border-zinc-800 flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-4 text-sm font-medium text-zinc-600 dark:text-zinc-400">
+                {/* <div className="flex items-center gap-2">
                   <span className="flex h-5 w-5 items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400">✓</span> 100% Secure
                 </div>
                 <div className="flex items-center gap-2">
@@ -97,12 +126,12 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="flex h-5 w-5 items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400">✓</span> No Registration
-                </div>
+                </div> */}
               </div>
             </div>
 
             {/* Right Column: Visual Composition */}
-            <div className="hidden lg:block relative h-[450px] w-full">
+            <div className="hidden lg:block relative h-[350px] w-full">
               {/* Main PDF Card */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-80 bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl border border-zinc-200 dark:border-zinc-800 z-10 flex flex-col items-center justify-center p-6 transform -rotate-6 hover:rotate-0 transition-transform duration-500">
                 <Description className="h-24 w-24 text-red-500 mb-6" />
@@ -132,8 +161,46 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Privacy First: 100% Local Processing Feature Section */}
+      <section className="bg-white dark:bg-zinc-950 py-16 sm:py-10 border-b border-zinc-200 dark:border-zinc-800">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl mb-6">
+            100% Local Processing
+          </h2>
+          <p className="mx-auto max-w-2xl text-lg text-zinc-600 dark:text-zinc-400 mb-12">
+            Unlike other tools that upload your sensitive documents to the cloud, PDFImageConvert processes everything directly inside your browser. Your files never leave your device.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="flex flex-col items-center p-6 bg-zinc-50 dark:bg-zinc-900/50 rounded-3xl border border-zinc-200 dark:border-zinc-800 hover:shadow-lg transition-shadow duration-300">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400 mb-6">
+                <Lock className="h-8 w-8" />
+              </div>
+              <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">Absolute Privacy</h3>
+              <p className="text-zinc-600 dark:text-zinc-400">Your files are never uploaded to any server. No one can access your documents except you.</p>
+            </div>
+
+            <div className="flex flex-col items-center p-6 bg-zinc-50 dark:bg-zinc-900/50 rounded-3xl border border-zinc-200 dark:border-zinc-800 hover:shadow-lg transition-shadow duration-300">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 mb-6">
+                <Transform className="h-8 w-8" />
+              </div>
+              <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">Lightning Fast</h3>
+              <p className="text-zinc-600 dark:text-zinc-400">Skip the upload and download wait times. Processing happens instantly using your device's power.</p>
+            </div>
+
+            <div className="flex flex-col items-center p-6 bg-zinc-50 dark:bg-zinc-900/50 rounded-3xl border border-zinc-200 dark:border-zinc-800 hover:shadow-lg transition-shadow duration-300">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400 mb-6">
+                <FolderZip className="h-8 w-8" />
+              </div>
+              <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">No Server Limits</h3>
+              <p className="text-zinc-600 dark:text-zinc-400">Since there are no servers involved, we don't impose artificial limits. Process files as large as your device's memory can handle.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* How It Works & Supported Formats */}
-      <section className="bg-zinc-50 dark:bg-zinc-900/50 py-16 sm:py-6 border-b border-zinc-200 dark:border-zinc-800">
+      <section className="bg-zinc-50 dark:bg-zinc-900/50 py-12 sm:py-16 border-b border-zinc-200 dark:border-zinc-800">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* How It Works */}
@@ -249,6 +316,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
 
       {/* Search & Categories Section */}
       <section id="tools" className="scroll-mt-20 bg-zinc-50 dark:bg-zinc-950 px-4 py-8 sm:px-6 lg:px-8 border-b border-zinc-200 dark:border-zinc-800">
@@ -473,7 +541,16 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative h-[380px] w-full flex items-center justify-center py-4">
+            <div
+              className="relative h-[380px] w-full flex items-center justify-center py-4 cursor-grab active:cursor-grabbing select-none"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              onMouseDown={handleTouchStart}
+              onMouseMove={handleTouchMove}
+              onMouseUp={handleTouchEnd}
+              onMouseLeave={handleTouchEnd}
+            >
               {[
                 {
                   q: "Is my PDF secure?",

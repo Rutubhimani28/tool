@@ -11,7 +11,7 @@ const faqs = [
     },
     {
         question: "Are my files secure and private?",
-        answer: "Absolutely. We prioritize your privacy above all else. Many of our tools process files locally in your browser, meaning your data never leaves your device. For tools that require server processing, files are uploaded securely via HTTPS and are automatically and permanently deleted immediately after processing. We do not keep backups or logs of your files."
+        answer: "Absolutely. We prioritize your privacy above all else. All our tools process files locally in your browser, meaning your data never leaves your device. We do not use servers to process your files, ensuring absolute privacy. We do not keep backups or logs of your files."
     },
     {
         question: "What file formats are supported by your platform?",
@@ -19,7 +19,7 @@ const faqs = [
     },
     {
         question: "Is there a file size limit for uploads?",
-        answer: "To ensure fast processing times and optimal performance for all users, we currently have a maximum file size limit of 50MB per file. This limit is sufficient for the vast majority of standard documents and images."
+        answer: "Since there are no servers involved, we don't impose artificial file size limits. You can process files as large as your device's memory can handle."
     },
     {
         question: "Do I need to install any software or extensions?",

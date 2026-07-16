@@ -42,7 +42,7 @@ const convertImageToJpgBytes = async (file: File): Promise<Uint8Array> => {
     });
 };
 
-export default function JPGToPDF() {
+export default function ImageToPDF() {
     const [images, setImages] = useState<UploadedImage[]>([]);
     const [isProcessing, setIsProcessing] = useState(false);
     const [progress, setProgress] = useState(0);
@@ -148,8 +148,8 @@ export default function JPGToPDF() {
 
     return (
         <ToolWrapper
-            title="JPG to PDF"
-            description="Convert JPG images into a single PDF document in your preferred order."
+            title="Image to PDF"
+            description="Convert JPG, PNG, and WebP images into a single PDF document in your preferred order."
         >
             {resultUrl ? (
                 <div className="flex flex-col items-center justify-center gap-6 py-8">
@@ -197,10 +197,10 @@ export default function JPGToPDF() {
             ) : images.length === 0 ? (
                 <DropZone
                     onFilesSelected={handleFilesSelected}
-                    accept="image/jpeg,image/jpg"
+                    accept="image/jpeg,image/png,image/webp"
                     multiple={true}
                     title="Select images to convert"
-                    description="Drag & drop JPG files here, or click to browse"
+                    description="Drag & drop JPG, PNG, or WebP files here, or click to browse"
                 />
             ) : (
                 <div className="flex flex-col gap-6 w-full">
@@ -262,7 +262,7 @@ export default function JPGToPDF() {
                                 type="file"
                                 className="hidden"
                                 multiple
-                                accept="image/jpeg,image/jpg"
+                                accept="image/jpeg,image/png,image/webp"
                                 onChange={(e) => {
                                     if (e.target.files) {
                                         handleFilesSelected(Array.from(e.target.files));

@@ -7,10 +7,9 @@ import DropZone from "@/app/components/DropZone";
 import confetti from "canvas-confetti";
 import { Photo, Transform } from "@mui/icons-material";
 
-export default function WebPConverter() {
+export default function JPGToPNG() {
     const [file, setFile] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-    const [targetFormat, setTargetFormat] = useState<"image/webp" | "image/png" | "image/jpeg">("image/webp");
     const [isProcessing, setIsProcessing] = useState(false);
     const [resultUrl, setResultUrl] = useState<string | null>(null);
     const [resultFileName, setResultFileName] = useState("");
@@ -21,13 +20,6 @@ export default function WebPConverter() {
         setFile(selectedFile);
         setPreviewUrl(URL.createObjectURL(selectedFile));
         setResultUrl(null);
-
-        // Auto-detect target format to prevent converting to the same format
-        if (selectedFile.type === "image/webp") {
-            setTargetFormat("image/png");
-        } else {
-            setTargetFormat("image/webp");
-        }
     };
 
     const handleConvert = () => {
@@ -44,27 +36,22 @@ export default function WebPConverter() {
                 const ctx = canvas.getContext("2d");
 
                 if (ctx) {
-                    // Fill white background if converting transparent image to JPG
-                    if (targetFormat === "image/jpeg") {
-                        ctx.fillStyle = "#ffffff";
-                        ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    }
 
+                    // Draw the PNG image
                     ctx.drawImage(img, 0, 0);
 
+                    // Export as PNG
                     canvas.toBlob(
                         (blob) => {
                             if (blob) {
                                 const url = URL.createObjectURL(blob);
                                 setResultUrl(url);
-                                const ext = targetFormat === "image/webp" ? ".webp" : targetFormat === "image/png" ? ".png" : ".jpg";
-                                setResultFileName(file.name.replace(/\.[^/.]+$/, "") + ext);
+                                setResultFileName(file.name.replace(/\.[^/.]+$/, "") + ".png");
                                 confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
                             }
                             setIsProcessing(false);
                         },
-                        targetFormat,
-                        0.80
+                        "image/png"
                     );
                 } else {
                     setIsProcessing(false);
@@ -85,30 +72,24 @@ export default function WebPConverter() {
         setResultFileName("");
     };
 
-    const getFormatLabel = (mime: string) => {
-        if (mime === "image/webp") return "WebP";
-        if (mime === "image/png") return "PNG";
-        return "JPG";
-    };
-
     return (
-        <ToolWrapper title="WebP Converter" description="Convert images to WebP format for web optimization, or convert WebP files back to PNG/JPG." accentColor="purple">
+        <ToolWrapper title="Convert JPG to PNG" description="Convert JPG images to PNG format." accentColor="cyan">
             {resultUrl ? (
                 // Success screen
                 <div className="flex flex-col items-center justify-center gap-6 py-4">
-                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-purple-100 text-purple-500 dark:bg-purple-900/30 dark:text-purple-400">
+                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-cyan-100 text-cyan-500 dark:bg-cyan-900/30 dark:text-cyan-400">
                         <Transform className="h-10 w-10" />
                     </div>
                     <div className="text-center">
-                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">Converted to {getFormatLabel(targetFormat)}!</h3>
+                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">Converted to PNG!</h3>
                         <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
-                            Your image has been successfully converted.
+                            Your JPG has been successfully converted.
                         </p>
                     </div>
 
                     {/* Preview */}
                     <div className="w-full max-w-md aspect-video rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-zinc-50 dark:bg-zinc-900 flex items-center justify-center">
-                        <img src={resultUrl} alt="Converted Image" className="max-h-full max-w-full object-contain" />
+                        <img src={resultUrl} alt="Converted PNG" className="max-h-full max-w-full object-contain" />
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
@@ -121,9 +102,9 @@ export default function WebPConverter() {
                                 link.click();
                                 document.body.removeChild(link);
                             }}
-                            className="flex-1 rounded-xl bg-purple-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-purple-600 transition-colors"
+                            className="flex-1 rounded-xl bg-cyan-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-cyan-600 transition-colors"
                         >
-                            Download Image
+                            Download PNG
                         </button>
                         <button
                             onClick={handleReset}
@@ -136,17 +117,17 @@ export default function WebPConverter() {
             ) : !file ? (
                 <DropZone
                     onFilesSelected={handleFileSelected}
-                    accept="image/jpeg,image/png,image/webp"
+                    accept="image/jpeg,image/jpg"
                     multiple={false}
-                    title="Select image to convert"
-                    description="Drag & drop a JPG, PNG, or WebP file here, or click to browse"
+                    title="Select JPG image to convert"
+                    description="Drag & drop a JPG file here, or click to browse"
                 />
             ) : (
                 <div className="flex flex-col gap-6 w-full">
                     {/* File Info */}
                     <div className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
                         <div className="flex items-center gap-4 min-w-0">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-100 text-purple-600 dark:bg-purple-950/30 dark:text-purple-400">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-100 text-cyan-600 dark:bg-cyan-950/30 dark:text-cyan-400">
                                 <Photo className="h-5 w-5" />
                             </div>
                             <div className="min-w-0">
@@ -162,42 +143,16 @@ export default function WebPConverter() {
                         </button>
                     </div>
 
-                    {/* Settings - Only show if uploaded file is WebP */}
-                    {file.type === "image/webp" && (
-                        <div className="flex flex-col gap-4 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/20">
-                            {/* Target Format */}
-                            <div className="flex flex-col gap-2">
-                                <label className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">Target Format</label>
-                                <div className="flex gap-2">
-                                    {["image/png", "image/jpeg"].map((format) => {
-                                        const label = getFormatLabel(format);
-                                        return (
-                                            <button
-                                                key={format}
-                                                onClick={() => setTargetFormat(format as any)}
-                                                className={`flex-1 py-2.5 rounded-xl text-sm font-medium border transition-all duration-200 ${targetFormat === format
-                                                    ? "bg-purple-500 border-purple-500 text-white"
-                                                    : "bg-white border-zinc-200 text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-900 dark:border-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-800"
-                                                    }`}
-                                            >
-                                                {label}
-                                            </button>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-                        </div>
-                    )}
 
                     {/* Action Button */}
                     <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
                         <button
                             onClick={handleConvert}
                             disabled={isProcessing}
-                            className="flex w-full items-center justify-center gap-2 rounded-2xl bg-purple-500 py-4 text-base font-semibold text-white shadow-lg shadow-purple-500/20 hover:bg-purple-600 transition-all duration-200 disabled:opacity-50"
+                            className="flex w-full items-center justify-center gap-2 rounded-2xl bg-cyan-500 py-4 text-base font-semibold text-white shadow-lg shadow-cyan-500/20 hover:bg-cyan-600 transition-all duration-200 disabled:opacity-50"
                         >
                             <Transform className="h-5 w-5" />
-                            {isProcessing ? "Converting..." : `Convert to ${getFormatLabel(targetFormat)}`}
+                            {isProcessing ? "Converting..." : "Convert to PNG"}
                         </button>
                     </div>
                 </div>
