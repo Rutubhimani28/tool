@@ -20,6 +20,7 @@ import {
   ArrowRightAlt,
   ArrowBack,
   ArrowForward,
+  FolderZip,
 } from "@mui/icons-material";
 
 import { tools } from "./data/tools";
@@ -61,52 +62,72 @@ export default function Home() {
   return (
     <div className="flex-1 bg-zinc-50 dark:bg-zinc-950 transition-colors duration-300">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white px-4 pt-16 pb-12 sm:px-6 sm:pt-6 sm:pb-16 lg:px-8 dark:bg-zinc-950 text-center">
+      <section className="relative overflow-hidden bg-white px-4 pt-16 pb-12 sm:px-6 sm:pt-20 sm:pb-24 lg:px-8 dark:bg-zinc-950">
         {/* Background decoration */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-b from-red-500/10 to-transparent rounded-full blur-3xl" />
+          <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[1000px] h-[600px] bg-gradient-to-b from-red-500/10 to-transparent rounded-full blur-3xl" />
         </div>
 
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Heading */}
-          <h1 className="mx-auto max-w-4xl text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-white sm:text-5xl lg:text-6xl leading-tight">
-            Convert PDF to JPG, PNG & WebP in Seconds
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            Free online PDF to image converter. Fast, secure, no software installation required.
-          </p>
+        <div className="mx-auto max-w-7xl relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-          {/* Checkmarks */}
-          <div className="mt-6 flex flex-wrap justify-center gap-4 text-sm font-medium text-zinc-700 dark:text-zinc-300">
-            <div className="flex items-center gap-1.5 bg-zinc-100 dark:bg-zinc-900 px-3 py-1.5 rounded-full">
-              <span className="text-green-500">✅</span> High-quality output
-            </div>
-            <div className="flex items-center gap-1.5 bg-zinc-100 dark:bg-zinc-900 px-3 py-1.5 rounded-full">
-              <span className="text-green-500">✅</span> Batch conversion
-            </div>
-            <div className="flex items-center gap-1.5 bg-zinc-100 dark:bg-zinc-900 px-3 py-1.5 rounded-full">
-              <span className="text-green-500">✅</span> 100% Secure & Private
-            </div>
-          </div>
+            {/* Left Column: Text & CTA */}
+            <div className="text-center lg:text-left">
+              <h1 className="text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-white sm:text-5xl lg:text-6xl leading-tight">
+                Free Online PDF & Image Tools
+              </h1>
+              <p className="mt-6 text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                The only platform you need to convert, edit, merge, and manage your documents and images. Fast, reliable, and completely free.
+              </p>
 
-          {/* CTA */}
-          <div className="mt-10 flex justify-center">
-            <a href="#tools" className="inline-flex items-center justify-center rounded-full bg-red-600 px-8 py-4 text-lg font-bold text-white shadow-lg shadow-red-500/30 hover:bg-red-700 hover:shadow-red-500/50 hover:-translate-y-0.5 transition-all duration-200">
-              Convert PDF Now — It's Free
-            </a>
-          </div>
+              {/* CTA */}
+              <div className="mt-10 flex justify-center lg:justify-start">
+                <a href="#tools" className="inline-flex items-center justify-center rounded-full bg-red-600 px-8 py-4 text-lg font-bold text-white shadow-lg shadow-red-500/30 hover:bg-red-700 hover:shadow-red-500/50 hover:-translate-y-0.5 transition-all duration-200">
+                  Explore All Tools
+                </a>
+              </div>
 
-          {/* Trust Indicators */}
-          <div className="mt-10 pt-8 border-t border-zinc-200 dark:border-zinc-800 flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm text-zinc-500 dark:text-zinc-400">
-            <div className="flex items-center gap-2">
-              <Lock className="h-4 w-4 text-zinc-400" /> SSL Secure
+              {/* Trust Indicators */}
+              <div className="mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800 flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-4 text-sm font-medium text-zinc-600 dark:text-zinc-400">
+                <div className="flex items-center gap-2">
+                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400">✓</span> 100% Secure
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400">✓</span> Processed Locally
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400">✓</span> No Registration
+                </div>
+              </div>
             </div>
-            <div className="flex items-center gap-2">
-              <LockOpen className="h-4 w-4 text-zinc-400" /> No Registration Required
+
+            {/* Right Column: Visual Composition */}
+            <div className="hidden lg:block relative h-[450px] w-full">
+              {/* Main PDF Card */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-80 bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl border border-zinc-200 dark:border-zinc-800 z-10 flex flex-col items-center justify-center p-6 transform -rotate-6 hover:rotate-0 transition-transform duration-500">
+                <Description className="h-24 w-24 text-red-500 mb-6" />
+                <div className="w-3/4 h-3 bg-zinc-100 dark:bg-zinc-800 rounded-full mb-4"></div>
+                <div className="w-full h-3 bg-zinc-100 dark:bg-zinc-800 rounded-full mb-4"></div>
+                <div className="w-5/6 h-3 bg-zinc-100 dark:bg-zinc-800 rounded-full"></div>
+              </div>
+
+              {/* JPG Card */}
+              <div className="absolute top-[15%] right-[10%] w-36 h-36 bg-white dark:bg-zinc-900 rounded-2xl shadow-xl border border-zinc-200 dark:border-zinc-800 z-20 flex flex-col items-center justify-center p-4 transform rotate-12 hover:rotate-0 transition-transform duration-500 hover:scale-110">
+                <ImageIcon className="h-12 w-12 text-blue-500 mb-3" />
+                <span className="font-bold text-zinc-900 dark:text-white">JPG</span>
+              </div>
+
+              {/* PNG Card */}
+              <div className="absolute bottom-[15%] left-[10%] w-36 h-36 bg-white dark:bg-zinc-900 rounded-2xl shadow-xl border border-zinc-200 dark:border-zinc-800 z-20 flex flex-col items-center justify-center p-4 transform -rotate-12 hover:rotate-0 transition-transform duration-500 hover:scale-110">
+                <ImageIcon className="h-12 w-12 text-green-500 mb-3" />
+                <span className="font-bold text-zinc-900 dark:text-white">PNG</span>
+              </div>
+
+              {/* Decorative Elements */}
+              <div className="absolute top-1/2 right-1/4 w-24 h-24 border-t-2 border-r-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-tr-3xl -z-10 opacity-50"></div>
+              <div className="absolute bottom-1/2 left-1/4 w-24 h-24 border-b-2 border-l-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-bl-3xl -z-10 opacity-50"></div>
             </div>
-            <div className="flex items-center gap-2">
-              <Lock className="h-4 w-4 text-zinc-400" /> 100% Local Processing
-            </div>
+
           </div>
         </div>
       </section>
@@ -178,32 +199,48 @@ export default function Home() {
 
                 <div className="flex items-center justify-between p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-red-200 dark:hover:border-red-900/50 transition-colors">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
-                      <ImageIcon className="h-5 w-5" />
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400">
+                      <Description className="h-5 w-5" />
                     </div>
-                    <span className="font-semibold text-zinc-900 dark:text-white">JPG</span>
+                    <span className="font-semibold text-zinc-900 dark:text-white">PDF</span>
                   </div>
                   <ArrowRightAlt className="h-6 w-6 text-zinc-400" />
                   <div className="flex items-center gap-3">
-                    <span className="font-semibold text-zinc-900 dark:text-white">PDF</span>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400">
-                      <Description className="h-5 w-5" />
+                    <span className="font-semibold text-zinc-900 dark:text-white">PNG</span>
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400">
+                      <ImageIcon className="h-5 w-5" />
                     </div>
                   </div>
                 </div>
 
                 <div className="flex items-center justify-between p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-red-200 dark:hover:border-red-900/50 transition-colors">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-100 text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-400">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400">
                       <Description className="h-5 w-5" />
                     </div>
-                    <span className="font-semibold text-zinc-900 dark:text-white">Word</span>
+                    <span className="font-semibold text-zinc-900 dark:text-white">PDF</span>
                   </div>
                   <ArrowRightAlt className="h-6 w-6 text-zinc-400" />
                   <div className="flex items-center gap-3">
-                    <span className="font-semibold text-zinc-900 dark:text-white">PDF</span>
+                    <span className="font-semibold text-zinc-900 dark:text-white">WEBP</span>
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400">
+                      <ImageIcon className="h-5 w-5" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-red-200 dark:hover:border-red-900/50 transition-colors">
+                  <div className="flex items-center gap-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400">
-                      <Description className="h-5 w-5" />
+                      <Collections className="h-5 w-5" />
+                    </div>
+                    <span className="font-semibold text-zinc-900 dark:text-white">Multiple PDFs</span>
+                  </div>
+                  <ArrowRightAlt className="h-6 w-6 text-zinc-400" />
+                  <div className="flex items-center gap-3">
+                    <span className="font-semibold text-zinc-900 dark:text-white">ZIP</span>
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-yellow-100 text-yellow-600 dark:bg-yellow-900/30 dark:text-yellow-400">
+                      <FolderZip className="h-5 w-5" />
                     </div>
                   </div>
                 </div>
@@ -419,15 +456,15 @@ export default function Home() {
               <div className="flex items-center gap-2">
                 <button
                   suppressHydrationWarning
-                  onClick={() => setFaqIndex((prev) => (prev - 1 + 5) % 5)}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 transition-colors"
+                  onClick={() => setFaqIndex((prev) => (prev - 1 + 6) % 6)}
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
                   aria-label="Previous FAQ"
                 >
                   <ArrowBack className="h-5 w-5" />
                 </button>
                 <button
                   suppressHydrationWarning
-                  onClick={() => setFaqIndex((prev) => (prev + 1) % 5)}
+                  onClick={() => setFaqIndex((prev) => (prev + 1) % 6)}
                   className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
                   aria-label="Next FAQ"
                 >
@@ -439,29 +476,33 @@ export default function Home() {
             <div className="relative h-[380px] w-full flex items-center justify-center py-4">
               {[
                 {
-                  q: "Is this PDF to Image converter really free?",
-                  a: "Yes, our tool is 100% free to use. There are no hidden fees, no watermarks added to your images, and no registration required to access the core features."
-                },
-                {
-                  q: "Are my files secure and private?",
+                  q: "Is my PDF secure?",
                   a: "Absolutely. We prioritize your privacy. All file processing happens locally directly on your device (in your browser). Your files are never uploaded to our servers, meaning no one else can ever access them."
                 },
                 {
-                  q: "Does this tool work on mobile devices?",
-                  a: "Yes! Our website is fully responsive and works seamlessly on smartphones and tablets (iOS and Android). You can convert PDFs to images directly from your mobile browser without installing any apps."
+                  q: "Is it really free?",
+                  a: "Yes, our tool is 100% free to use. There are no hidden fees, no watermarks added to your images, and no registration required to access the core features."
                 },
                 {
-                  q: "Will I lose quality when converting a PDF to an image?",
-                  a: "We use advanced rendering technology to ensure the highest possible output quality. For the sharpest text, we recommend choosing the PNG format. If you need a smaller file size, JPG is an excellent choice."
+                  q: "Maximum file size?",
+                  a: "Because all processing happens locally in your browser, there is no strict file size limit. However, very large files (e.g., over 100MB) might take longer to process depending on your device's memory."
                 },
                 {
-                  q: "Can I convert multiple pages at once?",
+                  q: "Does it work on mobile?",
+                  a: "Yes! Our website is fully responsive and works seamlessly on smartphones and tablets (iOS and Android). You can convert PDFs directly from your mobile browser without installing any apps."
+                },
+                {
+                  q: "Can I convert multiple PDFs?",
                   a: "Yes, our tool supports batch conversion. If you upload a multi-page PDF, we will convert every page into a separate image file, which you can download individually or as a convenient ZIP archive."
+                },
+                {
+                  q: "Can I convert scanned PDFs?",
+                  a: "Yes, our tool can convert scanned PDFs into images perfectly. Since we render the PDF exactly as it appears, scanned pages will be converted into high-quality JPG or PNG files."
                 }
               ].map((faq, index) => {
                 let offset = index - faqIndex;
-                if (offset < -2) offset += 5;
-                if (offset > 2) offset -= 5;
+                if (offset < -2) offset += 6;
+                if (offset > 3) offset -= 6;
 
                 const isCenter = offset === 0;
                 const isLeft = offset === -1;
@@ -494,7 +535,7 @@ export default function Home() {
                       {faq.a}
                     </p>
                     <Link href="/faq" className={`mt-6 text-sm font-semibold inline-flex items-center ${isCenter ? 'text-blue-600 dark:text-blue-400 hover:text-blue-700' : 'text-blue-600 dark:text-blue-400 hover:text-blue-700'}`}>
-                      Read More
+                      Read More FAQ
                     </Link>
                   </div>
                 );

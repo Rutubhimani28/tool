@@ -30,6 +30,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+button {
+  cursor: pointer;
+}
+
 ::selection {
   background-color: rgba(239, 68, 68, 0.2);
   color: inherit;
