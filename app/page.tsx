@@ -103,10 +103,10 @@ export default function Home() {
             {/* Left Column: Text & CTA */}
             <div className="text-center lg:text-left">
               <h1 className="text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-white sm:text-5xl lg:text-6xl leading-tight">
-                Free Online PDF & Image Tools
+                PDF to Image Converter Free Online
               </h1>
               <p className="mt-6 text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                The only platform you need to convert, edit, merge, and manage your documents and images. Fast, reliable, and completely free.
+                The best free online PDF to image converter. Convert, edit, merge, and manage your documents and images. Fast, reliable, and 100% local processing.
               </p>
 
               {/* CTA */}
@@ -463,11 +463,11 @@ export default function Home() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="prose prose-zinc dark:prose-invert max-w-none">
             <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white mb-6">
-              The Ultimate Guide to PDF to Image Conversion
+              The Best PDF to Image Converter Free Online
             </h2>
 
             <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8 leading-relaxed">
-              In today's digital landscape, the Portable Document Format (PDF) is the standard for sharing documents. However, there are many situations where an image format like JPG, PNG, or WebP is more suitable. Whether you're a student, professional, or casual user, understanding how and why to convert PDFs to images can significantly improve your workflow.
+              In today's digital landscape, the Portable Document Format (PDF) is the standard for sharing documents. However, there are many situations where an image format like JPG, PNG, or WebP is more suitable. Whether you're a student, professional, or casual user, using a PDF to image converter free online can significantly improve your workflow.
             </p>
 
             <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">

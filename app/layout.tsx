@@ -9,10 +9,10 @@ const ibmPlexSans = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "PDF to JPG Online Free – Convert PDF to Image | PDFImageConvert",
+  title: "PDF to Image Converter Free Online - Convert PDF to JPG/PNG | PDFImageConvert",
   description:
-    "Convert PDF to JPG or PNG in seconds. Free, fast, and secure local PDF converter. Extract images from PDF, PDF to WebP, and more without uploading files.",
-  keywords: ["pdf to jpg online free", "convert pdf to image", "pdf to png", "extract images from pdf", "pdf to jpg without upload", "local pdf converter", "PDF tools", "image tools"],
+    "Best PDF to image converter free online. Convert PDF to JPG, PNG, or WebP in seconds. Fast, secure, and 100% local processing without uploading files.",
+  keywords: ["pdf to image converter free online", "pdf to jpg online free", "convert pdf to image", "pdf to png", "extract images from pdf", "pdf to jpg without upload", "local pdf converter", "PDF tools", "image tools"],
 };
 
 import Navbar from "@/app/components/Navbar";
