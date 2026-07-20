@@ -1,6 +1,0 @@
-﻿app/pdf-to-jpg/page.tsx:50:            const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-app/pdf-to-word/page.tsx:50:            const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
-app/rotate-pdf/page.tsx:53:            const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-app/unlock-pdf/page.tsx:61:                    const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer, password });
-fix-theme.js:36:    'const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer, password });',
-fix-theme.js:37:    '(pdfjsLib as any).verbosity = 0;\n                    const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer, password, verbosity: 0 });'
