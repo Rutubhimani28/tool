@@ -41,7 +41,7 @@ export default function Navbar() {
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
                     <div className="flex h-12 w-12 items-center justify-center transition-transform group-hover:scale-105 overflow-hidden">
-                        <img src="/download.png" alt="Logo" className="h-full w-full object-contain scale-[1.6]" />
+                        <img src="/logo.png" alt="Logo" className="h-full w-full object-contain scale-[1.6]" />
                     </div>
                 </Link>
 

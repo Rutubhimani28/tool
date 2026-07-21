@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   description:
     "Best PDF to image converter free online. Convert PDF to JPG, PNG, or WebP in seconds. Fast, secure, and 100% local processing without uploading files.",
   keywords: ["pdf to image converter free online", "pdf to jpg online free", "convert pdf to image", "pdf to png", "extract images from pdf", "pdf to jpg without upload", "local pdf converter", "PDF tools", "image tools"],
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 import Navbar from "@/app/components/Navbar";
