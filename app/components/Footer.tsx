@@ -24,9 +24,9 @@ export default function Footer() {
                 <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-5">
                     {/* Brand */}
                     <div className="flex flex-col gap-4 items-center sm:items-start text-center sm:text-left md:col-span-2">
-                        <Link href="/" className="flex items-center gap-2 group w-fit">
+                        <Link href="/" className="flex items-center gap-2 group w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 rounded-lg">
                             <div className="flex h-12 w-12 items-center justify-center transition-transform group-hover:scale-105 overflow-hidden">
-                                <img src="/logo.png" alt="Logo" className="h-full w-full object-contain scale-[1.6]" />
+                                <img src="/logo.png" alt="PDFImageConvert Logo - Free PDF Tools" className="h-full w-full object-contain scale-[1.6]" />
                             </div>
                             <span className="text-lg font-bold text-zinc-900 dark:text-white">
                                 PDFImage<span className="text-red-500">Convert</span>

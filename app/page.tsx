@@ -88,8 +88,83 @@ export default function Home() {
   const pdfTools = filteredTools.filter((t) => t.category !== "image");
   const imageTools = filteredTools.filter((t) => t.category === "image");
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "PDFImageConvert",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Best free online PDF to image converter. Convert, edit, merge, and manage your documents and images locally."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is my PDF secure?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely. We prioritize your privacy. All file processing happens locally directly on your device (in your browser). Your files are never uploaded to our servers, meaning no one else can ever access them."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is it really free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, our tool is 100% free to use. There are no hidden fees, no watermarks added to your images, and no registration required to access the core features."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Maximum file size?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Because all processing happens locally in your browser, there is no strict file size limit. However, very large files (e.g., over 100MB) might take longer to process depending on your device's memory."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does it work on mobile?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Our website is fully responsive and works seamlessly on smartphones and tablets (iOS and Android). You can convert PDFs directly from your mobile browser without installing any apps."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I convert multiple PDFs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, our tool supports batch conversion. If you upload a multi-page PDF, we will convert every page into a separate image file, which you can download individually or as a convenient ZIP archive."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I convert scanned PDFs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, our tool can convert scanned PDFs into images perfectly. Since we render the PDF exactly as it appears, scanned pages will be converted into high-quality JPG or PNG files."
+            }
+          }
+        ]
+      }
+    ]
+  };
+
   return (
     <div className="flex-1 bg-zinc-50 dark:bg-zinc-950 transition-colors duration-300">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-white px-4 pt-8 pb-4 sm:px-6 sm:pt-12 sm:pb-8 lg:px-8 dark:bg-zinc-950">
         {/* Background decoration */}

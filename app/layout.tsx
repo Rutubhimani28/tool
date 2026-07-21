@@ -28,13 +28,58 @@ export const metadata: Metadata = {
     "image tools",
   ],
 
-  alternates: {
-    canonical: "/",
+  openGraph: {
+    title: "PDF to Image Converter Free Online | PDFImageConvert",
+    description: "Best PDF to image converter free online. Convert PDF to JPG, PNG, or WebP in seconds. Fast, secure, and 100% local processing.",
+    url: "https://pdfimageconvert.com",
+    siteName: "PDFImageConvert",
+    type: "website",
+    images: [
+      {
+        url: "https://pdfimageconvert.com/logo.png",
+        width: 800,
+        height: 600,
+        alt: "PDFImageConvert Logo",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "PDF to Image Converter Free Online | PDFImageConvert",
+    description: "Best PDF to image converter free online. Convert PDF to JPG, PNG, or WebP in seconds. Fast, secure, and 100% local processing.",
+    images: ["https://pdfimageconvert.com/logo.png"],
   },
 
   icons: {
     icon: "/icon.png",
   },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://pdfimageconvert.com/#website",
+      url: "https://pdfimageconvert.com",
+      name: "PDFImageConvert",
+      description: "Best PDF to image converter free online. Convert PDF to JPG, PNG, or WebP in seconds.",
+      publisher: {
+        "@id": "https://pdfimageconvert.com/#organization",
+      },
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://pdfimageconvert.com/#organization",
+      name: "PDFImageConvert",
+      url: "https://pdfimageconvert.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://pdfimageconvert.com/logo.png",
+      },
+    },
+  ],
 };
 
 import Navbar from "@/app/components/Navbar";
@@ -57,6 +102,10 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body suppressHydrationWarning className={`${ibmPlexSans.className} antialiased min-h-full flex flex-col bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-300 overflow-x-hidden`}>
         <Script

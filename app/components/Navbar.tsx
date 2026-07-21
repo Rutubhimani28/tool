@@ -39,9 +39,9 @@ export default function Navbar() {
         <header className="sticky top-0 z-50 w-full border-b border-zinc-200/80 bg-white/80 backdrop-blur-md dark:border-zinc-800/80 dark:bg-zinc-950/80 transition-colors duration-300">
             <div className="mx-auto flex h-16 max-w-[1600px] items-center justify-between px-4 sm:px-6 lg:px-8">
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
+                <Link href="/" className="flex items-center gap-2 group flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 rounded-lg">
                     <div className="flex h-12 w-12 items-center justify-center transition-transform group-hover:scale-105 overflow-hidden">
-                        <img src="/logo.png" alt="Logo" className="h-full w-full object-contain scale-[1.6]" />
+                        <img src="/logo.png" alt="PDFImageConvert Logo - Free PDF Tools" className="h-full w-full object-contain scale-[1.6]" />
                     </div>
                 </Link>
 
