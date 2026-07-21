@@ -54,6 +54,10 @@ export const metadata: Metadata = {
   icons: {
     icon: "/icon.png",
   },
+
+  other: {
+    "google-adsense-account": "ca-pub-7796384906806193",
+  },
 };
 
 const jsonLd = {
