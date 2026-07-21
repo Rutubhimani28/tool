@@ -83,9 +83,6 @@ export default function Footer() {
                             <li>
                                 <Link href="/contact" className="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">Contact Us</Link>
                             </li>
-                            <li>
-                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">GitHub</a>
-                            </li>
                         </ul>
                     </div>
                 </div>
