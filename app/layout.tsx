@@ -9,10 +9,29 @@ const ibmPlexSans = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "PDF to Image Converter Free Online - Convert PDF to JPG/PNG | PDFImageConvert",
+  metadataBase: new URL("https://pdfimageconvert.com"),
+
+  title:
+    "PDF to Image Converter Free Online - Convert PDF to JPG/PNG | PDFImageConvert",
+
   description:
     "Best PDF to image converter free online. Convert PDF to JPG, PNG, or WebP in seconds. Fast, secure, and 100% local processing without uploading files.",
-  keywords: ["pdf to image converter free online", "pdf to jpg online free", "convert pdf to image", "pdf to png", "extract images from pdf", "pdf to jpg without upload", "local pdf converter", "PDF tools", "image tools"],
+
+  keywords: [
+    "pdf to image converter free online",
+    "pdf to image",
+    "pdf to png",
+    "extract images from pdf",
+    "pdf to jpg without upload",
+    "local pdf converter",
+    "PDF tools",
+    "image tools",
+  ],
+
+  alternates: {
+    canonical: "/",
+  },
+
   icons: {
     icon: "/icon.png",
   },
