@@ -88,6 +88,7 @@ const jsonLd = {
 
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
+import AdBanner from "@/app/components/AdBanner";
 import { ThemeProvider } from "next-themes";
 import Script from "next/script";
 
@@ -127,9 +128,16 @@ export default function RootLayout({
             `,
           }}
         />
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7796384906806193"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
           <main className="flex-1 flex flex-col">{children}</main>
+          <AdBanner dataAdSlot="9082762608" />
           <Footer />
           <Toaster
             position="top-center"
