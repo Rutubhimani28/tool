@@ -137,7 +137,6 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
           <main className="flex-1 flex flex-col">{children}</main>
-          <AdBanner dataAdSlot="9082762608" />
           <Footer />
           <Toaster
             position="top-center"
