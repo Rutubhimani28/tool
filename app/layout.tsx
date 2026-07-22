@@ -114,6 +114,12 @@ export default function RootLayout({
       </head>
       <body suppressHydrationWarning className={`${ibmPlexSans.className} antialiased min-h-full flex flex-col bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-300 overflow-x-hidden`}>
         <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7796384906806193"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+        <Script
           id="suppress-logs"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
@@ -127,12 +133,6 @@ export default function RootLayout({
               }
             `,
           }}
-        />
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7796384906806193"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
         />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
