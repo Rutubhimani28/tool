@@ -1468,4 +1468,251 @@ export const articles: Article[] = [
     
     `
   }
+,
+  {
+    slug: "how-to-extract-text-from-pdf-images-ocr",
+    title: "How to Extract Text from Scanned PDFs and Images using OCR",
+    description: "Learn how Optical Character Recognition (OCR) technology works and how you can use it to extract editable text from scanned PDF documents and images.",
+    date: "2026-07-22",
+    category: "Convert",
+    content: `
+
+      <h2>Introduction</h2>
+      <p>Have you ever received a scanned PDF document or a photograph of a contract and needed to edit the text? If you try to select the text with your mouse, nothing happens. That is because a scanned PDF is essentially just a photograph of a piece of paper; the computer doesn't recognize the letters as text, only as pixels.</p>
+      <p>Retyping a 20-page document manually is a massive waste of time. The solution is Optical Character Recognition (OCR). In this guide, we will explain what OCR is, how it works, and how you can use it to effortlessly extract text from your scanned documents.</p>
+
+      <h2>What is OCR Technology?</h2>
+      <p>Optical Character Recognition (OCR) is a specialized software technology that analyzes the shapes of pixels in an image and translates them into machine-encoded text. It acts as a bridge between the physical world of printed paper and the digital world of editable data.</p>
+      <p>When you run an image through an OCR engine, the software scans for patterns that look like letters, numbers, and punctuation marks. Modern OCR systems use advanced machine learning and artificial intelligence to recognize hundreds of different languages, fonts, and even handwriting with incredible accuracy.</p>
+
+      <h2>Why Do You Need OCR?</h2>
+      <ul>
+        <li><strong>Digitizing Archives:</strong> Businesses often have filing cabinets full of old paper records. Scanning them creates PDFs, but OCR makes those PDFs searchable, allowing you to find a specific invoice from five years ago in seconds.</li>
+        <li><strong>Editing Scanned Contracts:</strong> If a client sends you a signed, scanned contract and you need to make a revision, OCR allows you to extract the text into Microsoft Word, make the change, and save it as a new <a href="/word-to-pdf">Word to PDF</a> document.</li>
+        <li><strong>Data Entry Automation:</strong> Extracting data from receipts, business cards, and forms automatically saves hundreds of hours of manual data entry.</li>
+      </ul>
+
+      <h2>How to Extract Text from a PDF</h2>
+      <p>Extracting text is a simple process when you use the right tools. Here is how to do it using our platform:</p>
+      
+      <ol>
+        <li><strong>Navigate to the Tool:</strong> Open our <a href="/pdf-to-text">PDF to Text</a> converter tool.</li>
+        <li><strong>Upload Your Scanned PDF:</strong> Drag and drop the document you want to extract text from.</li>
+        <li><strong>Let the OCR Engine Work:</strong> Our tool utilizes advanced local processing to analyze the document. It will identify the text within the images and extract it.</li>
+        <li><strong>Download the Text File:</strong> Once the process is complete, you can download a clean, editable <code>.txt</code> file containing all the extracted text, ready to be pasted into Word, Google Docs, or any other text editor.</li>
+      </ol>
+
+      <h2>Tips for the Best OCR Results</h2>
+      <p>While modern OCR is highly accurate, it isn't magic. The quality of the output depends heavily on the quality of the input image. Follow these tips for perfect extraction:</p>
+      <ul>
+        <li><strong>High Resolution:</strong> Ensure your scanned PDF or image is high resolution (at least 300 DPI). Blurry or pixelated text is difficult for the software to read.</li>
+        <li><strong>Good Contrast:</strong> Black text on a white background works best. If the scan is too dark or has heavy shadows, the OCR might misinterpret letters.</li>
+        <li><strong>Proper Orientation:</strong> Make sure the text is upright. If your scanned page is sideways, use a <a href="/rotate-pdf">Rotate PDF</a> tool to fix the orientation before running the OCR.</li>
+      </ul>
+
+      <h2>Conclusion</h2>
+      <p>OCR technology has revolutionized how we handle physical documents in a digital world. By understanding how to extract text from scanned PDFs and images, you can save countless hours of manual typing and make your document archives fully searchable and editable.</p>
+      <p>Ready to digitize your workflow? Try our free <a href="/pdf-to-text">PDF to Text</a> extraction tool today.</p>
+    
+    `
+  },
+  {
+    slug: "the-ultimate-guide-to-pdf-security",
+    title: "The Ultimate Guide to PDF Security: Passwords, Encryption, and Watermarks",
+    description: "Protect your sensitive documents from unauthorized access. Learn the best practices for PDF security, including encryption, password protection, and watermarking.",
+    date: "2026-07-22",
+    category: "Security",
+    content: `
+
+      <h2>Introduction</h2>
+      <p>In the digital age, information is your most valuable asset. Whether you are dealing with financial statements, legal contracts, intellectual property, or personal medical records, sending an unprotected PDF via email is like sending a postcard through the mail—anyone who intercepts it can read it.</p>
+      <p>Securing your PDF documents is not just a best practice; in many industries, it is a legal requirement. In this comprehensive guide, we will explore the different layers of PDF security and how you can easily protect your files using free online tools.</p>
+
+      <h2>Level 1: Password Protection and Encryption</h2>
+      <p>The most fundamental way to secure a PDF is by encrypting it and locking it with a password. When a PDF is properly encrypted, the actual data inside the file is scrambled. Without the correct password, the file is completely unreadable, even if a hacker manages to steal it.</p>
+      
+      <h3>Types of PDF Passwords</h3>
+      <p>There are two distinct types of passwords you can apply to a PDF:</p>
+      <ul>
+        <li><strong>User Password (Document Open Password):</strong> This is the most common type. It requires the user to enter a password just to open and view the document. If you are emailing a tax return to your accountant, this is the password you want to use.</li>
+        <li><strong>Owner Password (Permissions Password):</strong> This password allows anyone to open and read the document, but it restricts what they can do with it. You can use an Owner Password to prevent users from printing the file, copying text, or making edits.</li>
+      </ul>
+
+      <h3>How to Protect Your PDF</h3>
+      <p>Securing your document takes only a few seconds:</p>
+      <ol>
+        <li>Go to our <a href="/protect-pdf">Protect PDF</a> tool.</li>
+        <li>Upload your sensitive document.</li>
+        <li>Enter a strong, unique password. (Avoid using easily guessable passwords like "123456" or "password").</li>
+        <li>Click "Encrypt PDF." The tool will scramble the file and provide a secure, locked version for you to download.</li>
+      </ol>
+
+      <h2>Level 2: Watermarking for Copyright Protection</h2>
+      <p>While passwords prevent unauthorized access, watermarks prevent unauthorized <em>use</em>. If you are a photographer sharing a portfolio, or a consultant sharing a proprietary framework, you want people to see your work, but you don't want them to steal it and claim it as their own.</p>
+      <p>A watermark is a faint logo or text (like "CONFIDENTIAL" or "DRAFT") stamped across the pages of your document. It clearly identifies the owner and discourages unauthorized distribution.</p>
+      
+      <h3>How to Add a Watermark</h3>
+      <ol>
+        <li>Open the <a href="/watermark-pdf">Watermark PDF</a> tool.</li>
+        <li>Upload your document.</li>
+        <li>Type your desired text (e.g., "Copyright 2026 Acme Corp") or upload a transparent PNG logo.</li>
+        <li>Adjust the opacity so it doesn't obscure the main content, and click apply.</li>
+      </ol>
+
+      <h2>Level 3: Flattening (Converting to Image)</h2>
+      <p>Even with an Owner Password restricting text copying, determined users can sometimes bypass these restrictions using advanced software. If you want to absolutely guarantee that the text in your document cannot be highlighted, copied, or digitally edited, the ultimate security measure is to "flatten" the document by converting it into an image.</p>
+      <p>By using a <a href="/pdf-to-jpg">PDF to JPG</a> converter, you transform the editable text into a static grid of pixels. You can then use a <a href="/jpg-to-pdf">JPG to PDF</a> tool to wrap those images back into a PDF format. The resulting document looks identical to the original, but the text is completely locked in place.</p>
+
+      <h2>Conclusion</h2>
+      <p>Document security should never be an afterthought. By utilizing strong encryption, strategic watermarking, and document flattening, you can ensure your sensitive information remains strictly confidential and your intellectual property remains yours.</p>
+      <p>Take control of your document security today with our suite of free, locally-processed <a href="/">PDF Security tools</a>.</p>
+    
+    `
+  },
+  {
+    slug: "how-to-reduce-image-file-size-for-seo",
+    title: "How to Reduce Image File Size for Better SEO and Website Speed",
+    description: "Slow websites lose visitors and rank lower on Google. Learn how to properly compress and optimize your images to drastically improve your website's performance.",
+    date: "2026-07-22",
+    category: "Optimize",
+    content: `
+
+      <h2>Introduction</h2>
+      <p>If you run a website, a blog, or an e-commerce store, you know that high-quality images are essential for engaging your audience. However, those beautiful, high-resolution photographs come with a hidden cost: massive file sizes. Uploading unoptimized images is the number one reason websites load slowly.</p>
+      <p>In the world of Search Engine Optimization (SEO), speed is a critical ranking factor. Google actively penalizes slow websites, and users will abandon a page if it takes more than three seconds to load. In this guide, we will show you how to reduce your image file sizes without sacrificing visual quality, ensuring your website is lightning-fast and SEO-friendly.</p>
+
+      <h2>The Impact of Image Size on SEO</h2>
+      <p>Google uses a set of metrics called "Core Web Vitals" to measure user experience. The most important metric is <strong>Largest Contentful Paint (LCP)</strong>, which measures how long it takes for the largest element on the screen (usually a hero image or a banner) to become visible.</p>
+      <p>If you upload a 5MB photograph straight from your digital camera to your homepage, it will take several seconds for a mobile user on a 4G connection to download it. Your LCP score will plummet, your bounce rate will skyrocket, and your Google rankings will suffer. The goal is to keep every image on your website under 200KB (and ideally under 100KB).</p>
+
+      <h2>Step 1: Resize to the Correct Dimensions</h2>
+      <p>The most common mistake webmasters make is uploading images that are physically too large. If your blog's content column is only 800 pixels wide, there is absolutely no reason to upload an image that is 4000 pixels wide. The browser will have to download the massive file and then shrink it down to fit the screen, wasting bandwidth and processing power.</p>
+      <p><strong>The Fix:</strong> Before uploading, use an <a href="/image-resizer">Image Resizer</a> to scale the image down to the exact maximum dimensions it will be displayed at on your website.</p>
+
+      <h2>Step 2: Choose the Right File Format</h2>
+      <p>Using the wrong file format can inflate your file size unnecessarily.</p>
+      <ul>
+        <li><strong>Don't use PNG for photographs:</strong> PNG is a lossless format designed for logos and graphics with transparent backgrounds. Saving a complex photograph as a PNG will result in a massive file size.</li>
+        <li><strong>Use JPG for photographs:</strong> JPG uses lossy compression, which is highly efficient for photos.</li>
+        <li><strong>Upgrade to WebP:</strong> For the best possible performance, use a <a href="/webp-converter">WebP Converter</a>. WebP is a modern format that provides superior compression, resulting in files that are 25-30% smaller than equivalent JPGs.</li>
+      </ul>
+
+      <h2>Step 3: Compress the Image</h2>
+      <p>Once the image is the correct physical size and in the correct format, the final step is compression. Image compression tools use advanced algorithms to remove unnecessary data from the file (like metadata and imperceptible color variations) while keeping the image looking visually identical to the human eye.</p>
+      <p><strong>The Fix:</strong> Run your images through a dedicated <a href="/image-compressor">Image Compressor</a>. You can often reduce a file's size by 60-80% with zero noticeable loss in quality.</p>
+
+      <h2>The Ultimate Workflow</h2>
+      <p>To guarantee your website remains fast, adopt this simple workflow for every single image you upload:</p>
+      <ol>
+        <li><strong>Resize:</strong> Scale the image to the exact pixel dimensions needed.</li>
+        <li><strong>Convert:</strong> Convert the image to WebP (or JPG if you need legacy browser support).</li>
+        <li><strong>Compress:</strong> Run the image through a compressor to strip out unnecessary data.</li>
+      </ol>
+
+      <h2>Conclusion</h2>
+      <p>Optimizing your images is the lowest-hanging fruit in technical SEO. By taking a few extra seconds to resize, convert, and compress your visuals, you can drastically improve your page load times, delight your users, and climb the Google search rankings.</p>
+      <p>Start optimizing your website today with our suite of free <a href="/">Image Optimization tools</a>.</p>
+    
+    `
+  },
+  {
+    slug: "heic-to-jpg-why-you-need-to-convert-iphone-photos",
+    title: "HEIC to JPG: Why You Need to Convert Your iPhone Photos",
+    description: "Struggling to open photos transferred from your iPhone? Learn what the HEIC format is, why Apple uses it, and how to easily convert your pictures to JPG.",
+    date: "2026-07-22",
+    category: "Convert",
+    content: `
+
+      <h2>Introduction</h2>
+      <p>You just got back from a fantastic vacation, and you transfer all the photos from your iPhone to your Windows PC to edit them or share them with friends. But when you try to open the files, you get an error message. You look closely and realize the files aren't JPGs; they end in <code>.heic</code>.</p>
+      <p>If you own a modern iPhone, you have likely encountered the HEIC format. While it is a brilliant piece of technology, it can cause massive compatibility headaches when trying to share files with non-Apple devices. In this article, we will explain what HEIC is, why Apple uses it, and how you can easily convert your photos back to the universal JPG format.</p>
+
+      <h2>What is HEIC?</h2>
+      <p>HEIC stands for High-Efficiency Image Container. It is the file extension used by Apple for the HEIF (High-Efficiency Image Format) standard. Apple adopted this format as the default for photos starting with iOS 11 in 2017.</p>
+      <p>The primary advantage of HEIC is its incredible compression algorithm. A HEIC photo takes up roughly <strong>half the storage space</strong> of a standard JPG photo, while maintaining the exact same (or even slightly better) visual quality. For iPhone users with limited storage space, this is a game-changer, allowing them to store twice as many photos on their device.</p>
+
+      <h2>The Compatibility Problem</h2>
+      <p>If HEIC is so great, why is it a problem? The issue is universal compatibility.</p>
+      <p>JPG has been the undisputed standard for digital images for decades. Every operating system, web browser, social media platform, and smart TV in the world knows how to open a JPG natively. HEIC, on the other hand, is still relatively new and heavily associated with the Apple ecosystem.</p>
+      <ul>
+        <li><strong>Windows PCs:</strong> Older versions of Windows cannot open HEIC files without downloading special extensions from the Microsoft Store.</li>
+        <li><strong>Websites and Portals:</strong> If you try to upload a HEIC file to a job application portal, a government website, or many older content management systems, the upload will likely be rejected.</li>
+        <li><strong>Android Devices:</strong> While modern Android phones support HEIC, older models may struggle to display them correctly.</li>
+      </ul>
+
+      <h2>How to Convert HEIC to JPG</h2>
+      <p>To ensure your photos can be viewed by anyone, anywhere, you need to convert them to JPG. Fortunately, this is a very simple process using a web-based converter.</p>
+      
+      <ol>
+        <li><strong>Open the Converter:</strong> Navigate to our free <a href="/heic-to-jpg">HEIC to JPG Converter</a> tool.</li>
+        <li><strong>Upload Your Photos:</strong> Drag and drop your <code>.heic</code> files from your computer into the browser window. You can upload multiple files at once for batch processing.</li>
+        <li><strong>Convert:</strong> Click the convert button. Our local-processing engine will instantly decode the high-efficiency Apple format and re-encode the images as standard JPGs.</li>
+        <li><strong>Download:</strong> Download your new, universally compatible JPG files.</li>
+      </ol>
+
+      <h2>How to Stop Your iPhone from Taking HEIC Photos</h2>
+      <p>If you find yourself constantly having to convert your photos and you'd rather just sacrifice the storage space for convenience, you can tell your iPhone to shoot in JPG by default:</p>
+      <ol>
+        <li>Open the <strong>Settings</strong> app on your iPhone.</li>
+        <li>Scroll down and tap on <strong>Camera</strong>.</li>
+        <li>Tap on <strong>Formats</strong>.</li>
+        <li>Change the selection from "High Efficiency" (HEIC) to <strong>"Most Compatible"</strong> (JPG).</li>
+      </ol>
+      <p><em>Note: If you shoot 4K video at 60fps, your phone may still require the High Efficiency format for video recording.</em></p>
+
+      <h2>Conclusion</h2>
+      <p>The HEIC format is a fantastic technological advancement that saves millions of gigabytes of storage space worldwide. However, until it achieves the universal adoption of JPG, conversion will remain a necessary step for sharing photos outside the Apple ecosystem.</p>
+      <p>Don't let format incompatibility slow you down. Use our fast, free, and secure <a href="/heic-to-jpg">HEIC to JPG Converter</a> to make your photos universally accessible today.</p>
+    
+    `
+  },
+  {
+    slug: "how-to-merge-pdf-files-on-mac-and-windows",
+    title: "How to Merge PDF Files on Mac and Windows: The Ultimate Guide",
+    description: "Need to combine multiple PDF documents into a single file? Learn the fastest and easiest ways to merge PDFs on both Mac and Windows operating systems.",
+    date: "2026-07-22",
+    category: "Organize",
+    content: `
+
+      <h2>Introduction</h2>
+      <p>Whether you are compiling a monthly financial report from various departments, assembling a portfolio of your design work, or putting together a comprehensive legal brief, dealing with a dozen separate PDF files is a logistical nightmare. It is confusing for you, and it is incredibly frustrating for the person receiving your email.</p>
+      <p>The solution is simple: combine those scattered documents into a single, cohesive file. Merging PDFs is one of the most common document management tasks, yet many people struggle to find a quick, free way to do it. In this guide, we will show you exactly how to merge PDF files seamlessly, regardless of whether you are using a Mac or a Windows PC.</p>
+
+      <h2>The Challenge with Built-in Tools</h2>
+      <p>Historically, merging PDFs required expensive desktop software like Adobe Acrobat Pro. While Mac users have a slight advantage with the built-in "Preview" app (which allows for clunky, manual page dragging), Windows users have traditionally been left in the dark, with no native tool available to combine PDFs.</p>
+      <p>Fortunately, the era of relying on expensive software or frustrating built-in apps is over. The most efficient way to merge documents today is by using a modern, browser-based tool.</p>
+
+      <h2>How to Merge PDFs Online (The Best Method)</h2>
+      <p>Using a web-based utility is the superior method for several reasons: it works identically on Mac, Windows, and Linux; it requires no software installation; and modern tools process the files locally, ensuring your data remains completely private.</p>
+      
+      <p>Here is how to combine your files in seconds:</p>
+      <ol>
+        <li><strong>Open the Tool:</strong> Navigate to our free <a href="/merge-pdf">Merge PDF</a> utility.</li>
+        <li><strong>Upload Your Files:</strong> Drag and drop all the PDF files you want to combine into the browser window. You can select multiple files at once from your computer.</li>
+        <li><strong>Rearrange the Order:</strong> Once uploaded, the tool will display the files as draggable blocks. Simply click and drag the files to arrange them in the exact order you want them to appear in the final document.</li>
+        <li><strong>Merge:</strong> Click the "Merge PDFs" button. The software will instantly stitch the documents together in the sequence you specified.</li>
+        <li><strong>Download:</strong> Download your newly combined, single PDF file.</li>
+      </ol>
+
+      <h2>Advanced Merging: Mixing Formats</h2>
+      <p>What if you need to combine a PDF contract with a JPG image of a receipt? You don't need to convert the image to a PDF first. A robust document workflow allows you to handle mixed formats easily.</p>
+      <p>If you have a mix of images and PDFs, the most efficient workflow is:</p>
+      <ol>
+        <li>Use an <a href="/image-to-pdf">Image to PDF</a> tool to quickly convert your loose JPG or PNG receipts into a single PDF document.</li>
+        <li>Take that newly created PDF and use the <a href="/merge-pdf">Merge PDF</a> tool to combine it with your main contract PDF.</li>
+      </ol>
+
+      <h2>Best Practices for Merging Documents</h2>
+      <ul>
+        <li><strong>Consistent Page Size:</strong> While you can merge a small receipt PDF with a large A4 document, the resulting file will have varying page sizes. If presentation matters, try to ensure all your source documents are formatted to the same page size before merging.</li>
+        <li><strong>Check Orientation:</strong> Before merging, open your individual files and ensure no pages are upside down. If they are, use a <a href="/rotate-pdf">Rotate PDF</a> tool to fix them first. It is much easier to fix a 1-page document before merging than to hunt for the upside-down page in a 50-page merged document.</li>
+        <li><strong>Add Page Numbers:</strong> After you have successfully merged your documents, the original page numbers (if they had any) will be incorrect. Use a <a href="/page-number-pdf">Page Number PDF</a> tool to stamp fresh, sequential page numbers across the entire newly merged document for a professional finish.</li>
+      </ul>
+
+      <h2>Conclusion</h2>
+      <p>Sending a client an email with 15 separate PDF attachments is unprofessional and guarantees that some documents will be overlooked. By merging your files into a single, organized document, you streamline communication and present a polished, professional image.</p>
+      <p>Stop struggling with clunky desktop software. Combine your documents instantly and securely with our free <a href="/merge-pdf">Merge PDF tool</a> today.</p>
+    
+    `
+  }
 ];

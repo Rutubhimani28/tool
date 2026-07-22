@@ -546,6 +546,20 @@ export default function Home() {
             </p>
 
             <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">
+              How to Convert PDF to Image: A Step-by-Step Guide
+            </h3>
+            <p className="text-zinc-600 dark:text-zinc-400 mb-4 leading-relaxed">
+              Converting your PDF documents into high-quality images has never been easier. Our platform is designed to be incredibly intuitive, requiring absolutely no technical expertise. Follow these simple steps to transform your files in seconds:
+            </p>
+            <ol className="list-decimal pl-6 space-y-4 text-zinc-600 dark:text-zinc-400 mb-8">
+              <li><strong>Select the Right Tool:</strong> Navigate to our tools section above and choose the specific conversion you need. If you want a standard image, select <Link href="/pdf-to-jpg" className="text-blue-600 dark:text-blue-400 hover:underline">PDF to JPG</Link>. For lossless quality with text, choose <Link href="/pdf-to-png" className="text-blue-600 dark:text-blue-400 hover:underline">PDF to PNG</Link>. For web optimization, select <Link href="/pdf-to-webp" className="text-blue-600 dark:text-blue-400 hover:underline">PDF to WebP</Link>.</li>
+              <li><strong>Upload Your Document:</strong> Click the upload area to browse your device's files, or simply drag and drop your PDF directly into the browser window. Because we use local processing, your file is loaded instantly without waiting for a slow server upload.</li>
+              <li><strong>Configure Settings (Optional):</strong> Depending on the tool, you may have options to adjust the output quality or select specific pages to convert. For most users, the default high-quality settings are perfect.</li>
+              <li><strong>Start the Conversion:</strong> Click the "Convert" button. Your device's processor will immediately begin rendering the PDF pages into image files. This usually takes only a few seconds, even for multi-page documents.</li>
+              <li><strong>Download Your Images:</strong> Once complete, you can download your new images. If your PDF had multiple pages, our tool will automatically package them into a convenient ZIP archive so you can download everything with a single click.</li>
+            </ol>
+
+            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">
               What is PDF to Image Conversion?
             </h3>
             <p className="text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed">

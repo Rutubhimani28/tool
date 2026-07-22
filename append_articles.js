@@ -8,7 +8,7 @@ fileContent = fileContent.replace(/];\s*$/, '');
 
 // Format the new articles properly
 const newArticlesString = newArticles.map(a => {
-    return `  {
+  return `  {
     slug: "${a.slug}",
     title: "${a.title}",
     description: "${a.description}",
@@ -23,4 +23,4 @@ ${a.content}
 fileContent += ',\n' + newArticlesString + '\n];\n';
 
 fs.writeFileSync('app/data/articles.ts', fileContent);
-console.log('Successfully added 8 new articles!');
+console.log('Successfully added 5 new articles!');
