@@ -58,6 +58,20 @@ export const metadata: Metadata = {
   other: {
     "google-adsense-account": "ca-pub-7796384906806193",
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://pdfimageconvert.com",
+  },
 };
 
 const jsonLd = {
@@ -118,21 +132,6 @@ export default function RootLayout({
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7796384906806193"
           crossOrigin="anonymous"
           strategy="afterInteractive"
-        />
-        <Script
-          id="suppress-logs"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              if (typeof window !== 'undefined') {
-                console.log = function() {};
-                console.warn = function() {};
-                console.error = function() {};
-                console.info = function() {};
-                console.debug = function() {};
-              }
-            `,
-          }}
         />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
