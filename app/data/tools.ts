@@ -17,6 +17,8 @@ import {
     SwapHoriz,
     DeleteOutlined,
     Draw,
+    Security,
+    TableView,
 } from "@mui/icons-material";
 import React from "react";
 
@@ -174,6 +176,16 @@ export const tools: Tool[] = [
         shadow: "shadow-blue-500/20",
     },
     {
+        id: "pdf-to-csv",
+        name: "PDF to CSV",
+        description: "Extract tables and tabular data from your PDF into a CSV file.",
+        category: "convert",
+        icon: TableView,
+        href: "/pdf-to-csv",
+        gradient: "from-blue-500 to-cyan-600",
+        shadow: "shadow-blue-500/20",
+    },
+    {
         id: "rotate-pdf",
         name: "Rotate PDF",
         description: "Rotate pages in your PDF document and save the changes.",
@@ -252,6 +264,16 @@ export const tools: Tool[] = [
         href: "/sign-pdf",
         gradient: "from-purple-500 to-fuchsia-600",
         shadow: "shadow-purple-500/20",
+    },
+    {
+        id: "pdf-redaction",
+        name: "PDF Redaction",
+        description: "Permanently blackout sensitive information in your PDF.",
+        category: "security",
+        icon: Security,
+        href: "/pdf-redaction",
+        gradient: "from-slate-600 to-slate-800",
+        shadow: "shadow-slate-500/20",
     },
 
     // Image Tools
