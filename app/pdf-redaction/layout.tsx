@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "PDF to JPG Free Online | PDFImageConvert",
-    description: "Extract pages of a PDF as high-quality JPG images.",
+    title: "PDF Redaction Free Online | PDFImageConvert",
+    description: "Permanently blackout sensitive information in your PDF.",
     alternates: {
-        canonical: "/pdf-to-jpg",
+        canonical: "/pdf-redaction",
     },
 };
 

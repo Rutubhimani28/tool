@@ -155,7 +155,8 @@ export default function RearrangePDF() {
     };
 
     return (
-        <ToolWrapper
+        <>
+            <ToolWrapper
             title="Rearrange PDF Pages"
             description="Drag and drop page thumbnails to reorder them in your PDF."
         >
@@ -296,5 +297,25 @@ export default function RearrangePDF() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Rearrange PDF Pages</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Upload your multi-page PDF.</li>
+                        <li>Drag and drop the page thumbnails to reorder them.</li>
+                        <li>Save and download the newly organized PDF.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Reorder PDF Pages?</h3>
+                    <p className="mb-8">Sometimes a document is scanned out of order, or you need to move a crucial summary to the beginning of a report. Rearranging pages allows you to fix these mistakes and create a logical flow for your readers.</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Visual Organization</h3>
+                    <p className="mb-8">Our intuitive drag-and-drop interface makes it incredibly easy to see your entire document at a glance and move pages exactly where they belong.</p>
+                </div>
+            </div>
+
+        </>
     );
 }

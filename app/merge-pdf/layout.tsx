@@ -1,22 +1,13 @@
-import { Metadata } from "next";
-import { generateToolMetadata, generateToolSchema } from "@/app/utils/seo";
+import type { Metadata } from "next";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return generateToolMetadata("merge-pdf");
-}
+export const metadata: Metadata = {
+    title: "Merge PDF Free Online | PDFImageConvert",
+    description: "Combine multiple PDF files into a single document in seconds.",
+    alternates: {
+        canonical: "/merge-pdf",
+    },
+};
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const schema = generateToolSchema("merge-pdf");
-  
-  return (
-    <>
-      {schema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-        />
-      )}
-      {children}
-    </>
-  );
+    return children;
 }

@@ -71,7 +71,8 @@ export default function HEICToJPG() {
     };
 
     return (
-        <ToolWrapper title="Convert HEIC to JPG" description="Convert Apple HEIC images to standard JPG format." accentColor="cyan">
+        <>
+            <ToolWrapper title="Convert HEIC to JPG" description="Convert Apple HEIC images to standard JPG format." accentColor="cyan">
             {resultUrl ? (
                 // Success screen
                 <div className="flex flex-col items-center justify-center gap-6 py-4">
@@ -156,5 +157,25 @@ export default function HEICToJPG() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert HEIC to JPG</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Drag and drop your Apple HEIC photos.</li>
+                        <li>The conversion to standard JPG format begins automatically.</li>
+                        <li>Download your new JPG images instantly.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Convert HEIC to JPG?</h3>
+                    <p className="mb-8">HEIC is the default photo format for modern iPhones, offering great compression. However, many websites, older devices, and Windows computers cannot open HEIC files natively. Converting them to JPG ensures maximum compatibility across all platforms and software.</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Seamless Apple Photo Sharing</h3>
+                    <p className="mb-8">Do not let format incompatibility stop you from sharing your memories. Our converter quickly transforms your iPhone photos into universally accepted JPGs without sacrificing visual quality.</p>
+                </div>
+            </div>
+
+        </>
     );
 }

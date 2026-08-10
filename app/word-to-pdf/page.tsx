@@ -272,7 +272,8 @@ export default function WordToPDF() {
     };
 
     return (
-        <ToolWrapper
+        <>
+            <ToolWrapper
             title="Word to PDF"
             description="Convert Microsoft Word documents (.docx) to high-quality PDF files."
         >
@@ -380,5 +381,25 @@ export default function WordToPDF() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert Word to PDF</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Upload your Microsoft Word (.docx) document.</li>
+                        <li>Our tool instantly renders the document into a PDF.</li>
+                        <li>Download your universally accessible PDF file.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Convert Word to PDF?</h3>
+                    <p className="mb-8">Microsoft Word is excellent for drafting, but PDF is the gold standard for sharing. Converting to PDF ensures that your fonts, margins, and layouts look exactly the same on every device, regardless of what software the recipient uses. It also prevents accidental edits.</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Professional Document Sharing</h3>
+                    <p className="mb-8">Whether you are sending an invoice, a resume, or a legal contract, a PDF looks cleaner and more professional than a raw Word document.</p>
+                </div>
+            </div>
+
+        </>
     );
 }

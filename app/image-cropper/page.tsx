@@ -316,7 +316,8 @@ export default function ImageCropper() {
     };
 
     return (
-        <ToolWrapper title="Image Cropper" description="Crop and rotate your images interactively entirely in your browser." accentColor="pink">
+        <>
+            <ToolWrapper title="Image Cropper" description="Crop and rotate your images interactively entirely in your browser." accentColor="pink">
             {croppedUrl ? (
                 // Success screen
                 <div className="flex flex-col items-center justify-center gap-6 py-4">
@@ -551,5 +552,25 @@ export default function ImageCropper() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Crop Images Online</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Upload the image you want to edit.</li>
+                        <li>Drag the crop box to select the area you want to keep.</li>
+                        <li>Click crop and download your perfectly framed image.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Crop Your Images?</h3>
+                    <p className="mb-8">Cropping allows you to remove distracting backgrounds, focus on the main subject, or change the aspect ratio of a photo to fit specific social media dimensions (like an Instagram square or a YouTube banner).</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Intuitive Visual Editing</h3>
+                    <p className="mb-8">Our interactive cropping tool makes it easy to frame your shots perfectly. You have complete control over the dimensions and positioning, ensuring your final image looks exactly how you envisioned it.</p>
+                </div>
+            </div>
+
+        </>
     );
 }

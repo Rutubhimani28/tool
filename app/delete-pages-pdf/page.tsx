@@ -150,7 +150,8 @@ export default function DeletePagesPDF() {
     };
 
     return (
-        <ToolWrapper
+        <>
+            <ToolWrapper
             title="Delete PDF Pages"
             description="Select pages you want to remove from your PDF document."
         >
@@ -294,5 +295,25 @@ export default function DeletePagesPDF() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Delete Pages from PDF</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Upload your PDF document.</li>
+                        <li>Hover over the pages you want to remove and click the delete icon.</li>
+                        <li>Click 'Apply Changes' to download your new, trimmed PDF.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Remove Pages from a PDF?</h3>
+                    <p className="mb-8">Often, PDFs contain unnecessary cover pages, blank sheets, or outdated information. Removing these pages helps streamline your document, making it easier to read and share. It also reduces the overall file size, which is perfect for emailing or uploading to portals.</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Precision Page Management</h3>
+                    <p className="mb-8">Our tool gives you a visual grid of your entire document. You can easily spot the exact pages you need to discard without having to guess page numbers. Everything happens instantly right in your browser.</p>
+                </div>
+            </div>
+
+        </>
     );
 }

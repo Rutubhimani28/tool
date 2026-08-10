@@ -1,22 +1,13 @@
-import { Metadata } from "next";
-import { generateToolMetadata, generateToolSchema } from "@/app/utils/seo";
+import type { Metadata } from "next";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return generateToolMetadata("rotate-pdf");
-}
+export const metadata: Metadata = {
+    title: "Rotate PDF Free Online | PDFImageConvert",
+    description: "Rotate pages in your PDF document and save the changes.",
+    alternates: {
+        canonical: "/rotate-pdf",
+    },
+};
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const schema = generateToolSchema("rotate-pdf");
-  
-  return (
-    <>
-      {schema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-        />
-      )}
-      {children}
-    </>
-  );
+    return children;
 }

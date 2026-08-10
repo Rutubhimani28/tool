@@ -1,22 +1,13 @@
-import { Metadata } from "next";
-import { generateToolMetadata, generateToolSchema } from "@/app/utils/seo";
+import type { Metadata } from "next";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return generateToolMetadata("watermark-pdf");
-}
+export const metadata: Metadata = {
+    title: "Watermark PDF Free Online | PDFImageConvert",
+    description: "Stamp an image or text over your PDF in seconds.",
+    alternates: {
+        canonical: "/watermark-pdf",
+    },
+};
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const schema = generateToolSchema("watermark-pdf");
-  
-  return (
-    <>
-      {schema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-        />
-      )}
-      {children}
-    </>
-  );
+    return children;
 }

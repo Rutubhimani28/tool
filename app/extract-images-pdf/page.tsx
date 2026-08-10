@@ -151,7 +151,8 @@ export default function ExtractImagesPDF() {
     };
 
     return (
-        <ToolWrapper
+        <>
+            <ToolWrapper
             title="Extract Images from PDF"
             description="Extract all embedded images from a PDF document and download them as a ZIP file."
         >
@@ -253,5 +254,25 @@ export default function ExtractImagesPDF() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Extract Images from PDF</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Select and upload your PDF file.</li>
+                        <li>Our tool will instantly scan the document for embedded images.</li>
+                        <li>Download all extracted images as a convenient ZIP file.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Extract Images?</h3>
+                    <p className="mb-8">If you receive a PDF presentation or report and need to reuse the photos or charts in your own work, manually taking screenshots results in poor quality. Extracting the images pulls the original, high-resolution files directly from the document structure.</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">High-Fidelity Extraction</h3>
+                    <p className="mb-8">We ensure that every image is extracted in its original format and resolution. Whether it is a JPEG photograph or a PNG graphic, you get the exact file that was embedded in the PDF.</p>
+                </div>
+            </div>
+
+        </>
     );
 }

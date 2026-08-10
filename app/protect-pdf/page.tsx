@@ -118,7 +118,8 @@ export default function ProtectPDF() {
     };
 
     return (
-        <ToolWrapper
+        <>
+            <ToolWrapper
             title="Protect PDF"
             description="Encrypt your PDF document with a secure password to restrict access and permissions."
         >
@@ -342,5 +343,25 @@ export default function ProtectPDF() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Password Protect a PDF</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Upload the PDF you want to secure.</li>
+                        <li>Enter a strong password.</li>
+                        <li>Download the encrypted PDF file.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Protect Your PDF?</h3>
+                    <p className="mb-8">Sensitive documents like financial records, legal contracts, or personal information should never be left unprotected. Adding a password ensures that only authorized individuals can open and view the contents of your file.</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Strong Encryption</h3>
+                    <p className="mb-8">We apply industry-standard encryption to your document, providing a robust layer of security against unauthorized access.</p>
+                </div>
+            </div>
+
+        </>
     );
 }

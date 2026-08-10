@@ -85,7 +85,8 @@ export default function RotateImage() {
     };
 
     return (
-        <ToolWrapper title="Rotate Image" description="Rotate your images left or right by 90 degrees." accentColor="cyan">
+        <>
+            <ToolWrapper title="Rotate Image" description="Rotate your images left or right by 90 degrees." accentColor="cyan">
             {resultUrl ? (
                 // Success screen
                 <div className="flex flex-col items-center justify-center gap-6 py-4">
@@ -201,5 +202,25 @@ export default function RotateImage() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Rotate Images Online</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Upload your photo.</li>
+                        <li>Click the rotate buttons to turn the image 90 degrees left or right.</li>
+                        <li>Download the correctly oriented image.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Rotate Images?</h3>
+                    <p className="mb-8">Photos taken on smartphones are often saved sideways or upside down due to orientation sensor errors. Rotating the image corrects this, ensuring it displays properly when shared online or printed.</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Quick Corrections</h3>
+                    <p className="mb-8">Fix sideways photos in seconds with our simple, one-click rotation tool. No complex photo editing software required.</p>
+                </div>
+            </div>
+
+        </>
     );
 }

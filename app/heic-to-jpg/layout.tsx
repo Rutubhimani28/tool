@@ -1,22 +1,13 @@
-import { Metadata } from "next";
-import { generateToolMetadata, generateToolSchema } from "@/app/utils/seo";
+import type { Metadata } from "next";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return generateToolMetadata("heic-to-jpg");
-}
+export const metadata: Metadata = {
+    title: "Convert HEIC to JPG Free Online | PDFImageConvert",
+    description: "Convert Apple HEIC images to standard JPG format.",
+    alternates: {
+        canonical: "/heic-to-jpg",
+    },
+};
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const schema = generateToolSchema("heic-to-jpg");
-  
-  return (
-    <>
-      {schema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-        />
-      )}
-      {children}
-    </>
-  );
+    return children;
 }

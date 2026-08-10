@@ -1,22 +1,13 @@
-import { Metadata } from "next";
-import { generateToolMetadata, generateToolSchema } from "@/app/utils/seo";
+import type { Metadata } from "next";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return generateToolMetadata("split-pdf");
-}
+export const metadata: Metadata = {
+    title: "Split PDF Free Online | PDFImageConvert",
+    description: "Extract specific pages or split a PDF into separate files.",
+    alternates: {
+        canonical: "/split-pdf",
+    },
+};
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const schema = generateToolSchema("split-pdf");
-  
-  return (
-    <>
-      {schema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-        />
-      )}
-      {children}
-    </>
-  );
+    return children;
 }

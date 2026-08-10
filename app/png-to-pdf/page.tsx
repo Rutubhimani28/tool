@@ -147,7 +147,8 @@ export default function PNGToPDF() {
     };
 
     return (
-        <ToolWrapper
+        <>
+            <ToolWrapper
             title="PNG to PDF"
             description="Convert PNG images into a single PDF document in your preferred order."
         >
@@ -300,5 +301,25 @@ export default function PNGToPDF() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert PNG to PDF</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Drag and drop your PNG graphics.</li>
+                        <li>Arrange them in the desired order.</li>
+                        <li>Merge them into a single PDF document.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Convert PNGs to PDF?</h3>
+                    <p className="mb-8">If you have a collection of high-quality graphics, designs, or screenshots, combining them into a PDF is the best way to present them. A PDF ensures that your PNGs are viewed in the correct order and layout, regardless of the device.</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Professional Portfolios</h3>
+                    <p className="mb-8">Easily compile your digital art, UI designs, or presentation slides into a clean, easily shareable PDF document.</p>
+                </div>
+            </div>
+
+        </>
     );
 }

@@ -95,35 +95,6 @@ export default function BlogPage() {
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
                     </div>
-
-                    {/* Featured Article (Only show if no search/filter is active) */}
-                    {searchQuery === "" && activeCategory === "All" && featuredArticle && (
-                        <div className="mt-12 max-w-4xl mx-auto">
-                            <h2 className="text-sm font-bold text-zinc-400 uppercase tracking-wider mb-6 text-center">Featured Insight</h2>
-                            <Link href={`/blog/${featuredArticle.slug}`} className="group block">
-                                <article className="bg-white dark:bg-zinc-900 rounded-3xl overflow-hidden flex flex-col border border-zinc-200 dark:border-zinc-800 transition-all hover:shadow-xl hover:-translate-y-1">
-                                    <div className="h-48 w-full relative bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 flex items-center justify-center overflow-hidden border-b border-zinc-100 dark:border-zinc-800">
-                                        <div className="absolute inset-0 opacity-40 mix-blend-overlay" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)', backgroundSize: '24px 24px' }} />
-                                        {getCategoryIcon(featuredArticle.category, "!w-40 !h-40 text-blue-500 dark:text-blue-400 opacity-90 group-hover:scale-110 transition-transform duration-500")}
-                                        <div className="absolute top-4 left-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
-                                            {featuredArticle.category}
-                                        </div>
-                                    </div>
-                                    <div className="p-8 text-center">
-                                        <h3 className="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-tight">
-                                            {featuredArticle.title}
-                                        </h3>
-                                        <p className="text-zinc-600 dark:text-zinc-400 text-lg max-w-2xl mx-auto line-clamp-2">
-                                            {featuredArticle.description}
-                                        </p>
-                                        <div className="mt-6 inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold group-hover:gap-3 transition-all">
-                                            Read Full Guide <span aria-hidden="true">&rarr;</span>
-                                        </div>
-                                    </div>
-                                </article>
-                            </Link>
-                        </div>
-                    )}
                 </div>
             </section>
 
@@ -182,7 +153,7 @@ export default function BlogPage() {
                             {filteredArticles.length > visibleCount && (
                                 <div className="flex justify-center mt-4">
                                     <button
-                                        onClick={() => setVisibleCount(prev => prev + 4)}
+                                        onClick={() => setVisibleCount(prev => prev + 8)}
                                         className="px-8 py-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white rounded-full font-semibold hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors shadow-sm"
                                     >
                                         Load More Articles
@@ -212,11 +183,9 @@ export default function BlogPage() {
                                         }`}
                                 >
                                     <span>{category}</span>
-                                    {category !== "All" && (
-                                        <span className="bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 px-2 py-0.5 rounded-full text-xs">
-                                            {enhancedArticles.filter(a => a.category === category).length}
-                                        </span>
-                                    )}
+                                    <span className="bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 px-2 py-0.5 rounded-full text-xs">
+                                        {category === "All" ? enhancedArticles.length : enhancedArticles.filter(a => a.category === category).length}
+                                    </span>
                                 </button>
                             ))}
                         </div>

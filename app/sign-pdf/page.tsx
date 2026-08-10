@@ -377,7 +377,8 @@ export default function SignPDF() {
     };
 
     return (
-        <ToolWrapper
+        <>
+            <ToolWrapper
             title="Sign PDF"
             description="Draw or upload your signature, resize it, and place it anywhere on your PDF."
         >
@@ -676,5 +677,25 @@ export default function SignPDF() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Sign a PDF Online</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Upload the PDF contract or form.</li>
+                        <li>Draw your signature, type it, or upload an image of it.</li>
+                        <li>Place the signature on the document and download.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why eSign PDFs?</h3>
+                    <p className="mb-8">Printing, signing with a pen, and scanning documents back into a computer is a massive waste of time and paper. Electronic signatures allow you to legally sign contracts, agreements, and forms instantly from your device.</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Streamlined Paperwork</h3>
+                    <p className="mb-8">Complete your important paperwork in minutes instead of days. Our signing tool makes it effortless to add your signature exactly where it is needed.</p>
+                </div>
+            </div>
+
+        </>
     );
 }

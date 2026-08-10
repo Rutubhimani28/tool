@@ -108,7 +108,8 @@ export default function ImageResizer() {
     };
 
     return (
-        <ToolWrapper title="Image Resizer" description="Resize your images to custom dimensions or scale them by percentage." accentColor="blue">
+        <>
+            <ToolWrapper title="Image Resizer" description="Resize your images to custom dimensions or scale them by percentage." accentColor="blue">
             {resizedUrl ? (
                 // Success screen
                 <div className="flex flex-col items-center justify-center gap-6 py-4">
@@ -255,5 +256,25 @@ export default function ImageResizer() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Resize Images</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Upload your image file.</li>
+                        <li>Enter your desired exact pixel dimensions or choose a percentage scale.</li>
+                        <li>Download the resized image.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Resize Images?</h3>
+                    <p className="mb-8">Different platforms require specific image dimensions. Whether you are uploading a profile picture, creating a website banner, or preparing photos for print, resizing ensures your images fit perfectly without being stretched or distorted.</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Maintain Aspect Ratio</h3>
+                    <p className="mb-8">Our resizer automatically locks the aspect ratio by default, preventing your photos from looking squished or stretched when you change their width or height.</p>
+                </div>
+            </div>
+
+        </>
     );
 }

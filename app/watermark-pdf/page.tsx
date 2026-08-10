@@ -117,7 +117,8 @@ export default function WatermarkPDF() {
     };
 
     return (
-        <ToolWrapper
+        <>
+            <ToolWrapper
             title="Add Watermark to PDF"
             description="Stamp an image or text over your PDF in seconds."
         >
@@ -293,5 +294,25 @@ export default function WatermarkPDF() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Add a Watermark to PDF</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Upload your PDF file.</li>
+                        <li>Type your watermark text (like 'CONFIDENTIAL') or upload a logo image.</li>
+                        <li>Adjust the opacity and position, then download.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Watermark PDFs?</h3>
+                    <p className="mb-8">Watermarks protect your intellectual property by clearly identifying ownership. They are also crucial for marking document status, such as stamping 'DRAFT' on a work-in-progress or 'VOID' on an expired contract.</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Protect Your Work</h3>
+                    <p className="mb-8">Deter unauthorized sharing and ensure your brand is always attached to your documents with our customizable watermarking tool.</p>
+                </div>
+            </div>
+
+        </>
     );
 }

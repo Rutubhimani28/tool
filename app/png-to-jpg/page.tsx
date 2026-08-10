@@ -78,7 +78,8 @@ export default function PNGToJPG() {
     };
 
     return (
-        <ToolWrapper title="Convert PNG to JPG" description="Convert PNG images to JPG format with custom background fill for transparent areas." accentColor="cyan">
+        <>
+            <ToolWrapper title="Convert PNG to JPG" description="Convert PNG images to JPG format with custom background fill for transparent areas." accentColor="cyan">
             {resultUrl ? (
                 // Success screen
                 <div className="flex flex-col items-center justify-center gap-6 py-4">
@@ -185,5 +186,25 @@ export default function PNGToJPG() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert PNG to JPG</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Upload your PNG images.</li>
+                        <li>The images are compressed and converted to JPG format.</li>
+                        <li>Download the smaller JPG files.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Convert PNG to JPG?</h3>
+                    <p className="mb-8">PNG files, especially large photographs, can be massive in file size. Converting them to JPG applies lossy compression, drastically reducing the file size while keeping the image looking great. This is essential for saving storage space and speeding up web uploads.</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Efficient Storage</h3>
+                    <p className="mb-8">Free up space on your hard drive or mobile device by converting bulky PNG photos into efficient JPGs without a noticeable drop in quality.</p>
+                </div>
+            </div>
+
+        </>
     );
 }

@@ -1,22 +1,13 @@
-import { Metadata } from "next";
-import { generateToolMetadata, generateToolSchema } from "@/app/utils/seo";
+import type { Metadata } from "next";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return generateToolMetadata("rearrange-pdf");
-}
+export const metadata: Metadata = {
+    title: "Rearrange PDF Free Online | PDFImageConvert",
+    description: "Drag and drop page thumbnails to reorder them in your PDF.",
+    alternates: {
+        canonical: "/rearrange-pdf",
+    },
+};
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const schema = generateToolSchema("rearrange-pdf");
-  
-  return (
-    <>
-      {schema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-        />
-      )}
-      {children}
-    </>
-  );
+    return children;
 }

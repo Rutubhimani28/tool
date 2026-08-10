@@ -200,7 +200,8 @@ export default function PageNumberPDF() {
     };
 
     return (
-        <ToolWrapper
+        <>
+            <ToolWrapper
             title="Add Page Numbers to PDF"
             description="Easily insert page numbers into your PDF document."
         >
@@ -381,5 +382,25 @@ export default function PageNumberPDF() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Add Page Numbers to PDF</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Upload your PDF document.</li>
+                        <li>Choose the position (e.g., bottom center) and format for your page numbers.</li>
+                        <li>Apply the numbers and download the updated PDF.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Add Page Numbers?</h3>
+                    <p className="mb-8">For long documents like reports, manuscripts, or legal contracts, page numbers are essential for navigation and referencing. They provide a professional touch and make it much easier for readers to discuss specific sections of the text.</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Customizable Placement</h3>
+                    <p className="mb-8">You have full control over where the numbers appear on the page, ensuring they do not overlap with your existing content or margins.</p>
+                </div>
+            </div>
+
+        </>
     );
 }

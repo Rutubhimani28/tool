@@ -115,7 +115,8 @@ export default function PDFToWebP() {
     };
 
     return (
-        <ToolWrapper
+        <>
+            <ToolWrapper
             title="PDF to WebP"
             description="Convert PDF pages into high-quality JPG images and download them as a ZIP file."
         >
@@ -217,5 +218,25 @@ export default function PDFToWebP() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert PDF to WebP</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Upload your PDF.</li>
+                        <li>The pages are converted into the highly optimized WebP image format.</li>
+                        <li>Download your WebP images.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Convert PDF to WebP?</h3>
+                    <p className="mb-8">WebP is a modern image format that provides superior compression compared to JPEG and PNG. Converting PDF pages to WebP is ideal for web developers who want to display document previews on their websites while keeping page load times lightning fast.</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Next-Gen Web Optimization</h3>
+                    <p className="mb-8">By using WebP, you can significantly reduce the bandwidth required to serve your images, improving your website's performance and SEO ranking.</p>
+                </div>
+            </div>
+
+        </>
     );
 }

@@ -88,7 +88,7 @@ export const faqs: FAQ[] = [
     {
         category: "Privacy & Security",
         question: "Are my files safe when I upload them?",
-        answer: "Yes. We utilize 100% local browser processing for many of our tools. For tools that require server processing, all uploads are secured using HTTPS/SSL encryption."
+        answer: "Yes. We utilize 100% local browser processing for all of our tools. Your files never leave your device and are never uploaded to any external servers."
     },
     {
         category: "Privacy & Security",

@@ -92,7 +92,8 @@ export default function WebPConverter() {
     };
 
     return (
-        <ToolWrapper title="WebP Converter" description="Convert images to WebP format for web optimization, or convert WebP files back to PNG/JPG." accentColor="purple">
+        <>
+            <ToolWrapper title="WebP Converter" description="Convert images to WebP format for web optimization, or convert WebP files back to PNG/JPG." accentColor="purple">
             {resultUrl ? (
                 // Success screen
                 <div className="flex flex-col items-center justify-center gap-6 py-4">
@@ -203,5 +204,25 @@ export default function WebPConverter() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Use the WebP Converter</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Upload your WebP images, or upload JPG/PNGs to convert to WebP.</li>
+                        <li>Select your desired output format.</li>
+                        <li>Download the converted images.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Convert WebP Files?</h3>
+                    <p className="mb-8">WebP is fantastic for websites, but many older photo viewers, editing software, and operating systems do not support it. Converting WebP to JPG or PNG allows you to open and edit these files anywhere.</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Universal Compatibility</h3>
+                    <p className="mb-8">Bridge the gap between modern web formats and traditional software. Our converter ensures you can always use your images, regardless of where you downloaded them from.</p>
+                </div>
+            </div>
+
+        </>
     );
 }

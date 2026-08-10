@@ -73,7 +73,8 @@ export default function JPGToPNG() {
     };
 
     return (
-        <ToolWrapper title="Convert JPG to PNG" description="Convert JPG images to PNG format." accentColor="cyan">
+        <>
+            <ToolWrapper title="Convert JPG to PNG" description="Convert JPG images to PNG format." accentColor="cyan">
             {resultUrl ? (
                 // Success screen
                 <div className="flex flex-col items-center justify-center gap-6 py-4">
@@ -158,5 +159,25 @@ export default function JPGToPNG() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert JPG to PNG</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Select your JPG files.</li>
+                        <li>The conversion process starts instantly.</li>
+                        <li>Download your new PNG images.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Convert JPG to PNG?</h3>
+                    <p className="mb-8">While JPG is great for photographs, PNG is superior for graphics, logos, and images with text because it uses lossless compression. Converting to PNG ensures that sharp edges and text remain crisp without the compression artifacts common in JPGs.</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Lossless Quality</h3>
+                    <p className="mb-8">When you convert to PNG, you ensure that no further quality is lost during subsequent edits or saves, making it the ideal format for graphic design work.</p>
+                </div>
+            </div>
+
+        </>
     );
 }

@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const toolRoutes = tools.map((tool) => ({
         url: `${baseUrl}${tool.href}`,
         lastModified: new Date(),
-        changeFrequency: 'monthly' as const,
+        changeFrequency: 'weekly' as const,
         priority: 0.9,
     }))
 
@@ -35,7 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const articleRoutes = articles.map((article) => ({
         url: `${baseUrl}/blog/${article.slug}`,
         lastModified: new Date(article.date),
-        changeFrequency: 'monthly' as const,
+        changeFrequency: 'weekly' as const,
         priority: 0.7,
     }))
 

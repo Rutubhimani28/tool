@@ -229,6 +229,39 @@ export default function Home() {
 
 
 
+      {/* SEO Content Section */}
+      <section className="bg-white dark:bg-zinc-950 px-4 py-16 sm:px-6 lg:px-8 border-b border-zinc-200 dark:border-zinc-800">
+        <div className="mx-auto max-w-4xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mb-6">Your Complete Local PDF & Image Toolkit</h2>
+          <p className="mb-6 text-lg">
+            PDFImageConvert provides a comprehensive suite of tools to manage, edit, and convert your documents and images. Whether you need to convert a PDF to JPG, merge multiple PDFs, or compress an image for the web, our platform offers fast, reliable, and completely free solutions.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div>
+              <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">Why Choose Our Tools?</h3>
+              <ul className="list-disc pl-6 space-y-2">
+                <li><strong className="text-zinc-900 dark:text-white">100% Free:</strong> No hidden fees or subscriptions.</li>
+                <li><strong className="text-zinc-900 dark:text-white">No Watermarks:</strong> We never add watermarks to your files.</li>
+                <li><strong className="text-zinc-900 dark:text-white">No Registration:</strong> Start using the tools immediately.</li>
+                <li><strong className="text-zinc-900 dark:text-white">High Quality:</strong> Preserve the original quality of your documents.</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">Uncompromising Privacy</h3>
+              <ul className="list-disc pl-6 space-y-2">
+                <li><strong className="text-zinc-900 dark:text-white">Local Processing:</strong> All operations happen in your browser.</li>
+                <li><strong className="text-zinc-900 dark:text-white">No Uploads:</strong> Your files never leave your device.</li>
+                <li><strong className="text-zinc-900 dark:text-white">Instant Deletion:</strong> Data is gone the moment you close the tab.</li>
+                <li><strong className="text-zinc-900 dark:text-white">Secure:</strong> Safe for sensitive and confidential documents.</li>
+              </ul>
+            </div>
+          </div>
+          <p>
+            Explore our collection of tools below. Use the search bar or category filters to quickly find exactly what you need.
+          </p>
+        </div>
+      </section>
+
       {/* Search & Categories Section */}
       <section id="tools" className="scroll-mt-20 bg-zinc-50 dark:bg-zinc-950 px-4 py-12 sm:px-6 lg:px-8 border-b border-zinc-200 dark:border-zinc-800">
         <div className="mx-auto max-w-5xl">
@@ -509,22 +542,6 @@ export default function Home() {
                     <span className="font-semibold text-zinc-900 dark:text-white">WEBP</span>
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400">
                       <ImageIcon className="h-5 w-5" />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-red-200 dark:hover:border-red-900/50 transition-colors">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400">
-                      <Collections className="h-5 w-5" />
-                    </div>
-                    <span className="font-semibold text-zinc-900 dark:text-white">Multiple PDFs</span>
-                  </div>
-                  <ArrowRightAlt className="h-6 w-6 text-zinc-400" />
-                  <div className="flex items-center gap-3">
-                    <span className="font-semibold text-zinc-900 dark:text-white">ZIP</span>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-yellow-100 text-yellow-600 dark:bg-yellow-900/30 dark:text-yellow-400">
-                      <FolderZip className="h-5 w-5" />
                     </div>
                   </div>
                 </div>

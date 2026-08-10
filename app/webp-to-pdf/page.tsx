@@ -147,7 +147,8 @@ export default function WebPToPDF() {
     };
 
     return (
-        <ToolWrapper
+        <>
+            <ToolWrapper
             title="WebP to PDF"
             description="Convert WebP images into a single PDF document in your preferred order."
         >
@@ -300,5 +301,25 @@ export default function WebPToPDF() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert WebP to PDF</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Upload your WebP images.</li>
+                        <li>Arrange the images in your preferred order.</li>
+                        <li>Merge them into a single PDF document.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Convert WebP to PDF?</h3>
+                    <p className="mb-8">If you have downloaded several WebP images from a website and need to share them as a presentation or report, combining them into a PDF is the most professional approach. It ensures the recipient can view all images easily in one file.</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Consolidate Web Images</h3>
+                    <p className="mb-8">Turn a folder full of downloaded WebP graphics into a clean, organized PDF document that can be viewed natively on any device.</p>
+                </div>
+            </div>
+
+        </>
     );
 }

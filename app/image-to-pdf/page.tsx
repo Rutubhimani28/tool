@@ -147,7 +147,8 @@ export default function ImageToPDF() {
     };
 
     return (
-        <ToolWrapper
+        <>
+            <ToolWrapper
             title="Image to PDF"
             description="Convert JPG, PNG, and WebP images into a single PDF document in your preferred order."
         >
@@ -300,5 +301,25 @@ export default function ImageToPDF() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert Images to PDF</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Upload your JPG, PNG, or WebP images.</li>
+                        <li>Drag and drop the thumbnails to arrange them in your preferred order.</li>
+                        <li>Click convert to merge them into a single PDF document.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Convert Images to PDF?</h3>
+                    <p className="mb-8">While images are great for viewing individually, PDFs are much better for sharing collections. Compiling images into a single PDF creates a neat, professional presentation. It is perfect for creating digital portfolios, sharing scanned documents, or compiling receipts.</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Organized Presentations</h3>
+                    <p className="mb-8">Ensure your images are viewed exactly as intended, in the correct order, without relying on the recipient's image viewer software.</p>
+                </div>
+            </div>
+
+        </>
     );
 }

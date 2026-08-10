@@ -147,7 +147,8 @@ export default function JPGToPDF() {
     };
 
     return (
-        <ToolWrapper
+        <>
+            <ToolWrapper
             title="JPG to PDF"
             description="Convert JPG images into a single PDF document in your preferred order."
         >
@@ -300,5 +301,25 @@ export default function JPGToPDF() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert JPG to PDF</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Upload one or more JPG images.</li>
+                        <li>Arrange them in your preferred order.</li>
+                        <li>Click convert to merge them into a single PDF document.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Convert JPGs to PDF?</h3>
+                    <p className="mb-8">Sending multiple JPGs via email can be messy and disorganized. Compiling them into a single PDF creates a neat, professional document that is easy to view, print, and share. It is perfect for creating digital portfolios or sharing scanned documents.</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Organized Document Creation</h3>
+                    <p className="mb-8">Transform your scattered photos into a cohesive presentation. Our tool ensures that your images are perfectly sized and aligned within the PDF pages.</p>
+                </div>
+            </div>
+
+        </>
     );
 }

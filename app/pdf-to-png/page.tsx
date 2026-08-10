@@ -115,7 +115,8 @@ export default function PDFToPNG() {
     };
 
     return (
-        <ToolWrapper
+        <>
+            <ToolWrapper
             title="PDF to PNG"
             description="Convert PDF pages into high-quality JPG images and download them as a ZIP file."
         >
@@ -217,5 +218,25 @@ export default function PDFToPNG() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert PDF to PNG</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Upload your PDF file.</li>
+                        <li>Each page of the PDF is rendered into a high-quality PNG image.</li>
+                        <li>Download the PNGs individually or as a ZIP file.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Convert PDF to PNG?</h3>
+                    <p className="mb-8">If your PDF contains detailed graphics, charts, or text that you want to share on social media or embed in a webpage, PNG is the best format. It provides lossless quality, ensuring that text remains readable and graphics stay sharp.</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Crystal Clear Rendering</h3>
+                    <p className="mb-8">Our conversion engine renders your PDF pages with pristine clarity, making it perfect for extracting high-resolution graphics from your documents.</p>
+                </div>
+            </div>
+
+        </>
     );
 }

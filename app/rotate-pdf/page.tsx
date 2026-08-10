@@ -157,7 +157,8 @@ export default function RotatePDF() {
     };
 
     return (
-        <ToolWrapper
+        <>
+            <ToolWrapper
             title="Rotate PDF"
             description="Rotate individual pages or all pages of your PDF document clockwise."
         >
@@ -311,5 +312,25 @@ export default function RotatePDF() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Rotate PDF Pages</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Upload your PDF document.</li>
+                        <li>Select the pages that are sideways and rotate them to the correct orientation.</li>
+                        <li>Download the fixed PDF.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Rotate PDF Pages?</h3>
+                    <p className="mb-8">Scanned documents frequently contain pages that are upside down or in landscape mode when they should be portrait. Rotating these specific pages makes the document readable without forcing the viewer to tilt their head or screen.</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Permanent Fixes</h3>
+                    <p className="mb-8">Unlike rotating a view in a PDF reader, our tool permanently saves the new orientation to the file, so it opens correctly for everyone you share it with.</p>
+                </div>
+            </div>
+
+        </>
     );
 }

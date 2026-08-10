@@ -145,7 +145,8 @@ export default function SplitPDF() {
     };
 
     return (
-        <ToolWrapper
+        <>
+            <ToolWrapper
             title="Split PDF"
             description="Extract specific pages or split every page into individual PDF files."
         >
@@ -318,5 +319,25 @@ export default function SplitPDF() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Split PDF Pages</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Upload your multi-page PDF document.</li>
+                        <li>Click on the page thumbnails to select the exact pages you want to extract.</li>
+                        <li>Click extract to download a new PDF containing only your selected pages.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Split a PDF?</h3>
+                    <p className="mb-8">Splitting PDFs is essential for organizing and sharing specific information. Instead of sending a 100-page report, you can extract and send only the 5 pages that matter to your recipient. It is also great for removing unwanted blank pages or cover letters.</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Visual Page Selection</h3>
+                    <p className="mb-8">Our tool provides a clear visual grid of your document, making it incredibly easy to spot and select the exact pages you need without guessing page numbers.</p>
+                </div>
+            </div>
+
+        </>
     );
 }

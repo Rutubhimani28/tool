@@ -78,7 +78,8 @@ export default function CompressPDF() {
     const savings = originalSize && compressedSize ? ((originalSize - compressedSize) / originalSize) * 100 : 0;
 
     return (
-        <ToolWrapper title="Compress PDF" description="Reduce the file size of your PDF document while maintaining the best possible quality.">
+        <>
+            <ToolWrapper title="Compress PDF" description="Reduce the file size of your PDF document while maintaining the best possible quality.">
             {compressedFileUrl ? (
                 // Success screen
                 <div className="flex flex-col items-center justify-center gap-6 py-8">
@@ -203,5 +204,25 @@ export default function CompressPDF() {
                 </div>
             )}
         </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Compress PDF Files</h2>
+                    <ol className="list-decimal pl-6 space-y-3 mb-8">
+                        <li>Upload your large PDF document.</li>
+                        <li>Our smart algorithm optimizes the internal structure and images.</li>
+                        <li>Download your significantly smaller PDF file.</li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Compress PDFs?</h3>
+                    <p className="mb-8">Large PDF files can be a hassle to manage and share. Compressing them is essential for staying under email attachment limits (often 25MB), speeding up uploads to web portals, and saving valuable storage space on your hard drive or mobile device.</p>
+
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Smart Quality Retention</h3>
+                    <p className="mb-8">Our compressor strikes the perfect balance between file size reduction and document clarity. Text remains crisp, and images are optimized without noticeable degradation.</p>
+                </div>
+            </div>
+
+        </>
     );
 }
