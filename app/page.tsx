@@ -513,7 +513,6 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-
                 <div className="flex items-center justify-between p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-red-200 dark:hover:border-red-900/50 transition-colors">
                   <div className="flex items-center gap-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400">
@@ -529,7 +528,6 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-
                 <div className="flex items-center justify-between p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-red-200 dark:hover:border-red-900/50 transition-colors">
                   <div className="flex items-center gap-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400">
