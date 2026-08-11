@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "PDF to Word Free Online | PDFImageConvert",
-    description: "Extract text from PDF and convert it back to Word format.",
+    title: "PDF to Word Converter – Convert PDF to DOCX Free Online",
+    description: "Easily convert your PDF documents to editable Microsoft Word (.docx) files. 100% free, secure, and processed locally in your browser without uploading files.",
     alternates: {
-        canonical: "/pdf-to-word",
+        canonical: "https://pdfimageconvert.com/pdf-to-word",
     },
 };
 

@@ -1,12 +1,15 @@
 "use client";
 
 import toast from "react-hot-toast";
+import Link from "next/link";
 import React, { useState } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
 import { encryptPDF } from "@pdfsmaller/pdf-encrypt";
 import confetti from "canvas-confetti";
-import { Lock, Visibility, VisibilityOff } from "@mui/icons-material";
+import {
+    ArrowRightAlt,
+ Lock, Visibility, VisibilityOff } from "@mui/icons-material";
 
 export default function ProtectPDF() {
     const [file, setFile] = useState<File | null>(null);
@@ -344,24 +347,80 @@ export default function ProtectPDF() {
             )}
         </ToolWrapper>
 
-            {/* SEO Content Section */}
+                        {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
-                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Password Protect a PDF</h2>
-                    <ol className="list-decimal pl-6 space-y-3 mb-8">
-                        <li>Upload the PDF you want to secure.</li>
-                        <li>Enter a strong password.</li>
-                        <li>Download the encrypted PDF file.</li>
+                <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Protect PDF with Password Instantly</h2>
+                    <p className="text-lg mb-8">
+                        Welcome to the fastest, most secure way to encrypt and password-protect your sensitive PDF documents online. Whether you are a professional, student, or casual user, our tool makes it effortless and completely private.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is Protect PDF with Password?</h3>
+                    <p className="mb-6">
+                        Adding strong encryption and a password to a PDF document to prevent unauthorized access. Anyone who tries to open the file will be required to enter the correct password before they can view its contents.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Protect PDF with Password</h3>
+                    <p className="mb-4">Using our tool is incredibly simple:</p>
+                    <ol className="list-decimal pl-6 space-y-4 mb-8">
+                        <li><strong>Upload your files:</strong> Upload the PDF document you want to secure.</li>
+                        <li><strong>Adjust settings:</strong> Enter a strong password and confirm it. Make sure you remember this password, as it cannot be recovered!</li>
+                        <li><strong>Process and Download:</strong> Click &quot;Protect PDF&quot; to encrypt the file locally and download your secure document.</li>
                     </ol>
 
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Protect Your PDF?</h3>
-                    <p className="mb-8">Sensitive documents like financial records, legal contracts, or personal information should never be left unprotected. Adding a password ensures that only authorized individuals can open and view the contents of your file.</p>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why should you use this tool?</h3>
+                    <ul className="list-disc pl-6 space-y-3 mb-8">
+                        <li><strong>Data Security:</strong> Protect sensitive information like financial records, medical documents, and personal identification from prying eyes.</li>
+                        <li><strong>Secure Sharing:</strong> Safely email or share confidential documents knowing that only the intended recipient with the password can open them.</li>
+                        <li><strong>Compliance:</strong> Meet privacy and security regulations by ensuring that sensitive client or employee data is properly encrypted.</li>
+                    </ul>
 
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Strong Encryption</h3>
-                    <p className="mb-8">We apply industry-standard encryption to your document, providing a robust layer of security against unauthorized access.</p>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
+                    <p className="mb-6">
+                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Files and Limitations</h3>
+                    <p className="mb-6">
+                        Our tool supports standard file formats. Because processing happens locally, there are no strict file size limits imposed by a server. You can process files as large as your device&apos;s memory can handle. Note that password-protected PDFs must be unlocked before they can be processed.
+                    </p>
+
+                    {/* Related Tools */}
+                    <div className="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800">
+                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">Related Tools</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <Link href="/word-to-pdf" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Word to PDF</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Convert Microsoft Word documents (.docx) to PDF format.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/split-pdf" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Split PDF</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Extract specific pages or split a PDF into separate files.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/heic-to-jpg" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Convert HEIC to JPG</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Convert Apple HEIC images to standard JPG format.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/pdf-to-webp" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">PDF to WebP</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Extract pages of a PDF as highly compressed WebP images.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </>
     );
 }

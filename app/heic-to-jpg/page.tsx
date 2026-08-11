@@ -1,11 +1,14 @@
 "use client";
 
 import toast from "react-hot-toast";
+import Link from "next/link";
 import React, { useState } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
 import confetti from "canvas-confetti";
-import { Photo, Transform } from "@mui/icons-material";
+import {
+    ArrowRightAlt,
+ Photo, Transform } from "@mui/icons-material";
 
 export default function HEICToJPG() {
     const [file, setFile] = useState<File | null>(null);
@@ -158,24 +161,80 @@ export default function HEICToJPG() {
             )}
         </ToolWrapper>
 
-            {/* SEO Content Section */}
+                        {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
-                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert HEIC to JPG</h2>
-                    <ol className="list-decimal pl-6 space-y-3 mb-8">
-                        <li>Drag and drop your Apple HEIC photos.</li>
-                        <li>The conversion to standard JPG format begins automatically.</li>
-                        <li>Download your new JPG images instantly.</li>
+                <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Convert HEIC to JPG Instantly</h2>
+                    <p className="text-lg mb-8">
+                        Welcome to the fastest, most secure way to convert Apple HEIC photos to universally compatible JPG images online. Whether you are a professional, student, or casual user, our tool makes it effortless and completely private.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is Convert HEIC to JPG?</h3>
+                    <p className="mb-6">
+                        Converting High-Efficiency Image Container (HEIC) files, commonly used by Apple devices, into the widely supported Joint Photographic Experts Group (JPG) format for maximum compatibility.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert HEIC to JPG</h3>
+                    <p className="mb-4">Using our tool is incredibly simple:</p>
+                    <ol className="list-decimal pl-6 space-y-4 mb-8">
+                        <li><strong>Upload your files:</strong> Select or drag and drop your HEIC images into the upload zone.</li>
+                        <li><strong>Adjust settings:</strong> Adjust the image quality slider if you want to compress the output JPG files.</li>
+                        <li><strong>Process and Download:</strong> Click &quot;Convert to JPG&quot; to process your images locally and download the results.</li>
                     </ol>
 
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Convert HEIC to JPG?</h3>
-                    <p className="mb-8">HEIC is the default photo format for modern iPhones, offering great compression. However, many websites, older devices, and Windows computers cannot open HEIC files natively. Converting them to JPG ensures maximum compatibility across all platforms and software.</p>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why should you use this tool?</h3>
+                    <ul className="list-disc pl-6 space-y-3 mb-8">
+                        <li><strong>Universal Compatibility:</strong> JPG files can be opened on almost any device, operating system, or web browser without special software.</li>
+                        <li><strong>Easy Sharing:</strong> Share your iPhone photos with Windows or Android users without worrying about compatibility issues.</li>
+                        <li><strong>Web Optimization:</strong> JPG is the standard format for web images, making it easier to upload your photos to websites and social media.</li>
+                    </ul>
 
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Seamless Apple Photo Sharing</h3>
-                    <p className="mb-8">Do not let format incompatibility stop you from sharing your memories. Our converter quickly transforms your iPhone photos into universally accepted JPGs without sacrificing visual quality.</p>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
+                    <p className="mb-6">
+                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Files and Limitations</h3>
+                    <p className="mb-6">
+                        Our tool supports standard file formats. Because processing happens locally, there are no strict file size limits imposed by a server. You can process files as large as your device&apos;s memory can handle. Note that password-protected PDFs must be unlocked before they can be processed.
+                    </p>
+
+                    {/* Related Tools */}
+                    <div className="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800">
+                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">Related Tools</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <Link href="/delete-pages-pdf" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Delete PDF Pages</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Select pages you want to remove from your PDF document.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/page-number-pdf" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Page Number PDF</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Easily insert page numbers into your PDF document.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/image-compressor" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Image Compressor</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Compress JPG, PNG, or WebP images to reduce file size.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/pdf-to-webp" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">PDF to WebP</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Extract pages of a PDF as highly compressed WebP images.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </>
     );
 }

@@ -1,12 +1,15 @@
 "use client";
 
 import toast from "react-hot-toast";
+import Link from "next/link";
 import React, { useState } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
 import { PDFDocument, rgb, PDFEmbeddedPage, PDFPage } from "pdf-lib";
 import confetti from "canvas-confetti";
-import { FormatListNumbered, VerticalAlignBottom, VerticalAlignTop } from "@mui/icons-material";
+import {
+    ArrowRightAlt,
+ FormatListNumbered, VerticalAlignBottom, VerticalAlignTop } from "@mui/icons-material";
 
 const calculatePageNumberPosition = (
     width: number,
@@ -383,24 +386,80 @@ export default function PageNumberPDF() {
             )}
         </ToolWrapper>
 
-            {/* SEO Content Section */}
+                        {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
-                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Add Page Numbers to PDF</h2>
-                    <ol className="list-decimal pl-6 space-y-3 mb-8">
-                        <li>Upload your PDF document.</li>
-                        <li>Choose the position (e.g., bottom center) and format for your page numbers.</li>
-                        <li>Apply the numbers and download the updated PDF.</li>
+                <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Add Page Numbers to PDF Instantly</h2>
+                    <p className="text-lg mb-8">
+                        Welcome to the fastest, most secure way to insert page numbers into your PDF documents online. Whether you are a professional, student, or casual user, our tool makes it effortless and completely private.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is Add Page Numbers to PDF?</h3>
+                    <p className="mb-6">
+                        Automatically adding sequential page numbers to the pages of a PDF document. You can customize the position, style, and starting number to make your document look professional and easy to navigate.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Add Page Numbers to PDF</h3>
+                    <p className="mb-4">Using our tool is incredibly simple:</p>
+                    <ol className="list-decimal pl-6 space-y-4 mb-8">
+                        <li><strong>Upload your files:</strong> Upload the PDF document that needs page numbers.</li>
+                        <li><strong>Adjust settings:</strong> Choose the position (e.g., bottom right, top center), format, and starting page number.</li>
+                        <li><strong>Process and Download:</strong> Click &quot;Add Page Numbers&quot; to apply the changes and download your updated PDF.</li>
                     </ol>
 
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Add Page Numbers?</h3>
-                    <p className="mb-8">For long documents like reports, manuscripts, or legal contracts, page numbers are essential for navigation and referencing. They provide a professional touch and make it much easier for readers to discuss specific sections of the text.</p>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why should you use this tool?</h3>
+                    <ul className="list-disc pl-6 space-y-3 mb-8">
+                        <li><strong>Professional Appearance:</strong> Page numbers are essential for formal documents, reports, academic papers, and legal files.</li>
+                        <li><strong>Easy Navigation:</strong> Help readers easily find specific sections or reference particular pages within a large document.</li>
+                        <li><strong>Print Organization:</strong> Ensure that printed pages can be easily reassembled in the correct order if they get mixed up.</li>
+                    </ul>
 
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Customizable Placement</h3>
-                    <p className="mb-8">You have full control over where the numbers appear on the page, ensuring they do not overlap with your existing content or margins.</p>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
+                    <p className="mb-6">
+                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Files and Limitations</h3>
+                    <p className="mb-6">
+                        Our tool supports standard file formats. Because processing happens locally, there are no strict file size limits imposed by a server. You can process files as large as your device&apos;s memory can handle. Note that password-protected PDFs must be unlocked before they can be processed.
+                    </p>
+
+                    {/* Related Tools */}
+                    <div className="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800">
+                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">Related Tools</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <Link href="/extract-images-pdf" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Extract Images from PDF</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Extract all embedded images from a PDF document.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/pdf-redaction" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">PDF Redaction</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Permanently blackout sensitive information in your PDF.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/png-to-jpg" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Convert PNG to JPG</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Convert PNG images to JPG format with custom background fill.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/rotate-pdf" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Rotate PDF</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Rotate pages in your PDF document and save the changes.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </>
     );
 }

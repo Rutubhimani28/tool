@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Convert HEIC to JPG Free Online | PDFImageConvert",
-    description: "Convert Apple HEIC images to standard JPG format.",
+    title: "Convert HEIC to JPG - Free Online Tool | PDFImageConvert",
+    description: "Convert Apple HEIC images to standard JPG format. 100% free, secure, and works entirely in your browser.",
     alternates: {
-        canonical: "/heic-to-jpg",
+        canonical: "https://pdfimageconvert.com/heic-to-jpg",
     },
 };
 

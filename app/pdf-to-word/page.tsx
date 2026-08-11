@@ -6,7 +6,8 @@ import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
 import { Document, Packer, Paragraph, TextRun, HeadingLevel, ImageRun } from "docx";
 import confetti from "canvas-confetti";
-import { TextSnippet, Image as ImageIcon } from "@mui/icons-material";
+import { TextSnippet, Image as ImageIcon, ArrowRightAlt } from "@mui/icons-material";
+import Link from "next/link";
 import Tesseract from "tesseract.js";
 
 export default function PDFToWord() {
@@ -41,7 +42,7 @@ export default function PDFToWord() {
         setProcessingStatus("Loading PDF...");
 
         const originalWarn = console.warn;
-        console.warn = () => {};
+        console.warn = () => { };
 
         try {
             const arrayBuffer = await file.arrayBuffer();
@@ -353,118 +354,212 @@ export default function PDFToWord() {
         }
     };
 
-    return (
-        <ToolWrapper
-            title="PDF to Word"
-            description="Extract text and images from PDF and convert to Microsoft Word (.docx) format."
-        >
-            {resultUrl ? (
-                <div className="flex flex-col items-center justify-center gap-6 py-8">
-                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-cyan-100 text-cyan-500 dark:bg-cyan-900/30 dark:text-cyan-400">
-                        <TextSnippet className="h-12 w-12" />
-                    </div>
-                    <div className="text-center">
-                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">PDF Converted to Word!</h3>
-                        <p className="mt-2 text-zinc-500 dark:text-zinc-400">
-                            Your PDF has been converted with text and images preserved.
-                        </p>
-                    </div>
-                    <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
-                        <button
-                            onClick={() => {
-                                const link = document.createElement("a");
-                                link.href = resultUrl;
-                                link.download = `${resultFileName.replace(".pdf", "")}.docx`;
-                                document.body.appendChild(link);
-                                link.click();
-                                document.body.removeChild(link);
-                            }}
-                            className="flex-1 rounded-xl bg-cyan-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-cyan-600 transition-colors"
-                        >
-                            Download Word File
-                        </button>
-                        <button
-                            onClick={() => {
-                                if (resultUrl) URL.revokeObjectURL(resultUrl);
-                                setResultUrl(null);
-                                setResultFileName("");
-                                setFile(null);
-                            }}
-                            className="flex-1 rounded-xl bg-zinc-100 px-4 py-3 text-sm font-semibold text-zinc-900 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
-                        >
-                            Convert Another File
-                        </button>
-                    </div>
-                </div>
-            ) : !file ? (
-                <DropZone
-                    onFilesSelected={handleFileSelected}
-                    accept=".pdf"
-                    multiple={false}
-                    title="Select PDF file to convert"
-                    description="Drag & drop a PDF file here, or click to browse"
-                />
-            ) : (
-                <div className="flex flex-col gap-6 w-full">
-                    {/* File Info */}
-                    <div className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
-                        <div className="flex items-center gap-4 min-w-0">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-100 text-cyan-600 dark:bg-cyan-950/30 dark:text-cyan-400 font-bold text-xs">
-                                PDF
-                            </div>
-                            <div className="min-w-0">
-                                <p className="text-sm font-semibold text-zinc-900 dark:text-white truncate">
-                                    {file.name}
-                                </p>
-                                <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                                    {(file.size / 1024 / 1024).toFixed(2)} MB
-                                </p>
-                            </div>
-                        </div>
-                        <button
-                            onClick={() => setFile(null)}
-                            className="text-sm font-semibold text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 transition-colors"
-                        >
-                            Remove
-                        </button>
-                    </div>
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "PDF to Word Converter",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "Extract text and images from PDF and convert to Microsoft Word (.docx) format."
+    };
 
-                    {/* Action Button & Progress */}
-                    <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
-                        {isProcessing ? (
-                            <div className="w-full">
-                                <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
-                                    <span>{processingStatus || "Converting to Word..."}</span>
-                                    <span>{progress}%</span>
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <ToolWrapper
+                title="PDF to Word"
+                description="Extract text and images from PDF and convert to Microsoft Word (.docx) format."
+            >
+                {resultUrl ? (
+                    <div className="flex flex-col items-center justify-center gap-6 py-8">
+                        <div className="flex h-24 w-24 items-center justify-center rounded-full bg-cyan-100 text-cyan-500 dark:bg-cyan-900/30 dark:text-cyan-400">
+                            <TextSnippet className="h-12 w-12" />
+                        </div>
+                        <div className="text-center">
+                            <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">PDF Converted to Word!</h3>
+                            <p className="mt-2 text-zinc-500 dark:text-zinc-400">
+                                Your PDF has been converted with text and images preserved.
+                            </p>
+                        </div>
+                        <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
+                            <button
+                                onClick={() => {
+                                    const link = document.createElement("a");
+                                    link.href = resultUrl;
+                                    link.download = `${resultFileName.replace(".pdf", "")}.docx`;
+                                    document.body.appendChild(link);
+                                    link.click();
+                                    document.body.removeChild(link);
+                                }}
+                                className="flex-1 rounded-xl bg-cyan-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-cyan-600 transition-colors"
+                            >
+                                Download Word File
+                            </button>
+                            <button
+                                onClick={() => {
+                                    if (resultUrl) URL.revokeObjectURL(resultUrl);
+                                    setResultUrl(null);
+                                    setResultFileName("");
+                                    setFile(null);
+                                }}
+                                className="flex-1 rounded-xl bg-zinc-100 px-4 py-3 text-sm font-semibold text-zinc-900 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
+                            >
+                                Convert Another File
+                            </button>
+                        </div>
+                    </div>
+                ) : !file ? (
+                    <DropZone
+                        onFilesSelected={handleFileSelected}
+                        accept=".pdf"
+                        multiple={false}
+                        title="Select PDF file to convert"
+                        description="Drag & drop a PDF file here, or click to browse"
+                    />
+                ) : (
+                    <div className="flex flex-col gap-6 w-full">
+                        {/* File Info */}
+                        <div className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
+                            <div className="flex items-center gap-4 min-w-0">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-100 text-cyan-600 dark:bg-cyan-950/30 dark:text-cyan-400 font-bold text-xs">
+                                    PDF
                                 </div>
-                                <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
-                                    <div
-                                        className="bg-cyan-500 h-full transition-all duration-300"
-                                        style={{ width: `${progress}%` }}
-                                    />
+                                <div className="min-w-0">
+                                    <p className="text-sm font-semibold text-zinc-900 dark:text-white truncate">
+                                        {file.name}
+                                    </p>
+                                    <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                                        {(file.size / 1024 / 1024).toFixed(2)} MB
+                                    </p>
                                 </div>
                             </div>
-                        ) : (
-                            <div className="flex flex-col sm:flex-row gap-4">
-                                <button
-                                    onClick={() => handleConvert('editable')}
-                                    className="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-cyan-500 py-4 text-base font-semibold text-white shadow-lg shadow-cyan-500/20 hover:bg-cyan-600 transition-all duration-200"
-                                >
-                                    <TextSnippet className="h-5 w-5" />
-                                    Convert to Editable Text
-                                </button>
-                                <button
-                                    onClick={() => handleConvert('exact')}
-                                    className="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-indigo-500 py-4 text-base font-semibold text-white shadow-lg shadow-indigo-500/20 hover:bg-indigo-600 transition-all duration-200"
-                                >
-                                    <ImageIcon className="h-5 w-5" />
-                                    Convert to Exact Copy
-                                </button>
-                            </div>
-                        )}
+                            <button
+                                onClick={() => setFile(null)}
+                                className="text-sm font-semibold text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 transition-colors"
+                            >
+                                Remove
+                            </button>
+                        </div>
+
+                        {/* Action Button & Progress */}
+                        <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
+                            {isProcessing ? (
+                                <div className="w-full">
+                                    <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
+                                        <span>{processingStatus || "Converting to Word..."}</span>
+                                        <span>{progress}%</span>
+                                    </div>
+                                    <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
+                                        <div
+                                            className="bg-cyan-500 h-full transition-all duration-300"
+                                            style={{ width: `${progress}%` }}
+                                        />
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="flex flex-col sm:flex-row gap-4">
+                                    <button
+                                        onClick={() => handleConvert('editable')}
+                                        className="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-cyan-500 py-4 text-base font-semibold text-white shadow-lg shadow-cyan-500/20 hover:bg-cyan-600 transition-all duration-200"
+                                    >
+                                        <TextSnippet className="h-5 w-5" />
+                                        Convert to Editable Text
+                                    </button>
+                                    <button
+                                        onClick={() => handleConvert('exact')}
+                                        className="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-indigo-500 py-4 text-base font-semibold text-white shadow-lg shadow-indigo-500/20 hover:bg-indigo-600 transition-all duration-200"
+                                    >
+                                        <ImageIcon className="h-5 w-5" />
+                                        Convert to Exact Copy
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                )}
+            </ToolWrapper>
+
+            {/* SEO Content Section */}
+            <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+                <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Convert PDF to Word Instantly</h2>
+                    <p className="text-lg mb-8">
+                        Welcome to the most advanced, privacy-first PDF to Word converter. Whether you need to edit a contract, update a resume, or extract text from a scanned document, our tool seamlessly converts your PDFs into editable Microsoft Word (.docx) files directly in your browser.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is PDF to Word Conversion?</h3>
+                    <p className="mb-6">
+                        Converting a PDF to Word involves analyzing the static text, images, and layout of a PDF document and reconstructing them into a dynamic, editable format. Our tool offers two distinct modes: <strong>Editable Text</strong> (which extracts and formats the text for easy editing) and <strong>Exact Copy</strong> (which renders pages as high-quality images within the Word document, perfect for preserving complex layouts).
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert PDF to Word</h3>
+                    <p className="mb-4">Transforming your documents is fast and secure:</p>
+                    <ol className="list-decimal pl-6 space-y-4 mb-8">
+                        <li><strong>Upload your file:</strong> Drag and drop your PDF into the upload area above.</li>
+                        <li><strong>Select Conversion Mode:</strong>
+                            <ul className="list-disc pl-6 mt-2 space-y-2">
+                                <li><em>Convert to Editable Text:</em> Best for documents where you need to modify the text. It extracts text and images, and even uses built-in OCR for scanned pages.</li>
+                                <li><em>Convert to Exact Copy:</em> Best for complex layouts (like brochures or forms) where you want the Word document to look exactly like the PDF, even if the text isn&apos;t directly editable.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Download your DOCX:</strong> Once processing is complete, download your new Microsoft Word file instantly.</li>
+                    </ol>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why convert PDFs to Word?</h3>
+                    <ul className="list-disc pl-6 space-y-3 mb-8">
+                        <li><strong>Easy Editing:</strong> PDFs are designed to be static. Converting to Word allows you to easily change text, update figures, or correct typos without needing expensive PDF editing software.</li>
+                        <li><strong>Content Extraction:</strong> Quickly pull paragraphs of text or specific images out of a locked PDF to use in other reports or presentations.</li>
+                        <li><strong>Form Filling:</strong> Convert a static PDF form into a Word document to easily type in your responses before printing or saving.</li>
+                    </ul>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
+                    <p className="mb-6">
+                        Your privacy is our top priority. Unlike many other online converters that upload your sensitive documents to remote cloud servers, <strong>our PDF to Word tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                    </p>
+                    {/* Related Tools */}
+                    <div className="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800">
+                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">Related Tools</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <Link href="/rotate-pdf" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Rotate PDF</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Rotate pages in your PDF document and save the changes.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/jpg-to-png" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Convert JPG to PNG</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Convert JPG images to PNG format.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/pdf-to-text" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">PDF to Text</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Extract all text from a PDF document and download it as a TXT file.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/rotate-image" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Rotate Image</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Rotate your images left or right by 90 degrees.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                        </div>
                     </div>
                 </div>
-            )}
-        </ToolWrapper>
+            </div>
+        </>
     );
 }

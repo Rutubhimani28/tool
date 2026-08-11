@@ -5,7 +5,8 @@ import React, { useState, useRef, useEffect } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
 import confetti from "canvas-confetti";
-import { Crop, Photo, RotateRight } from "@mui/icons-material";
+import { Crop, Photo, RotateRight, ArrowRightAlt } from "@mui/icons-material";
+import Link from "next/link";
 
 export default function ImageCropper() {
     const [file, setFile] = useState<File | null>(null);
@@ -62,7 +63,7 @@ export default function ImageCropper() {
         const numValue = parseInt(value);
         if (isNaN(numValue)) return;
 
-        let newInputs = {
+        const newInputs = {
             x: Number(manualInputs.x) || 0,
             y: Number(manualInputs.y) || 0,
             w: Number(manualInputs.w) || 10,
@@ -318,256 +319,317 @@ export default function ImageCropper() {
     return (
         <>
             <ToolWrapper title="Image Cropper" description="Crop and rotate your images interactively entirely in your browser." accentColor="pink">
-            {croppedUrl ? (
-                // Success screen
-                <div className="flex flex-col items-center justify-center gap-6 py-4">
-                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-pink-100 text-pink-500 dark:bg-pink-900/30 dark:text-pink-400">
-                        <Crop className="h-10 w-10" />
-                    </div>
-                    <div className="text-center">
-                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">Image Cropped!</h3>
-                        <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
-                            Your cropped image is ready for download.
-                        </p>
-                    </div>
-
-                    {/* Preview */}
-                    <div className="w-full max-w-md aspect-video rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-zinc-50 dark:bg-zinc-900 flex items-center justify-center">
-                        <img src={croppedUrl} alt="Cropped" className="max-h-full max-w-full object-contain" />
-                    </div>
-
-                    <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
-                        <button
-                            onClick={() => {
-                                const link = document.createElement("a");
-                                link.href = croppedUrl;
-                                link.download = resultFileName;
-                                document.body.appendChild(link);
-                                link.click();
-                                document.body.removeChild(link);
-                            }}
-                            className="flex-1 rounded-xl bg-pink-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-pink-600 transition-colors"
-                        >
-                            Download Image
-                        </button>
-                        <button
-                            onClick={handleReset}
-                            className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
-                        >
-                            Crop Another
-                        </button>
-                    </div>
-                </div>
-            ) : !file ? (
-                <DropZone
-                    onFilesSelected={handleFileSelected}
-                    accept="image/jpeg,image/png,image/webp"
-                    multiple={false}
-                    title="Select image to crop"
-                    description="Drag & drop a JPG, PNG, or WebP file here, or click to browse"
-                />
-            ) : (
-                <div className="flex flex-col gap-6 w-full">
-                    {/* File Info */}
-                    <div className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
-                        <div className="flex items-center gap-4 min-w-0">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-pink-100 text-pink-600 dark:bg-pink-950/30 dark:text-pink-400">
-                                <Photo className="h-5 w-5" />
-                            </div>
-                            <div className="min-w-0">
-                                <p className="text-sm font-semibold text-zinc-900 dark:text-white truncate">{file.name}</p>
-                                <p className="text-xs text-zinc-500 dark:text-zinc-400">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
-                            </div>
+                {croppedUrl ? (
+                    // Success screen
+                    <div className="flex flex-col items-center justify-center gap-6 py-4">
+                        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-pink-100 text-pink-500 dark:bg-pink-900/30 dark:text-pink-400">
+                            <Crop className="h-10 w-10" />
                         </div>
-                        <button
-                            onClick={handleReset}
-                            className="text-sm font-semibold text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 transition-colors"
-                        >
-                            Remove
-                        </button>
-                    </div>
+                        <div className="text-center">
+                            <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">Image Cropped!</h3>
+                            <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
+                                Your cropped image is ready for download.
+                            </p>
+                        </div>
 
-                    {/* Toolbar */}
-                    <div className="flex flex-col gap-4 p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/20">
-                        <div className="flex flex-wrap items-center justify-between gap-4">
-                            {/* Aspect Ratios Dropdown */}
-                            <div className="flex items-center gap-3">
-                                <span className="text-xs font-semibold text-zinc-500 uppercase">Aspect Ratio:</span>
-                                <select
-                                    value={aspectRatio}
-                                    onChange={(e) => setAspectRatio(e.target.value === "free" ? "free" : parseFloat(e.target.value))}
-                                    className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm text-zinc-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
-                                >
-                                    <option value="free">Free</option>
-                                    <option value={1}>1:1 (Square)</option>
-                                    <option value={1.77777777778}>16:9 (Widescreen)</option>
-                                    <option value={1.33333333333}>4:3 (Standard)</option>
-                                    <option value={1.5}>3:2 (Classic Photo)</option>
-                                    <option value={0.66666666667}>2:3 (Portrait Photo)</option>
-                                    <option value={0.5625}>9:16 (Story/Reel)</option>
-                                    <option value={1.25}>5:4</option>
-                                    <option value={0.8}>4:5</option>
-                                </select>
-                            </div>
+                        {/* Preview */}
+                        <div className="w-full max-w-md aspect-video rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-zinc-50 dark:bg-zinc-900 flex items-center justify-center">
+                            <img src={croppedUrl} alt="Cropped" className="max-h-full max-w-full object-contain" />
+                        </div>
 
-                            {/* Rotation */}
+                        <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
                             <button
                                 onClick={() => {
-                                    if (!imgRef.current) return;
-                                    const img = imgRef.current;
-                                    const canvas = document.createElement("canvas");
-                                    const ctx = canvas.getContext("2d");
-                                    if (!ctx) return;
-
-                                    canvas.width = img.naturalHeight;
-                                    canvas.height = img.naturalWidth;
-
-                                    ctx.translate(canvas.width / 2, canvas.height / 2);
-                                    ctx.rotate((90 * Math.PI) / 180);
-                                    ctx.drawImage(img, -img.naturalWidth / 2, -img.naturalHeight / 2);
-
-                                    const newUrl = canvas.toDataURL(file?.type || "image/png");
-                                    setPreviewUrl(newUrl);
-                                    setRotation(0); // Reset CSS rotation just in case
+                                    const link = document.createElement("a");
+                                    link.href = croppedUrl;
+                                    link.download = resultFileName;
+                                    document.body.appendChild(link);
+                                    link.click();
+                                    document.body.removeChild(link);
                                 }}
-                                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-900 dark:border-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-all duration-200"
+                                className="flex-1 rounded-xl bg-pink-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-pink-600 transition-colors"
                             >
-                                <RotateRight className="h-4 w-4" /> Rotate 90°
+                                Download Image
+                            </button>
+                            <button
+                                onClick={handleReset}
+                                className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
+                            >
+                                Crop Another
+                            </button>
+                        </div>
+                    </div>
+                ) : !file ? (
+                    <DropZone
+                        onFilesSelected={handleFileSelected}
+                        accept="image/jpeg,image/png,image/webp"
+                        multiple={false}
+                        title="Select image to crop"
+                        description="Drag & drop a JPG, PNG, or WebP file here, or click to browse"
+                    />
+                ) : (
+                    <div className="flex flex-col gap-6 w-full">
+                        {/* File Info */}
+                        <div className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
+                            <div className="flex items-center gap-4 min-w-0">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-pink-100 text-pink-600 dark:bg-pink-950/30 dark:text-pink-400">
+                                    <Photo className="h-5 w-5" />
+                                </div>
+                                <div className="min-w-0">
+                                    <p className="text-sm font-semibold text-zinc-900 dark:text-white truncate">{file.name}</p>
+                                    <p className="text-xs text-zinc-500 dark:text-zinc-400">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
+                                </div>
+                            </div>
+                            <button
+                                onClick={handleReset}
+                                className="text-sm font-semibold text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 transition-colors"
+                            >
+                                Remove
                             </button>
                         </div>
 
-                        {/* Manual Inputs */}
-                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
-                            <div className="flex flex-col gap-1">
-                                <label htmlFor="crop-width" className="text-xs font-semibold text-zinc-500 uppercase">Width (px)</label>
-                                <input
-                                    id="crop-width"
-                                    name="crop-width"
-                                    type="number"
-                                    value={manualInputs.w}
-                                    onChange={(e) => handleManualInputChange('w', e.target.value)}
-                                    className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm text-zinc-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
-                                />
+                        {/* Toolbar */}
+                        <div className="flex flex-col gap-4 p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/20">
+                            <div className="flex flex-wrap items-center justify-between gap-4">
+                                {/* Aspect Ratios Dropdown */}
+                                <div className="flex items-center gap-3">
+                                    <span className="text-xs font-semibold text-zinc-500 uppercase">Aspect Ratio:</span>
+                                    <select
+                                        value={aspectRatio}
+                                        onChange={(e) => setAspectRatio(e.target.value === "free" ? "free" : parseFloat(e.target.value))}
+                                        className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm text-zinc-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
+                                    >
+                                        <option value="free">Free</option>
+                                        <option value={1}>1:1 (Square)</option>
+                                        <option value={1.77777777778}>16:9 (Widescreen)</option>
+                                        <option value={1.33333333333}>4:3 (Standard)</option>
+                                        <option value={1.5}>3:2 (Classic Photo)</option>
+                                        <option value={0.66666666667}>2:3 (Portrait Photo)</option>
+                                        <option value={0.5625}>9:16 (Story/Reel)</option>
+                                        <option value={1.25}>5:4</option>
+                                        <option value={0.8}>4:5</option>
+                                    </select>
+                                </div>
+
+                                {/* Rotation */}
+                                <button
+                                    onClick={() => {
+                                        if (!imgRef.current) return;
+                                        const img = imgRef.current;
+                                        const canvas = document.createElement("canvas");
+                                        const ctx = canvas.getContext("2d");
+                                        if (!ctx) return;
+
+                                        canvas.width = img.naturalHeight;
+                                        canvas.height = img.naturalWidth;
+
+                                        ctx.translate(canvas.width / 2, canvas.height / 2);
+                                        ctx.rotate((90 * Math.PI) / 180);
+                                        ctx.drawImage(img, -img.naturalWidth / 2, -img.naturalHeight / 2);
+
+                                        const newUrl = canvas.toDataURL(file?.type || "image/png");
+                                        setPreviewUrl(newUrl);
+                                        setRotation(0); // Reset CSS rotation just in case
+                                    }}
+                                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-900 dark:border-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-all duration-200"
+                                >
+                                    <RotateRight className="h-4 w-4" /> Rotate 90°
+                                </button>
                             </div>
-                            <div className="flex flex-col gap-1">
-                                <label htmlFor="crop-height" className="text-xs font-semibold text-zinc-500 uppercase">Height (px)</label>
-                                <input
-                                    id="crop-height"
-                                    name="crop-height"
-                                    type="number"
-                                    value={manualInputs.h}
-                                    onChange={(e) => handleManualInputChange('h', e.target.value)}
-                                    className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm text-zinc-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
-                                />
-                            </div>
-                            <div className="flex flex-col gap-1">
-                                <label htmlFor="crop-x" className="text-xs font-semibold text-zinc-500 uppercase">X Position</label>
-                                <input
-                                    id="crop-x"
-                                    name="crop-x"
-                                    type="number"
-                                    value={manualInputs.x}
-                                    onChange={(e) => handleManualInputChange('x', e.target.value)}
-                                    className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm text-zinc-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
-                                />
-                            </div>
-                            <div className="flex flex-col gap-1">
-                                <label htmlFor="crop-y" className="text-xs font-semibold text-zinc-500 uppercase">Y Position</label>
-                                <input
-                                    id="crop-y"
-                                    name="crop-y"
-                                    type="number"
-                                    value={manualInputs.y}
-                                    onChange={(e) => handleManualInputChange('y', e.target.value)}
-                                    className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm text-zinc-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
-                                />
+
+                            {/* Manual Inputs */}
+                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
+                                <div className="flex flex-col gap-1">
+                                    <label htmlFor="crop-width" className="text-xs font-semibold text-zinc-500 uppercase">Width (px)</label>
+                                    <input
+                                        id="crop-width"
+                                        name="crop-width"
+                                        type="number"
+                                        value={manualInputs.w}
+                                        onChange={(e) => handleManualInputChange('w', e.target.value)}
+                                        className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm text-zinc-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
+                                    />
+                                </div>
+                                <div className="flex flex-col gap-1">
+                                    <label htmlFor="crop-height" className="text-xs font-semibold text-zinc-500 uppercase">Height (px)</label>
+                                    <input
+                                        id="crop-height"
+                                        name="crop-height"
+                                        type="number"
+                                        value={manualInputs.h}
+                                        onChange={(e) => handleManualInputChange('h', e.target.value)}
+                                        className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm text-zinc-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
+                                    />
+                                </div>
+                                <div className="flex flex-col gap-1">
+                                    <label htmlFor="crop-x" className="text-xs font-semibold text-zinc-500 uppercase">X Position</label>
+                                    <input
+                                        id="crop-x"
+                                        name="crop-x"
+                                        type="number"
+                                        value={manualInputs.x}
+                                        onChange={(e) => handleManualInputChange('x', e.target.value)}
+                                        className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm text-zinc-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
+                                    />
+                                </div>
+                                <div className="flex flex-col gap-1">
+                                    <label htmlFor="crop-y" className="text-xs font-semibold text-zinc-500 uppercase">Y Position</label>
+                                    <input
+                                        id="crop-y"
+                                        name="crop-y"
+                                        type="number"
+                                        value={manualInputs.y}
+                                        onChange={(e) => handleManualInputChange('y', e.target.value)}
+                                        className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm text-zinc-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
+                                    />
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    {/* Interactive Crop Area */}
-                    <div className="flex justify-center items-center p-4 border border-zinc-200 dark:border-zinc-800 rounded-2xl bg-zinc-900 overflow-hidden min-h-[300px] relative">
-                        <div
-                            ref={containerRef}
-                            className="relative inline-block max-w-full max-h-[400px] select-none"
-                        >
-                            {previewUrl && (
-                                <img
-                                    ref={imgRef}
-                                    src={previewUrl}
-                                    alt="Crop Preview"
-                                    onLoad={() => setImageLoaded(true)}
-                                    className="block max-w-full max-h-[400px] w-auto h-auto pointer-events-none"
-                                />
-                            )}
-
-                            {/* Crop Overlay Box */}
+                        {/* Interactive Crop Area */}
+                        <div className="flex justify-center items-center p-4 border border-zinc-200 dark:border-zinc-800 rounded-2xl bg-zinc-900 overflow-hidden min-h-[300px] relative">
                             <div
-                                className="absolute border-2 border-pink-500 bg-pink-500/10 cursor-move"
-                                style={{
-                                    left: `${cropBox.x}%`,
-                                    top: `${cropBox.y}%`,
-                                    width: `${cropBox.w}%`,
-                                    height: `${cropBox.h}%`,
-                                }}
-                                onMouseDown={(e) => handlePointerDown(e, "move")}
-                                onTouchStart={(e) => handlePointerDown(e, "move")}
+                                ref={containerRef}
+                                className="relative inline-block max-w-full max-h-[400px] select-none"
                             >
-                                {/* Drag Handles */}
+                                {previewUrl && (
+                                    <img
+                                        ref={imgRef}
+                                        src={previewUrl}
+                                        alt="Crop Preview"
+                                        onLoad={() => setImageLoaded(true)}
+                                        className="block max-w-full max-h-[400px] w-auto h-auto pointer-events-none"
+                                    />
+                                )}
+
+                                {/* Crop Overlay Box */}
                                 <div
-                                    className="absolute -top-1.5 -left-1.5 h-3 w-3 rounded-full bg-white border border-pink-500 cursor-nwse-resize"
-                                    onMouseDown={(e) => handlePointerDown(e, "tl")}
-                                    onTouchStart={(e) => handlePointerDown(e, "tl")}
-                                />
-                                <div
-                                    className="absolute -top-1.5 -right-1.5 h-3 w-3 rounded-full bg-white border border-pink-500 cursor-nesw-resize"
-                                    onMouseDown={(e) => handlePointerDown(e, "tr")}
-                                    onTouchStart={(e) => handlePointerDown(e, "tr")}
-                                />
-                                <div
-                                    className="absolute -bottom-1.5 -left-1.5 h-3 w-3 rounded-full bg-white border border-pink-500 cursor-nesw-resize"
-                                    onMouseDown={(e) => handlePointerDown(e, "bl")}
-                                    onTouchStart={(e) => handlePointerDown(e, "bl")}
-                                />
-                                <div
-                                    className="absolute -bottom-1.5 -right-1.5 h-3 w-3 rounded-full bg-white border border-pink-500 cursor-nwse-resize"
-                                    onMouseDown={(e) => handlePointerDown(e, "br")}
-                                    onTouchStart={(e) => handlePointerDown(e, "br")}
-                                />
+                                    className="absolute border-2 border-pink-500 bg-pink-500/10 cursor-move"
+                                    style={{
+                                        left: `${cropBox.x}%`,
+                                        top: `${cropBox.y}%`,
+                                        width: `${cropBox.w}%`,
+                                        height: `${cropBox.h}%`,
+                                    }}
+                                    onMouseDown={(e) => handlePointerDown(e, "move")}
+                                    onTouchStart={(e) => handlePointerDown(e, "move")}
+                                >
+                                    {/* Drag Handles */}
+                                    <div
+                                        className="absolute -top-1.5 -left-1.5 h-3 w-3 rounded-full bg-white border border-pink-500 cursor-nwse-resize"
+                                        onMouseDown={(e) => handlePointerDown(e, "tl")}
+                                        onTouchStart={(e) => handlePointerDown(e, "tl")}
+                                    />
+                                    <div
+                                        className="absolute -top-1.5 -right-1.5 h-3 w-3 rounded-full bg-white border border-pink-500 cursor-nesw-resize"
+                                        onMouseDown={(e) => handlePointerDown(e, "tr")}
+                                        onTouchStart={(e) => handlePointerDown(e, "tr")}
+                                    />
+                                    <div
+                                        className="absolute -bottom-1.5 -left-1.5 h-3 w-3 rounded-full bg-white border border-pink-500 cursor-nesw-resize"
+                                        onMouseDown={(e) => handlePointerDown(e, "bl")}
+                                        onTouchStart={(e) => handlePointerDown(e, "bl")}
+                                    />
+                                    <div
+                                        className="absolute -bottom-1.5 -right-1.5 h-3 w-3 rounded-full bg-white border border-pink-500 cursor-nwse-resize"
+                                        onMouseDown={(e) => handlePointerDown(e, "br")}
+                                        onTouchStart={(e) => handlePointerDown(e, "br")}
+                                    />
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    {/* Action Button */}
-                    <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
-                        <button
-                            onClick={handleCrop}
-                            disabled={isProcessing}
-                            className="flex w-full items-center justify-center gap-2 rounded-2xl bg-pink-500 py-4 text-base font-semibold text-white shadow-lg shadow-pink-500/20 hover:bg-pink-600 transition-all duration-200 disabled:opacity-50"
-                        >
-                            <Crop className="h-5 w-5" />
-                            {isProcessing ? "Cropping..." : "Crop Image"}
-                        </button>
+                        {/* Action Button */}
+                        <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
+                            <button
+                                onClick={handleCrop}
+                                disabled={isProcessing}
+                                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-pink-500 py-4 text-base font-semibold text-white shadow-lg shadow-pink-500/20 hover:bg-pink-600 transition-all duration-200 disabled:opacity-50"
+                            >
+                                <Crop className="h-5 w-5" />
+                                {isProcessing ? "Cropping..." : "Crop Image"}
+                            </button>
+                        </div>
                     </div>
-                </div>
-            )}
-        </ToolWrapper>
+                )}
+            </ToolWrapper>
 
             {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
-                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Crop Images Online</h2>
-                    <ol className="list-decimal pl-6 space-y-3 mb-8">
-                        <li>Upload the image you want to edit.</li>
-                        <li>Drag the crop box to select the area you want to keep.</li>
-                        <li>Click crop and download your perfectly framed image.</li>
+                <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Crop Images Online for Free</h2>
+                    <p className="text-lg mb-8">
+                        Perfectly frame your photos with our intuitive, browser-based image cropper. Whether you need to remove distracting backgrounds, focus on a specific subject, or adjust the aspect ratio for social media, our tool gives you complete visual control.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why Crop Your Images?</h3>
+                    <p className="mb-6">
+                        Cropping is one of the most fundamental yet powerful photo editing techniques. It allows you to improve composition by applying the rule of thirds, eliminate unwanted elements from the edges of your frame, and tailor your images to fit specific dimensions required by platforms like Instagram, Facebook, or YouTube. A well-cropped image instantly looks more professional and engaging.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Use the Image Cropper</h3>
+                    <p className="mb-4">Follow these simple steps to crop your image:</p>
+                    <ol className="list-decimal pl-6 space-y-4 mb-8">
+                        <li><strong>Upload your image:</strong> Drag and drop your JPG, PNG, or WebP file into the upload area.</li>
+                        <li><strong>Adjust the crop box:</strong> Drag the corners or edges of the crop box to frame your desired area. You can also select a preset aspect ratio (like 1:1 or 16:9) or enter exact pixel dimensions.</li>
+                        <li><strong>Crop and Download:</strong> Once you are satisfied with the preview, click &quot;Crop Image&quot; and download the final result instantly.</li>
                     </ol>
 
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Crop Your Images?</h3>
-                    <p className="mb-8">Cropping allows you to remove distracting backgrounds, focus on the main subject, or change the aspect ratio of a photo to fit specific social media dimensions (like an Instagram square or a YouTube banner).</p>
+                                        <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
+                    <p className="mb-6">
+                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                    </p>
 
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Intuitive Visual Editing</h3>
-                    <p className="mb-8">Our interactive cropping tool makes it easy to frame your shots perfectly. You have complete control over the dimensions and positioning, ensuring your final image looks exactly how you envisioned it.</p>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Frequently Asked Questions</h3>
+                    <div className="space-y-6 mb-12">
+                        <div>
+                            <h4 className="text-lg font-bold text-zinc-900 dark:text-white mb-2">Will cropping reduce my image quality?</h4>
+                            <p>Cropping removes pixels from the edges of your image, which means the overall resolution (width x height) will be smaller. However, the quality of the remaining area is perfectly preserved without any additional compression.</p>
+                        </div>
+                        <div>
+                            <h4 className="text-lg font-bold text-zinc-900 dark:text-white mb-2">Can I crop to an exact pixel size?</h4>
+                            <p>Yes! Our tool provides manual input fields where you can specify the exact width, height, and X/Y coordinates for pixel-perfect cropping.</p>
+                        </div>
+                        <div>
+                            <h4 className="text-lg font-bold text-zinc-900 dark:text-white mb-2">What image formats are supported?</h4>
+                            <p>You can crop JPG, PNG, and WebP images using our tool. The cropped image will be saved in the same format as the original.</p>
+                        </div>
+                    </div>
+
+                    {/* Related Tools */}
+                    <div className="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800">
+                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">Related Tools</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <Link href="/extract-images-pdf" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Extract Images from PDF</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Extract all embedded images from a PDF document.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/rotate-pdf" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Rotate PDF</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Rotate pages in your PDF document and save the changes.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/word-to-pdf" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Word to PDF</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Convert Microsoft Word documents (.docx) to PDF format.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/jpg-to-png" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Convert JPG to PNG</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Convert JPG images to PNG format.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </div>
 

@@ -2,11 +2,12 @@
 
 import toast from "react-hot-toast";
 import React, { useState } from "react";
+import Link from "next/link";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
 import JSZip from "jszip";
 import confetti from "canvas-confetti";
-import { Collections } from "@mui/icons-material";
+import { Collections, ArrowRightAlt } from "@mui/icons-material";
 import { PDFDocument } from "pdf-lib";
 
 export default function PDFToJPG() {
@@ -116,8 +117,26 @@ export default function PDFToJPG() {
         }
     };
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "PDF to JPG Converter",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "Convert PDF pages into high-quality JPG images and download them as a ZIP file."
+    };
+
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <ToolWrapper
                 title="PDF to JPG"
                 description="Convert PDF pages into high-quality JPG images and download them as a ZIP file."
@@ -223,19 +242,84 @@ export default function PDFToJPG() {
 
             {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
-                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert PDF to JPG</h2>
-                    <ol className="list-decimal pl-6 space-y-3 mb-8">
-                        <li>Upload your PDF document.</li>
-                        <li>Each page is instantly rendered into a high-quality JPG image.</li>
-                        <li>Download the images individually or as a ZIP archive.</li>
+                <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">PDF to JPG Converter</h2>
+                    <p className="text-lg mb-8">
+                        Welcome to the most reliable, privacy-first PDF to JPG converter. Whether you need to extract a single page from a document or convert an entire multi-page PDF into high-quality images, our tool handles it instantly directly in your browser.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is PDF to JPG Conversion?</h3>
+                    <p className="mb-6">
+                        PDF (Portable Document Format) is excellent for sharing documents that look the same on any device. However, PDFs are not always ideal for web use, social media sharing, or embedding in presentations. Converting a PDF to JPG transforms each page of your document into a standard image file. This process rasterizes the text and vector graphics into a fixed grid of pixels, making the content universally viewable without specialized PDF reader software.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert PDF to JPG</h3>
+                    <p className="mb-4">Converting your files is incredibly simple and requires no technical knowledge:</p>
+                    <ol className="list-decimal pl-6 space-y-4 mb-8">
+                        <li><strong>Select your PDF:</strong> Drag and drop your file into the upload box above, or click to browse your device.</li>
+                        <li><strong>Start Conversion:</strong> Click the &quot;Convert to JPG (ZIP)&quot; button. Our local processing engine will immediately begin rendering each page.</li>
+                        <li><strong>Download JPG files:</strong> Once complete, your high-resolution JPG images will be automatically packaged into a convenient ZIP archive for a single-click download.</li>
                     </ol>
 
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Convert PDF to JPG?</h3>
-                    <p className="mb-8">PDFs are not always supported on social media platforms or image-sharing websites. Converting your PDF pages to JPG allows you to easily share documents on Instagram, Facebook, or embed them directly into web pages and presentations.</p>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">When should you convert PDF to JPG?</h3>
+                    <ul className="list-disc pl-6 space-y-3 mb-8">
+                        <li><strong>Social Media:</strong> Platforms like Instagram, Facebook, and Pinterest do not support PDF uploads. Converting your flyers, infographics, or portfolios to JPG allows you to share them effortlessly.</li>
+                        <li><strong>Web Optimization:</strong> Embedding images on a website is generally faster and more reliable than embedding a PDF viewer.</li>
+                        <li><strong>Presentations:</strong> Inserting JPG images into PowerPoint or Google Slides is much smoother than trying to link or embed PDF files.</li>
+                        <li><strong>Security:</strong> If you want to share a document but prevent others from easily copying the text or editing the content, flattening it into a JPG image adds a layer of difficulty for unauthorized modifications.</li>
+                    </ul>
 
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">High-Resolution Output</h3>
-                    <p className="mb-8">Our conversion engine ensures that every page is rendered with pristine clarity, making it perfect for sharing detailed graphics or text-heavy documents as images.</p>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">JPG vs PNG vs WebP</h3>
+                    <p className="mb-4">Not sure which image format to choose? Here is a quick guide:</p>
+                    <ul className="list-disc pl-6 space-y-3 mb-8">
+                        <li><strong>JPG:</strong> Best for photographs and complex images. It uses lossy compression, resulting in smaller file sizes, making it the standard for general web use.</li>
+                        <li><strong>PNG:</strong> Best for documents with sharp text, line art, or when you need a transparent background. It uses lossless compression, ensuring no quality is lost, but file sizes are larger. Try our <Link href="/pdf-to-png" className="text-blue-600 dark:text-blue-400 hover:underline">PDF to PNG</Link> tool.</li>
+                        <li><strong>WebP:</strong> A modern format that provides superior compression for the web, offering high quality at very small file sizes. Try our <Link href="/pdf-to-webp" className="text-blue-600 dark:text-blue-400 hover:underline">PDF to WebP</Link> tool.</li>
+                    </ul>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
+                    <p className="mb-6">
+                        Your privacy is our top priority. Unlike many other online converters that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Files and Limitations</h3>
+                    <p className="mb-6">
+                        Our tool supports standard PDF documents. Because processing happens locally, there are no strict file size limits imposed by a server. However, processing extremely large PDFs (e.g., hundreds of pages) may take longer depending on your device&apos;s memory and processing power. Note that password-protected PDFs must be unlocked before conversion.
+                    </p>
+                    {/* Related Tools */}
+                    <div className="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800">
+                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">Related Tools</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <Link href="/webp-converter" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">WebP Converter</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Convert images to WebP format, or convert WebP files back to PNG/JPG.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/image-resizer" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Image Resizer</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Resize your images to custom dimensions or scale them by percentage.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/unlock-pdf" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Unlock PDF</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Remove password protection and restrictions from your PDF.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/delete-pages-pdf" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Delete PDF Pages</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Select pages you want to remove from your PDF document.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </div>
 

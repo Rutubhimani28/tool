@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Split PDF Free Online | PDFImageConvert",
-    description: "Extract specific pages or split a PDF into separate files.",
+    title: "Split PDF – Extract Pages from PDF Free Online",
+    description: "Easily extract specific pages or split a PDF into multiple files. 100% free, secure, and processed locally in your browser without uploading files.",
     alternates: {
-        canonical: "/split-pdf",
+        canonical: "https://pdfimageconvert.com/split-pdf",
     },
 };
 

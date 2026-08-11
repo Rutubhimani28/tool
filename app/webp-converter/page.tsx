@@ -1,11 +1,14 @@
 "use client";
 
 import toast from "react-hot-toast";
+import Link from "next/link";
 import React, { useState } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
 import confetti from "canvas-confetti";
-import { Photo, Transform } from "@mui/icons-material";
+import {
+    ArrowRightAlt,
+ Photo, Transform } from "@mui/icons-material";
 
 export default function WebPConverter() {
     const [file, setFile] = useState<File | null>(null);
@@ -205,24 +208,80 @@ export default function WebPConverter() {
             )}
         </ToolWrapper>
 
-            {/* SEO Content Section */}
+                        {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
-                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Use the WebP Converter</h2>
-                    <ol className="list-decimal pl-6 space-y-3 mb-8">
-                        <li>Upload your WebP images, or upload JPG/PNGs to convert to WebP.</li>
-                        <li>Select your desired output format.</li>
-                        <li>Download the converted images.</li>
+                <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">WebP Converter Instantly</h2>
+                    <p className="text-lg mb-8">
+                        Welcome to the fastest, most secure way to convert images to and from the WebP format online. Whether you are a professional, student, or casual user, our tool makes it effortless and completely private.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is WebP Converter?</h3>
+                    <p className="mb-6">
+                        Converting images between the modern WebP format and traditional formats like JPG and PNG. WebP offers superior compression, but sometimes you need to convert files back to JPG/PNG for compatibility with older software.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to WebP Converter</h3>
+                    <p className="mb-4">Using our tool is incredibly simple:</p>
+                    <ol className="list-decimal pl-6 space-y-4 mb-8">
+                        <li><strong>Upload your files:</strong> Upload your images (WebP, JPG, or PNG).</li>
+                        <li><strong>Adjust settings:</strong> Select your desired output format. The tool will automatically handle the conversion.</li>
+                        <li><strong>Process and Download:</strong> Click &quot;Convert&quot; to process the files locally and download your newly formatted images.</li>
                     </ol>
 
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Convert WebP Files?</h3>
-                    <p className="mb-8">WebP is fantastic for websites, but many older photo viewers, editing software, and operating systems do not support it. Converting WebP to JPG or PNG allows you to open and edit these files anywhere.</p>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why should you use this tool?</h3>
+                    <ul className="list-disc pl-6 space-y-3 mb-8">
+                        <li><strong>Improve Compatibility:</strong> Convert WebP images downloaded from the internet into JPG or PNG so they can be opened in older photo editors.</li>
+                        <li><strong>Optimize for Web:</strong> Convert your bulky JPG and PNG photos into WebP to significantly speed up your website&apos;s loading time.</li>
+                        <li><strong>Maintain Quality:</strong> Enjoy high-quality conversions whether you are compressing to WebP or extracting to a lossless PNG.</li>
+                    </ul>
 
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Universal Compatibility</h3>
-                    <p className="mb-8">Bridge the gap between modern web formats and traditional software. Our converter ensures you can always use your images, regardless of where you downloaded them from.</p>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
+                    <p className="mb-6">
+                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Files and Limitations</h3>
+                    <p className="mb-6">
+                        Our tool supports standard file formats. Because processing happens locally, there are no strict file size limits imposed by a server. You can process files as large as your device&apos;s memory can handle. Note that password-protected PDFs must be unlocked before they can be processed.
+                    </p>
+
+                    {/* Related Tools */}
+                    <div className="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800">
+                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">Related Tools</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <Link href="/sign-pdf" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Sign PDF</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Add your signature image to the first page of your PDF.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/pdf-to-jpg" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">PDF to JPG</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Extract pages of a PDF as high-quality JPG images.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/image-compressor" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Image Compressor</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Compress JPG, PNG, or WebP images to reduce file size.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/compress-pdf" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Compress PDF</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Reduce the file size of your PDF while maintaining quality.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </>
     );
 }

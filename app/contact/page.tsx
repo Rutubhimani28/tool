@@ -49,7 +49,7 @@ export default function ContactPage() {
                     Contact Us
                 </h1>
                 <p className="mt-2 text-base text-zinc-500 dark:text-zinc-400 max-w-2xl">
-                    Have a question, feedback, or need support? We'd love to hear from you.
+                    Have a question, feedback, or need support? We&apos;d love to hear from you.
                 </p>
             </div>
 

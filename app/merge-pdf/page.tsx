@@ -2,6 +2,7 @@
 
 import toast from "react-hot-toast";
 import React, { useState } from "react";
+import Link from "next/link";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
 import { PDFDocument } from "pdf-lib";
@@ -11,6 +12,7 @@ import {
     ArrowUpward,
     ArrowDownward,
     Merge as MergeIcon,
+    ArrowRightAlt,
 } from "@mui/icons-material";
 
 interface UploadedFile {
@@ -144,8 +146,26 @@ export default function MergePDF() {
         setFiles([]);
     };
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Merge PDF Tool",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "Combine multiple PDF files into a single document in your preferred order."
+    };
+
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <ToolWrapper
                 title="Merge PDF"
                 description="Combine multiple PDF files into a single document in your preferred order."
@@ -290,19 +310,76 @@ export default function MergePDF() {
 
             {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
-                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Merge PDF Files</h2>
-                    <ol className="list-decimal pl-6 space-y-3 mb-8">
-                        <li>Upload multiple PDF documents.</li>
-                        <li>Drag and drop the files to arrange them in the correct order.</li>
-                        <li>Click merge to combine them into a single PDF.</li>
+                <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Merge PDF Files Instantly</h2>
+                    <p className="text-lg mb-8">
+                        Welcome to the fastest, most secure way to combine PDF files online. Whether you are compiling monthly reports, assembling a portfolio, or joining scanned documents, our Merge PDF tool makes it effortless and completely private.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is PDF Merging?</h3>
+                    <p className="mb-6">
+                        Merging PDFs is the process of taking two or more separate PDF documents and combining them sequentially into a single, unified file. This is an essential document management task that helps keep related information together, making it easier to store, share, and print.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Merge PDF Files</h3>
+                    <p className="mb-4">Combining your documents is incredibly simple:</p>
+                    <ol className="list-decimal pl-6 space-y-4 mb-8">
+                        <li><strong>Upload your files:</strong> Drag and drop multiple PDF files into the upload area, or click to select them from your device.</li>
+                        <li><strong>Arrange the order:</strong> Once uploaded, you will see a list of your files. Use the up and down arrows to rearrange them into the exact sequence you want them to appear in the final document.</li>
+                        <li><strong>Merge and Download:</strong> Click the &quot;Merge PDFs&quot; button. Our local processing engine will instantly stitch the files together. You can then preview the merged document and download it to your device.</li>
                     </ol>
 
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Merge PDFs?</h3>
-                    <p className="mb-8">Managing dozens of separate PDF files can be chaotic. Merging them into a single document offers better organization for related files (like invoices or project reports), easier sharing via email, and streamlined printing.</p>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why should you merge PDFs?</h3>
+                    <ul className="list-disc pl-6 space-y-3 mb-8">
+                        <li><strong>Better Organization:</strong> Instead of managing dozens of loose files (like individual invoices or receipts for a tax year), combine them into a single, organized master document.</li>
+                        <li><strong>Easier Sharing:</strong> Emailing one comprehensive PDF is much more professional and less confusing for the recipient than attaching multiple separate files.</li>
+                        <li><strong>Streamlined Printing:</strong> Sending one large file to the printer is faster and ensures pages are printed in the correct order without interruption.</li>
+                        <li><strong>Portfolio Creation:</strong> Combine your resume, cover letter, and work samples into a single, polished application package.</li>
+                    </ul>
 
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Seamless Document Assembly</h3>
-                    <p className="mb-8">Combine reports, append cover letters, or compile research papers into one comprehensive document in seconds.</p>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
+                    <p className="mb-6">
+                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our Merge PDF tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Files and Limitations</h3>
+                    <p className="mb-6">
+                        Our tool supports standard PDF documents. Because processing happens locally, there are no strict file size limits imposed by a server. You can merge as many files as your device&apos;s memory can handle. Note that password-protected PDFs must be unlocked before they can be merged.
+                    </p>
+                    {/* Related Tools */}
+                    <div className="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800">
+                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">Related Tools</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <Link href="/page-number-pdf" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Page Number PDF</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Easily insert page numbers into your PDF document.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/split-pdf" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Split PDF</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Extract specific pages or split a PDF into separate files.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/pdf-to-text" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">PDF to Text</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Extract all text from a PDF document and download it as a TXT file.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/pdf-to-jpg" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">PDF to JPG</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Extract pages of a PDF as high-quality JPG images.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </div>
 

@@ -148,7 +148,7 @@ export default function FAQPage() {
             <div className="space-y-12">
                 {Object.keys(groupedFaqs).length === 0 ? (
                     <div className="text-center py-12">
-                        <p className="text-zinc-500 dark:text-zinc-400 text-lg">No results found for "{searchQuery}".</p>
+                        <p className="text-zinc-500 dark:text-zinc-400 text-lg">No results found for &quot;{searchQuery}&quot;.</p>
                         <button
                             onClick={() => { setSearchQuery(""); setActiveCategory("All"); }}
                             className="mt-4 text-blue-600 dark:text-blue-400 hover:underline font-medium"

@@ -51,9 +51,9 @@ export default function AboutPage() {
                         Everything we do at PDFImageConvert is guided by a set of core values that prioritize the user experience above all else.
                     </p>
                     <ul className="list-disc pl-5 space-y-3 text-zinc-600 dark:text-zinc-300 mb-6">
-                        <li><strong>Privacy First:</strong> We understand the importance of data security. That's why we prioritize local processing. All our tools process files locally in your browser. Your files never leave your device, ensuring absolute privacy. We never store, share, or analyze your documents.</li>
+                        <li><strong>Privacy First:</strong> We understand the importance of data security. That&apos;s why we prioritize local processing. All our tools process files locally in your browser. Your files never leave your device, ensuring absolute privacy. We never store, share, or analyze your documents.</li>
                         <li><strong>Uncompromising Speed:</strong> Time is valuable. Our tools are optimized to deliver results in seconds, not minutes. By leveraging modern web technologies, we ensure that your workflow remains uninterrupted.</li>
-                        <li><strong>Absolute Simplicity:</strong> You shouldn't need a manual to use a document converter. Our intuitive interface is designed to be user-friendly, allowing anyone to perform complex tasks with just a few clicks.</li>
+                        <li><strong>Absolute Simplicity:</strong> You shouldn&apos;t need a manual to use a document converter. Our intuitive interface is designed to be user-friendly, allowing anyone to perform complex tasks with just a few clicks.</li>
                         <li><strong>100% Free:</strong> We are committed to keeping our core tools free for everyone. There are no hidden fees, no restrictive paywalls, and absolutely no watermarks added to your documents.</li>
                     </ul>
 

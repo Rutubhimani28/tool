@@ -1,12 +1,15 @@
 "use client";
 
 import toast from "react-hot-toast";
+import Link from "next/link";
 import React, { useState } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
 import { PDFDocument } from "pdf-lib";
 import confetti from "canvas-confetti";
 import {
+    ArrowRightAlt,
+
     Delete,
     ArrowUpward,
     ArrowDownward,
@@ -302,24 +305,80 @@ export default function WebPToPDF() {
             )}
         </ToolWrapper>
 
-            {/* SEO Content Section */}
+                        {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
-                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert WebP to PDF</h2>
-                    <ol className="list-decimal pl-6 space-y-3 mb-8">
-                        <li>Upload your WebP images.</li>
-                        <li>Arrange the images in your preferred order.</li>
-                        <li>Merge them into a single PDF document.</li>
+                <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Convert WebP to PDF Instantly</h2>
+                    <p className="text-lg mb-8">
+                        Welcome to the fastest, most secure way to combine multiple WebP images into a single PDF document online. Whether you are a professional, student, or casual user, our tool makes it effortless and completely private.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is Convert WebP to PDF?</h3>
+                    <p className="mb-6">
+                        Taking one or more WebP image files and embedding them into a single, standardized PDF document. This is perfect for compiling web graphics, screenshots, or optimized photos into an easily shareable format.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert WebP to PDF</h3>
+                    <p className="mb-4">Using our tool is incredibly simple:</p>
+                    <ol className="list-decimal pl-6 space-y-4 mb-8">
+                        <li><strong>Upload your files:</strong> Upload one or more WebP images you want to convert.</li>
+                        <li><strong>Adjust settings:</strong> Drag and drop the images to rearrange their order. You can also adjust the page orientation and margin settings.</li>
+                        <li><strong>Process and Download:</strong> Click &quot;Convert to PDF&quot; to instantly generate and download your new PDF document.</li>
                     </ol>
 
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Convert WebP to PDF?</h3>
-                    <p className="mb-8">If you have downloaded several WebP images from a website and need to share them as a presentation or report, combining them into a PDF is the most professional approach. It ensures the recipient can view all images easily in one file.</p>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why should you use this tool?</h3>
+                    <ul className="list-disc pl-6 space-y-3 mb-8">
+                        <li><strong>Easy Document Sharing:</strong> Combine multiple WebP images into a single file that is easy to email, print, and share.</li>
+                        <li><strong>Standardized Format:</strong> PDFs look the same on every device, ensuring your images are viewed exactly as you intended.</li>
+                        <li><strong>Bypass Compatibility Issues:</strong> Convert WebP images into a universally accepted PDF format for users who cannot open WebP files.</li>
+                    </ul>
 
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Consolidate Web Images</h3>
-                    <p className="mb-8">Turn a folder full of downloaded WebP graphics into a clean, organized PDF document that can be viewed natively on any device.</p>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
+                    <p className="mb-6">
+                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Files and Limitations</h3>
+                    <p className="mb-6">
+                        Our tool supports standard file formats. Because processing happens locally, there are no strict file size limits imposed by a server. You can process files as large as your device&apos;s memory can handle. Note that password-protected PDFs must be unlocked before they can be processed.
+                    </p>
+
+                    {/* Related Tools */}
+                    <div className="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800">
+                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">Related Tools</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <Link href="/image-to-pdf" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Image to PDF</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Convert multiple images (JPG, PNG, WebP) into a single PDF document.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/image-compressor" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Image Compressor</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Compress JPG, PNG, or WebP images to reduce file size.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/sign-pdf" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Sign PDF</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Add your signature image to the first page of your PDF.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/jpg-to-png" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Convert JPG to PNG</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Convert JPG images to PNG format.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </>
     );
 }

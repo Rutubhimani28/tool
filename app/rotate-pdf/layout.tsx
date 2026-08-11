@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Rotate PDF Free Online | PDFImageConvert",
-    description: "Rotate pages in your PDF document and save the changes.",
+    title: "Rotate PDF - Free Online Tool | PDFImageConvert",
+    description: "Rotate pages in your PDF document and save the changes. 100% free, secure, and works entirely in your browser.",
     alternates: {
-        canonical: "/rotate-pdf",
+        canonical: "https://pdfimageconvert.com/rotate-pdf",
     },
 };
 

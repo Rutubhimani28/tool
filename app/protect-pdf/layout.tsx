@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Protect PDF Free Online | PDFImageConvert",
-    description: "Encrypt your PDF with a secure password to prevent unauthorized access.",
+    title: "Protect PDF - Free Online Tool | PDFImageConvert",
+    description: "Encrypt your PDF with a secure password to prevent unauthorized access. 100% free, secure, and works entirely in your browser.",
     alternates: {
-        canonical: "/protect-pdf",
+        canonical: "https://pdfimageconvert.com/protect-pdf",
     },
 };
 

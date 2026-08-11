@@ -7,7 +7,8 @@ import DropZone from "@/app/components/DropZone";
 import { PDFDocument } from "pdf-lib";
 import JSZip from "jszip";
 import confetti from "canvas-confetti";
-import { CallSplit } from "@mui/icons-material";
+import { CallSplit, ArrowRightAlt } from "@mui/icons-material";
+import Link from "next/link";
 
 export default function SplitPDF() {
     const [file, setFile] = useState<File | null>(null);
@@ -144,200 +145,274 @@ export default function SplitPDF() {
         }
     };
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Split PDF Tool",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "Extract specific pages or split every page into individual PDF files."
+    };
+
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <ToolWrapper
-            title="Split PDF"
-            description="Extract specific pages or split every page into individual PDF files."
-        >
-            {resultUrl ? (
-                <div className="flex flex-col items-center justify-center gap-6 py-8">
-                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-green-100 text-green-500 dark:bg-green-900/30 dark:text-green-400">
-                        <div className="text-4xl">✂️</div>
-                    </div>
-                    <div className="text-center">
-                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">PDF Split Successfully!</h3>
-                        <p className="mt-2 text-zinc-500 dark:text-zinc-400">
-                            Your file has been split and is ready for download.
-                        </p>
-                    </div>
-
-                    {/* Preview */}
-                    {previewUrl && (
-                        <div className="w-full max-w-2xl h-[500px] rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-zinc-50 dark:bg-zinc-900 flex flex-col">
-                            {splitMode === "all" && (
-                                <div className="bg-zinc-100 dark:bg-zinc-800 px-4 py-2 text-xs font-medium text-zinc-500 dark:text-zinc-400 border-b border-zinc-200 dark:border-zinc-700">
-                                    Previewing first extracted page
-                                </div>
-                            )}
-                            <iframe src={`${previewUrl}#toolbar=0`} className="w-full flex-1" title="PDF Preview" />
+                title="Split PDF"
+                description="Extract specific pages or split every page into individual PDF files."
+            >
+                {resultUrl ? (
+                    <div className="flex flex-col items-center justify-center gap-6 py-8">
+                        <div className="flex h-24 w-24 items-center justify-center rounded-full bg-green-100 text-green-500 dark:bg-green-900/30 dark:text-green-400">
+                            <div className="text-4xl">✂️</div>
                         </div>
-                    )}
-
-                    <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
-                        <button
-                            onClick={() => {
-                                const link = document.createElement("a");
-                                link.href = resultUrl;
-                                link.download = resultFileName;
-                                document.body.appendChild(link);
-                                link.click();
-                                document.body.removeChild(link);
-                            }}
-                            className="flex-1 rounded-xl bg-green-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-green-600 transition-colors"
-                        >
-                            Download File
-                        </button>
-                        <button
-                            onClick={() => {
-                                URL.revokeObjectURL(resultUrl);
-                                if (previewUrl && previewUrl !== resultUrl) {
-                                    URL.revokeObjectURL(previewUrl);
-                                }
-                                setResultUrl(null);
-                                setPreviewUrl(null);
-                                setResultFileName("");
-                            }}
-                            className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
-                        >
-                            Split Another
-                        </button>
-                    </div>
-                </div>
-            ) : !file ? (
-                <DropZone
-                    onFilesSelected={handleFileSelected}
-                    accept=".pdf"
-                    multiple={false}
-                    title="Select PDF file to split"
-                    description="Drag & drop a PDF file here, or click to browse"
-                />
-            ) : (
-                <div className="flex flex-col gap-6 w-full">
-                    {/* File Info */}
-                    <div className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
-                        <div className="flex items-center gap-4 min-w-0">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-100 text-orange-600 dark:bg-orange-950/30 dark:text-orange-400 font-bold text-xs">
-                                PDF
-                            </div>
-                            <div className="min-w-0">
-                                <p className="text-sm font-semibold text-zinc-900 dark:text-white truncate">
-                                    {file.name}
-                                </p>
-                                <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                                    {(file.size / 1024 / 1024).toFixed(2)} MB • {pagesCount} pages
-                                </p>
-                            </div>
+                        <div className="text-center">
+                            <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">PDF Split Successfully!</h3>
+                            <p className="mt-2 text-zinc-500 dark:text-zinc-400">
+                                Your file has been split and is ready for download.
+                            </p>
                         </div>
-                        <button
-                            onClick={() => setFile(null)}
-                            className="text-sm font-semibold text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 transition-colors"
-                        >
-                            Remove
-                        </button>
-                    </div>
 
-                    {/* Split Options */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <button
-                            onClick={() => setSplitMode("range")}
-                            className={`flex flex-col items-start p-6 rounded-2xl border text-left transition-all duration-200 ${splitMode === "range"
-                                ? "border-orange-500 bg-orange-50/30 dark:bg-orange-950/10"
-                                : "border-zinc-200 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900/50"
-                                }`}
-                        >
-                            <span className="text-base font-bold text-zinc-900 dark:text-white">
-                                Extract Page Range
-                            </span>
-                            <span className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
-                                Select specific pages or ranges to extract into a single PDF.
-                            </span>
-                        </button>
-
-                        <button
-                            onClick={() => setSplitMode("all")}
-                            className={`flex flex-col items-start p-6 rounded-2xl border text-left transition-all duration-200 ${splitMode === "all"
-                                ? "border-orange-500 bg-orange-50/30 dark:bg-orange-950/10"
-                                : "border-zinc-200 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900/50"
-                                }`}
-                        >
-                            <span className="text-base font-bold text-zinc-900 dark:text-white">
-                                Split All Pages
-                            </span>
-                            <span className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
-                                Convert every page of this PDF into its own separate PDF file.
-                            </span>
-                        </button>
-                    </div>
-
-                    {/* Range Input */}
-                    {splitMode === "range" && (
-                        <div className="flex flex-col gap-2">
-                            <label htmlFor="page-range" className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
-                                Page Range
-                            </label>
-                            <input
-                                id="page-range"
-                                name="page-range"
-                                type="text"
-                                placeholder="e.g., 1-3, 5, 7-9"
-                                value={pageRange}
-                                onChange={(e) => setPageRange(e.target.value)}
-                                className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white"
-                            />
-                            <span className="text-xs text-zinc-500 dark:text-zinc-400">
-                                Use commas to separate pages/ranges, e.g., &quot;1-3, 5, 7-9&quot; (Total pages: {pagesCount})
-                            </span>
-                        </div>
-                    )}
-
-                    {/* Action Button & Progress */}
-                    <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
-                        {isProcessing ? (
-                            <div className="w-full">
-                                <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
-                                    <span>Processing PDF...</span>
-                                    <span>{progress}%</span>
-                                </div>
-                                <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
-                                    <div
-                                        className="bg-orange-500 h-full transition-all duration-300"
-                                        style={{ width: `${progress}%` }}
-                                    />
-                                </div>
+                        {/* Preview */}
+                        {previewUrl && (
+                            <div className="w-full max-w-2xl h-[500px] rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-zinc-50 dark:bg-zinc-900 flex flex-col">
+                                {splitMode === "all" && (
+                                    <div className="bg-zinc-100 dark:bg-zinc-800 px-4 py-2 text-xs font-medium text-zinc-500 dark:text-zinc-400 border-b border-zinc-200 dark:border-zinc-700">
+                                        Previewing first extracted page
+                                    </div>
+                                )}
+                                <iframe src={`${previewUrl}#toolbar=0`} className="w-full flex-1" title="PDF Preview" />
                             </div>
-                        ) : (
-                            <button
-                                onClick={handleSplit}
-                                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-orange-500 py-4 text-base font-semibold text-white shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition-all duration-200"
-                            >
-                                <CallSplit className="h-5 w-5" />
-                                {splitMode === "range" ? "Extract Pages" : "Split into ZIP"}
-                            </button>
                         )}
-                    </div>
-                </div>
-            )}
-        </ToolWrapper>
 
-            {/* SEO Content Section */}
+                        <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
+                            <button
+                                onClick={() => {
+                                    const link = document.createElement("a");
+                                    link.href = resultUrl;
+                                    link.download = resultFileName;
+                                    document.body.appendChild(link);
+                                    link.click();
+                                    document.body.removeChild(link);
+                                }}
+                                className="flex-1 rounded-xl bg-green-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-green-600 transition-colors"
+                            >
+                                Download File
+                            </button>
+                            <button
+                                onClick={() => {
+                                    URL.revokeObjectURL(resultUrl);
+                                    if (previewUrl && previewUrl !== resultUrl) {
+                                        URL.revokeObjectURL(previewUrl);
+                                    }
+                                    setResultUrl(null);
+                                    setPreviewUrl(null);
+                                    setResultFileName("");
+                                }}
+                                className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
+                            >
+                                Split Another
+                            </button>
+                        </div>
+                    </div>
+                ) : !file ? (
+                    <DropZone
+                        onFilesSelected={handleFileSelected}
+                        accept=".pdf"
+                        multiple={false}
+                        title="Select PDF file to split"
+                        description="Drag & drop a PDF file here, or click to browse"
+                    />
+                ) : (
+                    <div className="flex flex-col gap-6 w-full">
+                        {/* File Info */}
+                        <div className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
+                            <div className="flex items-center gap-4 min-w-0">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-100 text-orange-600 dark:bg-orange-950/30 dark:text-orange-400 font-bold text-xs">
+                                    PDF
+                                </div>
+                                <div className="min-w-0">
+                                    <p className="text-sm font-semibold text-zinc-900 dark:text-white truncate">
+                                        {file.name}
+                                    </p>
+                                    <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                                        {(file.size / 1024 / 1024).toFixed(2)} MB • {pagesCount} pages
+                                    </p>
+                                </div>
+                            </div>
+                            <button
+                                onClick={() => setFile(null)}
+                                className="text-sm font-semibold text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 transition-colors"
+                            >
+                                Remove
+                            </button>
+                        </div>
+
+                        {/* Split Options */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <button
+                                onClick={() => setSplitMode("range")}
+                                className={`flex flex-col items-start p-6 rounded-2xl border text-left transition-all duration-200 ${splitMode === "range"
+                                    ? "border-orange-500 bg-orange-50/30 dark:bg-orange-950/10"
+                                    : "border-zinc-200 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900/50"
+                                    }`}
+                            >
+                                <span className="text-base font-bold text-zinc-900 dark:text-white">
+                                    Extract Page Range
+                                </span>
+                                <span className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+                                    Select specific pages or ranges to extract into a single PDF.
+                                </span>
+                            </button>
+
+                            <button
+                                onClick={() => setSplitMode("all")}
+                                className={`flex flex-col items-start p-6 rounded-2xl border text-left transition-all duration-200 ${splitMode === "all"
+                                    ? "border-orange-500 bg-orange-50/30 dark:bg-orange-950/10"
+                                    : "border-zinc-200 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900/50"
+                                    }`}
+                            >
+                                <span className="text-base font-bold text-zinc-900 dark:text-white">
+                                    Split All Pages
+                                </span>
+                                <span className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+                                    Convert every page of this PDF into its own separate PDF file.
+                                </span>
+                            </button>
+                        </div>
+
+                        {/* Range Input */}
+                        {splitMode === "range" && (
+                            <div className="flex flex-col gap-2">
+                                <label htmlFor="page-range" className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
+                                    Page Range
+                                </label>
+                                <input
+                                    id="page-range"
+                                    name="page-range"
+                                    type="text"
+                                    placeholder="e.g., 1-3, 5, 7-9"
+                                    value={pageRange}
+                                    onChange={(e) => setPageRange(e.target.value)}
+                                    className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white"
+                                />
+                                <span className="text-xs text-zinc-500 dark:text-zinc-400">
+                                    Use commas to separate pages/ranges, e.g., &quot;1-3, 5, 7-9&quot; (Total pages: {pagesCount})
+                                </span>
+                            </div>
+                        )}
+
+                        {/* Action Button & Progress */}
+                        <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
+                            {isProcessing ? (
+                                <div className="w-full">
+                                    <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
+                                        <span>Processing PDF...</span>
+                                        <span>{progress}%</span>
+                                    </div>
+                                    <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
+                                        <div
+                                            className="bg-orange-500 h-full transition-all duration-300"
+                                            style={{ width: `${progress}%` }}
+                                        />
+                                    </div>
+                                </div>
+                            ) : (
+                                <button
+                                    onClick={handleSplit}
+                                    className="flex w-full items-center justify-center gap-2 rounded-2xl bg-orange-500 py-4 text-base font-semibold text-white shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition-all duration-200"
+                                >
+                                    <CallSplit className="h-5 w-5" />
+                                    {splitMode === "range" ? "Extract Pages" : "Split into ZIP"}
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                )}
+            </ToolWrapper>
+
+                        {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
-                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Split PDF Pages</h2>
-                    <ol className="list-decimal pl-6 space-y-3 mb-8">
-                        <li>Upload your multi-page PDF document.</li>
-                        <li>Click on the page thumbnails to select the exact pages you want to extract.</li>
-                        <li>Click extract to download a new PDF containing only your selected pages.</li>
+                <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Split PDF Document Instantly</h2>
+                    <p className="text-lg mb-8">
+                        Welcome to the fastest, most secure way to extract specific pages or split a PDF into multiple files online. Whether you are a professional, student, or casual user, our tool makes it effortless and completely private.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is Split PDF Document?</h3>
+                    <p className="mb-6">
+                        Dividing a single, large PDF document into smaller, more manageable files. You can extract a specific range of pages, select individual pages, or split the document into multiple files of a fixed size.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Split PDF Document</h3>
+                    <p className="mb-4">Using our tool is incredibly simple:</p>
+                    <ol className="list-decimal pl-6 space-y-4 mb-8">
+                        <li><strong>Upload your files:</strong> Upload the PDF document you want to split.</li>
+                        <li><strong>Adjust settings:</strong> Select the pages you want to extract by clicking on the visual thumbnails.</li>
+                        <li><strong>Process and Download:</strong> Click &quot;Extract Pages&quot; to instantly create a new PDF containing only your selected pages, and download the result.</li>
                     </ol>
 
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Split a PDF?</h3>
-                    <p className="mb-8">Splitting PDFs is essential for organizing and sharing specific information. Instead of sending a 100-page report, you can extract and send only the 5 pages that matter to your recipient. It is also great for removing unwanted blank pages or cover letters.</p>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why should you use this tool?</h3>
+                    <ul className="list-disc pl-6 space-y-3 mb-8">
+                        <li><strong>Extract Key Information:</strong> Pull out a specific chapter, report, or invoice from a massive document to share with others.</li>
+                        <li><strong>Reduce File Size:</strong> Break a large PDF into smaller sections to bypass email attachment limits.</li>
+                        <li><strong>Better Organization:</strong> Separate a combined document (like a batch of scanned receipts) into individual files for proper filing.</li>
+                    </ul>
 
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Visual Page Selection</h3>
-                    <p className="mb-8">Our tool provides a clear visual grid of your document, making it incredibly easy to spot and select the exact pages you need without guessing page numbers.</p>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
+                    <p className="mb-6">
+                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Files and Limitations</h3>
+                    <p className="mb-6">
+                        Our tool supports standard file formats. Because processing happens locally, there are no strict file size limits imposed by a server. You can process files as large as your device&apos;s memory can handle. Note that password-protected PDFs must be unlocked before they can be processed.
+                    </p>
+
+                    {/* Related Tools */}
+                    <div className="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800">
+                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">Related Tools</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <Link href="/jpg-to-pdf" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">JPG to PDF</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Convert JPG images into a single PDF document.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/jpg-to-png" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Convert JPG to PNG</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Convert JPG images to PNG format.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/pdf-to-webp" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">PDF to WebP</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Extract pages of a PDF as highly compressed WebP images.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/image-compressor" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Image Compressor</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Compress JPG, PNG, or WebP images to reduce file size.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </>
     );
 }

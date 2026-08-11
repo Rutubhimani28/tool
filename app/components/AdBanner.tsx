@@ -17,11 +17,9 @@ export default function AdBanner({
         // Do not push ads in development mode
         if (process.env.NODE_ENV === "development") return;
 
-        let timeoutId: NodeJS.Timeout;
-
         const pushAd = () => {
             try {
-                // @ts-ignore
+                // @ts-expect-error - adsbygoogle is injected by AdSense script
                 (window.adsbygoogle = window.adsbygoogle || []).push({});
             } catch (error) {
                 console.error("AdSense error:", error);
@@ -29,7 +27,7 @@ export default function AdBanner({
         };
 
         // Small delay to ensure the DOM is fully painted and container has width
-        timeoutId = setTimeout(pushAd, 200);
+        const timeoutId = setTimeout(pushAd, 200);
 
         return () => {
             if (timeoutId) clearTimeout(timeoutId);

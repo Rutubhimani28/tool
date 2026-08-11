@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "WebP to PDF Free Online | PDFImageConvert",
-    description: "Convert WebP images into a single PDF document.",
+    title: "WebP to PDF - Free Online Tool | PDFImageConvert",
+    description: "Convert WebP images into a single PDF document. 100% free, secure, and works entirely in your browser.",
     alternates: {
-        canonical: "/webp-to-pdf",
+        canonical: "https://pdfimageconvert.com/webp-to-pdf",
     },
 };
 

@@ -19,7 +19,7 @@ export default function BlogPage() {
 
             return {
                 ...article,
-                views: Math.floor(Math.random() * 10000) + 1000,
+                views: 1000 + (index * 1234) % 9000,
                 tags: tagsList[index % tagsList.length],
                 isFeatured: index === 0,
                 isPopular: index === 1 || index === 2

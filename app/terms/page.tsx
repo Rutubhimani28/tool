@@ -58,7 +58,7 @@ export default function TermsPage() {
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">5. Disclaimer of Warranties</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
-                        Our service is provided on an "AS IS" and "AS AVAILABLE" basis. PDFImageConvert makes no representations or warranties of any kind, express or implied, regarding the operation of the service, the accuracy of the tools, or the information, content, or materials included on the website. We do not warrant that the service will be uninterrupted, secure, or error-free.
+                        Our service is provided on an &quot;AS IS&quot; and &quot;AS AVAILABLE&quot; basis. PDFImageConvert makes no representations or warranties of any kind, express or implied, regarding the operation of the service, the accuracy of the tools, or the information, content, or materials included on the website. We do not warrant that the service will be uninterrupted, secure, or error-free.
                     </p>
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">6. Limitation of Liability</h2>

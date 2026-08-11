@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "PDF to PNG Free Online | PDFImageConvert",
-    description: "Extract pages of a PDF as high-quality PNG images.",
+    title: "PDF to PNG Converter – Convert PDF Pages to PNG Free Online",
+    description: "Easily convert your PDF documents to high-quality, lossless PNG images. 100% free, secure, and processed locally in your browser without uploading files.",
     alternates: {
-        canonical: "/pdf-to-png",
+        canonical: "https://pdfimageconvert.com/pdf-to-png",
     },
 };
 

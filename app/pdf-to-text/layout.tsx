@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "PDF to Text Free Online | PDFImageConvert",
-    description: "Extract all text from a PDF document and download it as a TXT file.",
+    title: "PDF to Text - Free Online Tool | PDFImageConvert",
+    description: "Extract all text from a PDF document and download it as a TXT file. 100% free, secure, and works entirely in your browser.",
     alternates: {
-        canonical: "/pdf-to-text",
+        canonical: "https://pdfimageconvert.com/pdf-to-text",
     },
 };
 

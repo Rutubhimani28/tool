@@ -2,11 +2,14 @@
 
 import toast from "react-hot-toast";
 import React, { useState } from "react";
+import Link from "next/link";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import DropZone from "@/app/components/DropZone";
 import { PDFDocument } from "pdf-lib";
 import confetti from "canvas-confetti";
 import {
+    ArrowRightAlt,
+
     Delete,
     ArrowUpward,
     ArrowDownward,
@@ -149,174 +152,234 @@ export default function PNGToPDF() {
     return (
         <>
             <ToolWrapper
-            title="PNG to PDF"
-            description="Convert PNG images into a single PDF document in your preferred order."
-        >
-            {resultUrl ? (
-                <div className="flex flex-col items-center justify-center gap-6 py-8">
-                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-purple-100 text-purple-500 dark:bg-purple-900/30 dark:text-purple-400">
-                        <div className="text-4xl">📄</div>
-                    </div>
-                    <div className="text-center">
-                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">Images to PDF Converted!</h3>
-                        <p className="mt-2 text-zinc-500 dark:text-zinc-400">
-                            Your images have been combined into a PDF.
-                        </p>
-                    </div>
+                title="PNG to PDF"
+                description="Convert PNG images into a single PDF document in your preferred order."
+            >
+                {resultUrl ? (
+                    <div className="flex flex-col items-center justify-center gap-6 py-8">
+                        <div className="flex h-24 w-24 items-center justify-center rounded-full bg-purple-100 text-purple-500 dark:bg-purple-900/30 dark:text-purple-400">
+                            <div className="text-4xl">📄</div>
+                        </div>
+                        <div className="text-center">
+                            <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">Images to PDF Converted!</h3>
+                            <p className="mt-2 text-zinc-500 dark:text-zinc-400">
+                                Your images have been combined into a PDF.
+                            </p>
+                        </div>
 
-                    {/* Preview */}
-                    <div className="w-full max-w-2xl h-[500px] rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-zinc-50 dark:bg-zinc-900">
-                        <iframe src={`${resultUrl}#toolbar=0`} className="w-full h-full" title="PDF Preview" />
-                    </div>
+                        {/* Preview */}
+                        <div className="w-full max-w-2xl h-[500px] rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-zinc-50 dark:bg-zinc-900">
+                            <iframe src={`${resultUrl}#toolbar=0`} className="w-full h-full" title="PDF Preview" />
+                        </div>
 
-                    <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
-                        <button
-                            onClick={() => {
-                                const link = document.createElement("a");
-                                link.href = resultUrl;
-                                link.download = resultFileName;
-                                document.body.appendChild(link);
-                                link.click();
-                                document.body.removeChild(link);
-                            }}
-                            className="flex-1 rounded-xl bg-green-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-green-600 transition-colors"
-                        >
-                            Download PDF
-                        </button>
-                        <button
-                            onClick={() => {
-                                URL.revokeObjectURL(resultUrl);
-                                setResultUrl(null);
-                                setResultFileName("");
-                            }}
-                            className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
-                        >
-                            Convert More
-                        </button>
-                    </div>
-                </div>
-            ) : images.length === 0 ? (
-                <DropZone
-                    onFilesSelected={handleFilesSelected}
-                    accept="image/png"
-                    multiple={true}
-                    title="Select images to convert"
-                    description="Drag & drop PNG files here, or click to browse"
-                />
-            ) : (
-                <div className="flex flex-col gap-6 w-full">
-                    {/* Image Grid */}
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-h-[400px] overflow-y-auto pr-2">
-                        {images.map((imgObj, index) => (
-                            <div
-                                key={imgObj.id}
-                                className="group relative flex flex-col rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50 overflow-hidden"
+                        <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
+                            <button
+                                onClick={() => {
+                                    const link = document.createElement("a");
+                                    link.href = resultUrl;
+                                    link.download = resultFileName;
+                                    document.body.appendChild(link);
+                                    link.click();
+                                    document.body.removeChild(link);
+                                }}
+                                className="flex-1 rounded-xl bg-green-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-green-600 transition-colors"
                             >
-                                <div className="relative aspect-square w-full overflow-hidden bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center">
-                                    { }
-                                    <img
-                                        src={imgObj.previewUrl}
-                                        alt={imgObj.file.name}
-                                        className="h-full w-full object-cover"
-                                    />
-                                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-                                        <button
-                                            onClick={() => moveImage(index, "up")}
-                                            disabled={index === 0 || isProcessing}
-                                            className="p-2 rounded-lg bg-white/20 text-white hover:bg-white/40 disabled:opacity-30 transition-all"
-                                        >
-                                            <ArrowUpward className="h-4 w-4" />
-                                        </button>
-                                        <button
-                                            onClick={() => moveImage(index, "down")}
-                                            disabled={index === images.length - 1 || isProcessing}
-                                            className="p-2 rounded-lg bg-white/20 text-white hover:bg-white/40 disabled:opacity-30 transition-all"
-                                        >
-                                            <ArrowDownward className="h-4 w-4" />
-                                        </button>
-                                        <button
-                                            onClick={() => removeImage(imgObj.id)}
-                                            disabled={isProcessing}
-                                            className="p-2 rounded-lg bg-red-500/80 text-white hover:bg-red-600 transition-all"
-                                        >
-                                            <Delete className="h-4 w-4" />
-                                        </button>
+                                Download PDF
+                            </button>
+                            <button
+                                onClick={() => {
+                                    URL.revokeObjectURL(resultUrl);
+                                    setResultUrl(null);
+                                    setResultFileName("");
+                                }}
+                                className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
+                            >
+                                Convert More
+                            </button>
+                        </div>
+                    </div>
+                ) : images.length === 0 ? (
+                    <DropZone
+                        onFilesSelected={handleFilesSelected}
+                        accept="image/png"
+                        multiple={true}
+                        title="Select images to convert"
+                        description="Drag & drop PNG files here, or click to browse"
+                    />
+                ) : (
+                    <div className="flex flex-col gap-6 w-full">
+                        {/* Image Grid */}
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-h-[400px] overflow-y-auto pr-2">
+                            {images.map((imgObj, index) => (
+                                <div
+                                    key={imgObj.id}
+                                    className="group relative flex flex-col rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50 overflow-hidden"
+                                >
+                                    <div className="relative aspect-square w-full overflow-hidden bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center">
+                                        { }
+                                        <img
+                                            src={imgObj.previewUrl}
+                                            alt={imgObj.file.name}
+                                            className="h-full w-full object-cover"
+                                        />
+                                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                                            <button
+                                                onClick={() => moveImage(index, "up")}
+                                                disabled={index === 0 || isProcessing}
+                                                className="p-2 rounded-lg bg-white/20 text-white hover:bg-white/40 disabled:opacity-30 transition-all"
+                                            >
+                                                <ArrowUpward className="h-4 w-4" />
+                                            </button>
+                                            <button
+                                                onClick={() => moveImage(index, "down")}
+                                                disabled={index === images.length - 1 || isProcessing}
+                                                className="p-2 rounded-lg bg-white/20 text-white hover:bg-white/40 disabled:opacity-30 transition-all"
+                                            >
+                                                <ArrowDownward className="h-4 w-4" />
+                                            </button>
+                                            <button
+                                                onClick={() => removeImage(imgObj.id)}
+                                                disabled={isProcessing}
+                                                className="p-2 rounded-lg bg-red-500/80 text-white hover:bg-red-600 transition-all"
+                                            >
+                                                <Delete className="h-4 w-4" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div className="p-3 min-w-0">
+                                        <p className="text-xs font-semibold text-zinc-900 dark:text-white truncate">
+                                            {imgObj.file.name}
+                                        </p>
+                                        <p className="text-[10px] text-zinc-500 dark:text-zinc-400">
+                                            {(imgObj.file.size / 1024).toFixed(0)} KB
+                                        </p>
                                     </div>
                                 </div>
-                                <div className="p-3 min-w-0">
-                                    <p className="text-xs font-semibold text-zinc-900 dark:text-white truncate">
-                                        {imgObj.file.name}
-                                    </p>
-                                    <p className="text-[10px] text-zinc-500 dark:text-zinc-400">
-                                        {(imgObj.file.size / 1024).toFixed(0)} KB
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                            ))}
+                        </div>
 
-                    {/* Add More Images */}
-                    <div className="flex justify-center">
-                        <label className="cursor-pointer rounded-xl border border-zinc-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-all">
-                            Add More Images
-                            <input
-                                type="file"
-                                className="hidden"
-                                multiple
-                                accept="image/png"
-                                onChange={(e) => {
-                                    if (e.target.files) {
-                                        handleFilesSelected(Array.from(e.target.files));
-                                    }
-                                }}
-                            />
-                        </label>
-                    </div>
+                        {/* Add More Images */}
+                        <div className="flex justify-center">
+                            <label className="cursor-pointer rounded-xl border border-zinc-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-all">
+                                Add More Images
+                                <input
+                                    type="file"
+                                    className="hidden"
+                                    multiple
+                                    accept="image/png"
+                                    onChange={(e) => {
+                                        if (e.target.files) {
+                                            handleFilesSelected(Array.from(e.target.files));
+                                        }
+                                    }}
+                                />
+                            </label>
+                        </div>
 
-                    {/* Action Button & Progress */}
-                    <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
-                        {isProcessing ? (
-                            <div className="w-full">
-                                <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
-                                    <span>Converting images...</span>
-                                    <span>{progress}%</span>
+                        {/* Action Button & Progress */}
+                        <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
+                            {isProcessing ? (
+                                <div className="w-full">
+                                    <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
+                                        <span>Converting images...</span>
+                                        <span>{progress}%</span>
+                                    </div>
+                                    <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
+                                        <div
+                                            className="bg-purple-500 h-full transition-all duration-300"
+                                            style={{ width: `${progress}%` }}
+                                        />
+                                    </div>
                                 </div>
-                                <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
-                                    <div
-                                        className="bg-purple-500 h-full transition-all duration-300"
-                                        style={{ width: `${progress}%` }}
-                                    />
-                                </div>
-                            </div>
-                        ) : (
-                            <button
-                                onClick={convertToPDF}
-                                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-purple-500 py-4 text-base font-semibold text-white shadow-lg shadow-purple-500/20 hover:bg-purple-600 transition-all duration-200"
-                            >
-                                <ImageIcon className="h-5 w-5" />
-                                Convert to PDF ({images.length} images)
-                            </button>
-                        )}
+                            ) : (
+                                <button
+                                    onClick={convertToPDF}
+                                    className="flex w-full items-center justify-center gap-2 rounded-2xl bg-purple-500 py-4 text-base font-semibold text-white shadow-lg shadow-purple-500/20 hover:bg-purple-600 transition-all duration-200"
+                                >
+                                    <ImageIcon className="h-5 w-5" />
+                                    Convert to PDF ({images.length} images)
+                                </button>
+                            )}
+                        </div>
                     </div>
-                </div>
-            )}
-        </ToolWrapper>
+                )}
+            </ToolWrapper>
 
             {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
-                <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert PNG to PDF</h2>
-                    <ol className="list-decimal pl-6 space-y-3 mb-8">
-                        <li>Drag and drop your PNG graphics.</li>
-                        <li>Arrange them in the desired order.</li>
-                        <li>Merge them into a single PDF document.</li>
+                <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Convert PNG to PDF Free Online</h2>
+                    <p className="text-lg mb-8">
+                        Transform your high-quality PNG graphics, screenshots, or transparent images into a single, easy-to-share PDF document. Our PNG to PDF converter maintains the crispness of your original images while organizing them perfectly.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why Convert PNGs to PDF?</h3>
+                    <p className="mb-6">
+                        PNG files are excellent for preserving image quality and transparency, but sharing a large collection of them can be cumbersome. Converting them to a PDF creates a unified presentation, ensuring your images are viewed in the exact sequence you intended. It&apos;s the ideal solution for sharing design portfolios, UI mockups, or compiled screenshots.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert PNG to PDF</h3>
+                    <p className="mb-4">Follow these simple steps to merge your images:</p>
+                    <ol className="list-decimal pl-6 space-y-4 mb-8">
+                        <li><strong>Upload your images:</strong> Drag and drop your PNG files into the upload area. You can select multiple files at once.</li>
+                        <li><strong>Arrange the order:</strong> Use the up and down arrows on the image thumbnails to reorder them exactly how you want them to appear in the PDF.</li>
+                        <li><strong>Convert and Download:</strong> Click the convert button. Our tool will instantly generate your PDF, ready for download.</li>
                     </ol>
 
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Why Convert PNGs to PDF?</h3>
-                    <p className="mb-8">If you have a collection of high-quality graphics, designs, or screenshots, combining them into a PDF is the best way to present them. A PDF ensures that your PNGs are viewed in the correct order and layout, regardless of the device.</p>
+                                        <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
+                    <p className="mb-6">
+                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                    </p>
 
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Professional Portfolios</h3>
-                    <p className="mb-8">Easily compile your digital art, UI designs, or presentation slides into a clean, easily shareable PDF document.</p>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Frequently Asked Questions</h3>
+                    <div className="space-y-6 mb-12">
+                        <div>
+                            <h4 className="text-lg font-bold text-zinc-900 dark:text-white mb-2">Will the image quality be reduced?</h4>
+                            <p>No, our tool embeds your PNG images into the PDF without applying additional compression, preserving their original quality, resolution, and transparency.</p>
+                        </div>
+                        <div>
+                            <h4 className="text-lg font-bold text-zinc-900 dark:text-white mb-2">Can I add more images after uploading?</h4>
+                            <p>Yes! You can click the &quot;Add More Images&quot; button to append additional PNGs to your current selection before converting.</p>
+                        </div>
+                        <div>
+                            <h4 className="text-lg font-bold text-zinc-900 dark:text-white mb-2">Is there a limit to how many images I can convert?</h4>
+                            <p>Because the processing happens locally on your device, the limit depends on your device&apos;s memory. However, it can comfortably handle dozens of high-resolution images at once.</p>
+                        </div>
+                    </div>
+                    {/* Related Tools */}
+                    <div className="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800">
+                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">Related Tools</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <Link href="/split-pdf" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Split PDF</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Extract specific pages or split a PDF into separate files.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/image-cropper" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Image Cropper</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Crop and rotate your images interactively in your browser.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/image-resizer" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Image Resizer</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Resize your images to custom dimensions or scale them by percentage.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                            <Link href="/watermark-pdf" className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 transition-colors group">
+                                <div>
+                                    <h4 className="font-semibold text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Watermark PDF</h4>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Stamp an image or text over your PDF in seconds.</p>
+                                </div>
+                                <ArrowRightAlt className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </div>
 

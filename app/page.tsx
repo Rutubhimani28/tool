@@ -435,7 +435,7 @@ export default function Home() {
                 <Transform className="h-8 w-8" />
               </div>
               <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">Lightning Fast</h3>
-              <p className="text-zinc-600 dark:text-zinc-400">Skip the upload and download wait times. Processing happens instantly using your device's power.</p>
+              <p className="text-zinc-600 dark:text-zinc-400">Skip the upload and download wait times. Processing happens instantly using your device&apos;s power.</p>
             </div>
 
             <div className="flex flex-col items-center p-6 bg-zinc-50 dark:bg-zinc-900/50 rounded-3xl border border-zinc-200 dark:border-zinc-800 hover:shadow-lg transition-shadow duration-300">
@@ -443,7 +443,7 @@ export default function Home() {
                 <FolderZip className="h-8 w-8" />
               </div>
               <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">No Server Limits</h3>
-              <p className="text-zinc-600 dark:text-zinc-400">Since there are no servers involved, we don't impose artificial limits. Process files as large as your device's memory can handle.</p>
+              <p className="text-zinc-600 dark:text-zinc-400">Since there are no servers involved, we don&apos;t impose artificial limits. Process files as large as your device&apos;s memory can handle.</p>
             </div>
           </div>
         </div>
@@ -557,7 +557,7 @@ export default function Home() {
             </h2>
 
             <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8 leading-relaxed">
-              In today's fast-paced digital environment, the Portable Document Format (PDF) remains the undisputed standard for sharing and archiving documents. However, PDFs are not always the most flexible format. There are countless scenarios where an image format—like JPG, PNG, or WebP—is far more practical. Whether you are a student submitting an assignment, a professional preparing a presentation, or a web developer optimizing assets, using a reliable PDF to image converter free online can drastically streamline your daily workflow.
+              In today&apos;s fast-paced digital environment, the Portable Document Format (PDF) remains the undisputed standard for sharing and archiving documents. However, PDFs are not always the most flexible format. There are countless scenarios where an image format—like JPG, PNG, or WebP—is far more practical. Whether you are a student submitting an assignment, a professional preparing a presentation, or a web developer optimizing assets, using a reliable PDF to image converter free online can drastically streamline your daily workflow.
             </p>
 
             <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">
@@ -568,9 +568,9 @@ export default function Home() {
             </p>
             <ol className="list-decimal pl-6 space-y-4 text-zinc-600 dark:text-zinc-400 mb-8">
               <li><strong>Select the Right Tool:</strong> Navigate to our tools section above and choose the specific conversion you need. If you want a standard image, select <Link href="/pdf-to-jpg" className="text-blue-600 dark:text-blue-400 hover:underline">PDF to JPG</Link>. For lossless quality with text, choose <Link href="/pdf-to-png" className="text-blue-600 dark:text-blue-400 hover:underline">PDF to PNG</Link>. For web optimization, select <Link href="/pdf-to-webp" className="text-blue-600 dark:text-blue-400 hover:underline">PDF to WebP</Link>.</li>
-              <li><strong>Upload Your Document:</strong> Click the upload area to browse your device's files, or simply drag and drop your PDF directly into the browser window. Because we use local processing, your file is loaded instantly without waiting for a slow server upload.</li>
+              <li><strong>Upload Your Document:</strong> Click the upload area to browse your device&apos;s files, or simply drag and drop your PDF directly into the browser window. Because we use local processing, your file is loaded instantly without waiting for a slow server upload.</li>
               <li><strong>Configure Settings (Optional):</strong> Depending on the tool, you may have options to adjust the output quality or select specific pages to convert. For most users, the default high-quality settings are perfect.</li>
-              <li><strong>Start the Conversion:</strong> Click the "Convert" button. Your device's processor will immediately begin rendering the PDF pages into image files. This usually takes only a few seconds, even for multi-page documents.</li>
+              <li><strong>Start the Conversion:</strong> Click the &quot;Convert&quot; button. Your device&apos;s processor will immediately begin rendering the PDF pages into image files. This usually takes only a few seconds, even for multi-page documents.</li>
               <li><strong>Download Your Images:</strong> Once complete, you can download your new images. If your PDF had multiple pages, our tool will automatically package them into a convenient ZIP archive so you can download everything with a single click.</li>
             </ol>
 
@@ -591,7 +591,7 @@ export default function Home() {
               <li><strong>Seamless Social Media Sharing:</strong> Major social platforms like Instagram, Facebook, Pinterest, and X (formerly Twitter) do not support direct PDF document uploads. By converting your document to a high-quality JPG or PNG, you can share your content, infographics, or flyers effortlessly with your audience.</li>
               <li><strong>Web Design and Development Optimization:</strong> Embedding a PDF directly on a website often requires clunky third-party plugins (like PDF.js) or forces the user to download the file to view it. Images, on the other hand, can be displayed natively in any web browser, significantly improving the user experience and reducing page load times.</li>
               <li><strong>Flawless Presentations:</strong> When building a PowerPoint, Keynote, or Google Slides presentation, inserting images is much easier and more reliable than attempting to embed interactive PDF files, which often break formatting or fail to load on different computers.</li>
-              <li><strong>Enhanced Security and Immutability:</strong> While PDFs can be easily edited, text-copied, or modified with the right software, a rasterized image is "flattened" and much harder to alter. If you want to share a document (like a contract or invoice) and ensure the text cannot be easily copied or digitally manipulated, converting it to an image is an excellent, simple security measure.</li>
+              <li><strong>Enhanced Security and Immutability:</strong> While PDFs can be easily edited, text-copied, or modified with the right software, a rasterized image is &quot;flattened&quot; and much harder to alter. If you want to share a document (like a contract or invoice) and ensure the text cannot be easily copied or digitally manipulated, converting it to an image is an excellent, simple security measure.</li>
             </ul>
 
             <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">

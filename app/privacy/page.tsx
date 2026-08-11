@@ -61,14 +61,15 @@ export default function PrivacyPage() {
                         We use essential cookies to remember your preferences (such as dark mode settings). We also use third-party analytics cookies to understand how users interact with our site. You can disable cookies in your browser settings, though some features of the site may not function properly.
                     </p>
 
-                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">5. Third-Party Services</h2>
+                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">5. Third-Party Services and Advertising</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-4 leading-relaxed">
-                        We do not sell, trade, or rent your personal information or files to third parties. We use trusted third-party service providers to operate our platform:
+                        We do not sell, trade, or rent your personal information or files to third parties. We use trusted third-party service providers to operate our platform and display advertisements:
                     </p>
                     <ul className="list-disc pl-5 space-y-2 text-zinc-600 dark:text-zinc-300 mb-6">
                         <li><strong>Vercel Hosting:</strong> Our website is hosted on Vercel, which provides secure and fast content delivery.</li>
                         <li><strong>Cloudflare:</strong> We use Cloudflare for DNS management, security, and performance optimization.</li>
                         <li><strong>Google Analytics:</strong> We use Google Analytics to understand website traffic and usage patterns. This data is anonymized and aggregated.</li>
+                        <li><strong>Google AdSense:</strong> We use Google AdSense to display advertisements. Google uses cookies to serve ads based on your prior visits to our website or other websites. Google&apos;s use of advertising cookies enables it and its partners to serve ads to you based on your visit to our sites and/or other sites on the Internet. You may opt out of personalized advertising by visiting <a href="https://myadcenter.google.com/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:underline dark:text-emerald-400">Google Ads Settings</a>.</li>
                     </ul>
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">6. Your Rights (GDPR & CCPA)</h2>

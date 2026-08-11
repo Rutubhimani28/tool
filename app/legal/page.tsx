@@ -47,7 +47,7 @@ export default function LegalPage() {
                         <VisibilityOff className="h-6 w-6" />
                     </div>
                     <h3 className="font-semibold text-zinc-900 dark:text-white mb-2">No Tracking</h3>
-                    <p className="text-sm text-zinc-500 dark:text-zinc-400">We don't track your file contents or sell your data to third parties.</p>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400">We don&apos;t track your file contents or sell your data to third parties.</p>
                 </div>
             </div>
 
@@ -75,7 +75,7 @@ export default function LegalPage() {
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mb-4">4. Terms of Service</h2>
                     <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
                         By using our services, you agree not to use PDFImageConvert for any illegal activities or to process malicious files.
-                        We provide our tools "as is" without any warranties. We reserve the right to block access to our services if we detect abuse or violations of these terms.
+                        We provide our tools &quot;as is&quot; without any warranties. We reserve the right to block access to our services if we detect abuse or violations of these terms.
                     </p>
                 </div>
             </div>
