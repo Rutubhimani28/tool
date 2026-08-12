@@ -394,9 +394,19 @@ export default function WordToPDF() {
                         Transform your Microsoft Word documents (.docx or .doc) into universally accessible PDF files instantly. Our Word to PDF converter ensures your formatting, fonts, and layouts remain exactly as you intended, making it perfect for professional sharing and printing.
                     </p>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why Convert Word to PDF?</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Preserving Formatting & Fonts</h3>
                     <p className="mb-6">
                         While Microsoft Word is the industry standard for drafting documents, sharing them in their native format can lead to compatibility issues. Different versions of Word or alternative word processors can alter your carefully crafted layout. Converting to PDF locks in your design, ensuring the document looks identical on any device, operating system, or printer. It also prevents accidental edits by the recipient.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Cross-Platform Compatibility</h3>
+                    <p className="mb-6">
+                        PDFs are universally supported. Whether your recipient is opening the file on a Windows PC, a Mac, an iPad, or an Android phone, they will see exactly what you see. They do not need to have Microsoft Office installed to view the document perfectly.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Document Security</h3>
+                    <p className="mb-6">
+                        Converting a Word document to a PDF creates a read-only version of your file. This is crucial for sharing contracts, invoices, or official reports where you want to prevent the recipient from accidentally (or intentionally) editing the text or changing the figures.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert DOCX to PDF</h3>
@@ -407,9 +417,9 @@ export default function WordToPDF() {
                         <li><strong>Download & Share:</strong> Preview the generated PDF directly on the page, then download it to your device with a single click.</li>
                     </ol>
 
-                                        <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
                     <p className="mb-6">
-                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                        Your files are processed locally in your browser and are not uploaded to our servers. This can help keep sensitive documents on your device during processing. This can be useful when working with documents that contain sensitive or personal information.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Frequently Asked Questions</h3>

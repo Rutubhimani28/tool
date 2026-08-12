@@ -9,7 +9,8 @@ import { PDFDocument } from "pdf-lib";
 import confetti from "canvas-confetti";
 import {
     ArrowRightAlt,
- Draw, UploadFile, TouchApp, Clear, Save, Add, Close } from "@mui/icons-material";
+    Draw, UploadFile, TouchApp, Clear, Save, Add, Close
+} from "@mui/icons-material";
 
 type PlacedSignature = {
     id: string;
@@ -382,306 +383,306 @@ export default function SignPDF() {
     return (
         <>
             <ToolWrapper
-            title="Sign PDF"
-            description="Draw or upload your signature, resize it, and place it anywhere on your PDF."
-        >
-            {resultUrl ? (
-                <div className="flex flex-col items-center justify-center gap-6 py-8">
-                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-purple-100 text-purple-500 dark:bg-purple-900/30 dark:text-purple-400">
-                        <Draw className="h-12 w-12" />
-                    </div>
-                    <div className="text-center">
-                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">PDF Signed Successfully!</h3>
-                        <p className="mt-2 text-zinc-500 dark:text-zinc-400">
-                            Your file has been signed and is ready for download.
-                        </p>
-                    </div>
-                    <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
-                        <button
-                            onClick={() => {
-                                const link = document.createElement("a");
-                                link.href = resultUrl;
-                                link.download = resultFileName;
-                                document.body.appendChild(link);
-                                link.click();
-                                document.body.removeChild(link);
-                            }}
-                            className="flex-1 rounded-xl bg-purple-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-purple-600 transition-colors"
-                        >
-                            Download PDF
-                        </button>
-                        <button
-                            onClick={() => {
-                                URL.revokeObjectURL(resultUrl);
-                                setResultUrl(null);
-                                setResultFileName("");
-                            }}
-                            className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
-                        >
-                            Sign Another
-                        </button>
-                    </div>
-                </div>
-            ) : !file ? (
-                <DropZone
-                    onFilesSelected={handleFileSelected}
-                    accept=".pdf"
-                    multiple={false}
-                    title="Select PDF file to sign"
-                    description="Drag & drop a PDF file here, or click to browse"
-                />
-            ) : (
-                <div className="flex flex-col gap-6 w-full">
-                    {/* File Info */}
-                    <div className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
-                        <div className="flex items-center gap-4 min-w-0">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-100 text-purple-600 dark:bg-purple-950/30 dark:text-purple-400 font-bold text-xs">
-                                PDF
-                            </div>
-                            <div className="min-w-0">
-                                <p className="text-sm font-semibold text-zinc-900 dark:text-white truncate">
-                                    {file.name}
-                                </p>
-                                <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                                    {(file.size / 1024 / 1024).toFixed(2)} MB
-                                </p>
-                            </div>
+                title="Sign PDF"
+                description="Draw or upload your signature, resize it, and place it anywhere on your PDF."
+            >
+                {resultUrl ? (
+                    <div className="flex flex-col items-center justify-center gap-6 py-8">
+                        <div className="flex h-24 w-24 items-center justify-center rounded-full bg-purple-100 text-purple-500 dark:bg-purple-900/30 dark:text-purple-400">
+                            <Draw className="h-12 w-12" />
                         </div>
-                        <button
-                            onClick={() => {
-                                setFile(null);
-                                setPreviewDataUrl(null);
-                                setPdfDocument(null);
-                                setPlacedSignatures([]);
-                            }}
-                            disabled={isProcessing}
-                            className="text-sm font-semibold text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 transition-colors"
-                        >
-                            Remove
-                        </button>
+                        <div className="text-center">
+                            <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">PDF Signed Successfully!</h3>
+                            <p className="mt-2 text-zinc-500 dark:text-zinc-400">
+                                Your file has been signed and is ready for download.
+                            </p>
+                        </div>
+                        <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
+                            <button
+                                onClick={() => {
+                                    const link = document.createElement("a");
+                                    link.href = resultUrl;
+                                    link.download = resultFileName;
+                                    document.body.appendChild(link);
+                                    link.click();
+                                    document.body.removeChild(link);
+                                }}
+                                className="flex-1 rounded-xl bg-purple-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-purple-600 transition-colors"
+                            >
+                                Download PDF
+                            </button>
+                            <button
+                                onClick={() => {
+                                    URL.revokeObjectURL(resultUrl);
+                                    setResultUrl(null);
+                                    setResultFileName("");
+                                }}
+                                className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
+                            >
+                                Sign Another
+                            </button>
+                        </div>
                     </div>
+                ) : !file ? (
+                    <DropZone
+                        onFilesSelected={handleFileSelected}
+                        accept=".pdf"
+                        multiple={false}
+                        title="Select PDF file to sign"
+                        description="Drag & drop a PDF file here, or click to browse"
+                    />
+                ) : (
+                    <div className="flex flex-col gap-6 w-full">
+                        {/* File Info */}
+                        <div className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
+                            <div className="flex items-center gap-4 min-w-0">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-100 text-purple-600 dark:bg-purple-950/30 dark:text-purple-400 font-bold text-xs">
+                                    PDF
+                                </div>
+                                <div className="min-w-0">
+                                    <p className="text-sm font-semibold text-zinc-900 dark:text-white truncate">
+                                        {file.name}
+                                    </p>
+                                    <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                                        {(file.size / 1024 / 1024).toFixed(2)} MB
+                                    </p>
+                                </div>
+                            </div>
+                            <button
+                                onClick={() => {
+                                    setFile(null);
+                                    setPreviewDataUrl(null);
+                                    setPdfDocument(null);
+                                    setPlacedSignatures([]);
+                                }}
+                                disabled={isProcessing}
+                                className="text-sm font-semibold text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 transition-colors"
+                            >
+                                Remove
+                            </button>
+                        </div>
 
-                    {/* Live Preview */}
-                    <div className="flex flex-col gap-4 p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/30">
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
-                            <h4 className="text-sm font-semibold text-zinc-900 dark:text-white flex items-center gap-2">
-                                <span>Live Preview</span>
-                                <span className="text-xs font-normal text-zinc-500 bg-zinc-200 dark:bg-zinc-800 px-2 py-0.5 rounded-full">
-                                    Page {selectedPage} of {totalPages}
-                                </span>
-                            </h4>
-                            {placedSignatures.some(s => s.pageNumber === selectedPage) && (
-                                <span className="text-xs font-normal text-purple-600 dark:text-purple-400 flex items-center gap-1">
-                                    <TouchApp className="h-4 w-4" /> Drag to move, use corner to resize
-                                </span>
+                        {/* Live Preview */}
+                        <div className="flex flex-col gap-4 p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/30">
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                                <h4 className="text-sm font-semibold text-zinc-900 dark:text-white flex items-center gap-2">
+                                    <span>Live Preview</span>
+                                    <span className="text-xs font-normal text-zinc-500 bg-zinc-200 dark:bg-zinc-800 px-2 py-0.5 rounded-full">
+                                        Page {selectedPage} of {totalPages}
+                                    </span>
+                                </h4>
+                                {placedSignatures.some(s => s.pageNumber === selectedPage) && (
+                                    <span className="text-xs font-normal text-purple-600 dark:text-purple-400 flex items-center gap-1">
+                                        <TouchApp className="h-4 w-4" /> Drag to move, use corner to resize
+                                    </span>
+                                )}
+                            </div>
+
+                            {/* Page Controls */}
+                            {totalPages > 1 && (
+                                <div className="flex items-center justify-center gap-4 mb-2">
+                                    <button
+                                        onClick={() => handlePageChange(selectedPage - 1)}
+                                        disabled={selectedPage <= 1 || isLoadingPreview}
+                                        className="px-3 py-1 text-sm font-medium rounded-lg border border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-50 disabled:opacity-50 disabled:cursor-not-allowed dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 transition-colors"
+                                    >
+                                        Previous
+                                    </button>
+                                    <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                                        Page {selectedPage}
+                                    </span>
+                                    <button
+                                        onClick={() => handlePageChange(selectedPage + 1)}
+                                        disabled={selectedPage >= totalPages || isLoadingPreview}
+                                        className="px-3 py-1 text-sm font-medium rounded-lg border border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-50 disabled:opacity-50 disabled:cursor-not-allowed dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 transition-colors"
+                                    >
+                                        Next
+                                    </button>
+                                </div>
+                            )}
+
+                            {isLoadingPreview ? (
+                                <div className="flex flex-col items-center justify-center py-12">
+                                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-500 mb-4" />
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400">Generating preview...</p>
+                                </div>
+                            ) : previewDataUrl ? (
+                                <div
+                                    className="relative flex items-center justify-center bg-zinc-200 dark:bg-zinc-950 rounded-xl border border-zinc-300 dark:border-zinc-700 overflow-hidden p-4 min-h-[300px]"
+                                    onMouseMove={handleGlobalMove}
+                                    onMouseUp={handleGlobalEnd}
+                                    onMouseLeave={handleGlobalEnd}
+                                    onTouchMove={handleGlobalMove}
+                                    onTouchEnd={handleGlobalEnd}
+                                >
+                                    <div
+                                        ref={previewContainerRef}
+                                        className="relative inline-block max-w-full max-h-[500px]"
+                                    >
+                                        <img
+                                            src={previewDataUrl}
+                                            alt="PDF Preview"
+                                            className="max-h-[500px] w-auto object-contain shadow-md pointer-events-none"
+                                        />
+                                        {/* Render all signatures for the current page */}
+                                        {placedSignatures.filter(s => s.pageNumber === selectedPage).map(sig => (
+                                            <div
+                                                key={sig.id}
+                                                className="absolute cursor-move touch-none"
+                                                style={{
+                                                    left: `${sig.x}%`,
+                                                    top: `${sig.y}%`,
+                                                    transform: 'translate(-50%, -50%)',
+                                                    width: `${150 * sig.scale}px`,
+                                                    zIndex: activeSignatureId === sig.id ? 20 : 10,
+                                                }}
+                                                onMouseDown={(e) => handleDragStart(e, sig.id)}
+                                                onTouchStart={(e) => handleDragStart(e, sig.id)}
+                                            >
+                                                <div className={`relative p-1 rounded border-2 ${activeSignatureId === sig.id ? 'border-purple-500 bg-purple-500/10' : 'border-transparent hover:border-purple-500/50'} transition-colors group`}>
+                                                    <img
+                                                        src={sig.dataUrl}
+                                                        alt="Signature Overlay"
+                                                        className="w-full h-auto object-contain opacity-90 mix-blend-multiply dark:mix-blend-normal pointer-events-none"
+                                                    />
+                                                    {/* Delete Button */}
+                                                    <button
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            deleteSignature(sig.id);
+                                                        }}
+                                                        className="absolute -top-3 -right-3 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600"
+                                                    >
+                                                        <Close className="h-4 w-4" />
+                                                    </button>
+                                                    {/* Resize Handle */}
+                                                    <div
+                                                        className="absolute -bottom-2 -right-2 w-5 h-5 bg-purple-500 rounded-full cursor-se-resize border-2 border-white dark:border-zinc-900 shadow-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                                                        onMouseDown={(e) => handleResizeStart(e, sig.id)}
+                                                        onTouchStart={(e) => handleResizeStart(e, sig.id)}
+                                                    />
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            ) : null}
+                        </div>
+
+                        {/* Signature Input */}
+                        <div className="flex flex-col gap-4 p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/30">
+                            <div className="flex items-center justify-between mb-2">
+                                <h4 className="text-sm font-semibold text-zinc-900 dark:text-white">Signature Source</h4>
+                                <div className="flex bg-zinc-200 dark:bg-zinc-800 p-1 rounded-lg">
+                                    <button
+                                        onClick={() => setActiveTab("draw")}
+                                        className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${activeTab === "draw" ? "bg-white dark:bg-zinc-700 text-zinc-900 dark:text-white shadow-sm" : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"}`}
+                                    >
+                                        Draw
+                                    </button>
+                                    <button
+                                        onClick={() => setActiveTab("upload")}
+                                        className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${activeTab === "upload" ? "bg-white dark:bg-zinc-700 text-zinc-900 dark:text-white shadow-sm" : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"}`}
+                                    >
+                                        Upload
+                                    </button>
+                                </div>
+                            </div>
+
+                            {activeTab === "draw" ? (
+                                <div className="flex flex-col items-center gap-4">
+                                    <div className="w-full max-w-md bg-white dark:bg-zinc-950 rounded-xl border border-zinc-300 dark:border-zinc-700 overflow-hidden">
+                                        <canvas
+                                            ref={canvasRef}
+                                            width={400}
+                                            height={200}
+                                            className="w-full h-[200px] touch-none cursor-crosshair bg-white"
+                                            onMouseDown={startDrawing}
+                                            onMouseMove={draw}
+                                            onMouseUp={stopDrawing}
+                                            onMouseLeave={stopDrawing}
+                                            onTouchStart={startDrawing}
+                                            onTouchMove={draw}
+                                            onTouchEnd={stopDrawing}
+                                        />
+                                    </div>
+                                    <div className="flex gap-4 w-full max-w-md">
+                                        <button
+                                            onClick={clearCanvas}
+                                            className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl border border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 transition-colors text-sm font-medium"
+                                        >
+                                            <Clear className="h-4 w-4" /> Clear
+                                        </button>
+                                        <button
+                                            onClick={saveCanvas}
+                                            className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl bg-purple-100 text-purple-700 hover:bg-purple-200 dark:bg-purple-900/30 dark:text-purple-300 dark:hover:bg-purple-900/50 transition-colors text-sm font-medium"
+                                        >
+                                            <Save className="h-4 w-4" /> Save Signature
+                                        </button>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div
+                                    onClick={() => fileInputRef.current?.click()}
+                                    className="flex flex-col items-center justify-center py-8 border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-xl cursor-pointer hover:border-purple-500 dark:hover:border-purple-500 transition-colors bg-white dark:bg-zinc-950"
+                                >
+                                    <UploadFile className="h-8 w-8 text-zinc-400 mb-2" />
+                                    <p className="text-sm font-medium text-zinc-600 dark:text-zinc-400">Click to upload signature (PNG, JPG)</p>
+                                    <input
+                                        type="file"
+                                        ref={fileInputRef}
+                                        onChange={handleSignatureSelected}
+                                        accept="image/png, image/jpeg"
+                                        className="hidden"
+                                    />
+                                </div>
+                            )}
+
+                            {/* Add to Page Button */}
+                            {signaturePreview && (
+                                <div className="mt-4 flex flex-col items-center border-t border-zinc-200 dark:border-zinc-800 pt-4">
+                                    <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-3">Signature ready. Click below to add it to the current page.</p>
+                                    <button
+                                        onClick={addSignatureToPage}
+                                        className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-purple-500 text-white font-semibold hover:bg-purple-600 transition-colors shadow-sm"
+                                    >
+                                        <Add className="h-5 w-5" /> Add Signature to Page {selectedPage}
+                                    </button>
+                                </div>
                             )}
                         </div>
 
-                        {/* Page Controls */}
-                        {totalPages > 1 && (
-                            <div className="flex items-center justify-center gap-4 mb-2">
-                                <button
-                                    onClick={() => handlePageChange(selectedPage - 1)}
-                                    disabled={selectedPage <= 1 || isLoadingPreview}
-                                    className="px-3 py-1 text-sm font-medium rounded-lg border border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-50 disabled:opacity-50 disabled:cursor-not-allowed dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 transition-colors"
-                                >
-                                    Previous
-                                </button>
-                                <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                                    Page {selectedPage}
-                                </span>
-                                <button
-                                    onClick={() => handlePageChange(selectedPage + 1)}
-                                    disabled={selectedPage >= totalPages || isLoadingPreview}
-                                    className="px-3 py-1 text-sm font-medium rounded-lg border border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-50 disabled:opacity-50 disabled:cursor-not-allowed dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 transition-colors"
-                                >
-                                    Next
-                                </button>
-                            </div>
-                        )}
-
-                        {isLoadingPreview ? (
-                            <div className="flex flex-col items-center justify-center py-12">
-                                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-500 mb-4" />
-                                <p className="text-sm text-zinc-500 dark:text-zinc-400">Generating preview...</p>
-                            </div>
-                        ) : previewDataUrl ? (
-                            <div
-                                className="relative flex items-center justify-center bg-zinc-200 dark:bg-zinc-950 rounded-xl border border-zinc-300 dark:border-zinc-700 overflow-hidden p-4 min-h-[300px]"
-                                onMouseMove={handleGlobalMove}
-                                onMouseUp={handleGlobalEnd}
-                                onMouseLeave={handleGlobalEnd}
-                                onTouchMove={handleGlobalMove}
-                                onTouchEnd={handleGlobalEnd}
-                            >
-                                <div
-                                    ref={previewContainerRef}
-                                    className="relative inline-block max-w-full max-h-[500px]"
-                                >
-                                    <img
-                                        src={previewDataUrl}
-                                        alt="PDF Preview"
-                                        className="max-h-[500px] w-auto object-contain shadow-md pointer-events-none"
-                                    />
-                                    {/* Render all signatures for the current page */}
-                                    {placedSignatures.filter(s => s.pageNumber === selectedPage).map(sig => (
+                        {/* Action Button & Progress */}
+                        <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
+                            {isProcessing ? (
+                                <div className="w-full">
+                                    <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
+                                        <span>Signing PDF...</span>
+                                        <span>{progress}%</span>
+                                    </div>
+                                    <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
                                         <div
-                                            key={sig.id}
-                                            className="absolute cursor-move touch-none"
-                                            style={{
-                                                left: `${sig.x}%`,
-                                                top: `${sig.y}%`,
-                                                transform: 'translate(-50%, -50%)',
-                                                width: `${150 * sig.scale}px`,
-                                                zIndex: activeSignatureId === sig.id ? 20 : 10,
-                                            }}
-                                            onMouseDown={(e) => handleDragStart(e, sig.id)}
-                                            onTouchStart={(e) => handleDragStart(e, sig.id)}
-                                        >
-                                            <div className={`relative p-1 rounded border-2 ${activeSignatureId === sig.id ? 'border-purple-500 bg-purple-500/10' : 'border-transparent hover:border-purple-500/50'} transition-colors group`}>
-                                                <img
-                                                    src={sig.dataUrl}
-                                                    alt="Signature Overlay"
-                                                    className="w-full h-auto object-contain opacity-90 mix-blend-multiply dark:mix-blend-normal pointer-events-none"
-                                                />
-                                                {/* Delete Button */}
-                                                <button
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        deleteSignature(sig.id);
-                                                    }}
-                                                    className="absolute -top-3 -right-3 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600"
-                                                >
-                                                    <Close className="h-4 w-4" />
-                                                </button>
-                                                {/* Resize Handle */}
-                                                <div
-                                                    className="absolute -bottom-2 -right-2 w-5 h-5 bg-purple-500 rounded-full cursor-se-resize border-2 border-white dark:border-zinc-900 shadow-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-                                                    onMouseDown={(e) => handleResizeStart(e, sig.id)}
-                                                    onTouchStart={(e) => handleResizeStart(e, sig.id)}
-                                                />
-                                            </div>
-                                        </div>
-                                    ))}
+                                            className="bg-purple-500 h-full transition-all duration-300"
+                                            style={{ width: `${progress}%` }}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                        ) : null}
-                    </div>
-
-                    {/* Signature Input */}
-                    <div className="flex flex-col gap-4 p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/30">
-                        <div className="flex items-center justify-between mb-2">
-                            <h4 className="text-sm font-semibold text-zinc-900 dark:text-white">Signature Source</h4>
-                            <div className="flex bg-zinc-200 dark:bg-zinc-800 p-1 rounded-lg">
+                            ) : (
                                 <button
-                                    onClick={() => setActiveTab("draw")}
-                                    className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${activeTab === "draw" ? "bg-white dark:bg-zinc-700 text-zinc-900 dark:text-white shadow-sm" : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"}`}
+                                    onClick={handleSave}
+                                    disabled={placedSignatures.length === 0}
+                                    className={`flex w-full items-center justify-center gap-2 rounded-2xl py-4 text-base font-semibold text-white shadow-lg transition-all duration-200 ${placedSignatures.length > 0 ? "bg-purple-500 shadow-purple-500/20 hover:bg-purple-600" : "bg-zinc-400 cursor-not-allowed dark:bg-zinc-700"}`}
                                 >
-                                    Draw
+                                    <Draw className="h-5 w-5" />
+                                    Sign & Download PDF
                                 </button>
-                                <button
-                                    onClick={() => setActiveTab("upload")}
-                                    className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${activeTab === "upload" ? "bg-white dark:bg-zinc-700 text-zinc-900 dark:text-white shadow-sm" : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"}`}
-                                >
-                                    Upload
-                                </button>
-                            </div>
+                            )}
                         </div>
-
-                        {activeTab === "draw" ? (
-                            <div className="flex flex-col items-center gap-4">
-                                <div className="w-full max-w-md bg-white dark:bg-zinc-950 rounded-xl border border-zinc-300 dark:border-zinc-700 overflow-hidden">
-                                    <canvas
-                                        ref={canvasRef}
-                                        width={400}
-                                        height={200}
-                                        className="w-full h-[200px] touch-none cursor-crosshair bg-white"
-                                        onMouseDown={startDrawing}
-                                        onMouseMove={draw}
-                                        onMouseUp={stopDrawing}
-                                        onMouseLeave={stopDrawing}
-                                        onTouchStart={startDrawing}
-                                        onTouchMove={draw}
-                                        onTouchEnd={stopDrawing}
-                                    />
-                                </div>
-                                <div className="flex gap-4 w-full max-w-md">
-                                    <button
-                                        onClick={clearCanvas}
-                                        className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl border border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 transition-colors text-sm font-medium"
-                                    >
-                                        <Clear className="h-4 w-4" /> Clear
-                                    </button>
-                                    <button
-                                        onClick={saveCanvas}
-                                        className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl bg-purple-100 text-purple-700 hover:bg-purple-200 dark:bg-purple-900/30 dark:text-purple-300 dark:hover:bg-purple-900/50 transition-colors text-sm font-medium"
-                                    >
-                                        <Save className="h-4 w-4" /> Save Signature
-                                    </button>
-                                </div>
-                            </div>
-                        ) : (
-                            <div
-                                onClick={() => fileInputRef.current?.click()}
-                                className="flex flex-col items-center justify-center py-8 border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-xl cursor-pointer hover:border-purple-500 dark:hover:border-purple-500 transition-colors bg-white dark:bg-zinc-950"
-                            >
-                                <UploadFile className="h-8 w-8 text-zinc-400 mb-2" />
-                                <p className="text-sm font-medium text-zinc-600 dark:text-zinc-400">Click to upload signature (PNG, JPG)</p>
-                                <input
-                                    type="file"
-                                    ref={fileInputRef}
-                                    onChange={handleSignatureSelected}
-                                    accept="image/png, image/jpeg"
-                                    className="hidden"
-                                />
-                            </div>
-                        )}
-
-                        {/* Add to Page Button */}
-                        {signaturePreview && (
-                            <div className="mt-4 flex flex-col items-center border-t border-zinc-200 dark:border-zinc-800 pt-4">
-                                <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-3">Signature ready. Click below to add it to the current page.</p>
-                                <button
-                                    onClick={addSignatureToPage}
-                                    className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-purple-500 text-white font-semibold hover:bg-purple-600 transition-colors shadow-sm"
-                                >
-                                    <Add className="h-5 w-5" /> Add Signature to Page {selectedPage}
-                                </button>
-                            </div>
-                        )}
                     </div>
+                )}
+            </ToolWrapper>
 
-                    {/* Action Button & Progress */}
-                    <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
-                        {isProcessing ? (
-                            <div className="w-full">
-                                <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
-                                    <span>Signing PDF...</span>
-                                    <span>{progress}%</span>
-                                </div>
-                                <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
-                                    <div
-                                        className="bg-purple-500 h-full transition-all duration-300"
-                                        style={{ width: `${progress}%` }}
-                                    />
-                                </div>
-                            </div>
-                        ) : (
-                            <button
-                                onClick={handleSave}
-                                disabled={placedSignatures.length === 0}
-                                className={`flex w-full items-center justify-center gap-2 rounded-2xl py-4 text-base font-semibold text-white shadow-lg transition-all duration-200 ${placedSignatures.length > 0 ? "bg-purple-500 shadow-purple-500/20 hover:bg-purple-600" : "bg-zinc-400 cursor-not-allowed dark:bg-zinc-700"}`}
-                            >
-                                <Draw className="h-5 w-5" />
-                                Sign & Download PDF
-                            </button>
-                        )}
-                    </div>
-                </div>
-            )}
-        </ToolWrapper>
-
-                        {/* SEO Content Section */}
+            {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
                     <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Sign PDF Document Instantly</h2>
@@ -702,21 +703,29 @@ export default function SignPDF() {
                         <li><strong>Process and Download:</strong> Click &quot;Save PDF&quot; to permanently embed your signature and text into the document, then download the finished file.</li>
                     </ol>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why should you use this tool?</h3>
-                    <ul className="list-disc pl-6 space-y-3 mb-8">
-                        <li><strong>Paperless Workflow:</strong> Sign contracts, agreements, and forms entirely digitally, saving paper, ink, and time.</li>
-                        <li><strong>Instant Turnaround:</strong> Receive a document, sign it, and email it back in minutes without needing a printer or scanner.</li>
-                        <li><strong>Professional Appearance:</strong> Create clean, legible digital signatures and perfectly aligned text for a professional look.</li>
-                    </ul>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Paperless Workflow</h3>
+                    <p className="mb-6">
+                        Sign contracts, agreements, and forms entirely digitally, saving paper, ink, and time. Adopting a paperless workflow is not only better for the environment but also significantly reduces the physical clutter in your home or office.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Instant Turnaround</h3>
+                    <p className="mb-6">
+                        Receive a document, sign it, and email it back in minutes without needing a printer or scanner. This rapid turnaround is essential for closing deals quickly, meeting strict deadlines, and maintaining professional momentum.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Professional Appearance</h3>
+                    <p className="mb-6">
+                        Create clean, legible digital signatures and perfectly aligned text for a professional look. Unlike scanning a physically signed document, which can result in crooked pages and blurry text, digital signing maintains the pristine quality of the original PDF.
+                    </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
                     <p className="mb-6">
-                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                        Your files are processed locally in your browser and are not uploaded to our servers. This can help keep sensitive documents on your device during processing. This can be useful when working with documents that contain sensitive or personal information.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Files and Limitations</h3>
                     <p className="mb-6">
-                        Our tool supports standard file formats. Because processing happens locally, there are no strict file size limits imposed by a server. You can process files as large as your device&apos;s memory can handle. Note that password-protected PDFs must be unlocked before they can be processed.
+                        Our tool supports standard file formats. Because processing takes place locally in your browser, the tool does not rely on a server-side upload limit. However, very large or complex files may require more memory and processing time depending on your device and browser. Note that password-protected PDFs must be unlocked before they can be processed.
                     </p>
 
                     {/* Related Tools */}

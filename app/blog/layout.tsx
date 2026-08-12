@@ -39,6 +39,7 @@ export default function BlogLayout({
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
+                suppressHydrationWarning
             />
             {children}
         </>

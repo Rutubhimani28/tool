@@ -410,7 +410,17 @@ export default function RedactionTool() {
                         Permanently blackout sensitive information, personal data, and confidential text in your PDF documents. Our PDF Redaction tool provides true, destructive redaction that completely removes the underlying data, ensuring it cannot be recovered or copied.
                     </p>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why is Proper PDF Redaction Important?</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Protecting Sensitive Data</h3>
+                    <p className="mb-6">
+                        In today&apos;s digital age, sharing documents often means exposing sensitive information like Social Security numbers, financial records, or confidential business data. Redacting this information ensures that you can safely share or publish documents without risking identity theft or corporate espionage.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Compliance and Legal Requirements</h3>
+                    <p className="mb-6">
+                        Many industries are bound by strict privacy laws (such as HIPAA, GDPR, or CCPA) that mandate the protection of personal data. Properly redacting documents before they are released or filed is a critical step in maintaining legal compliance and avoiding severe penalties.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">True Destructive Redaction</h3>
                     <p className="mb-6">
                         Simply drawing a black rectangle over text in a standard PDF editor does not actually remove the text—it only hides it visually. Anyone can still highlight, copy, or search for the hidden text underneath the black box. True redaction requires permanently deleting the underlying text and image data from the document&apos;s code. Our tool performs this destructive redaction, guaranteeing that your sensitive information is gone forever.
                     </p>
@@ -423,9 +433,9 @@ export default function RedactionTool() {
                         <li><strong>Apply Redactions:</strong> Click the apply button. Our tool will permanently destroy the data underneath your boxes and generate a secure, redacted PDF.</li>
                     </ol>
 
-                                        <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
                     <p className="mb-6">
-                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                        Your files are processed locally in your browser and are not uploaded to our servers. This can help keep sensitive documents on your device during processing. This can be useful when working with documents that contain sensitive or personal information.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Frequently Asked Questions</h3>

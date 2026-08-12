@@ -9,7 +9,8 @@ import { PDFDocument } from "pdf-lib";
 import confetti from "canvas-confetti";
 import {
     ArrowRightAlt,
- DeleteOutlined, CheckCircle } from "@mui/icons-material";
+    DeleteOutlined, CheckCircle
+} from "@mui/icons-material";
 
 interface PageThumbnail {
     id: string;
@@ -155,151 +156,151 @@ export default function DeletePagesPDF() {
     return (
         <>
             <ToolWrapper
-            title="Delete PDF Pages"
-            description="Select pages you want to remove from your PDF document."
-        >
-            {resultUrl ? (
-                <div className="flex flex-col items-center justify-center gap-6 py-8">
-                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-red-100 text-red-500 dark:bg-red-900/30 dark:text-red-400">
-                        <DeleteOutlined className="h-12 w-12" />
-                    </div>
-                    <div className="text-center">
-                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">Pages Deleted Successfully!</h3>
-                        <p className="mt-2 text-zinc-500 dark:text-zinc-400">
-                            Your updated file is ready for download.
-                        </p>
-                    </div>
-                    <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
-                        <button
-                            onClick={() => {
-                                const link = document.createElement("a");
-                                link.href = resultUrl;
-                                link.download = resultFileName;
-                                document.body.appendChild(link);
-                                link.click();
-                                document.body.removeChild(link);
-                            }}
-                            className="flex-1 rounded-xl bg-red-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-red-600 transition-colors"
-                        >
-                            Download PDF
-                        </button>
-                        <button
-                            onClick={() => {
-                                URL.revokeObjectURL(resultUrl);
-                                setResultUrl(null);
-                                setResultFileName("");
-                            }}
-                            className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
-                        >
-                            Delete More Pages
-                        </button>
-                    </div>
-                </div>
-            ) : !file ? (
-                <DropZone
-                    onFilesSelected={handleFileSelected}
-                    accept=".pdf"
-                    multiple={false}
-                    title="Select PDF file to delete pages"
-                    description="Drag & drop a PDF file here, or click to browse"
-                />
-            ) : (
-                <div className="flex flex-col gap-6 w-full">
-                    {/* File Info */}
-                    <div className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
-                        <div className="flex items-center gap-4 min-w-0">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-red-100 text-red-600 dark:bg-red-950/30 dark:text-red-400 font-bold text-xs">
-                                PDF
-                            </div>
-                            <div className="min-w-0">
-                                <p className="text-sm font-semibold text-zinc-900 dark:text-white truncate">
-                                    {file.name}
-                                </p>
-                                <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                                    {(file.size / 1024 / 1024).toFixed(2)} MB • {thumbnails.length} pages
-                                </p>
-                            </div>
+                title="Delete PDF Pages"
+                description="Select pages you want to remove from your PDF document."
+            >
+                {resultUrl ? (
+                    <div className="flex flex-col items-center justify-center gap-6 py-8">
+                        <div className="flex h-24 w-24 items-center justify-center rounded-full bg-red-100 text-red-500 dark:bg-red-900/30 dark:text-red-400">
+                            <DeleteOutlined className="h-12 w-12" />
                         </div>
-                        <button
-                            onClick={() => setFile(null)}
-                            disabled={isProcessing}
-                            className="text-sm font-semibold text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 transition-colors"
-                        >
-                            Remove
-                        </button>
+                        <div className="text-center">
+                            <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">Pages Deleted Successfully!</h3>
+                            <p className="mt-2 text-zinc-500 dark:text-zinc-400">
+                                Your updated file is ready for download.
+                            </p>
+                        </div>
+                        <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
+                            <button
+                                onClick={() => {
+                                    const link = document.createElement("a");
+                                    link.href = resultUrl;
+                                    link.download = resultFileName;
+                                    document.body.appendChild(link);
+                                    link.click();
+                                    document.body.removeChild(link);
+                                }}
+                                className="flex-1 rounded-xl bg-red-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-red-600 transition-colors"
+                            >
+                                Download PDF
+                            </button>
+                            <button
+                                onClick={() => {
+                                    URL.revokeObjectURL(resultUrl);
+                                    setResultUrl(null);
+                                    setResultFileName("");
+                                }}
+                                className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
+                            >
+                                Delete More Pages
+                            </button>
+                        </div>
                     </div>
-
-                    {/* Thumbnails Grid */}
-                    {isLoadingThumbnails ? (
-                        <div className="flex flex-col items-center justify-center py-12">
-                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-500 mb-4" />
-                            <p className="text-sm text-zinc-500 dark:text-zinc-400">Generating page previews...</p>
-                        </div>
-                    ) : (
-                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-h-[400px] overflow-y-auto p-2">
-                            {thumbnails.map((thumb) => {
-                                const isSelected = selectedPages.has(thumb.pageIndex);
-                                return (
-                                    <div
-                                        key={thumb.id}
-                                        onClick={() => togglePageSelection(thumb.pageIndex)}
-                                        className={`flex flex-col items-center p-4 rounded-2xl border transition-all duration-200 cursor-pointer ${isSelected ? "border-red-500 bg-red-50 dark:border-red-500/50 dark:bg-red-900/20" : "border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/30 hover:border-red-300"}`}
-                                    >
-                                        <div className="relative flex items-center justify-center h-40 w-full bg-white dark:bg-zinc-950 rounded-xl border border-zinc-100 dark:border-zinc-900 overflow-hidden p-2">
-                                            <img
-                                                src={thumb.dataUrl}
-                                                alt={`Page ${thumb.pageIndex + 1}`}
-                                                className={`max-h-full max-w-full object-contain shadow-sm transition-opacity ${isSelected ? "opacity-50" : "opacity-100"}`}
-                                            />
-                                            <span className="absolute bottom-2 left-2 bg-zinc-900/80 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
-                                                {thumb.pageIndex + 1}
-                                            </span>
-                                            {isSelected && (
-                                                <div className="absolute inset-0 flex items-center justify-center bg-red-500/20">
-                                                    <DeleteOutlined className="h-10 w-10 text-red-500" />
-                                                </div>
-                                            )}
-                                        </div>
-                                        <div className={`mt-3 flex items-center gap-1 text-xs font-bold ${isSelected ? "text-red-600 dark:text-red-400" : "text-zinc-500 dark:text-zinc-400"}`}>
-                                            {isSelected ? "Marked for deletion" : "Click to delete"}
-                                        </div>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    )}
-
-                    {/* Action Button & Progress */}
-                    <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
-                        {isProcessing ? (
-                            <div className="w-full">
-                                <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
-                                    <span>Saving PDF...</span>
-                                    <span>{progress}%</span>
+                ) : !file ? (
+                    <DropZone
+                        onFilesSelected={handleFileSelected}
+                        accept=".pdf"
+                        multiple={false}
+                        title="Select PDF file to delete pages"
+                        description="Drag & drop a PDF file here, or click to browse"
+                    />
+                ) : (
+                    <div className="flex flex-col gap-6 w-full">
+                        {/* File Info */}
+                        <div className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
+                            <div className="flex items-center gap-4 min-w-0">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-red-100 text-red-600 dark:bg-red-950/30 dark:text-red-400 font-bold text-xs">
+                                    PDF
                                 </div>
-                                <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
-                                    <div
-                                        className="bg-red-500 h-full transition-all duration-300"
-                                        style={{ width: `${progress}%` }}
-                                    />
+                                <div className="min-w-0">
+                                    <p className="text-sm font-semibold text-zinc-900 dark:text-white truncate">
+                                        {file.name}
+                                    </p>
+                                    <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                                        {(file.size / 1024 / 1024).toFixed(2)} MB • {thumbnails.length} pages
+                                    </p>
                                 </div>
+                            </div>
+                            <button
+                                onClick={() => setFile(null)}
+                                disabled={isProcessing}
+                                className="text-sm font-semibold text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 transition-colors"
+                            >
+                                Remove
+                            </button>
+                        </div>
+
+                        {/* Thumbnails Grid */}
+                        {isLoadingThumbnails ? (
+                            <div className="flex flex-col items-center justify-center py-12">
+                                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-500 mb-4" />
+                                <p className="text-sm text-zinc-500 dark:text-zinc-400">Generating page previews...</p>
                             </div>
                         ) : (
-                            <button
-                                onClick={handleSave}
-                                disabled={isLoadingThumbnails || selectedPages.size === 0}
-                                className={`flex w-full items-center justify-center gap-2 rounded-2xl py-4 text-base font-semibold text-white shadow-lg transition-all duration-200 ${selectedPages.size > 0 ? "bg-red-500 shadow-red-500/20 hover:bg-red-600" : "bg-zinc-400 cursor-not-allowed dark:bg-zinc-700"}`}
-                            >
-                                <DeleteOutlined className="h-5 w-5" />
-                                Delete {selectedPages.size} Page{selectedPages.size !== 1 ? "s" : ""} & Download
-                            </button>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-h-[400px] overflow-y-auto p-2">
+                                {thumbnails.map((thumb) => {
+                                    const isSelected = selectedPages.has(thumb.pageIndex);
+                                    return (
+                                        <div
+                                            key={thumb.id}
+                                            onClick={() => togglePageSelection(thumb.pageIndex)}
+                                            className={`flex flex-col items-center p-4 rounded-2xl border transition-all duration-200 cursor-pointer ${isSelected ? "border-red-500 bg-red-50 dark:border-red-500/50 dark:bg-red-900/20" : "border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/30 hover:border-red-300"}`}
+                                        >
+                                            <div className="relative flex items-center justify-center h-40 w-full bg-white dark:bg-zinc-950 rounded-xl border border-zinc-100 dark:border-zinc-900 overflow-hidden p-2">
+                                                <img
+                                                    src={thumb.dataUrl}
+                                                    alt={`Page ${thumb.pageIndex + 1}`}
+                                                    className={`max-h-full max-w-full object-contain shadow-sm transition-opacity ${isSelected ? "opacity-50" : "opacity-100"}`}
+                                                />
+                                                <span className="absolute bottom-2 left-2 bg-zinc-900/80 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                                                    {thumb.pageIndex + 1}
+                                                </span>
+                                                {isSelected && (
+                                                    <div className="absolute inset-0 flex items-center justify-center bg-red-500/20">
+                                                        <DeleteOutlined className="h-10 w-10 text-red-500" />
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <div className={`mt-3 flex items-center gap-1 text-xs font-bold ${isSelected ? "text-red-600 dark:text-red-400" : "text-zinc-500 dark:text-zinc-400"}`}>
+                                                {isSelected ? "Marked for deletion" : "Click to delete"}
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         )}
-                    </div>
-                </div>
-            )}
-        </ToolWrapper>
 
-                        {/* SEO Content Section */}
+                        {/* Action Button & Progress */}
+                        <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
+                            {isProcessing ? (
+                                <div className="w-full">
+                                    <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
+                                        <span>Saving PDF...</span>
+                                        <span>{progress}%</span>
+                                    </div>
+                                    <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
+                                        <div
+                                            className="bg-red-500 h-full transition-all duration-300"
+                                            style={{ width: `${progress}%` }}
+                                        />
+                                    </div>
+                                </div>
+                            ) : (
+                                <button
+                                    onClick={handleSave}
+                                    disabled={isLoadingThumbnails || selectedPages.size === 0}
+                                    className={`flex w-full items-center justify-center gap-2 rounded-2xl py-4 text-base font-semibold text-white shadow-lg transition-all duration-200 ${selectedPages.size > 0 ? "bg-red-500 shadow-red-500/20 hover:bg-red-600" : "bg-zinc-400 cursor-not-allowed dark:bg-zinc-700"}`}
+                                >
+                                    <DeleteOutlined className="h-5 w-5" />
+                                    Delete {selectedPages.size} Page{selectedPages.size !== 1 ? "s" : ""} & Download
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                )}
+            </ToolWrapper>
+
+            {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
                     <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Delete PDF Pages Instantly</h2>
@@ -320,21 +321,29 @@ export default function DeletePagesPDF() {
                         <li><strong>Process and Download:</strong> Click the &quot;Delete Pages & Download&quot; button to instantly process and save your trimmed PDF.</li>
                     </ol>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why should you use this tool?</h3>
-                    <ul className="list-disc pl-6 space-y-3 mb-8">
-                        <li><strong>Remove Unnecessary Information:</strong> Delete blank pages, cover pages, or irrelevant sections to make your document more concise.</li>
-                        <li><strong>Reduce File Size:</strong> Removing pages can significantly reduce the overall file size of your PDF, making it easier to share.</li>
-                        <li><strong>Extract Specific Content:</strong> Keep only the pages you need for your specific use case and discard the rest.</li>
-                    </ul>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Removing Unnecessary Information</h3>
+                    <p className="mb-6">
+                        Often, downloaded reports or scanned documents contain blank pages, cover sheets, or irrelevant appendices. Instead of sharing a cluttered document, you can use our tool to quickly delete these unwanted pages, presenting a cleaner, more professional file to your colleagues or clients.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Reducing File Size</h3>
+                    <p className="mb-6">
+                        Every page in a PDF, especially those containing high-resolution images or complex graphics, adds to the overall file size. By deleting pages you don&apos;t need, you can significantly reduce the file size, making it easier to attach to emails or upload to web portals with strict size limits.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Extracting Specific Content</h3>
+                    <p className="mb-6">
+                        Sometimes you only need a single chapter from a massive eBook or one specific chart from a 100-page report. By deleting all the surrounding pages, you effectively extract just the content you need, creating a focused, standalone document.
+                    </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
                     <p className="mb-6">
-                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                        Your files are processed locally in your browser and are not uploaded to our servers. This can help keep sensitive documents on your device during processing. This can be useful when working with documents that contain sensitive or personal information.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Files and Limitations</h3>
                     <p className="mb-6">
-                        Our tool supports standard file formats. Because processing happens locally, there are no strict file size limits imposed by a server. You can process files as large as your device&apos;s memory can handle. Note that password-protected PDFs must be unlocked before they can be processed.
+                        Our tool supports standard file formats. Because processing takes place locally in your browser, the tool does not rely on a server-side upload limit. However, very large or complex files may require more memory and processing time depending on your device and browser. Note that password-protected PDFs must be unlocked before they can be processed.
                     </p>
 
                     {/* Related Tools */}

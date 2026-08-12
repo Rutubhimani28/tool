@@ -562,9 +562,19 @@ export default function ImageCropper() {
                         Perfectly frame your photos with our intuitive, browser-based image cropper. Whether you need to remove distracting backgrounds, focus on a specific subject, or adjust the aspect ratio for social media, our tool gives you complete visual control.
                     </p>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why Crop Your Images?</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Improving Composition</h3>
                     <p className="mb-6">
                         Cropping is one of the most fundamental yet powerful photo editing techniques. It allows you to improve composition by applying the rule of thirds, eliminate unwanted elements from the edges of your frame, and tailor your images to fit specific dimensions required by platforms like Instagram, Facebook, or YouTube. A well-cropped image instantly looks more professional and engaging.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Social Media Dimensions</h3>
+                    <p className="mb-6">
+                        Every social media platform has specific aspect ratio requirements for optimal display. Whether you need a 1:1 square for Instagram, a 16:9 widescreen for YouTube thumbnails, or a 9:16 vertical crop for TikTok and Reels, our tool provides preset ratios to ensure your images fit perfectly without awkward borders.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Removing Unwanted Elements</h3>
+                    <p className="mb-6">
+                        Did a photobomber ruin your perfect shot? Is there distracting clutter at the edge of the frame? Cropping allows you to easily eliminate unwanted elements from the edges of your photo, ensuring the viewer&apos;s attention remains exactly where you want it.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Use the Image Cropper</h3>
@@ -575,9 +585,9 @@ export default function ImageCropper() {
                         <li><strong>Crop and Download:</strong> Once you are satisfied with the preview, click &quot;Crop Image&quot; and download the final result instantly.</li>
                     </ol>
 
-                                        <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
                     <p className="mb-6">
-                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                        Your files are processed locally in your browser and are not uploaded to our servers. This can help keep sensitive documents on your device during processing. This can be useful when working with documents that contain sensitive or personal information.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Frequently Asked Questions</h3>

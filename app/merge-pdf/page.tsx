@@ -165,6 +165,7 @@ export default function MergePDF() {
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                suppressHydrationWarning
             />
             <ToolWrapper
                 title="Merge PDF"
@@ -329,7 +330,7 @@ export default function MergePDF() {
                         <li><strong>Merge and Download:</strong> Click the &quot;Merge PDFs&quot; button. Our local processing engine will instantly stitch the files together. You can then preview the merged document and download it to your device.</li>
                     </ol>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why should you merge PDFs?</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">When to Merge PDFs</h3>
                     <ul className="list-disc pl-6 space-y-3 mb-8">
                         <li><strong>Better Organization:</strong> Instead of managing dozens of loose files (like individual invoices or receipts for a tax year), combine them into a single, organized master document.</li>
                         <li><strong>Easier Sharing:</strong> Emailing one comprehensive PDF is much more professional and less confusing for the recipient than attaching multiple separate files.</li>
@@ -337,9 +338,19 @@ export default function MergePDF() {
                         <li><strong>Portfolio Creation:</strong> Combine your resume, cover letter, and work samples into a single, polished application package.</li>
                     </ul>
 
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">File and Page Ordering</h3>
+                    <p className="mb-6">
+                        Before merging, you can easily arrange the order of your files. Use the up and down arrows next to each uploaded file to position them exactly how you want them to appear in the final document. Note that this tool merges entire files sequentially. If you need to reorder individual pages within a single PDF, you should use our <Link href="/rearrange-pdf" className="text-blue-600 dark:text-blue-400 hover:underline">Rearrange PDF</Link> tool instead.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Preparing Files & Common Issues</h3>
+                    <p className="mb-6">
+                        To ensure a smooth merging process, make sure none of your PDF files are password-protected or encrypted. If they are, you must unlock them first. Additionally, while our tool handles files of different page sizes (e.g., A4 and Letter), the resulting merged PDF will retain the original page sizes of each respective document. If you need uniform page sizes, you may need to resize the pages before merging.
+                    </p>
+
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
                     <p className="mb-6">
-                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our Merge PDF tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                        Your files are processed locally in your browser and are not uploaded to our servers. This can help keep sensitive documents on your device during processing. This can be useful when working with documents that contain sensitive or personal information.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Files and Limitations</h3>

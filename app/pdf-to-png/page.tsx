@@ -134,6 +134,7 @@ export default function PDFToPNG() {
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                suppressHydrationWarning
             />
             <ToolWrapper
                 title="PDF to PNG"
@@ -259,7 +260,12 @@ export default function PDFToPNG() {
                         <li><strong>Download PNG files:</strong> Once complete, your lossless PNG images will be automatically packaged into a convenient ZIP archive for a single-click download.</li>
                     </ol>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">When should you choose PNG over JPG?</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why Choose PNG Over JPG?</h3>
+                    <p className="mb-6">
+                        While JPG is great for photographs, it uses &quot;lossy&quot; compression, which can introduce slight blurring or artifacts around sharp edges. PNG uses &quot;lossless&quot; compression, meaning it preserves every pixel exactly as it was rendered. This makes PNG the superior format when you need absolute clarity and exact color reproduction.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Text and Line Art Preservation</h3>
                     <ul className="list-disc pl-6 space-y-3 mb-8">
                         <li><strong>Text-Heavy Documents:</strong> If your PDF is mostly text (like a contract or essay), PNG ensures the letters remain crisp and readable when zoomed in, whereas JPG might introduce compression artifacts around the text.</li>
                         <li><strong>Logos and Graphics:</strong> For PDFs containing vector graphics, charts, or logos with solid colors, PNG maintains the sharp edges and exact colors perfectly.</li>

@@ -152,160 +152,160 @@ export default function WebPToPDF() {
     return (
         <>
             <ToolWrapper
-            title="WebP to PDF"
-            description="Convert WebP images into a single PDF document in your preferred order."
-        >
-            {resultUrl ? (
-                <div className="flex flex-col items-center justify-center gap-6 py-8">
-                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-purple-100 text-purple-500 dark:bg-purple-900/30 dark:text-purple-400">
-                        <div className="text-4xl">📄</div>
-                    </div>
-                    <div className="text-center">
-                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">Images to PDF Converted!</h3>
-                        <p className="mt-2 text-zinc-500 dark:text-zinc-400">
-                            Your images have been combined into a PDF.
-                        </p>
-                    </div>
+                title="WebP to PDF"
+                description="Convert WebP images into a single PDF document in your preferred order."
+            >
+                {resultUrl ? (
+                    <div className="flex flex-col items-center justify-center gap-6 py-8">
+                        <div className="flex h-24 w-24 items-center justify-center rounded-full bg-purple-100 text-purple-500 dark:bg-purple-900/30 dark:text-purple-400">
+                            <div className="text-4xl">📄</div>
+                        </div>
+                        <div className="text-center">
+                            <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">Images to PDF Converted!</h3>
+                            <p className="mt-2 text-zinc-500 dark:text-zinc-400">
+                                Your images have been combined into a PDF.
+                            </p>
+                        </div>
 
-                    {/* Preview */}
-                    <div className="w-full max-w-2xl h-[500px] rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-zinc-50 dark:bg-zinc-900">
-                        <iframe src={`${resultUrl}#toolbar=0`} className="w-full h-full" title="PDF Preview" />
-                    </div>
+                        {/* Preview */}
+                        <div className="w-full max-w-2xl h-[500px] rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-zinc-50 dark:bg-zinc-900">
+                            <iframe src={`${resultUrl}#toolbar=0`} className="w-full h-full" title="PDF Preview" />
+                        </div>
 
-                    <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
-                        <button
-                            onClick={() => {
-                                const link = document.createElement("a");
-                                link.href = resultUrl;
-                                link.download = resultFileName;
-                                document.body.appendChild(link);
-                                link.click();
-                                document.body.removeChild(link);
-                            }}
-                            className="flex-1 rounded-xl bg-green-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-green-600 transition-colors"
-                        >
-                            Download PDF
-                        </button>
-                        <button
-                            onClick={() => {
-                                URL.revokeObjectURL(resultUrl);
-                                setResultUrl(null);
-                                setResultFileName("");
-                            }}
-                            className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
-                        >
-                            Convert More
-                        </button>
-                    </div>
-                </div>
-            ) : images.length === 0 ? (
-                <DropZone
-                    onFilesSelected={handleFilesSelected}
-                    accept="image/webp"
-                    multiple={true}
-                    title="Select images to convert"
-                    description="Drag & drop WebP files here, or click to browse"
-                />
-            ) : (
-                <div className="flex flex-col gap-6 w-full">
-                    {/* Image Grid */}
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-h-[400px] overflow-y-auto pr-2">
-                        {images.map((imgObj, index) => (
-                            <div
-                                key={imgObj.id}
-                                className="group relative flex flex-col rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50 overflow-hidden"
+                        <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
+                            <button
+                                onClick={() => {
+                                    const link = document.createElement("a");
+                                    link.href = resultUrl;
+                                    link.download = resultFileName;
+                                    document.body.appendChild(link);
+                                    link.click();
+                                    document.body.removeChild(link);
+                                }}
+                                className="flex-1 rounded-xl bg-green-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-green-600 transition-colors"
                             >
-                                <div className="relative aspect-square w-full overflow-hidden bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center">
-                                    { }
-                                    <img
-                                        src={imgObj.previewUrl}
-                                        alt={imgObj.file.name}
-                                        className="h-full w-full object-cover"
-                                    />
-                                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-                                        <button
-                                            onClick={() => moveImage(index, "up")}
-                                            disabled={index === 0 || isProcessing}
-                                            className="p-2 rounded-lg bg-white/20 text-white hover:bg-white/40 disabled:opacity-30 transition-all"
-                                        >
-                                            <ArrowUpward className="h-4 w-4" />
-                                        </button>
-                                        <button
-                                            onClick={() => moveImage(index, "down")}
-                                            disabled={index === images.length - 1 || isProcessing}
-                                            className="p-2 rounded-lg bg-white/20 text-white hover:bg-white/40 disabled:opacity-30 transition-all"
-                                        >
-                                            <ArrowDownward className="h-4 w-4" />
-                                        </button>
-                                        <button
-                                            onClick={() => removeImage(imgObj.id)}
-                                            disabled={isProcessing}
-                                            className="p-2 rounded-lg bg-red-500/80 text-white hover:bg-red-600 transition-all"
-                                        >
-                                            <Delete className="h-4 w-4" />
-                                        </button>
+                                Download PDF
+                            </button>
+                            <button
+                                onClick={() => {
+                                    URL.revokeObjectURL(resultUrl);
+                                    setResultUrl(null);
+                                    setResultFileName("");
+                                }}
+                                className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
+                            >
+                                Convert More
+                            </button>
+                        </div>
+                    </div>
+                ) : images.length === 0 ? (
+                    <DropZone
+                        onFilesSelected={handleFilesSelected}
+                        accept="image/webp"
+                        multiple={true}
+                        title="Select images to convert"
+                        description="Drag & drop WebP files here, or click to browse"
+                    />
+                ) : (
+                    <div className="flex flex-col gap-6 w-full">
+                        {/* Image Grid */}
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-h-[400px] overflow-y-auto pr-2">
+                            {images.map((imgObj, index) => (
+                                <div
+                                    key={imgObj.id}
+                                    className="group relative flex flex-col rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50 overflow-hidden"
+                                >
+                                    <div className="relative aspect-square w-full overflow-hidden bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center">
+                                        { }
+                                        <img
+                                            src={imgObj.previewUrl}
+                                            alt={imgObj.file.name}
+                                            className="h-full w-full object-cover"
+                                        />
+                                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                                            <button
+                                                onClick={() => moveImage(index, "up")}
+                                                disabled={index === 0 || isProcessing}
+                                                className="p-2 rounded-lg bg-white/20 text-white hover:bg-white/40 disabled:opacity-30 transition-all"
+                                            >
+                                                <ArrowUpward className="h-4 w-4" />
+                                            </button>
+                                            <button
+                                                onClick={() => moveImage(index, "down")}
+                                                disabled={index === images.length - 1 || isProcessing}
+                                                className="p-2 rounded-lg bg-white/20 text-white hover:bg-white/40 disabled:opacity-30 transition-all"
+                                            >
+                                                <ArrowDownward className="h-4 w-4" />
+                                            </button>
+                                            <button
+                                                onClick={() => removeImage(imgObj.id)}
+                                                disabled={isProcessing}
+                                                className="p-2 rounded-lg bg-red-500/80 text-white hover:bg-red-600 transition-all"
+                                            >
+                                                <Delete className="h-4 w-4" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div className="p-3 min-w-0">
+                                        <p className="text-xs font-semibold text-zinc-900 dark:text-white truncate">
+                                            {imgObj.file.name}
+                                        </p>
+                                        <p className="text-[10px] text-zinc-500 dark:text-zinc-400">
+                                            {(imgObj.file.size / 1024).toFixed(0)} KB
+                                        </p>
                                     </div>
                                 </div>
-                                <div className="p-3 min-w-0">
-                                    <p className="text-xs font-semibold text-zinc-900 dark:text-white truncate">
-                                        {imgObj.file.name}
-                                    </p>
-                                    <p className="text-[10px] text-zinc-500 dark:text-zinc-400">
-                                        {(imgObj.file.size / 1024).toFixed(0)} KB
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                            ))}
+                        </div>
 
-                    {/* Add More Images */}
-                    <div className="flex justify-center">
-                        <label className="cursor-pointer rounded-xl border border-zinc-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-all">
-                            Add More Images
-                            <input
-                                type="file"
-                                className="hidden"
-                                multiple
-                                accept="image/webp"
-                                onChange={(e) => {
-                                    if (e.target.files) {
-                                        handleFilesSelected(Array.from(e.target.files));
-                                    }
-                                }}
-                            />
-                        </label>
-                    </div>
+                        {/* Add More Images */}
+                        <div className="flex justify-center">
+                            <label className="cursor-pointer rounded-xl border border-zinc-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-all">
+                                Add More Images
+                                <input
+                                    type="file"
+                                    className="hidden"
+                                    multiple
+                                    accept="image/webp"
+                                    onChange={(e) => {
+                                        if (e.target.files) {
+                                            handleFilesSelected(Array.from(e.target.files));
+                                        }
+                                    }}
+                                />
+                            </label>
+                        </div>
 
-                    {/* Action Button & Progress */}
-                    <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
-                        {isProcessing ? (
-                            <div className="w-full">
-                                <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
-                                    <span>Converting images...</span>
-                                    <span>{progress}%</span>
+                        {/* Action Button & Progress */}
+                        <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
+                            {isProcessing ? (
+                                <div className="w-full">
+                                    <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
+                                        <span>Converting images...</span>
+                                        <span>{progress}%</span>
+                                    </div>
+                                    <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
+                                        <div
+                                            className="bg-purple-500 h-full transition-all duration-300"
+                                            style={{ width: `${progress}%` }}
+                                        />
+                                    </div>
                                 </div>
-                                <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
-                                    <div
-                                        className="bg-purple-500 h-full transition-all duration-300"
-                                        style={{ width: `${progress}%` }}
-                                    />
-                                </div>
-                            </div>
-                        ) : (
-                            <button
-                                onClick={convertToPDF}
-                                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-purple-500 py-4 text-base font-semibold text-white shadow-lg shadow-purple-500/20 hover:bg-purple-600 transition-all duration-200"
-                            >
-                                <ImageIcon className="h-5 w-5" />
-                                Convert to PDF ({images.length} images)
-                            </button>
-                        )}
+                            ) : (
+                                <button
+                                    onClick={convertToPDF}
+                                    className="flex w-full items-center justify-center gap-2 rounded-2xl bg-purple-500 py-4 text-base font-semibold text-white shadow-lg shadow-purple-500/20 hover:bg-purple-600 transition-all duration-200"
+                                >
+                                    <ImageIcon className="h-5 w-5" />
+                                    Convert to PDF ({images.length} images)
+                                </button>
+                            )}
+                        </div>
                     </div>
-                </div>
-            )}
-        </ToolWrapper>
+                )}
+            </ToolWrapper>
 
-                        {/* SEO Content Section */}
+            {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
                     <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Convert WebP to PDF Instantly</h2>
@@ -326,21 +326,29 @@ export default function WebPToPDF() {
                         <li><strong>Process and Download:</strong> Click &quot;Convert to PDF&quot; to instantly generate and download your new PDF document.</li>
                     </ol>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why should you use this tool?</h3>
-                    <ul className="list-disc pl-6 space-y-3 mb-8">
-                        <li><strong>Easy Document Sharing:</strong> Combine multiple WebP images into a single file that is easy to email, print, and share.</li>
-                        <li><strong>Standardized Format:</strong> PDFs look the same on every device, ensuring your images are viewed exactly as you intended.</li>
-                        <li><strong>Bypass Compatibility Issues:</strong> Convert WebP images into a universally accepted PDF format for users who cannot open WebP files.</li>
-                    </ul>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Easy Document Sharing</h3>
+                    <p className="mb-6">
+                        Combine multiple WebP images into a single file that is easy to email, print, and share. Instead of sending a messy folder full of individual images, you can present your graphics in a clean, unified document.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Standardized Format</h3>
+                    <p className="mb-6">
+                        PDFs look exactly the same on every device, operating system, and screen size. By converting your WebP images to PDF, you ensure that your audience views your graphics exactly as you intended, without unexpected formatting changes.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Bypass Compatibility Issues</h3>
+                    <p className="mb-6">
+                        While WebP is a fantastic format for web optimization, many older devices and basic image viewers still struggle to open it. Converting WebP images into a universally accepted PDF format guarantees that anyone can view your files without needing specialized software.
+                    </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
                     <p className="mb-6">
-                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                        Your files are processed locally in your browser and are not uploaded to our servers. This can help keep sensitive documents on your device during processing. This can be useful when working with documents that contain sensitive or personal information.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Files and Limitations</h3>
                     <p className="mb-6">
-                        Our tool supports standard file formats. Because processing happens locally, there are no strict file size limits imposed by a server. You can process files as large as your device&apos;s memory can handle. Note that password-protected PDFs must be unlocked before they can be processed.
+                        Our tool supports standard file formats. Because processing takes place locally in your browser, the tool does not rely on a server-side upload limit. However, very large or complex files may require more memory and processing time depending on your device and browser. Note that password-protected PDFs must be unlocked before they can be processed.
                     </p>
 
                     {/* Related Tools */}

@@ -136,6 +136,7 @@ export default function PDFToJPG() {
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                suppressHydrationWarning
             />
             <ToolWrapper
                 title="PDF to JPG"
@@ -261,13 +262,23 @@ export default function PDFToJPG() {
                         <li><strong>Download JPG files:</strong> Once complete, your high-resolution JPG images will be automatically packaged into a convenient ZIP archive for a single-click download.</li>
                     </ol>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">When should you convert PDF to JPG?</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Practical Use Cases</h3>
                     <ul className="list-disc pl-6 space-y-3 mb-8">
                         <li><strong>Social Media:</strong> Platforms like Instagram, Facebook, and Pinterest do not support PDF uploads. Converting your flyers, infographics, or portfolios to JPG allows you to share them effortlessly.</li>
                         <li><strong>Web Optimization:</strong> Embedding images on a website is generally faster and more reliable than embedding a PDF viewer.</li>
                         <li><strong>Presentations:</strong> Inserting JPG images into PowerPoint or Google Slides is much smoother than trying to link or embed PDF files.</li>
                         <li><strong>Security:</strong> If you want to share a document but prevent others from easily copying the text or editing the content, flattening it into a JPG image adds a layer of difficulty for unauthorized modifications.</li>
                     </ul>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Image Quality & Multi-Page Behavior</h3>
+                    <p className="mb-6">
+                        Our tool renders PDF pages at a high scale (2.0x viewport) to ensure the resulting JPGs are crisp and high-resolution. When you upload a multi-page PDF, the tool processes every single page sequentially. To make downloading easy, all the generated JPG images are bundled into a single ZIP file, so you don&apos;t have to download each page individually.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Scanned PDF Considerations</h3>
+                    <p className="mb-6">
+                        If your PDF is already composed of scanned images (rather than selectable text), converting it to JPG will simply extract those visual pages into image files. The quality of the output JPG will depend heavily on the quality of the original scan.
+                    </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">JPG vs PNG vs WebP</h3>
                     <p className="mb-4">Not sure which image format to choose? Here is a quick guide:</p>

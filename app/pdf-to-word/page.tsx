@@ -373,6 +373,7 @@ export default function PDFToWord() {
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                suppressHydrationWarning
             />
             <ToolWrapper
                 title="PDF to Word"
@@ -513,12 +514,22 @@ export default function PDFToWord() {
                         <li><strong>Download your DOCX:</strong> Once processing is complete, download your new Microsoft Word file instantly.</li>
                     </ol>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why convert PDFs to Word?</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">When PDF-to-Word is Useful</h3>
                     <ul className="list-disc pl-6 space-y-3 mb-8">
                         <li><strong>Easy Editing:</strong> PDFs are designed to be static. Converting to Word allows you to easily change text, update figures, or correct typos without needing expensive PDF editing software.</li>
                         <li><strong>Content Extraction:</strong> Quickly pull paragraphs of text or specific images out of a locked PDF to use in other reports or presentations.</li>
                         <li><strong>Form Filling:</strong> Convert a static PDF form into a Word document to easily type in your responses before printing or saving.</li>
                     </ul>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Formatting Considerations (Tables & Images)</h3>
+                    <p className="mb-6">
+                        While our tool strives to extract text accurately, complex formatting like multi-column layouts, intricate tables, and precise image positioning may not translate perfectly into Word. If your document relies heavily on exact visual layout, we recommend using the <strong>Exact Copy</strong> mode, which inserts high-resolution images of the PDF pages into the Word document rather than attempting to reconstruct the text flow.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Scanned PDF Limitations</h3>
+                    <p className="mb-6">
+                        If your PDF is a scanned document (meaning it is composed of images rather than selectable text), our tool will attempt to use built-in Optical Character Recognition (OCR) to extract the text. However, the accuracy of OCR depends heavily on the quality of the scan, the font used, and the language. If the OCR fails or produces poor results, the tool will automatically fall back to inserting the scanned page as an image within the Word document.
+                    </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
                     <p className="mb-6">

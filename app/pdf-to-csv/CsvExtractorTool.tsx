@@ -127,10 +127,22 @@ export default function CsvExtractorTool() {
                         Easily extract tabular data and tables from your PDF documents into a structured CSV format. Our PDF to CSV extractor intelligently parses your document to find data tables and exports them into a format ready for Excel, Google Sheets, or any database.
                     </p>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why Convert PDF to CSV?</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Data Extraction Benefits</h3>
                     <p className="mb-6">
                         PDFs are great for presenting data, but terrible for analyzing it. If you receive financial reports, invoices, or research data in a PDF, manually copying and pasting tables is tedious and prone to errors. Converting the PDF to a CSV (Comma Separated Values) file allows you to instantly import the data into spreadsheet software for sorting, filtering, and calculation.
                     </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Spreadsheet Compatibility</h3>
+                    <p className="mb-6">
+                        CSV files are the universal language of data. Once your PDF tables are extracted into a CSV, you can seamlessly import them into Microsoft Excel, Google Sheets, Apple Numbers, or any database system for sorting, filtering, and complex calculations.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Common Use Cases</h3>
+                    <ul className="list-disc pl-6 space-y-3 mb-8">
+                        <li><strong>Finance & Accounting:</strong> Extracting transaction histories from bank statements or line items from invoices for reconciliation.</li>
+                        <li><strong>Research & Academia:</strong> Pulling statistical data tables from published papers or government reports for further analysis.</li>
+                        <li><strong>Inventory Management:</strong> Converting PDF product catalogs or shipping manifests into a format that can be imported into an inventory system.</li>
+                    </ul>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Extract Data to CSV</h3>
                     <p className="mb-4">Follow these simple steps to extract your tables:</p>
@@ -140,9 +152,9 @@ export default function CsvExtractorTool() {
                         <li><strong>Download CSV:</strong> Preview the extracted data and download it as a CSV file with a single click.</li>
                     </ol>
 
-                                        <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
                     <p className="mb-6">
-                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                        Your files are processed locally in your browser and are not uploaded to our servers. This can help keep sensitive documents on your device during processing. This can be useful when working with documents that contain sensitive or personal information.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Frequently Asked Questions</h3>

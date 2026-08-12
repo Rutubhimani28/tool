@@ -320,21 +320,29 @@ export default function WatermarkPDF() {
                         <li><strong>Process and Download:</strong> Click &quot;Apply Watermark&quot; to stamp the text onto your pages and download the protected document.</li>
                     </ol>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why should you use this tool?</h3>
-                    <ul className="list-disc pl-6 space-y-3 mb-8">
-                        <li><strong>Indicate Status:</strong> Clearly mark documents as &quot;Draft,&quot; &quot;Confidential,&quot; or &quot;Approved&quot; so readers instantly know their context.</li>
-                        <li><strong>Protect Copyright:</strong> Add your name or company logo as a watermark to discourage unauthorized sharing or copying of your work.</li>
-                        <li><strong>Professional Branding:</strong> Subtly brand your documents with your company name before distributing them to clients.</li>
-                    </ul>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Indicate Status</h3>
+                    <p className="mb-6">
+                        Clearly mark documents as &quot;Draft,&quot; &quot;Confidential,&quot; or &quot;Approved&quot; so readers instantly know their context. A large, diagonal watermark ensures that the status of the document cannot be missed or ignored by the recipient.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Protect Copyright</h3>
+                    <p className="mb-6">
+                        Add your name, website, or company logo as a watermark to discourage unauthorized sharing or copying of your work. While it doesn&apos;t prevent copying entirely, it ensures that your authorship is permanently attached to the visual representation of the document.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Professional Branding</h3>
+                    <p className="mb-6">
+                        Subtly brand your documents with your company name before distributing them to clients or the public. A well-placed, low-opacity watermark adds a layer of professionalism and reinforces your brand identity on every page.
+                    </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
                     <p className="mb-6">
-                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                        Your files are processed locally in your browser and are not uploaded to our servers. This can help keep sensitive documents on your device during processing. This can be useful when working with documents that contain sensitive or personal information.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Files and Limitations</h3>
                     <p className="mb-6">
-                        Our tool supports standard file formats. Because processing happens locally, there are no strict file size limits imposed by a server. You can process files as large as your device&apos;s memory can handle. Note that password-protected PDFs must be unlocked before they can be processed.
+                        Our tool supports standard file formats. Because processing takes place locally in your browser, the tool does not rely on a server-side upload limit. However, very large or complex files may require more memory and processing time depending on your device and browser. Note that password-protected PDFs must be unlocked before they can be processed.
                     </p>
 
                     {/* Related Tools */}

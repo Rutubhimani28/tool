@@ -97,6 +97,7 @@ export default function CompressPDF() {
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                suppressHydrationWarning
             />
 
             <ToolWrapper title="Compress PDF" description="Reduce the file size of your PDF document while maintaining the best possible quality.">
@@ -246,22 +247,37 @@ export default function CompressPDF() {
                         <li><strong>Download optimized file:</strong> Once complete, you will see exactly how much space was saved. Click download to save your new, smaller PDF.</li>
                     </ol>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why should you compress PDFs?</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why Some PDFs Compress More Than Others</h3>
                     <ul className="list-disc pl-6 space-y-3 mb-8">
-                        <li><strong>Email Attachments:</strong> Most email providers (like Gmail and Outlook) have strict attachment limits, usually around 25MB. Compressing your PDF ensures it can be sent without bouncing back.</li>
+                        <li><strong>Email Attachments:</strong> Smaller PDFs are easier to share when an email service or recipient has attachment-size limits.</li>
                         <li><strong>Faster Uploads:</strong> When submitting documents to online portals (like job applications, government forms, or university systems), smaller files upload much faster and are less likely to time out.</li>
                         <li><strong>Storage Space:</strong> If you archive many documents, compressing them can save gigabytes of valuable hard drive or cloud storage space.</li>
                         <li><strong>Web Performance:</strong> If you host PDFs on a website, smaller files download faster for your visitors, improving user experience and saving bandwidth.</li>
                     </ul>
 
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why a PDF May Not Get Much Smaller</h3>
+                    <p className="mb-6">
+                        Some PDFs are already compressed or contain mostly text and vector graphics, so the available reduction may be limited. PDFs containing high-resolution scanned pages or large embedded images generally have more room for optimization. The final file size depends on how the original PDF was created and what it contains.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Image-Heavy and Scanned PDFs</h3>
+                    <p className="mb-6">
+                        Scanned documents and image-heavy portfolios benefit the most from compression. Our tool analyzes the PDF and applies the available compression optimizations while aiming to preserve the document&apos;s readability and visual quality.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Quality vs. File Size</h3>
+                    <p className="mb-6">
+                        Our compression process is designed to reduce file size while preserving the document&apos;s readability and visual quality as much as possible. We use structural optimization where possible, ensuring that your text remains crisp and your images remain clear, making the resulting file suitable for email, web uploads, and general sharing.
+                    </p>
+
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
                     <p className="mb-6">
-                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our Compress PDF tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                        Your files are processed locally in your browser and are not uploaded to our servers. This can help keep sensitive documents on your device during processing, which may be useful when working with personal or confidential information.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Files and Limitations</h3>
                     <p className="mb-6">
-                        Our tool supports standard PDF documents. Because processing happens locally, there are no strict file size limits imposed by a server. However, processing extremely large PDFs may take longer depending on your device&apos;s memory. Note that password-protected PDFs must be unlocked before they can be compressed. Also, if a PDF is already highly optimized, the compression savings may be minimal.
+                        Our tool supports standard PDF documents. Because processing takes place locally in your browser, the tool does not rely on a server-side upload limit. However, very large or complex PDFs may require more memory and processing time depending on your device and browser. Note that password-protected PDFs must be unlocked before they can be compressed. Also, if a PDF is already highly optimized, the compression savings may be minimal.
                     </p>
                     {/* Related Tools */}
                     <div className="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800">

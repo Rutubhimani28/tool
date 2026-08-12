@@ -24,7 +24,7 @@ export const faqs: FAQ[] = [
     {
         category: "General Questions",
         question: "Are there any limitations on how many files I can process?",
-        answer: "While our tools are free, we may impose reasonable rate limits to ensure fair usage and maintain server performance for all users. However, for typical daily use, you will not encounter any restrictions."
+        answer: "Because processing happens locally in your browser, there are no server-side rate limits. However, processing very large numbers of files simultaneously may be limited by your device's memory and processing power."
     },
     {
         category: "General Questions",
@@ -51,7 +51,7 @@ export const faqs: FAQ[] = [
     {
         category: "PDF Conversion",
         question: "Will converting my Word document to PDF change the formatting?",
-        answer: "No. Our <a href='/word-to-pdf' class='text-blue-600 hover:underline'>Word to PDF</a> converter is designed to preserve your exact layout, fonts, and margins, ensuring the resulting PDF looks identical to your original document."
+        answer: "Our <a href='/word-to-pdf' class='text-blue-600 hover:underline'>Word to PDF</a> converter is designed to preserve your layout, fonts, and margins, ensuring the resulting PDF looks as close as possible to your original document."
     },
     {
         category: "PDF Conversion",
@@ -93,17 +93,17 @@ export const faqs: FAQ[] = [
     {
         category: "Privacy & Security",
         question: "Do you store my documents on your servers?",
-        answer: "No. We have a strict zero-retention policy. Any file processed on our servers is automatically and permanently deleted immediately after the conversion is complete."
+        answer: "No. Files are processed locally on your device, not on our servers. Once you close the browser tab, the processed files are gone."
     },
     {
         category: "Privacy & Security",
         question: "Can anyone else access my converted files?",
-        answer: "No. The download link generated for your converted file is unique to your session and cannot be accessed by anyone else or indexed by search engines."
+        answer: "No. The download link generated for your converted file is a local blob URL that only exists in your current browser session and cannot be accessed by anyone else or indexed by search engines."
     },
     {
         category: "Privacy & Security",
         question: "Do you read or analyze the content of my documents?",
-        answer: "Absolutely not. Our automated systems process the files strictly for conversion purposes. No human ever views your documents, and no data is extracted or analyzed."
+        answer: "Absolutely not. The local browser scripts process the files strictly for conversion purposes. No human ever views your documents, and no data is extracted or analyzed."
     },
     {
         category: "Privacy & Security",
@@ -113,7 +113,7 @@ export const faqs: FAQ[] = [
     {
         category: "Privacy & Security",
         question: "Is it safe to process financial or legal documents here?",
-        answer: "Yes. Because we automatically delete all files and use secure encryption, our platform is safe for processing sensitive business, legal, and financial documents."
+        answer: "Yes. Because files are processed locally and never uploaded, our platform is safe for processing sensitive business, legal, and financial documents."
     },
     {
         category: "Privacy & Security",
@@ -285,7 +285,7 @@ export const faqs: FAQ[] = [
     {
         category: "Quality & Formatting",
         question: "How do I ensure the highest quality output?",
-        answer: "For the best image quality, always start with a high-resolution source file. When converting to JPG, our tools automatically use a high-quality setting (typically 90-100%). For absolute lossless quality, choose PNG as your output format."
+        answer: "For the best image quality, always start with a high-resolution source file. When converting to JPG, our tools automatically use a high-quality setting (typically 90-100%). For lossless quality, choose PNG as your output format."
     },
     {
         category: "Quality & Formatting",

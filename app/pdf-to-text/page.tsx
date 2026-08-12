@@ -210,9 +210,21 @@ export default function PDFToText() {
                         Instantly extract all readable text from your PDF documents and save it as a plain TXT file. Our PDF to Text converter is perfect for pulling out content from reports, articles, and books so you can edit, search, or reuse the text without formatting constraints.
                     </p>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why Convert PDF to Text?</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Stripping Formatting for Clean Data</h3>
                     <p className="mb-6">
                         PDFs are designed to preserve layout and formatting, which makes extracting text for editing or analysis difficult. Converting a PDF to a plain text (.txt) file strips away all the complex formatting, images, and styling, leaving you with pure, unformatted text. This is ideal for developers, researchers, and anyone who needs to quickly copy large amounts of text or process document content programmatically.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Common Use Cases</h3>
+                    <ul className="list-disc pl-6 space-y-3 mb-8">
+                        <li><strong>Data Analysis & NLP:</strong> Researchers and data scientists frequently need to extract raw text from reports and academic papers to perform Natural Language Processing (NLP) or sentiment analysis.</li>
+                        <li><strong>Coding & Development:</strong> Developers often need to pull configuration data, logs, or documentation from PDFs to use within their codebases or scripts.</li>
+                        <li><strong>Accessibility:</strong> Plain text files are easily read by screen readers and can be converted into braille or audio formats more reliably than complex PDFs.</li>
+                    </ul>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Scanned PDF Limitations</h3>
+                    <p className="mb-6">
+                        Please note that this tool extracts <em>native</em> text embedded within the PDF document. If your PDF is a scanned image of a physical document, it does not contain selectable text. Extracting text from scanned images requires Optical Character Recognition (OCR) technology, which is not currently supported by this browser-based extraction tool.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Extract Text from PDF</h3>
@@ -223,9 +235,9 @@ export default function PDFToText() {
                         <li><strong>Download TXT:</strong> Download the resulting plain text file to your device instantly.</li>
                     </ol>
 
-                                        <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
                     <p className="mb-6">
-                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                        Your files are processed locally in your browser and are not uploaded to our servers. This can help keep sensitive documents on your device during processing. This can be useful when working with documents that contain sensitive or personal information.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Frequently Asked Questions</h3>

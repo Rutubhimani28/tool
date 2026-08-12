@@ -9,7 +9,8 @@ import { encryptPDF } from "@pdfsmaller/pdf-encrypt";
 import confetti from "canvas-confetti";
 import {
     ArrowRightAlt,
- Lock, Visibility, VisibilityOff } from "@mui/icons-material";
+    Lock, Visibility, VisibilityOff
+} from "@mui/icons-material";
 
 export default function ProtectPDF() {
     const [file, setFile] = useState<File | null>(null);
@@ -123,231 +124,231 @@ export default function ProtectPDF() {
     return (
         <>
             <ToolWrapper
-            title="Protect PDF"
-            description="Encrypt your PDF document with a secure password to restrict access and permissions."
-        >
-            {resultUrl ? (
-                <div className="flex flex-col items-center justify-center gap-6 py-8">
-                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-yellow-100 text-yellow-500 dark:bg-yellow-900/30 dark:text-yellow-400">
-                        <Lock className="h-12 w-12" />
-                    </div>
-                    <div className="text-center">
-                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">PDF Protected Successfully!</h3>
-                        <p className="mt-2 text-zinc-500 dark:text-zinc-400">
-                            Your file has been encrypted with the password.
-                        </p>
-                    </div>
-
-                    {/* Preview */}
-                    <div className="w-full max-w-2xl h-[500px] rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-zinc-50 dark:bg-zinc-900">
-                        <iframe src={`${resultUrl}#toolbar=0`} className="w-full h-full" title="PDF Preview" />
-                    </div>
-
-                    <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
-                        <button
-                            onClick={() => {
-                                const link = document.createElement("a");
-                                link.href = resultUrl;
-                                link.download = resultFileName;
-                                document.body.appendChild(link);
-                                link.click();
-                                document.body.removeChild(link);
-                            }}
-                            className="flex-1 rounded-xl bg-yellow-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-yellow-600 transition-colors"
-                        >
-                            Download PDF
-                        </button>
-                        <button
-                            onClick={() => {
-                                URL.revokeObjectURL(resultUrl);
-                                setResultUrl(null);
-                                setResultFileName("");
-                            }}
-                            className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
-                        >
-                            Protect Another
-                        </button>
-                    </div>
-                </div>
-            ) : !file ? (
-                <DropZone
-                    onFilesSelected={handleFileSelected}
-                    accept=".pdf"
-                    multiple={false}
-                    title="Select PDF file to protect"
-                    description="Drag & drop a PDF file here, or click to browse"
-                />
-            ) : (
-                <div className="flex flex-col gap-6 w-full">
-                    {/* File Info */}
-                    <div className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
-                        <div className="flex items-center gap-4 min-w-0">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-yellow-100 text-yellow-600 dark:bg-yellow-950/30 dark:text-yellow-400 font-bold text-xs">
-                                PDF
-                            </div>
-                            <div className="min-w-0">
-                                <p className="text-sm font-semibold text-zinc-900 dark:text-white truncate">
-                                    {file.name}
-                                </p>
-                                <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                                    {(file.size / 1024 / 1024).toFixed(2)} MB
-                                </p>
-                            </div>
+                title="Protect PDF"
+                description="Encrypt your PDF document with a secure password to restrict access and permissions."
+            >
+                {resultUrl ? (
+                    <div className="flex flex-col items-center justify-center gap-6 py-8">
+                        <div className="flex h-24 w-24 items-center justify-center rounded-full bg-yellow-100 text-yellow-500 dark:bg-yellow-900/30 dark:text-yellow-400">
+                            <Lock className="h-12 w-12" />
                         </div>
-                        <button
-                            onClick={() => setFile(null)}
-                            className="text-sm font-semibold text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 transition-colors"
-                        >
-                            Remove
-                        </button>
-                    </div>
-
-                    {/* Password Input & Action */}
-                    {isAlreadyEncrypted ? (
-                        <div className="p-4 rounded-2xl bg-yellow-50 border border-yellow-100 dark:bg-yellow-950/10 dark:border-yellow-900/30 text-sm text-yellow-700 dark:text-yellow-400">
-                            This PDF is already password-protected. You cannot protect it again. If you want to change the password, please unlock it first.
+                        <div className="text-center">
+                            <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">PDF Protected Successfully!</h3>
+                            <p className="mt-2 text-zinc-500 dark:text-zinc-400">
+                                Your file has been encrypted with the password.
+                            </p>
                         </div>
-                    ) : (
-                        <>
-                            {/* Password Input */}
-                            <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-4">
-                                <div className="flex flex-col gap-2">
-                                    <label htmlFor="pdf-password" className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
-                                        Set PDF Password
-                                    </label>
-                                    <input type="text" id="username" name="username" aria-label="Username" autoComplete="username" className="hidden" aria-hidden="true" />
-                                    <div className="relative">
-                                        <input
-                                            id="pdf-password"
-                                            name="pdf-password"
-                                            type={showPassword ? "text" : "password"}
-                                            placeholder="Enter strong password"
-                                            value={password}
-                                            onChange={(e) => {
-                                                setPassword(e.target.value);
-                                                if (passwordError) setPasswordError("");
-                                            }}
-                                            autoComplete="new-password"
-                                            className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 pr-12 text-sm text-zinc-900 focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white"
-                                        />
-                                        <button
-                                            type="button"
-                                            onClick={() => setShowPassword(!showPassword)}
-                                            className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors"
-                                        >
-                                            {showPassword ? <VisibilityOff className="h-5 w-5" /> : <Visibility className="h-5 w-5" />}
-                                        </button>
-                                    </div>
-                                    <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
-                                        Password must be at least 8 characters long and contain an uppercase letter, a lowercase letter, a number, and a special character.
+
+                        {/* Preview */}
+                        <div className="w-full max-w-2xl h-[500px] rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-zinc-50 dark:bg-zinc-900">
+                            <iframe src={`${resultUrl}#toolbar=0`} className="w-full h-full" title="PDF Preview" />
+                        </div>
+
+                        <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
+                            <button
+                                onClick={() => {
+                                    const link = document.createElement("a");
+                                    link.href = resultUrl;
+                                    link.download = resultFileName;
+                                    document.body.appendChild(link);
+                                    link.click();
+                                    document.body.removeChild(link);
+                                }}
+                                className="flex-1 rounded-xl bg-yellow-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-yellow-600 transition-colors"
+                            >
+                                Download PDF
+                            </button>
+                            <button
+                                onClick={() => {
+                                    URL.revokeObjectURL(resultUrl);
+                                    setResultUrl(null);
+                                    setResultFileName("");
+                                }}
+                                className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
+                            >
+                                Protect Another
+                            </button>
+                        </div>
+                    </div>
+                ) : !file ? (
+                    <DropZone
+                        onFilesSelected={handleFileSelected}
+                        accept=".pdf"
+                        multiple={false}
+                        title="Select PDF file to protect"
+                        description="Drag & drop a PDF file here, or click to browse"
+                    />
+                ) : (
+                    <div className="flex flex-col gap-6 w-full">
+                        {/* File Info */}
+                        <div className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
+                            <div className="flex items-center gap-4 min-w-0">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-yellow-100 text-yellow-600 dark:bg-yellow-950/30 dark:text-yellow-400 font-bold text-xs">
+                                    PDF
+                                </div>
+                                <div className="min-w-0">
+                                    <p className="text-sm font-semibold text-zinc-900 dark:text-white truncate">
+                                        {file.name}
+                                    </p>
+                                    <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                                        {(file.size / 1024 / 1024).toFixed(2)} MB
                                     </p>
                                 </div>
-                                <div className="flex flex-col gap-2">
-                                    <label htmlFor="pdf-confirm-password" className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
-                                        Confirm Password
-                                    </label>
-                                    <div className="relative">
-                                        <input
-                                            id="pdf-confirm-password"
-                                            name="pdf-confirm-password"
-                                            type={showConfirmPassword ? "text" : "password"}
-                                            placeholder="Re-enter password"
-                                            value={confirmPassword}
-                                            onChange={(e) => {
-                                                setConfirmPassword(e.target.value);
-                                                if (passwordError) setPasswordError("");
-                                            }}
-                                            autoComplete="new-password"
-                                            className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 pr-12 text-sm text-zinc-900 focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white"
-                                        />
-                                        <button
-                                            type="button"
-                                            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                            className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors"
-                                        >
-                                            {showConfirmPassword ? <VisibilityOff className="h-5 w-5" /> : <Visibility className="h-5 w-5" />}
-                                        </button>
-                                    </div>
-                                </div>
-                                {passwordError && (
-                                    <p className="text-sm text-red-500 dark:text-red-400">{passwordError}</p>
-                                )}
-                            </form>
-
-                            {/* Permissions */}
-                            <div className="flex flex-col gap-3 p-4 rounded-2xl border border-zinc-200 bg-zinc-50/50 dark:border-zinc-800 dark:bg-zinc-900/20">
-                                <h4 className="text-sm font-bold text-zinc-900 dark:text-white">Permissions</h4>
-
-                                <label htmlFor="allow-printing" className="flex items-center gap-3 cursor-pointer">
-                                    <input
-                                        id="allow-printing"
-                                        name="allow-printing"
-                                        type="checkbox"
-                                        checked={allowPrinting}
-                                        onChange={(e) => setAllowPrinting(e.target.checked)}
-                                        className="rounded border-zinc-300 text-yellow-500 focus:ring-yellow-500 dark:border-zinc-700"
-                                    />
-                                    <span className="text-sm text-zinc-700 dark:text-zinc-300">Allow Printing</span>
-                                </label>
-
-                                <label htmlFor="allow-copying" className="flex items-center gap-3 cursor-pointer">
-                                    <input
-                                        id="allow-copying"
-                                        name="allow-copying"
-                                        type="checkbox"
-                                        checked={allowCopying}
-                                        onChange={(e) => setAllowCopying(e.target.checked)}
-                                        className="rounded border-zinc-300 text-yellow-500 focus:ring-yellow-500 dark:border-zinc-700"
-                                    />
-                                    <span className="text-sm text-zinc-700 dark:text-zinc-300">Allow Copying Text & Images</span>
-                                </label>
-
-                                <label htmlFor="allow-modifying" className="flex items-center gap-3 cursor-pointer">
-                                    <input
-                                        id="allow-modifying"
-                                        name="allow-modifying"
-                                        type="checkbox"
-                                        checked={allowModifying}
-                                        onChange={(e) => setAllowModifying(e.target.checked)}
-                                        className="rounded border-zinc-300 text-yellow-500 focus:ring-yellow-500 dark:border-zinc-700"
-                                    />
-                                    <span className="text-sm text-zinc-700 dark:text-zinc-300">Allow Modifying Document</span>
-                                </label>
                             </div>
+                            <button
+                                onClick={() => setFile(null)}
+                                className="text-sm font-semibold text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 transition-colors"
+                            >
+                                Remove
+                            </button>
+                        </div>
 
-                            {/* Action Button & Progress */}
-                            <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
-                                {isProcessing ? (
-                                    <div className="w-full">
-                                        <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
-                                            <span>Encrypting PDF...</span>
-                                            <span>{progress}%</span>
-                                        </div>
-                                        <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
-                                            <div
-                                                className="bg-yellow-500 h-full transition-all duration-300"
-                                                style={{ width: `${progress}%` }}
+                        {/* Password Input & Action */}
+                        {isAlreadyEncrypted ? (
+                            <div className="p-4 rounded-2xl bg-yellow-50 border border-yellow-100 dark:bg-yellow-950/10 dark:border-yellow-900/30 text-sm text-yellow-700 dark:text-yellow-400">
+                                This PDF is already password-protected. You cannot protect it again. If you want to change the password, please unlock it first.
+                            </div>
+                        ) : (
+                            <>
+                                {/* Password Input */}
+                                <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-4">
+                                    <div className="flex flex-col gap-2">
+                                        <label htmlFor="pdf-password" className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
+                                            Set PDF Password
+                                        </label>
+                                        <input type="text" id="username" name="username" aria-label="Username" autoComplete="username" className="hidden" aria-hidden="true" />
+                                        <div className="relative">
+                                            <input
+                                                id="pdf-password"
+                                                name="pdf-password"
+                                                type={showPassword ? "text" : "password"}
+                                                placeholder="Enter strong password"
+                                                value={password}
+                                                onChange={(e) => {
+                                                    setPassword(e.target.value);
+                                                    if (passwordError) setPasswordError("");
+                                                }}
+                                                autoComplete="new-password"
+                                                className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 pr-12 text-sm text-zinc-900 focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white"
                                             />
+                                            <button
+                                                type="button"
+                                                onClick={() => setShowPassword(!showPassword)}
+                                                className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors"
+                                            >
+                                                {showPassword ? <VisibilityOff className="h-5 w-5" /> : <Visibility className="h-5 w-5" />}
+                                            </button>
+                                        </div>
+                                        <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
+                                            Password must be at least 8 characters long and contain an uppercase letter, a lowercase letter, a number, and a special character.
+                                        </p>
+                                    </div>
+                                    <div className="flex flex-col gap-2">
+                                        <label htmlFor="pdf-confirm-password" className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
+                                            Confirm Password
+                                        </label>
+                                        <div className="relative">
+                                            <input
+                                                id="pdf-confirm-password"
+                                                name="pdf-confirm-password"
+                                                type={showConfirmPassword ? "text" : "password"}
+                                                placeholder="Re-enter password"
+                                                value={confirmPassword}
+                                                onChange={(e) => {
+                                                    setConfirmPassword(e.target.value);
+                                                    if (passwordError) setPasswordError("");
+                                                }}
+                                                autoComplete="new-password"
+                                                className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 pr-12 text-sm text-zinc-900 focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white"
+                                            />
+                                            <button
+                                                type="button"
+                                                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                                className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors"
+                                            >
+                                                {showConfirmPassword ? <VisibilityOff className="h-5 w-5" /> : <Visibility className="h-5 w-5" />}
+                                            </button>
                                         </div>
                                     </div>
-                                ) : (
-                                    <button
-                                        onClick={handleProtect}
-                                        disabled={!password || !confirmPassword}
-                                        className="flex w-full items-center justify-center gap-2 rounded-2xl bg-yellow-500 py-4 text-base font-semibold text-white shadow-lg shadow-yellow-500/20 hover:bg-yellow-600 disabled:opacity-50 disabled:hover:bg-yellow-500 disabled:shadow-none transition-all duration-200"
-                                    >
-                                        <Lock className="h-5 w-5" />
-                                        Encrypt PDF
-                                    </button>
-                                )}
-                            </div>
-                        </>
-                    )}
-                </div>
-            )}
-        </ToolWrapper>
+                                    {passwordError && (
+                                        <p className="text-sm text-red-500 dark:text-red-400">{passwordError}</p>
+                                    )}
+                                </form>
 
-                        {/* SEO Content Section */}
+                                {/* Permissions */}
+                                <div className="flex flex-col gap-3 p-4 rounded-2xl border border-zinc-200 bg-zinc-50/50 dark:border-zinc-800 dark:bg-zinc-900/20">
+                                    <h4 className="text-sm font-bold text-zinc-900 dark:text-white">Permissions</h4>
+
+                                    <label htmlFor="allow-printing" className="flex items-center gap-3 cursor-pointer">
+                                        <input
+                                            id="allow-printing"
+                                            name="allow-printing"
+                                            type="checkbox"
+                                            checked={allowPrinting}
+                                            onChange={(e) => setAllowPrinting(e.target.checked)}
+                                            className="rounded border-zinc-300 text-yellow-500 focus:ring-yellow-500 dark:border-zinc-700"
+                                        />
+                                        <span className="text-sm text-zinc-700 dark:text-zinc-300">Allow Printing</span>
+                                    </label>
+
+                                    <label htmlFor="allow-copying" className="flex items-center gap-3 cursor-pointer">
+                                        <input
+                                            id="allow-copying"
+                                            name="allow-copying"
+                                            type="checkbox"
+                                            checked={allowCopying}
+                                            onChange={(e) => setAllowCopying(e.target.checked)}
+                                            className="rounded border-zinc-300 text-yellow-500 focus:ring-yellow-500 dark:border-zinc-700"
+                                        />
+                                        <span className="text-sm text-zinc-700 dark:text-zinc-300">Allow Copying Text & Images</span>
+                                    </label>
+
+                                    <label htmlFor="allow-modifying" className="flex items-center gap-3 cursor-pointer">
+                                        <input
+                                            id="allow-modifying"
+                                            name="allow-modifying"
+                                            type="checkbox"
+                                            checked={allowModifying}
+                                            onChange={(e) => setAllowModifying(e.target.checked)}
+                                            className="rounded border-zinc-300 text-yellow-500 focus:ring-yellow-500 dark:border-zinc-700"
+                                        />
+                                        <span className="text-sm text-zinc-700 dark:text-zinc-300">Allow Modifying Document</span>
+                                    </label>
+                                </div>
+
+                                {/* Action Button & Progress */}
+                                <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
+                                    {isProcessing ? (
+                                        <div className="w-full">
+                                            <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
+                                                <span>Encrypting PDF...</span>
+                                                <span>{progress}%</span>
+                                            </div>
+                                            <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
+                                                <div
+                                                    className="bg-yellow-500 h-full transition-all duration-300"
+                                                    style={{ width: `${progress}%` }}
+                                                />
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <button
+                                            onClick={handleProtect}
+                                            disabled={!password || !confirmPassword}
+                                            className="flex w-full items-center justify-center gap-2 rounded-2xl bg-yellow-500 py-4 text-base font-semibold text-white shadow-lg shadow-yellow-500/20 hover:bg-yellow-600 disabled:opacity-50 disabled:hover:bg-yellow-500 disabled:shadow-none transition-all duration-200"
+                                        >
+                                            <Lock className="h-5 w-5" />
+                                            Encrypt PDF
+                                        </button>
+                                    )}
+                                </div>
+                            </>
+                        )}
+                    </div>
+                )}
+            </ToolWrapper>
+
+            {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
                     <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Protect PDF with Password Instantly</h2>
@@ -368,21 +369,29 @@ export default function ProtectPDF() {
                         <li><strong>Process and Download:</strong> Click &quot;Protect PDF&quot; to encrypt the file locally and download your secure document.</li>
                     </ol>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why should you use this tool?</h3>
-                    <ul className="list-disc pl-6 space-y-3 mb-8">
-                        <li><strong>Data Security:</strong> Protect sensitive information like financial records, medical documents, and personal identification from prying eyes.</li>
-                        <li><strong>Secure Sharing:</strong> Safely email or share confidential documents knowing that only the intended recipient with the password can open them.</li>
-                        <li><strong>Compliance:</strong> Meet privacy and security regulations by ensuring that sensitive client or employee data is properly encrypted.</li>
-                    </ul>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Data Security</h3>
+                    <p className="mb-6">
+                        Protect sensitive information like financial records, medical documents, and personal identification from prying eyes. By encrypting your PDF, you ensure that even if the file falls into the wrong hands, the contents remain completely inaccessible without the correct password.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Secure Sharing</h3>
+                    <p className="mb-6">
+                        Safely email or share confidential documents knowing that only the intended recipient with the password can open them. This is especially important when sending contracts, invoices, or legal documents over unencrypted channels.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Compliance</h3>
+                    <p className="mb-6">
+                        Meet privacy and security regulations (such as HIPAA or GDPR) by ensuring that sensitive client or employee data is properly encrypted. Password protection is a fundamental step in maintaining data compliance and avoiding costly breaches.
+                    </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
                     <p className="mb-6">
-                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                        Your files are processed locally in your browser and are not uploaded to our servers. This can help keep sensitive documents on your device during processing. This can be useful when working with documents that contain sensitive or personal information.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Files and Limitations</h3>
                     <p className="mb-6">
-                        Our tool supports standard file formats. Because processing happens locally, there are no strict file size limits imposed by a server. You can process files as large as your device&apos;s memory can handle. Note that password-protected PDFs must be unlocked before they can be processed.
+                        Our tool supports standard file formats. Because processing takes place locally in your browser, the tool does not rely on a server-side upload limit. However, very large or complex files may require more memory and processing time depending on your device and browser. Note that password-protected PDFs must be unlocked before they can be processed.
                     </p>
 
                     {/* Related Tools */}

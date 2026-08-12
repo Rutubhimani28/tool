@@ -9,7 +9,8 @@ import JSZip from "jszip";
 import confetti from "canvas-confetti";
 import {
     ArrowRightAlt,
- Collections } from "@mui/icons-material";
+    Collections
+} from "@mui/icons-material";
 import { PDFDocument } from "pdf-lib";
 
 export default function PDFToWebP() {
@@ -48,7 +49,7 @@ export default function PDFToWebP() {
         setProgress(10);
 
         const originalWarn = console.warn;
-        console.warn = () => {};
+        console.warn = () => { };
 
         try {
             const pdfjsLib = await import("pdfjs-dist");
@@ -120,109 +121,109 @@ export default function PDFToWebP() {
     return (
         <>
             <ToolWrapper
-            title="PDF to WebP"
-            description="Convert PDF pages into high-quality JPG images and download them as a ZIP file."
-        >
-            {resultUrl ? (
-                <div className="flex flex-col items-center justify-center gap-6 py-8">
-                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-pink-100 text-pink-500 dark:bg-pink-900/30 dark:text-pink-400">
-                        <div className="text-4xl">🖼️</div>
-                    </div>
-                    <div className="text-center">
-                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">PDF to WebP Converted!</h3>
-                        <p className="mt-2 text-zinc-500 dark:text-zinc-400">
-                            Your images have been packaged into a ZIP file.
-                        </p>
-                    </div>
-                    <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
-                        <button
-                            onClick={() => {
-                                const link = document.createElement("a");
-                                link.href = resultUrl;
-                                link.download = resultFileName;
-                                document.body.appendChild(link);
-                                link.click();
-                                document.body.removeChild(link);
-                            }}
-                            className="flex-1 rounded-xl bg-green-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-green-600 transition-colors"
-                        >
-                            Download ZIP
-                        </button>
-                        <button
-                            onClick={() => {
-                                URL.revokeObjectURL(resultUrl);
-                                setResultUrl(null);
-                                setResultFileName("");
-                            }}
-                            className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
-                        >
-                            Convert Another
-                        </button>
-                    </div>
-                </div>
-            ) : !file ? (
-                <DropZone
-                    onFilesSelected={handleFileSelected}
-                    accept=".pdf"
-                    multiple={false}
-                    title="Select PDF file to convert"
-                    description="Drag & drop a PDF file here, or click to browse"
-                />
-            ) : (
-                <div className="flex flex-col gap-6 w-full">
-                    {/* File Info */}
-                    <div className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
-                        <div className="flex items-center gap-4 min-w-0">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-pink-100 text-pink-600 dark:bg-pink-950/30 dark:text-pink-400 font-bold text-xs">
-                                PDF
-                            </div>
-                            <div className="min-w-0">
-                                <p className="text-sm font-semibold text-zinc-900 dark:text-white truncate">
-                                    {file.name}
-                                </p>
-                                <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                                    {(file.size / 1024 / 1024).toFixed(2)} MB • {pagesCount} pages
-                                </p>
-                            </div>
+                title="PDF to WebP"
+                description="Convert PDF pages into high-quality JPG images and download them as a ZIP file."
+            >
+                {resultUrl ? (
+                    <div className="flex flex-col items-center justify-center gap-6 py-8">
+                        <div className="flex h-24 w-24 items-center justify-center rounded-full bg-pink-100 text-pink-500 dark:bg-pink-900/30 dark:text-pink-400">
+                            <div className="text-4xl">🖼️</div>
                         </div>
-                        <button
-                            onClick={() => setFile(null)}
-                            className="text-sm font-semibold text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 transition-colors"
-                        >
-                            Remove
-                        </button>
+                        <div className="text-center">
+                            <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">PDF to WebP Converted!</h3>
+                            <p className="mt-2 text-zinc-500 dark:text-zinc-400">
+                                Your images have been packaged into a ZIP file.
+                            </p>
+                        </div>
+                        <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
+                            <button
+                                onClick={() => {
+                                    const link = document.createElement("a");
+                                    link.href = resultUrl;
+                                    link.download = resultFileName;
+                                    document.body.appendChild(link);
+                                    link.click();
+                                    document.body.removeChild(link);
+                                }}
+                                className="flex-1 rounded-xl bg-green-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-green-600 transition-colors"
+                            >
+                                Download ZIP
+                            </button>
+                            <button
+                                onClick={() => {
+                                    URL.revokeObjectURL(resultUrl);
+                                    setResultUrl(null);
+                                    setResultFileName("");
+                                }}
+                                className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
+                            >
+                                Convert Another
+                            </button>
+                        </div>
                     </div>
-
-                    {/* Action Button & Progress */}
-                    <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
-                        {isProcessing ? (
-                            <div className="w-full">
-                                <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
-                                    <span>Converting pages to WebP...</span>
-                                    <span>{progress}%</span>
+                ) : !file ? (
+                    <DropZone
+                        onFilesSelected={handleFileSelected}
+                        accept=".pdf"
+                        multiple={false}
+                        title="Select PDF file to convert"
+                        description="Drag & drop a PDF file here, or click to browse"
+                    />
+                ) : (
+                    <div className="flex flex-col gap-6 w-full">
+                        {/* File Info */}
+                        <div className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
+                            <div className="flex items-center gap-4 min-w-0">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-pink-100 text-pink-600 dark:bg-pink-950/30 dark:text-pink-400 font-bold text-xs">
+                                    PDF
                                 </div>
-                                <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
-                                    <div
-                                        className="bg-pink-500 h-full transition-all duration-300"
-                                        style={{ width: `${progress}%` }}
-                                    />
+                                <div className="min-w-0">
+                                    <p className="text-sm font-semibold text-zinc-900 dark:text-white truncate">
+                                        {file.name}
+                                    </p>
+                                    <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                                        {(file.size / 1024 / 1024).toFixed(2)} MB • {pagesCount} pages
+                                    </p>
                                 </div>
                             </div>
-                        ) : (
                             <button
-                                onClick={convertToWebP}
-                                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-pink-500 py-4 text-base font-semibold text-white shadow-lg shadow-pink-500/20 hover:bg-pink-600 transition-all duration-200"
+                                onClick={() => setFile(null)}
+                                className="text-sm font-semibold text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 transition-colors"
                             >
-                                <Collections className="h-5 w-5" />
-                                Convert to WebP (ZIP)
+                                Remove
                             </button>
-                        )}
-                    </div>
-                </div>
-            )}
-        </ToolWrapper>
+                        </div>
 
-                        {/* SEO Content Section */}
+                        {/* Action Button & Progress */}
+                        <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
+                            {isProcessing ? (
+                                <div className="w-full">
+                                    <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
+                                        <span>Converting pages to WebP...</span>
+                                        <span>{progress}%</span>
+                                    </div>
+                                    <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
+                                        <div
+                                            className="bg-pink-500 h-full transition-all duration-300"
+                                            style={{ width: `${progress}%` }}
+                                        />
+                                    </div>
+                                </div>
+                            ) : (
+                                <button
+                                    onClick={convertToWebP}
+                                    className="flex w-full items-center justify-center gap-2 rounded-2xl bg-pink-500 py-4 text-base font-semibold text-white shadow-lg shadow-pink-500/20 hover:bg-pink-600 transition-all duration-200"
+                                >
+                                    <Collections className="h-5 w-5" />
+                                    Convert to WebP (ZIP)
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                )}
+            </ToolWrapper>
+
+            {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
                     <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Convert PDF to WebP Instantly</h2>
@@ -243,21 +244,26 @@ export default function PDFToWebP() {
                         <li><strong>Process and Download:</strong> Click &quot;Convert to WebP&quot; to extract the pages and download them as high-quality, lightweight WebP images.</li>
                     </ol>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why should you use this tool?</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Web Optimization Benefits</h3>
                     <ul className="list-disc pl-6 space-y-3 mb-8">
-                        <li><strong>Web Optimization:</strong> WebP images are significantly smaller than equivalent JPG or PNG files, making them perfect for fast-loading websites.</li>
-                        <li><strong>High Quality:</strong> Enjoy excellent image quality even at high compression rates, ensuring your extracted pages look crisp.</li>
+                        <li><strong>Faster Page Loads:</strong> WebP images are significantly smaller than equivalent JPG or PNG files (often 25-34% smaller), making them perfect for fast-loading websites and improving your Core Web Vitals.</li>
+                        <li><strong>Bandwidth Savings:</strong> If you are hosting extracted PDF pages on a server, converting them to WebP drastically reduces your bandwidth consumption.</li>
                         <li><strong>Easy Integration:</strong> Quickly convert PDF reports, brochures, or presentations into web-ready images for your site or blog.</li>
                     </ul>
 
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Quality vs. File Size</h3>
+                    <p className="mb-6">
+                        WebP provides a unique advantage by offering excellent image quality even at high compression rates. Our tool extracts your PDF pages and converts them to WebP using a balanced compression setting, ensuring that text remains readable and graphics stay crisp while keeping the file size incredibly small.
+                    </p>
+
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
                     <p className="mb-6">
-                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                        Your files are processed locally in your browser and are not uploaded to our servers. This can help keep sensitive documents on your device during processing. This can be useful when working with documents that contain sensitive or personal information.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Files and Limitations</h3>
                     <p className="mb-6">
-                        Our tool supports standard file formats. Because processing happens locally, there are no strict file size limits imposed by a server. You can process files as large as your device&apos;s memory can handle. Note that password-protected PDFs must be unlocked before they can be processed.
+                        Our tool supports standard file formats. Because processing takes place locally in your browser, the tool does not rely on a server-side upload limit. However, very large or complex files may require more memory and processing time depending on your device and browser. Note that password-protected PDFs must be unlocked before they can be processed.
                     </p>
 
                     {/* Related Tools */}

@@ -9,7 +9,8 @@ import { PDFDocument } from "pdf-lib";
 import confetti from "canvas-confetti";
 import {
     ArrowRightAlt,
- LockOpen, Visibility, VisibilityOff } from "@mui/icons-material";
+    LockOpen, Visibility, VisibilityOff
+} from "@mui/icons-material";
 
 export default function UnlockPDF() {
     const [file, setFile] = useState<File | null>(null);
@@ -144,155 +145,155 @@ export default function UnlockPDF() {
     return (
         <>
             <ToolWrapper
-            title="Unlock PDF"
-            description="Remove password protection, security, and restrictions from your PDF document."
-        >
-            {resultUrl ? (
-                <div className="flex flex-col items-center justify-center gap-6 py-8">
-                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-purple-100 text-purple-500 dark:bg-purple-900/30 dark:text-purple-400">
-                        <LockOpen className="h-12 w-12" />
-                    </div>
-                    <div className="text-center">
-                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">PDF Unlocked Successfully!</h3>
-                        <p className="mt-2 text-zinc-500 dark:text-zinc-400">
-                            Your file has been unlocked and is ready for download.
-                        </p>
-                    </div>
-
-                    {/* Preview */}
-                    <div className="w-full max-w-2xl h-[500px] rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-zinc-50 dark:bg-zinc-900">
-                        <iframe src={`${resultUrl}#toolbar=0`} className="w-full h-full" title="PDF Preview" />
-                    </div>
-
-                    <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
-                        <button
-                            onClick={() => {
-                                const link = document.createElement("a");
-                                link.href = resultUrl;
-                                link.download = resultFileName;
-                                document.body.appendChild(link);
-                                link.click();
-                                document.body.removeChild(link);
-                            }}
-                            className="flex-1 rounded-xl bg-purple-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-purple-600 transition-colors"
-                        >
-                            Download PDF
-                        </button>
-                        <button
-                            onClick={() => {
-                                URL.revokeObjectURL(resultUrl);
-                                setResultUrl(null);
-                                setResultFileName("");
-                            }}
-                            className="flex-1 rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm font-semibold text-zinc-900 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white dark:hover:bg-zinc-800 transition-colors"
-                        >
-                            Unlock Another
-                        </button>
-                    </div>
-                </div>
-            ) : !file ? (
-                <DropZone
-                    onFilesSelected={handleFileSelected}
-                    accept=".pdf"
-                    multiple={false}
-                    title="Select PDF file to unlock"
-                    description="Drag & drop a PDF file here, or click to browse"
-                />
-            ) : (
-                <div className="flex flex-col gap-6 w-full">
-                    {/* File Info */}
-                    <div className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
-                        <div className="flex items-center gap-4 min-w-0">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-100 text-purple-600 dark:bg-purple-950/30 dark:text-purple-400 font-bold text-xs">
-                                PDF
-                            </div>
-                            <div className="min-w-0">
-                                <p className="text-sm font-semibold text-zinc-900 dark:text-white truncate">
-                                    {file.name}
-                                </p>
-                                <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                                    {(file.size / 1024 / 1024).toFixed(2)} MB • {isEncrypted ? "Locked 🔒" : "Not Locked 🔓"}
-                                </p>
-                            </div>
+                title="Unlock PDF"
+                description="Remove password protection, security, and restrictions from your PDF document."
+            >
+                {resultUrl ? (
+                    <div className="flex flex-col items-center justify-center gap-6 py-8">
+                        <div className="flex h-24 w-24 items-center justify-center rounded-full bg-purple-100 text-purple-500 dark:bg-purple-900/30 dark:text-purple-400">
+                            <LockOpen className="h-12 w-12" />
                         </div>
-                        <button
-                            onClick={() => setFile(null)}
-                            className="text-sm font-semibold text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 transition-colors"
-                        >
-                            Remove
-                        </button>
-                    </div>
-
-                    {/* Password Input */}
-                    {isEncrypted ? (
-                        <form
-                            onSubmit={(e) => {
-                                e.preventDefault();
-                                handleUnlock();
-                            }}
-                            className="flex flex-col gap-2"
-                        >
-                            <label htmlFor="unlock-password" className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
-                                Enter PDF Password
-                            </label>
-                            <div className="relative">
-                                {/* Hidden username field to prevent autofill warnings */}
-                                <input type="text" name="username" id="username" aria-label="Username" autoComplete="username" className="hidden" />
-                                <input
-                                    id="unlock-password"
-                                    name="unlock-password"
-                                    type={showPassword ? "text" : "password"}
-                                    autoComplete="current-password"
-                                    placeholder="Password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 pr-12 text-sm text-zinc-900 focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white"
-                                />
-                                <button
-                                    type="button"
-                                    onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors"
-                                >
-                                    {showPassword ? <VisibilityOff className="h-5 w-5" /> : <Visibility className="h-5 w-5" />}
-                                </button>
-                            </div>
-                        </form>
-                    ) : (
-                        <div className="p-4 rounded-2xl bg-green-50 border border-green-100 dark:bg-green-950/10 dark:border-green-900/30 text-sm text-green-700 dark:text-green-400">
-                            This PDF is not password-protected. You can save it to remove any other restrictions.
+                        <div className="text-center">
+                            <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">PDF Unlocked Successfully!</h3>
+                            <p className="mt-2 text-zinc-500 dark:text-zinc-400">
+                                Your file has been unlocked and is ready for download.
+                            </p>
                         </div>
-                    )}
 
-                    {/* Action Button & Progress */}
-                    <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
-                        {isProcessing ? (
-                            <div className="w-full">
-                                <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
-                                    <span>Unlocking PDF...</span>
-                                    <span>{progress}%</span>
-                                </div>
-                                <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
-                                    <div
-                                        className="bg-purple-500 h-full transition-all duration-300"
-                                        style={{ width: `${progress}%` }}
-                                    />
-                                </div>
-                            </div>
-                        ) : (
+                        {/* Preview */}
+                        <div className="w-full max-w-2xl h-[500px] rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-zinc-50 dark:bg-zinc-900">
+                            <iframe src={`${resultUrl}#toolbar=0`} className="w-full h-full" title="PDF Preview" />
+                        </div>
+
+                        <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
                             <button
-                                onClick={handleUnlock}
-                                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-purple-500 py-4 text-base font-semibold text-white shadow-lg shadow-purple-500/20 hover:bg-purple-600 transition-all duration-200"
+                                onClick={() => {
+                                    const link = document.createElement("a");
+                                    link.href = resultUrl;
+                                    link.download = resultFileName;
+                                    document.body.appendChild(link);
+                                    link.click();
+                                    document.body.removeChild(link);
+                                }}
+                                className="flex-1 rounded-xl bg-purple-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-purple-600 transition-colors"
                             >
-                                <LockOpen className="h-5 w-5" />
-                                Unlock PDF
+                                Download PDF
                             </button>
-                        )}
+                            <button
+                                onClick={() => {
+                                    URL.revokeObjectURL(resultUrl);
+                                    setResultUrl(null);
+                                    setResultFileName("");
+                                }}
+                                className="flex-1 rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm font-semibold text-zinc-900 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white dark:hover:bg-zinc-800 transition-colors"
+                            >
+                                Unlock Another
+                            </button>
+                        </div>
                     </div>
-                </div>
-            )}
-        </ToolWrapper>
+                ) : !file ? (
+                    <DropZone
+                        onFilesSelected={handleFileSelected}
+                        accept=".pdf"
+                        multiple={false}
+                        title="Select PDF file to unlock"
+                        description="Drag & drop a PDF file here, or click to browse"
+                    />
+                ) : (
+                    <div className="flex flex-col gap-6 w-full">
+                        {/* File Info */}
+                        <div className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
+                            <div className="flex items-center gap-4 min-w-0">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-100 text-purple-600 dark:bg-purple-950/30 dark:text-purple-400 font-bold text-xs">
+                                    PDF
+                                </div>
+                                <div className="min-w-0">
+                                    <p className="text-sm font-semibold text-zinc-900 dark:text-white truncate">
+                                        {file.name}
+                                    </p>
+                                    <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                                        {(file.size / 1024 / 1024).toFixed(2)} MB • {isEncrypted ? "Locked 🔒" : "Not Locked 🔓"}
+                                    </p>
+                                </div>
+                            </div>
+                            <button
+                                onClick={() => setFile(null)}
+                                className="text-sm font-semibold text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 transition-colors"
+                            >
+                                Remove
+                            </button>
+                        </div>
 
-                        {/* SEO Content Section */}
+                        {/* Password Input */}
+                        {isEncrypted ? (
+                            <form
+                                onSubmit={(e) => {
+                                    e.preventDefault();
+                                    handleUnlock();
+                                }}
+                                className="flex flex-col gap-2"
+                            >
+                                <label htmlFor="unlock-password" className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
+                                    Enter PDF Password
+                                </label>
+                                <div className="relative">
+                                    {/* Hidden username field to prevent autofill warnings */}
+                                    <input type="text" name="username" id="username" aria-label="Username" autoComplete="username" className="hidden" />
+                                    <input
+                                        id="unlock-password"
+                                        name="unlock-password"
+                                        type={showPassword ? "text" : "password"}
+                                        autoComplete="current-password"
+                                        placeholder="Password"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 pr-12 text-sm text-zinc-900 focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors"
+                                    >
+                                        {showPassword ? <VisibilityOff className="h-5 w-5" /> : <Visibility className="h-5 w-5" />}
+                                    </button>
+                                </div>
+                            </form>
+                        ) : (
+                            <div className="p-4 rounded-2xl bg-green-50 border border-green-100 dark:bg-green-950/10 dark:border-green-900/30 text-sm text-green-700 dark:text-green-400">
+                                This PDF is not password-protected. You can save it to remove any other restrictions.
+                            </div>
+                        )}
+
+                        {/* Action Button & Progress */}
+                        <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
+                            {isProcessing ? (
+                                <div className="w-full">
+                                    <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
+                                        <span>Unlocking PDF...</span>
+                                        <span>{progress}%</span>
+                                    </div>
+                                    <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
+                                        <div
+                                            className="bg-purple-500 h-full transition-all duration-300"
+                                            style={{ width: `${progress}%` }}
+                                        />
+                                    </div>
+                                </div>
+                            ) : (
+                                <button
+                                    onClick={handleUnlock}
+                                    className="flex w-full items-center justify-center gap-2 rounded-2xl bg-purple-500 py-4 text-base font-semibold text-white shadow-lg shadow-purple-500/20 hover:bg-purple-600 transition-all duration-200"
+                                >
+                                    <LockOpen className="h-5 w-5" />
+                                    Unlock PDF
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                )}
+            </ToolWrapper>
+
+            {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
                     <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Unlock PDF Instantly</h2>
@@ -313,21 +314,29 @@ export default function UnlockPDF() {
                         <li><strong>Process and Download:</strong> Click &quot;Unlock PDF&quot; to permanently remove the encryption and download the unlocked version of your file.</li>
                     </ol>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why should you use this tool?</h3>
-                    <ul className="list-disc pl-6 space-y-3 mb-8">
-                        <li><strong>Easier Access:</strong> Remove the hassle of typing a password every time you need to open a frequently used document.</li>
-                        <li><strong>Enable Editing:</strong> Removing restrictions allows you to edit, print, or copy text from a document that was previously locked.</li>
-                        <li><strong>Archiving:</strong> Store documents in an unlocked state to ensure they can be accessed in the future if the password is forgotten.</li>
-                    </ul>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Easier Access</h3>
+                    <p className="mb-6">
+                        Remove the hassle of typing a password every time you need to open a frequently used document. If a file is no longer sensitive or is only stored on a secure personal device, unlocking it saves time and frustration.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Enable Editing</h3>
+                    <p className="mb-6">
+                        Many PDFs are locked not just from viewing, but from editing, printing, or copying text. Removing these restrictions allows you to fully interact with the document, extract necessary information, or make required changes.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Archiving</h3>
+                    <p className="mb-6">
+                        Store documents in an unlocked state to ensure they can be accessed in the future. Passwords are often forgotten over time, and unlocking a document before archiving it guarantees that the information remains accessible when you need it years later.
+                    </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
                     <p className="mb-6">
-                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                        Your files are processed locally in your browser and are not uploaded to our servers. This can help keep sensitive documents on your device during processing. This can be useful when working with documents that contain sensitive or personal information.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Files and Limitations</h3>
                     <p className="mb-6">
-                        Our tool supports standard file formats. Because processing happens locally, there are no strict file size limits imposed by a server. You can process files as large as your device&apos;s memory can handle. Note that password-protected PDFs must be unlocked before they can be processed.
+                        Our tool supports standard file formats. Because processing takes place locally in your browser, the tool does not rely on a server-side upload limit. However, very large or complex files may require more memory and processing time depending on your device and browser. Note that password-protected PDFs must be unlocked before they can be processed.
                     </p>
 
                     {/* Related Tools */}

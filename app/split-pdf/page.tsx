@@ -164,6 +164,7 @@ export default function SplitPDF() {
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                suppressHydrationWarning
             />
             <ToolWrapper
                 title="Split PDF"
@@ -339,7 +340,7 @@ export default function SplitPDF() {
                 )}
             </ToolWrapper>
 
-                        {/* SEO Content Section */}
+            {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
                     <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Split PDF Document Instantly</h2>
@@ -360,21 +361,31 @@ export default function SplitPDF() {
                         <li><strong>Process and Download:</strong> Click &quot;Extract Pages&quot; to instantly create a new PDF containing only your selected pages, and download the result.</li>
                     </ol>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why should you use this tool?</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Split Every Page vs. Extract Selected Pages</h3>
+                    <p className="mb-6">
+                        Our tool offers two distinct modes of operation. <strong>Extract Page Range</strong> allows you to pull out specific pages (e.g., pages 1-3 and 5) and combine them into a single, new PDF document. <strong>Split All Pages</strong> takes your entire document and converts every single page into its own separate PDF file, which is then bundled into a convenient ZIP archive for easy downloading.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Formatting Page Ranges</h3>
+                    <p className="mb-6">
+                        When using the Extract Page Range mode, you can specify exactly which pages you want. Use commas to separate individual pages or ranges, and hyphens to define a range. For example, typing <code>1-3, 5, 7-9</code> will extract pages 1, 2, 3, 5, 7, 8, and 9, and merge them into a new document in that exact order.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Common Use Cases</h3>
                     <ul className="list-disc pl-6 space-y-3 mb-8">
-                        <li><strong>Extract Key Information:</strong> Pull out a specific chapter, report, or invoice from a massive document to share with others.</li>
+                        <li><strong>Extract Key Information:</strong> Pull out a specific chapter, report, or invoice from a massive document to share with others without sending the entire file.</li>
                         <li><strong>Reduce File Size:</strong> Break a large PDF into smaller sections to bypass email attachment limits.</li>
                         <li><strong>Better Organization:</strong> Separate a combined document (like a batch of scanned receipts) into individual files for proper filing.</li>
                     </ul>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
                     <p className="mb-6">
-                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                        Your files are processed locally in your browser and are not uploaded to our servers. This can help keep sensitive documents on your device during processing. This can be useful when working with documents that contain sensitive or personal information.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Files and Limitations</h3>
                     <p className="mb-6">
-                        Our tool supports standard file formats. Because processing happens locally, there are no strict file size limits imposed by a server. You can process files as large as your device&apos;s memory can handle. Note that password-protected PDFs must be unlocked before they can be processed.
+                        Our tool supports standard file formats. Because processing takes place locally in your browser, the tool does not rely on a server-side upload limit. However, very large or complex files may require more memory and processing time depending on your device and browser. Note that password-protected PDFs must be unlocked before they can be processed.
                     </p>
 
                     {/* Related Tools */}

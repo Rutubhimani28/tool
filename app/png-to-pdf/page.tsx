@@ -313,9 +313,19 @@ export default function PNGToPDF() {
                         Transform your high-quality PNG graphics, screenshots, or transparent images into a single, easy-to-share PDF document. Our PNG to PDF converter maintains the crispness of your original images while organizing them perfectly.
                     </p>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why Convert PNGs to PDF?</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Compiling Images & Ordering</h3>
                     <p className="mb-6">
                         PNG files are excellent for preserving image quality and transparency, but sharing a large collection of them can be cumbersome. Converting them to a PDF creates a unified presentation, ensuring your images are viewed in the exact sequence you intended. It&apos;s the ideal solution for sharing design portfolios, UI mockups, or compiled screenshots.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Transparency & Quality Preservation</h3>
+                    <p className="mb-6">
+                        Our tool embeds your PNG images directly into the PDF document without applying any additional compression or downscaling. This means the resulting PDF will retain the exact original quality, resolution, and transparency (alpha channel) of your uploaded images, making it perfect for sharing design portfolios, UI mockups, or compiled screenshots.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Formats</h3>
+                    <p className="mb-6">
+                        While this tool is optimized for PNG files, our engine also supports embedding JPG, JPEG, and WebP images. If you upload a mix of these formats, they will all be seamlessly compiled into the final PDF document.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert PNG to PDF</h3>
@@ -326,9 +336,9 @@ export default function PNGToPDF() {
                         <li><strong>Convert and Download:</strong> Click the convert button. Our tool will instantly generate your PDF, ready for download.</li>
                     </ol>
 
-                                        <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
                     <p className="mb-6">
-                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                        Your files are processed locally in your browser and are not uploaded to our servers. This can help keep sensitive documents on your device during processing. This can be useful when working with documents that contain sensitive or personal information.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Frequently Asked Questions</h3>

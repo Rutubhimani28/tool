@@ -164,6 +164,7 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        suppressHydrationWarning
       />
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-white px-4 pt-8 pb-4 sm:px-6 sm:pt-12 sm:pb-8 lg:px-8 dark:bg-zinc-950">
@@ -553,11 +554,11 @@ export default function Home() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="prose prose-zinc dark:prose-invert max-w-none">
             <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white mb-6">
-              The Ultimate PDF to Image Converter Free Online
+              A Versatile PDF to Image Converter Free Online
             </h2>
 
             <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8 leading-relaxed">
-              In today&apos;s fast-paced digital environment, the Portable Document Format (PDF) remains the undisputed standard for sharing and archiving documents. However, PDFs are not always the most flexible format. There are countless scenarios where an image format—like JPG, PNG, or WebP—is far more practical. Whether you are a student submitting an assignment, a professional preparing a presentation, or a web developer optimizing assets, using a reliable PDF to image converter free online can drastically streamline your daily workflow.
+              In today&apos;s fast-paced digital environment, the Portable Document Format (PDF) remains a widely used standard for sharing and archiving documents. However, PDFs are not always the most flexible format. There are countless scenarios where an image format—like JPG, PNG, or WebP—is far more practical. Whether you are a student submitting an assignment, a professional preparing a presentation, or a web developer optimizing assets, using a reliable PDF to image converter free online can drastically streamline your daily workflow.
             </p>
 
             <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">
@@ -578,7 +579,7 @@ export default function Home() {
               What is PDF to Image Conversion?
             </h3>
             <p className="text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed">
-              PDF to image conversion is the technical process of extracting the visual representation of a PDF document and saving it as a standard, rasterized image file. Unlike PDFs, which can contain selectable text, embedded fonts, scalable vector graphics, and interactive elements, image files are composed of a fixed grid of pixels. This fundamental difference makes images universally viewable on absolutely any device, operating system, or web browser without requiring specialized PDF reader software like Adobe Acrobat.
+              PDF to image conversion is the technical process of extracting the visual representation of a PDF document and saving it as a standard, rasterized image file. Unlike PDFs, which can contain selectable text, embedded fonts, scalable vector graphics, and interactive elements, image files are composed of a fixed grid of pixels. This fundamental difference makes images universally viewable on virtually any device, operating system, or web browser without requiring specialized PDF reader software like Adobe Acrobat.
             </p>
 
             <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">
@@ -607,7 +608,7 @@ export default function Home() {
               </div>
               <div className="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-2xl border border-zinc-100 dark:border-zinc-800">
                 <h4 className="font-bold text-zinc-900 dark:text-white mb-2">PNG</h4>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400">Ideal for documents containing sharp text, line art, logos, and images requiring transparent backgrounds. It uses <strong>lossless compression</strong>, ensuring crisp text and absolutely no quality degradation, though the resulting file sizes are generally larger than JPGs.</p>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">Ideal for documents containing sharp text, line art, logos, and images requiring transparent backgrounds. It uses <strong>lossless compression</strong>, ensuring crisp text and minimal quality degradation, though the resulting file sizes are generally larger than JPGs.</p>
               </div>
               <div className="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-2xl border border-zinc-100 dark:border-zinc-800">
                 <h4 className="font-bold text-zinc-900 dark:text-white mb-2">WebP</h4>
@@ -622,7 +623,7 @@ export default function Home() {
               The biggest concern when using online document converters is data privacy. Most traditional platforms require you to upload your sensitive files—such as financial records, legal contracts, or personal identification—to their remote cloud servers for processing. This exposes your data to potential breaches, unauthorized access, and retention policies you cannot control.
             </p>
             <p className="text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed">
-              <strong>PDFImageConvert is fundamentally different.</strong> We utilize cutting-edge WebAssembly (Wasm) and modern browser APIs to perform 100% of the file processing locally, directly on your device. When you select a file, it never leaves your computer, tablet, or smartphone. There are no uploads, no cloud servers, and no data retention. Once you close the browser tab, your files are gone forever. This architecture guarantees absolute privacy and security, making our tool safe for enterprise, legal, and personal use.
+              <strong>PDFImageConvert is fundamentally different.</strong> We utilize cutting-edge WebAssembly (Wasm) and modern browser APIs to perform 100% of the file processing locally, directly on your device. When you select a file, it never leaves your computer, tablet, or smartphone. There are no uploads, no cloud servers, and no data retention. Once you close the browser tab, your files are gone forever. This architecture guarantees high privacy and security, making our tool safe for enterprise, legal, and personal use.
             </p>
 
             <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">

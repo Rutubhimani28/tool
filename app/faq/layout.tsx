@@ -45,6 +45,7 @@ export default function FAQLayout({
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+                suppressHydrationWarning
             />
             {children}
         </>

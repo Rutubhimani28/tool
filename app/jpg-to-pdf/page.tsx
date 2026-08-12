@@ -313,9 +313,19 @@ export default function JPGToPDF() {
                         Easily combine multiple JPG images into a single, organized PDF document. Whether you are compiling scanned receipts, creating a digital photo album, or preparing a presentation, our JPG to PDF converter makes it simple and fast.
                     </p>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why Convert JPGs to PDF?</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Compiling Images & Ordering</h3>
                     <p className="mb-6">
                         Sending multiple individual JPG files via email or messaging apps can be messy and disorganized. Compiling them into a single PDF creates a neat, professional document that is easy to view, print, and share. A PDF ensures that your images are presented in the exact order you want, without the recipient having to open multiple files.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Quality Preservation</h3>
+                    <p className="mb-6">
+                        Our tool embeds your JPG images directly into the PDF document without applying any additional compression or downscaling. This means the resulting PDF will retain the exact original quality and resolution of your uploaded images, making it perfect for printing high-quality photos or portfolios.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Formats</h3>
+                    <p className="mb-6">
+                        While this tool is optimized for JPG and JPEG files, our engine also supports embedding PNG and WebP images. If you upload a mix of these formats, they will all be seamlessly compiled into the final PDF document.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert JPG to PDF</h3>
@@ -326,9 +336,9 @@ export default function JPGToPDF() {
                         <li><strong>Convert and Download:</strong> Click the convert button. Our tool will instantly generate your PDF, ready for download.</li>
                     </ol>
 
-                                        <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
                     <p className="mb-6">
-                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                        Your files are processed locally in your browser and are not uploaded to our servers. This can help keep sensitive documents on your device during processing. This can be useful when working with documents that contain sensitive or personal information.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Frequently Asked Questions</h3>

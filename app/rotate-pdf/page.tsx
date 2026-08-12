@@ -9,7 +9,8 @@ import { PDFDocument, degrees } from "pdf-lib";
 import confetti from "canvas-confetti";
 import {
     ArrowRightAlt,
- RotateRight, Refresh } from "@mui/icons-material";
+    RotateRight, Refresh
+} from "@mui/icons-material";
 
 interface PageThumbnail {
     pageNumber: number;
@@ -37,7 +38,7 @@ export default function RotatePDF() {
         setRotations({});
 
         const originalWarn = console.warn;
-        console.warn = () => {};
+        console.warn = () => { };
 
         try {
             const arrayBuffer = await selectedFile.arrayBuffer();
@@ -162,161 +163,161 @@ export default function RotatePDF() {
     return (
         <>
             <ToolWrapper
-            title="Rotate PDF"
-            description="Rotate individual pages or all pages of your PDF document clockwise."
-        >
-            {resultUrl ? (
-                <div className="flex flex-col items-center justify-center gap-6 py-8">
-                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-teal-100 text-teal-500 dark:bg-teal-900/30 dark:text-teal-400">
-                        <RotateRight className="h-12 w-12" />
-                    </div>
-                    <div className="text-center">
-                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">PDF Rotated Successfully!</h3>
-                        <p className="mt-2 text-zinc-500 dark:text-zinc-400">
-                            Your file has been rotated and is ready for download.
-                        </p>
-                    </div>
-                    <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
-                        <button
-                            onClick={() => {
-                                const link = document.createElement("a");
-                                link.href = resultUrl;
-                                link.download = resultFileName;
-                                document.body.appendChild(link);
-                                link.click();
-                                document.body.removeChild(link);
-                            }}
-                            className="flex-1 rounded-xl bg-teal-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-teal-600 transition-colors"
-                        >
-                            Download PDF
-                        </button>
-                        <button
-                            onClick={() => {
-                                URL.revokeObjectURL(resultUrl);
-                                setResultUrl(null);
-                                setResultFileName("");
-                            }}
-                            className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
-                        >
-                            Rotate Another
-                        </button>
-                    </div>
-                </div>
-            ) : !file ? (
-                <DropZone
-                    onFilesSelected={handleFileSelected}
-                    accept=".pdf"
-                    multiple={false}
-                    title="Select PDF file to rotate"
-                    description="Drag & drop a PDF file here, or click to browse"
-                />
-            ) : (
-                <div className="flex flex-col gap-6 w-full">
-                    {/* File Info */}
-                    <div className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
-                        <div className="flex items-center gap-4 min-w-0">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-100 text-teal-600 dark:bg-teal-950/30 dark:text-teal-400 font-bold text-xs">
-                                PDF
-                            </div>
-                            <div className="min-w-0">
-                                <p className="text-sm font-semibold text-zinc-900 dark:text-white truncate">
-                                    {file.name}
-                                </p>
-                                <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                                    {(file.size / 1024 / 1024).toFixed(2)} MB • {pagesCount} pages
-                                </p>
-                            </div>
+                title="Rotate PDF"
+                description="Rotate individual pages or all pages of your PDF document clockwise."
+            >
+                {resultUrl ? (
+                    <div className="flex flex-col items-center justify-center gap-6 py-8">
+                        <div className="flex h-24 w-24 items-center justify-center rounded-full bg-teal-100 text-teal-500 dark:bg-teal-900/30 dark:text-teal-400">
+                            <RotateRight className="h-12 w-12" />
                         </div>
-                        <div className="flex gap-2">
+                        <div className="text-center">
+                            <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">PDF Rotated Successfully!</h3>
+                            <p className="mt-2 text-zinc-500 dark:text-zinc-400">
+                                Your file has been rotated and is ready for download.
+                            </p>
+                        </div>
+                        <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
                             <button
-                                onClick={rotateAll}
-                                disabled={isLoadingThumbnails || isProcessing}
-                                className="text-sm font-semibold text-teal-600 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300 transition-colors flex items-center gap-1"
+                                onClick={() => {
+                                    const link = document.createElement("a");
+                                    link.href = resultUrl;
+                                    link.download = resultFileName;
+                                    document.body.appendChild(link);
+                                    link.click();
+                                    document.body.removeChild(link);
+                                }}
+                                className="flex-1 rounded-xl bg-teal-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-teal-600 transition-colors"
                             >
-                                <Refresh className="h-4 w-4" />
-                                Rotate All
+                                Download PDF
                             </button>
                             <button
-                                onClick={() => setFile(null)}
-                                disabled={isProcessing}
-                                className="text-sm font-semibold text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 transition-colors"
+                                onClick={() => {
+                                    URL.revokeObjectURL(resultUrl);
+                                    setResultUrl(null);
+                                    setResultFileName("");
+                                }}
+                                className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
                             >
-                                Remove
+                                Rotate Another
                             </button>
                         </div>
                     </div>
-
-                    {/* Thumbnails Grid */}
-                    {isLoadingThumbnails ? (
-                        <div className="flex flex-col items-center justify-center py-12">
-                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-teal-500 mb-4" />
-                            <p className="text-sm text-zinc-500 dark:text-zinc-400">Generating page previews...</p>
-                        </div>
-                    ) : (
-                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-h-[400px] overflow-y-auto p-2">
-                            {thumbnails.map((thumb) => {
-                                const addedRotation = rotations[thumb.pageNumber] || 0;
-                                return (
-                                    <div
-                                        key={thumb.pageNumber}
-                                        className="flex flex-col items-center p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/30 hover:border-teal-500/50 transition-all duration-200"
-                                    >
-                                        <div className="relative flex items-center justify-center h-40 w-full bg-white dark:bg-zinc-950 rounded-xl border border-zinc-100 dark:border-zinc-900 overflow-hidden p-2">
-                                            { }
-                                            <img
-                                                src={thumb.dataUrl}
-                                                alt={`Page ${thumb.pageNumber}`}
-                                                className="max-h-full max-w-full object-contain transition-transform duration-300 shadow-sm"
-                                                style={{ transform: `rotate(${addedRotation}deg)` }}
-                                            />
-                                            <span className="absolute bottom-2 left-2 bg-zinc-900/80 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
-                                                Page {thumb.pageNumber}
-                                            </span>
-                                        </div>
-                                        <button
-                                            onClick={() => rotatePage(thumb.pageNumber)}
-                                            className="mt-3 flex items-center gap-1 text-xs font-bold text-teal-600 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300 bg-teal-50 dark:bg-teal-950/30 px-3 py-1.5 rounded-xl transition-all"
-                                        >
-                                            <RotateRight className="h-3.5 w-3.5" />
-                                            Rotate 90°
-                                        </button>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    )}
-
-                    {/* Action Button & Progress */}
-                    <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
-                        {isProcessing ? (
-                            <div className="w-full">
-                                <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
-                                    <span>Saving rotated PDF...</span>
-                                    <span>{progress}%</span>
+                ) : !file ? (
+                    <DropZone
+                        onFilesSelected={handleFileSelected}
+                        accept=".pdf"
+                        multiple={false}
+                        title="Select PDF file to rotate"
+                        description="Drag & drop a PDF file here, or click to browse"
+                    />
+                ) : (
+                    <div className="flex flex-col gap-6 w-full">
+                        {/* File Info */}
+                        <div className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
+                            <div className="flex items-center gap-4 min-w-0">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-100 text-teal-600 dark:bg-teal-950/30 dark:text-teal-400 font-bold text-xs">
+                                    PDF
                                 </div>
-                                <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
-                                    <div
-                                        className="bg-teal-500 h-full transition-all duration-300"
-                                        style={{ width: `${progress}%` }}
-                                    />
+                                <div className="min-w-0">
+                                    <p className="text-sm font-semibold text-zinc-900 dark:text-white truncate">
+                                        {file.name}
+                                    </p>
+                                    <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                                        {(file.size / 1024 / 1024).toFixed(2)} MB • {pagesCount} pages
+                                    </p>
                                 </div>
+                            </div>
+                            <div className="flex gap-2">
+                                <button
+                                    onClick={rotateAll}
+                                    disabled={isLoadingThumbnails || isProcessing}
+                                    className="text-sm font-semibold text-teal-600 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300 transition-colors flex items-center gap-1"
+                                >
+                                    <Refresh className="h-4 w-4" />
+                                    Rotate All
+                                </button>
+                                <button
+                                    onClick={() => setFile(null)}
+                                    disabled={isProcessing}
+                                    className="text-sm font-semibold text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 transition-colors"
+                                >
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Thumbnails Grid */}
+                        {isLoadingThumbnails ? (
+                            <div className="flex flex-col items-center justify-center py-12">
+                                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-teal-500 mb-4" />
+                                <p className="text-sm text-zinc-500 dark:text-zinc-400">Generating page previews...</p>
                             </div>
                         ) : (
-                            <button
-                                onClick={handleSave}
-                                disabled={isLoadingThumbnails}
-                                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-teal-500 py-4 text-base font-semibold text-white shadow-lg shadow-teal-500/20 hover:bg-teal-600 transition-all duration-200"
-                            >
-                                <RotateRight className="h-5 w-5" />
-                                Save & Download PDF
-                            </button>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-h-[400px] overflow-y-auto p-2">
+                                {thumbnails.map((thumb) => {
+                                    const addedRotation = rotations[thumb.pageNumber] || 0;
+                                    return (
+                                        <div
+                                            key={thumb.pageNumber}
+                                            className="flex flex-col items-center p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/30 hover:border-teal-500/50 transition-all duration-200"
+                                        >
+                                            <div className="relative flex items-center justify-center h-40 w-full bg-white dark:bg-zinc-950 rounded-xl border border-zinc-100 dark:border-zinc-900 overflow-hidden p-2">
+                                                { }
+                                                <img
+                                                    src={thumb.dataUrl}
+                                                    alt={`Page ${thumb.pageNumber}`}
+                                                    className="max-h-full max-w-full object-contain transition-transform duration-300 shadow-sm"
+                                                    style={{ transform: `rotate(${addedRotation}deg)` }}
+                                                />
+                                                <span className="absolute bottom-2 left-2 bg-zinc-900/80 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                                                    Page {thumb.pageNumber}
+                                                </span>
+                                            </div>
+                                            <button
+                                                onClick={() => rotatePage(thumb.pageNumber)}
+                                                className="mt-3 flex items-center gap-1 text-xs font-bold text-teal-600 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300 bg-teal-50 dark:bg-teal-950/30 px-3 py-1.5 rounded-xl transition-all"
+                                            >
+                                                <RotateRight className="h-3.5 w-3.5" />
+                                                Rotate 90°
+                                            </button>
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         )}
-                    </div>
-                </div>
-            )}
-        </ToolWrapper>
 
-                        {/* SEO Content Section */}
+                        {/* Action Button & Progress */}
+                        <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
+                            {isProcessing ? (
+                                <div className="w-full">
+                                    <div className="flex justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
+                                        <span>Saving rotated PDF...</span>
+                                        <span>{progress}%</span>
+                                    </div>
+                                    <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
+                                        <div
+                                            className="bg-teal-500 h-full transition-all duration-300"
+                                            style={{ width: `${progress}%` }}
+                                        />
+                                    </div>
+                                </div>
+                            ) : (
+                                <button
+                                    onClick={handleSave}
+                                    disabled={isLoadingThumbnails}
+                                    className="flex w-full items-center justify-center gap-2 rounded-2xl bg-teal-500 py-4 text-base font-semibold text-white shadow-lg shadow-teal-500/20 hover:bg-teal-600 transition-all duration-200"
+                                >
+                                    <RotateRight className="h-5 w-5" />
+                                    Save & Download PDF
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                )}
+            </ToolWrapper>
+
+            {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
                     <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Rotate PDF Pages Instantly</h2>
@@ -337,21 +338,29 @@ export default function RotatePDF() {
                         <li><strong>Process and Download:</strong> Click &quot;Apply Changes&quot; to save the new orientation and download your updated PDF.</li>
                     </ol>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why should you use this tool?</h3>
-                    <ul className="list-disc pl-6 space-y-3 mb-8">
-                        <li><strong>Fix Scanned Documents:</strong> Easily correct pages that were scanned upside down or sideways.</li>
-                        <li><strong>Mixed Orientations:</strong> Ensure that charts, tables, or landscape images are oriented correctly for easy reading on a screen.</li>
-                        <li><strong>Consistent Formatting:</strong> Make sure all pages in your document share a consistent orientation before printing or sharing.</li>
-                    </ul>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Fix Scanned Documents</h3>
+                    <p className="mb-6">
+                        It is common for pages to be fed into a scanner upside down or sideways. Instead of rescanning the entire document, you can easily select the incorrect pages and rotate them into the proper orientation with a single click.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Mixed Orientations</h3>
+                    <p className="mb-6">
+                        Many reports and presentations contain a mix of standard portrait text pages and wide landscape charts or tables. Rotating specific pages ensures that all content is oriented correctly for easy reading on a screen without forcing the viewer to turn their head.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Consistent Formatting</h3>
+                    <p className="mb-6">
+                        Make sure all pages in your document share a consistent orientation before printing, binding, or sharing with clients. A properly oriented document looks much more professional and is easier to handle physically.
+                    </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
                     <p className="mb-6">
-                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                        Your files are processed locally in your browser and are not uploaded to our servers. This can help keep sensitive documents on your device during processing. This can be useful when working with documents that contain sensitive or personal information.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Files and Limitations</h3>
                     <p className="mb-6">
-                        Our tool supports standard file formats. Because processing happens locally, there are no strict file size limits imposed by a server. You can process files as large as your device&apos;s memory can handle. Note that password-protected PDFs must be unlocked before they can be processed.
+                        Our tool supports standard file formats. Because processing takes place locally in your browser, the tool does not rely on a server-side upload limit. However, very large or complex files may require more memory and processing time depending on your device and browser. Note that password-protected PDFs must be unlocked before they can be processed.
                     </p>
 
                     {/* Related Tools */}

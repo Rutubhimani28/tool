@@ -37,7 +37,7 @@ export default function TermsPage() {
                     </p>
                     <ul className="list-disc pl-5 space-y-2 text-zinc-600 dark:text-zinc-300 mb-6">
                         <li>You must not use our tools to process illegal, copyrighted (without permission), or malicious content.</li>
-                        <li>You are solely responsible for the files you upload and process using our service.</li>
+                        <li>You are solely responsible for the files you process using our service.</li>
                         <li>You agree not to attempt to disrupt, exploit, or gain unauthorized access to our servers or infrastructure.</li>
                     </ul>
 

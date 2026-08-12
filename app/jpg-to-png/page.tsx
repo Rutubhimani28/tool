@@ -8,7 +8,8 @@ import DropZone from "@/app/components/DropZone";
 import confetti from "canvas-confetti";
 import {
     ArrowRightAlt,
- Photo, Transform } from "@mui/icons-material";
+    Photo, Transform
+} from "@mui/icons-material";
 
 export default function JPGToPNG() {
     const [file, setFile] = useState<File | null>(null);
@@ -78,92 +79,92 @@ export default function JPGToPNG() {
     return (
         <>
             <ToolWrapper title="Convert JPG to PNG" description="Convert JPG images to PNG format." accentColor="cyan">
-            {resultUrl ? (
-                // Success screen
-                <div className="flex flex-col items-center justify-center gap-6 py-4">
-                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-cyan-100 text-cyan-500 dark:bg-cyan-900/30 dark:text-cyan-400">
-                        <Transform className="h-10 w-10" />
-                    </div>
-                    <div className="text-center">
-                        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">Converted to PNG!</h3>
-                        <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
-                            Your JPG has been successfully converted.
-                        </p>
-                    </div>
-
-                    {/* Preview */}
-                    <div className="w-full max-w-md aspect-video rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-zinc-50 dark:bg-zinc-900 flex items-center justify-center">
-                        <img src={resultUrl} alt="Converted PNG" className="max-h-full max-w-full object-contain" />
-                    </div>
-
-                    <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
-                        <button
-                            onClick={() => {
-                                const link = document.createElement("a");
-                                link.href = resultUrl;
-                                link.download = resultFileName;
-                                document.body.appendChild(link);
-                                link.click();
-                                document.body.removeChild(link);
-                            }}
-                            className="flex-1 rounded-xl bg-cyan-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-cyan-600 transition-colors"
-                        >
-                            Download PNG
-                        </button>
-                        <button
-                            onClick={handleReset}
-                            className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
-                        >
-                            Convert Another
-                        </button>
-                    </div>
-                </div>
-            ) : !file ? (
-                <DropZone
-                    onFilesSelected={handleFileSelected}
-                    accept="image/jpeg,image/jpg"
-                    multiple={false}
-                    title="Select JPG image to convert"
-                    description="Drag & drop a JPG file here, or click to browse"
-                />
-            ) : (
-                <div className="flex flex-col gap-6 w-full">
-                    {/* File Info */}
-                    <div className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
-                        <div className="flex items-center gap-4 min-w-0">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-100 text-cyan-600 dark:bg-cyan-950/30 dark:text-cyan-400">
-                                <Photo className="h-5 w-5" />
-                            </div>
-                            <div className="min-w-0">
-                                <p className="text-sm font-semibold text-zinc-900 dark:text-white truncate">{file.name}</p>
-                                <p className="text-xs text-zinc-500 dark:text-zinc-400">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
-                            </div>
+                {resultUrl ? (
+                    // Success screen
+                    <div className="flex flex-col items-center justify-center gap-6 py-4">
+                        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-cyan-100 text-cyan-500 dark:bg-cyan-900/30 dark:text-cyan-400">
+                            <Transform className="h-10 w-10" />
                         </div>
-                        <button
-                            onClick={handleReset}
-                            className="text-sm font-semibold text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 transition-colors"
-                        >
-                            Remove
-                        </button>
+                        <div className="text-center">
+                            <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">Converted to PNG!</h3>
+                            <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
+                                Your JPG has been successfully converted.
+                            </p>
+                        </div>
+
+                        {/* Preview */}
+                        <div className="w-full max-w-md aspect-video rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-zinc-50 dark:bg-zinc-900 flex items-center justify-center">
+                            <img src={resultUrl} alt="Converted PNG" className="max-h-full max-w-full object-contain" />
+                        </div>
+
+                        <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mt-4">
+                            <button
+                                onClick={() => {
+                                    const link = document.createElement("a");
+                                    link.href = resultUrl;
+                                    link.download = resultFileName;
+                                    document.body.appendChild(link);
+                                    link.click();
+                                    document.body.removeChild(link);
+                                }}
+                                className="flex-1 rounded-xl bg-cyan-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-cyan-600 transition-colors"
+                            >
+                                Download PNG
+                            </button>
+                            <button
+                                onClick={handleReset}
+                                className="flex-1 rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 transition-colors"
+                            >
+                                Convert Another
+                            </button>
+                        </div>
                     </div>
+                ) : !file ? (
+                    <DropZone
+                        onFilesSelected={handleFileSelected}
+                        accept="image/jpeg,image/jpg"
+                        multiple={false}
+                        title="Select JPG image to convert"
+                        description="Drag & drop a JPG file here, or click to browse"
+                    />
+                ) : (
+                    <div className="flex flex-col gap-6 w-full">
+                        {/* File Info */}
+                        <div className="flex items-center justify-between p-4 rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
+                            <div className="flex items-center gap-4 min-w-0">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-100 text-cyan-600 dark:bg-cyan-950/30 dark:text-cyan-400">
+                                    <Photo className="h-5 w-5" />
+                                </div>
+                                <div className="min-w-0">
+                                    <p className="text-sm font-semibold text-zinc-900 dark:text-white truncate">{file.name}</p>
+                                    <p className="text-xs text-zinc-500 dark:text-zinc-400">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
+                                </div>
+                            </div>
+                            <button
+                                onClick={handleReset}
+                                className="text-sm font-semibold text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 transition-colors"
+                            >
+                                Remove
+                            </button>
+                        </div>
 
 
-                    {/* Action Button */}
-                    <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
-                        <button
-                            onClick={handleConvert}
-                            disabled={isProcessing}
-                            className="flex w-full items-center justify-center gap-2 rounded-2xl bg-cyan-500 py-4 text-base font-semibold text-white shadow-lg shadow-cyan-500/20 hover:bg-cyan-600 transition-all duration-200 disabled:opacity-50"
-                        >
-                            <Transform className="h-5 w-5" />
-                            {isProcessing ? "Converting..." : "Convert to PNG"}
-                        </button>
+                        {/* Action Button */}
+                        <div className="border-t border-zinc-100 pt-6 dark:border-zinc-800">
+                            <button
+                                onClick={handleConvert}
+                                disabled={isProcessing}
+                                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-cyan-500 py-4 text-base font-semibold text-white shadow-lg shadow-cyan-500/20 hover:bg-cyan-600 transition-all duration-200 disabled:opacity-50"
+                            >
+                                <Transform className="h-5 w-5" />
+                                {isProcessing ? "Converting..." : "Convert to PNG"}
+                            </button>
+                        </div>
                     </div>
-                </div>
-            )}
-        </ToolWrapper>
+                )}
+            </ToolWrapper>
 
-                        {/* SEO Content Section */}
+            {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
                     <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Convert JPG to PNG Instantly</h2>
@@ -184,21 +185,29 @@ export default function JPGToPNG() {
                         <li><strong>Process and Download:</strong> Click &quot;Convert to PNG&quot; to process the files locally and download your new PNG images.</li>
                     </ol>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why should you use this tool?</h3>
-                    <ul className="list-disc pl-6 space-y-3 mb-8">
-                        <li><strong>Lossless Quality:</strong> PNG uses lossless compression, meaning no image data is lost when saving or editing the file multiple times.</li>
-                        <li><strong>Crisp Graphics:</strong> PNG is superior for images with text, sharp lines, or solid colors, preventing the compression artifacts common in JPGs.</li>
-                        <li><strong>Format Requirements:</strong> Easily meet the upload requirements of platforms or software that specifically request PNG files.</li>
-                    </ul>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Lossless Quality Preservation</h3>
+                    <p className="mb-6">
+                        JPG is a &quot;lossy&quot; format, meaning every time you edit and save a JPG, it loses a tiny bit of image data to keep the file size small. PNG, on the other hand, uses &quot;lossless&quot; compression. By converting your JPG to a PNG, you create a stable file that can be edited, saved, and re-saved countless times without ever degrading in visual quality.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Crisp Graphics and Text</h3>
+                    <p className="mb-6">
+                        While JPGs are great for photographs, they often struggle with sharp contrasts, resulting in blurry &quot;artifacts&quot; around text, logos, or line art. Converting these types of images to PNG ensures that straight lines remain perfectly crisp and text remains highly legible, making it the superior choice for digital graphics.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Meeting Format Requirements</h3>
+                    <p className="mb-6">
+                        Many professional printing services, graphic design applications, and specific web platforms require images to be submitted in PNG format to ensure the highest possible quality. Our tool allows you to quickly adapt your existing JPG photos to meet these strict submission guidelines.
+                    </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
                     <p className="mb-6">
-                        Your privacy is our top priority. Unlike many other online tools that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
+                        Your files are processed locally in your browser and are not uploaded to our servers. This can help keep sensitive documents on your device during processing. This can be useful when working with documents that contain sensitive or personal information.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Files and Limitations</h3>
                     <p className="mb-6">
-                        Our tool supports standard file formats. Because processing happens locally, there are no strict file size limits imposed by a server. You can process files as large as your device&apos;s memory can handle. Note that password-protected PDFs must be unlocked before they can be processed.
+                        Our tool supports standard file formats. Because processing takes place locally in your browser, the tool does not rely on a server-side upload limit. However, very large or complex files may require more memory and processing time depending on your device and browser. Note that password-protected PDFs must be unlocked before they can be processed.
                     </p>
 
                     {/* Related Tools */}
