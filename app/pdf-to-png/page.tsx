@@ -242,9 +242,9 @@ export default function PDFToPNG() {
             {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">PDF to PNG Converter</h2>
+                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Convert PDF to PNG Images</h2>
                     <p className="text-lg mb-8">
-                        Welcome to the most reliable, privacy-first PDF to PNG converter. When you need to extract pages from a document without losing any visual quality, our tool handles it instantly directly in your browser.
+                        Extract high‑resolution, lossless PNG images from your PDF documents directly in the browser. Perfect for preserving text clarity and sharp graphics without uploading your files to a server.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is PDF to PNG Conversion?</h3>

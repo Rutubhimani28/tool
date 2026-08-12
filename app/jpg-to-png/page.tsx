@@ -167,9 +167,9 @@ export default function JPGToPNG() {
             {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Convert JPG to PNG Instantly</h2>
+                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Convert JPG to PNG Online</h2>
                     <p className="text-lg mb-8">
-                        Welcome to the fastest, most secure way to convert your JPG images to the lossless PNG format online. Whether you are a professional, student, or casual user, our tool makes it effortless and completely private.
+                        Convert your JPG images to the lossless PNG format directly in your browser. Ensure high quality and support for transparency without uploading your files to a server.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is Convert JPG to PNG?</h3>
@@ -178,7 +178,7 @@ export default function JPGToPNG() {
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert JPG to PNG</h3>
-                    <p className="mb-4">Using our tool is incredibly simple:</p>
+                    <p className="mb-4">Converting JPG to PNG is a breeze:</p>
                     <ol className="list-decimal pl-6 space-y-4 mb-8">
                         <li><strong>Upload your files:</strong> Upload your JPG images into the conversion area.</li>
                         <li><strong>Adjust settings:</strong> Review the selected files to ensure you have the right images.</li>

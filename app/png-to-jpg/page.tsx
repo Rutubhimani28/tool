@@ -194,9 +194,9 @@ export default function PNGToJPG() {
             {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Convert PNG to JPG Instantly</h2>
+                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Convert PNG to JPG Online</h2>
                     <p className="text-lg mb-8">
-                        Welcome to the fastest, most secure way to convert your PNG images to the highly compressed JPG format online. Whether you are a professional, student, or casual user, our tool makes it effortless and completely private.
+                        Convert your PNG images to the highly compressed JPG format directly in your browser. Reduce file sizes for web use without uploading your images to a server.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is Convert PNG to JPG?</h3>
@@ -205,7 +205,7 @@ export default function PNGToJPG() {
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert PNG to JPG</h3>
-                    <p className="mb-4">Using our tool is incredibly simple:</p>
+                    <p className="mb-4">Converting PNG to JPG is fast and straightforward:</p>
                     <ol className="list-decimal pl-6 space-y-4 mb-8">
                         <li><strong>Upload your files:</strong> Upload your PNG images into the conversion area.</li>
                         <li><strong>Adjust settings:</strong> Adjust the image quality slider to find the perfect balance between file size and visual quality.</li>

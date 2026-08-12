@@ -390,9 +390,9 @@ export default function PageNumberPDF() {
             {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Add Page Numbers to PDF Instantly</h2>
+                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Add Page Numbers to PDF Online</h2>
                     <p className="text-lg mb-8">
-                        Welcome to the fastest, most secure way to insert page numbers into your PDF documents online. Whether you are a professional, student, or casual user, our tool makes it effortless and completely private.
+                        Insert page numbers into your PDF documents directly in your browser. Customize the position and format without uploading your files to a server.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is Add Page Numbers to PDF?</h3>
@@ -401,7 +401,7 @@ export default function PageNumberPDF() {
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Add Page Numbers to PDF</h3>
-                    <p className="mb-4">Using our tool is incredibly simple:</p>
+                    <p className="mb-4">Adding page numbers to your document is a quick process:</p>
                     <ol className="list-decimal pl-6 space-y-4 mb-8">
                         <li><strong>Upload your files:</strong> Upload the PDF document that needs page numbers.</li>
                         <li><strong>Adjust settings:</strong> Choose the position (e.g., bottom right, top center), format, and starting page number.</li>

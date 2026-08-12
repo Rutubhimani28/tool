@@ -101,7 +101,7 @@ export default function Home() {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "description": "Best free online PDF to image converter. Convert, edit, merge, and manage your documents and images locally."
+        "description": "Free online PDF to image converter. Convert, edit, merge, and manage your documents and images locally."
       },
       {
         "@type": "FAQPage",
@@ -182,7 +182,7 @@ export default function Home() {
                 PDF to Image Converter Free Online
               </h1>
               <p className="mt-6 text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                The best free online PDF to image converter. Convert, edit, merge, and manage your documents and images. Fast, reliable, and 100% local processing.
+                A free online PDF to image converter. Convert, edit, merge, and manage your documents and images. Fast, reliable, and 100% local processing.
               </p>
 
               {/* CTA */}
@@ -252,7 +252,7 @@ export default function Home() {
               <ul className="list-disc pl-6 space-y-2">
                 <li><strong className="text-zinc-900 dark:text-white">Local Processing:</strong> All operations happen in your browser.</li>
                 <li><strong className="text-zinc-900 dark:text-white">No Uploads:</strong> Your files never leave your device.</li>
-                <li><strong className="text-zinc-900 dark:text-white">Instant Deletion:</strong> Data is gone the moment you close the tab.</li>
+                <li><strong className="text-zinc-900 dark:text-white">No Server Storage:</strong> Your files are processed locally and are not uploaded to our servers.</li>
                 <li><strong className="text-zinc-900 dark:text-white">Secure:</strong> Safe for sensitive and confidential documents.</li>
               </ul>
             </div>
@@ -427,8 +427,8 @@ export default function Home() {
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400 mb-6">
                 <Lock className="h-8 w-8" />
               </div>
-              <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">Absolute Privacy</h3>
-              <p className="text-zinc-600 dark:text-zinc-400">Your files are never uploaded to any server. No one can access your documents except you.</p>
+              <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">Local Processing</h3>
+              <p className="text-zinc-600 dark:text-zinc-400">Your files are processed locally in your browser and are not uploaded to our servers. This helps keep your documents on your device during processing.</p>
             </div>
 
             <div className="flex flex-col items-center p-6 bg-zinc-50 dark:bg-zinc-900/50 rounded-3xl border border-zinc-200 dark:border-zinc-800 hover:shadow-lg transition-shadow duration-300">
@@ -443,8 +443,8 @@ export default function Home() {
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400 mb-6">
                 <FolderZip className="h-8 w-8" />
               </div>
-              <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">No Server Limits</h3>
-              <p className="text-zinc-600 dark:text-zinc-400">Since there are no servers involved, we don&apos;t impose artificial limits. Process files as large as your device&apos;s memory can handle.</p>
+              <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">Browser-Based Processing</h3>
+              <p className="text-zinc-600 dark:text-zinc-400">Because processing happens in your browser, there is no server-side upload limit. Very large files may still be limited by your browser, device memory, and available processing resources.</p>
             </div>
           </div>
         </div>
@@ -487,7 +487,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">Download Result</h3>
-                    <p className="mt-2 text-zinc-600 dark:text-zinc-400">Click convert and download your processed files instantly. Files are securely deleted afterwards.</p>
+                    <p className="mt-2 text-zinc-600 dark:text-zinc-400">Click convert and download your processed files instantly. Your files are processed locally and are not uploaded to our servers.</p>
                   </div>
                 </div>
               </div>
@@ -571,7 +571,7 @@ export default function Home() {
               <li><strong>Select the Right Tool:</strong> Navigate to our tools section above and choose the specific conversion you need. If you want a standard image, select <Link href="/pdf-to-jpg" className="text-blue-600 dark:text-blue-400 hover:underline">PDF to JPG</Link>. For lossless quality with text, choose <Link href="/pdf-to-png" className="text-blue-600 dark:text-blue-400 hover:underline">PDF to PNG</Link>. For web optimization, select <Link href="/pdf-to-webp" className="text-blue-600 dark:text-blue-400 hover:underline">PDF to WebP</Link>.</li>
               <li><strong>Upload Your Document:</strong> Click the upload area to browse your device&apos;s files, or simply drag and drop your PDF directly into the browser window. Because we use local processing, your file is loaded instantly without waiting for a slow server upload.</li>
               <li><strong>Configure Settings (Optional):</strong> Depending on the tool, you may have options to adjust the output quality or select specific pages to convert. For most users, the default high-quality settings are perfect.</li>
-              <li><strong>Start the Conversion:</strong> Click the &quot;Convert&quot; button. Your device&apos;s processor will immediately begin rendering the PDF pages into image files. This usually takes only a few seconds, even for multi-page documents.</li>
+              <li><strong>Start the Conversion:</strong> Click the &quot;Convert&quot; button. Your device&apos;s processor will immediately begin rendering the PDF pages into image files. Processing time depends on the PDF size, number of pages, and your device&apos;s available memory.</li>
               <li><strong>Download Your Images:</strong> Once complete, you can download your new images. If your PDF had multiple pages, our tool will automatically package them into a convenient ZIP archive so you can download everything with a single click.</li>
             </ol>
 
@@ -586,7 +586,7 @@ export default function Home() {
               Why Convert PDFs to Images? The Key Benefits
             </h3>
             <p className="text-zinc-600 dark:text-zinc-400 mb-4 leading-relaxed">
-              Transforming your documents into images unlocks a new level of versatility. Here are the primary reasons millions of users convert their files every day:
+              Transforming your documents into images unlocks a new level of versatility. Here are some common reasons people convert PDFs to images:
             </p>
             <ul className="list-disc pl-6 space-y-3 text-zinc-600 dark:text-zinc-400 mb-8">
               <li><strong>Seamless Social Media Sharing:</strong> Major social platforms like Instagram, Facebook, Pinterest, and X (formerly Twitter) do not support direct PDF document uploads. By converting your document to a high-quality JPG or PNG, you can share your content, infographics, or flyers effortlessly with your audience.</li>
@@ -623,7 +623,7 @@ export default function Home() {
               The biggest concern when using online document converters is data privacy. Most traditional platforms require you to upload your sensitive files—such as financial records, legal contracts, or personal identification—to their remote cloud servers for processing. This exposes your data to potential breaches, unauthorized access, and retention policies you cannot control.
             </p>
             <p className="text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed">
-              <strong>PDFImageConvert is fundamentally different.</strong> We utilize cutting-edge WebAssembly (Wasm) and modern browser APIs to perform 100% of the file processing locally, directly on your device. When you select a file, it never leaves your computer, tablet, or smartphone. There are no uploads, no cloud servers, and no data retention. Once you close the browser tab, your files are gone forever. This architecture guarantees high privacy and security, making our tool safe for enterprise, legal, and personal use.
+              <strong>PDFImageConvert is fundamentally different.</strong> We utilize cutting-edge WebAssembly (Wasm) and modern browser APIs to perform 100% of the file processing locally, directly on your device. When you select a file, it never leaves your computer, tablet, or smartphone. There are no uploads and no cloud servers. This browser-based architecture is designed to keep document processing on your device, which can be useful when working with personal or sensitive files.
             </p>
 
             <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">

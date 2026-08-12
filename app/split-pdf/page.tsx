@@ -343,9 +343,9 @@ export default function SplitPDF() {
             {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Split PDF Document Instantly</h2>
+                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Split PDF — Extract Pages or Separate All</h2>
                     <p className="text-lg mb-8">
-                        Welcome to the fastest, most secure way to extract specific pages or split a PDF into multiple files online. Whether you are a professional, student, or casual user, our tool makes it effortless and completely private.
+                        Our Split PDF tool gives you two powerful options: extract a custom range of pages into a new PDF, or burst every page of your document into individual PDF files bundled in a ZIP. All processing happens in your browser — your file never leaves your device.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is Split PDF Document?</h3>
@@ -354,7 +354,7 @@ export default function SplitPDF() {
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Split PDF Document</h3>
-                    <p className="mb-4">Using our tool is incredibly simple:</p>
+                    <p className="mb-4">Splitting your PDF document is quick and intuitive:</p>
                     <ol className="list-decimal pl-6 space-y-4 mb-8">
                         <li><strong>Upload your files:</strong> Upload the PDF document you want to split.</li>
                         <li><strong>Adjust settings:</strong> Select the pages you want to extract by clicking on the visual thumbnails.</li>

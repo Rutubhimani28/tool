@@ -422,7 +422,7 @@ export default function RedactionTool() {
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">True Destructive Redaction</h3>
                     <p className="mb-6">
-                        Simply drawing a black rectangle over text in a standard PDF editor does not actually remove the text—it only hides it visually. Anyone can still highlight, copy, or search for the hidden text underneath the black box. True redaction requires permanently deleting the underlying text and image data from the document&apos;s code. Our tool performs this destructive redaction, guaranteeing that your sensitive information is gone forever.
+                        Simply drawing a black rectangle over text in a standard PDF editor does not actually remove the text—it only hides it visually. Anyone can still highlight, copy, or search for the hidden text underneath the black box. True redaction requires permanently deleting the underlying text and image data from the document&apos;s code. Our tool performs this destructive redaction, helping ensure that your sensitive information is permanently removed from the document.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Blackout Text in PDF</h3>

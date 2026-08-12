@@ -165,9 +165,9 @@ export default function HEICToJPG() {
             {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Convert HEIC to JPG Instantly</h2>
+                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Convert HEIC to JPG Online</h2>
                     <p className="text-lg mb-8">
-                        Welcome to the fastest, most secure way to convert Apple HEIC photos to universally compatible JPG images online. Whether you are a professional, student, or casual user, our tool makes it effortless and completely private.
+                        Convert Apple HEIC photos to universally compatible JPG images directly in your browser. Ensure your photos can be viewed on any device without uploading them to a server.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is Convert HEIC to JPG?</h3>
@@ -176,7 +176,7 @@ export default function HEICToJPG() {
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert HEIC to JPG</h3>
-                    <p className="mb-4">Using our tool is incredibly simple:</p>
+                    <p className="mb-4">Converting HEIC to JPG is straightforward:</p>
                     <ol className="list-decimal pl-6 space-y-4 mb-8">
                         <li><strong>Upload your files:</strong> Select or drag and drop your HEIC images into the upload zone.</li>
                         <li><strong>Adjust settings:</strong> Adjust the image quality slider if you want to compress the output JPG files.</li>

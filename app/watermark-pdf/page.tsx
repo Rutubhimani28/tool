@@ -304,7 +304,10 @@ export default function WatermarkPDF() {
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
                     <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Add Watermark to PDF Instantly</h2>
                     <p className="text-lg mb-8">
-                        Welcome to the fastest, most secure way to stamp text watermarks onto your PDF documents online. Whether you are a professional, student, or casual user, our tool makes it effortless and completely private.
+                        <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Add Text Watermarks to PDF</h2>
+                        <p className="text-lg mb-8">
+                            Overlay custom text onto each page of your PDF directly in the browser. Perfect for branding, confidentiality notices, or adding timestamps without uploading your file.
+                        </p>
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is Add Watermark to PDF?</h3>
@@ -313,7 +316,7 @@ export default function WatermarkPDF() {
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Add Watermark to PDF</h3>
-                    <p className="mb-4">Using our tool is incredibly simple:</p>
+                    <p className="mb-4">Adding a watermark to your PDF is easy and fast:</p>
                     <ol className="list-decimal pl-6 space-y-4 mb-8">
                         <li><strong>Upload your files:</strong> Upload your PDF document.</li>
                         <li><strong>Adjust settings:</strong> Type your watermark text (e.g., &quot;Confidential&quot; or &quot;Draft&quot;) and customize its appearance, opacity, and position.</li>

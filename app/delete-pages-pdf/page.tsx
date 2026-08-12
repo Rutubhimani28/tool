@@ -303,9 +303,9 @@ export default function DeletePagesPDF() {
             {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Delete PDF Pages Instantly</h2>
+                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Delete PDF Pages Online</h2>
                     <p className="text-lg mb-8">
-                        Welcome to the fastest, most secure way to remove unnecessary pages from your PDF documents online. Whether you are a professional, student, or casual user, our tool makes it effortless and completely private.
+                        Remove unnecessary pages from your PDF documents directly in your browser. Streamline your files by discarding blank pages or outdated information without uploading your documents to a server.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is Delete PDF Pages?</h3>
@@ -314,7 +314,7 @@ export default function DeletePagesPDF() {
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Delete PDF Pages</h3>
-                    <p className="mb-4">Using our tool is incredibly simple:</p>
+                    <p className="mb-4">Removing pages from your PDF is fast and intuitive:</p>
                     <ol className="list-decimal pl-6 space-y-4 mb-8">
                         <li><strong>Upload your files:</strong> Drag and drop your PDF file into the upload area.</li>
                         <li><strong>Adjust settings:</strong> Hover over the pages you want to remove and click the delete icon on each page.</li>

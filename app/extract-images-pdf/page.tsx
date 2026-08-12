@@ -262,9 +262,9 @@ export default function ExtractImagesPDF() {
             {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Extract Images from PDF Instantly</h2>
+                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Extract Images from PDF Online</h2>
                     <p className="text-lg mb-8">
-                        Welcome to the fastest, most secure way to pull all embedded images out of your PDF documents online. Whether you are a professional, student, or casual user, our tool makes it effortless and completely private.
+                        Pull all embedded images out of your PDF documents directly in your browser. Download high-quality original images in a ZIP file without uploading your documents to a server.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is Extract Images from PDF?</h3>
@@ -273,7 +273,7 @@ export default function ExtractImagesPDF() {
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Extract Images from PDF</h3>
-                    <p className="mb-4">Using our tool is incredibly simple:</p>
+                    <p className="mb-4">Extracting images from your PDF is a breeze:</p>
                     <ol className="list-decimal pl-6 space-y-4 mb-8">
                         <li><strong>Upload your files:</strong> Upload your PDF document containing the images you want to extract.</li>
                         <li><strong>Adjust settings:</strong> Our tool will automatically scan the document and display all embedded images.</li>

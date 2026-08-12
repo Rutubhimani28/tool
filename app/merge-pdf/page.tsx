@@ -312,9 +312,9 @@ export default function MergePDF() {
             {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Merge PDF Files Instantly</h2>
+                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Merge PDF Files in Your Browser</h2>
                     <p className="text-lg mb-8">
-                        Welcome to the fastest, most secure way to combine PDF files online. Whether you are compiling monthly reports, assembling a portfolio, or joining scanned documents, our Merge PDF tool makes it effortless and completely private.
+                        Combine multiple PDF documents into one unified file — entirely in your browser, with no server upload required. Whether you are compiling monthly reports, assembling a job application, or joining scanned pages from different sessions, our Merge PDF tool lets you control the exact order before combining.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is PDF Merging?</h3>

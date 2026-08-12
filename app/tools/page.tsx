@@ -5,6 +5,14 @@ import Link from "next/link";
 import { ArrowBack } from "@mui/icons-material";
 import { tools } from "../data/tools";
 
+const categories = [
+    { id: "organize", name: "Organize PDF", description: "Merge, split, and rearrange your PDF pages." },
+    { id: "convert", name: "Convert PDF", description: "Convert PDFs to and from images, Word, and text." },
+    { id: "optimize", name: "Optimize PDF", description: "Compress and reduce the file size of your PDFs." },
+    { id: "security", name: "PDF Security", description: "Protect, unlock, sign, and watermark your PDFs." },
+    { id: "image", name: "Image Tools", description: "Convert, compress, resize, and edit your images." },
+];
+
 export default function ToolsPage() {
     return (
         <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 flex-1 flex flex-col">
@@ -28,23 +36,38 @@ export default function ToolsPage() {
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {tools.map((tool) => {
-                    const Icon = tool.icon;
+            <div className="flex flex-col gap-12">
+                {categories.map(category => {
+                    const categoryTools = tools.filter(t => t.category === category.id);
+                    if (categoryTools.length === 0) return null;
+
                     return (
-                        <Link href={tool.href} key={tool.id} className="group flex flex-col h-full rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-700">
-                            <div className="flex items-center gap-4 mb-4">
-                                <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-tr ${tool.gradient} text-white shadow-md ${tool.shadow} transition-transform duration-300 group-hover:rotate-3`}>
-                                    <Icon className="h-6 w-6" />
-                                </div>
-                                <h3 className="font-semibold text-lg text-zinc-900 dark:text-white transition-colors duration-300 group-hover:text-zinc-700 dark:group-hover:text-zinc-300">
-                                    {tool.name}
-                                </h3>
+                        <div key={category.id}>
+                            <div className="mb-6">
+                                <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">{category.name}</h2>
+                                <p className="text-zinc-500 dark:text-zinc-400 mt-1">{category.description}</p>
                             </div>
-                            <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed flex-1">
-                                {tool.description}
-                            </p>
-                        </Link>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {categoryTools.map((tool) => {
+                                    const Icon = tool.icon;
+                                    return (
+                                        <Link href={tool.href} key={tool.id} className="group flex flex-col h-full rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-700">
+                                            <div className="flex items-center gap-4 mb-4">
+                                                <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-tr ${tool.gradient} text-white shadow-md ${tool.shadow} transition-transform duration-300 group-hover:rotate-3`}>
+                                                    <Icon className="h-6 w-6" />
+                                                </div>
+                                                <h3 className="font-semibold text-lg text-zinc-900 dark:text-white transition-colors duration-300 group-hover:text-zinc-700 dark:group-hover:text-zinc-300">
+                                                    {tool.name}
+                                                </h3>
+                                            </div>
+                                            <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed flex-1">
+                                                {tool.description}
+                                            </p>
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        </div>
                     );
                 })}
             </div>

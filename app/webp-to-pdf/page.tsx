@@ -310,7 +310,10 @@ export default function WebPToPDF() {
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
                     <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Convert WebP to PDF Instantly</h2>
                     <p className="text-lg mb-8">
-                        Welcome to the fastest, most secure way to combine multiple WebP images into a single PDF document online. Whether you are a professional, student, or casual user, our tool makes it effortless and completely private.
+                        <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Convert WebP Images to PDF</h2>
+                        <p className="text-lg mb-8">
+                            Turn one or multiple WebP images into a single PDF document directly in your browser. This is ideal for creating printable portfolios, sharing screenshots, or archiving graphics without any server upload.
+                        </p>
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is Convert WebP to PDF?</h3>
@@ -319,7 +322,7 @@ export default function WebPToPDF() {
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Convert WebP to PDF</h3>
-                    <p className="mb-4">Using our tool is incredibly simple:</p>
+                    <p className="mb-4">Converting your WebP images to PDF is a straightforward process:</p>
                     <ol className="list-decimal pl-6 space-y-4 mb-8">
                         <li><strong>Upload your files:</strong> Upload one or more WebP images you want to convert.</li>
                         <li><strong>Adjust settings:</strong> Drag and drop the images to rearrange their order. You can also adjust the page orientation and margin settings.</li>

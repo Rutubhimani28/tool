@@ -255,29 +255,37 @@ export default function CompressPDF() {
                         <li><strong>Web Performance:</strong> If you host PDFs on a website, smaller files download faster for your visitors, improving user experience and saving bandwidth.</li>
                     </ul>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Why a PDF May Not Get Much Smaller</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Which PDF Types Compress Best?</h3>
                     <p className="mb-6">
-                        Some PDFs are already compressed or contain mostly text and vector graphics, so the available reduction may be limited. PDFs containing high-resolution scanned pages or large embedded images generally have more room for optimization. The final file size depends on how the original PDF was created and what it contains.
+                        Not all PDFs are created equal. The PDFs that compress the best are those containing high-resolution, unoptimized images (such as scanned documents, portfolios, or presentations). Our tool can significantly reduce the file size of these documents by optimizing the embedded images. Conversely, PDFs that consist entirely of text and vector graphics (like a standard text document exported from Word) are already highly efficient and will see minimal compression savings.
                     </p>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Image-Heavy and Scanned PDFs</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Lossless vs. Lossy Compression</h3>
                     <p className="mb-6">
-                        Scanned documents and image-heavy portfolios benefit the most from compression. Our tool analyzes the PDF and applies the available compression optimizations while aiming to preserve the document&apos;s readability and visual quality.
+                        When compressing PDFs, it is important to understand the difference between lossless and lossy compression. <strong>Lossless compression</strong> reduces file size by removing redundant data and metadata without affecting the visual quality of the document. <strong>Lossy compression</strong> reduces file size by permanently discarding some visual data, typically by lowering the resolution or quality of embedded images. Our tool uses a smart balance of both techniques to achieve the smallest possible file size while maintaining excellent readability.
                     </p>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Quality vs. File Size</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What Happens to Fonts, Images, and Metadata?</h3>
                     <p className="mb-6">
-                        Our compression process is designed to reduce file size while preserving the document&apos;s readability and visual quality as much as possible. We use structural optimization where possible, ensuring that your text remains crisp and your images remain clear, making the resulting file suitable for email, web uploads, and general sharing.
+                        During the compression process, our tool analyzes the internal structure of your PDF. It optimizes embedded images by adjusting their resolution and compression level. It also removes unnecessary metadata, bookmarks, and unused objects that bloat the file size. However, it preserves embedded fonts and vector graphics to ensure that the text remains crisp and legible.
                     </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Browser Memory Limitations</h3>
+                    <p className="mb-6">
+                        Because our tool processes files entirely locally in your browser, it relies on your device's memory (RAM) and processing power. While there is no strict server-side file size limit, attempting to compress extremely large or complex PDFs (e.g., over 100MB) may cause your browser to run out of memory and crash. If you experience issues, try closing other browser tabs or using a device with more RAM.
+                    </p>
+
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Troubleshooting Common Issues</h3>
+                    <ul className="list-disc pl-6 space-y-3 mb-8">
+                        <li><strong>File size barely changed:</strong> The PDF is likely already optimized or contains mostly text and vector graphics.</li>
+                        <li><strong>Browser crashed during processing:</strong> The file is too large or complex for your device's memory. Try processing it on a more powerful device.</li>
+                        <li><strong>Images look blurry:</strong> The original images may have been low resolution, or the compression settings were too aggressive. We are working on adding manual quality controls in a future update.</li>
+                        <li><strong>Password-protected PDF:</strong> You must unlock the PDF before it can be compressed.</li>
+                    </ul>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
                     <p className="mb-6">
-                        Your files are processed locally in your browser and are not uploaded to our servers. This can help keep sensitive documents on your device during processing, which may be useful when working with personal or confidential information.
-                    </p>
-
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Files and Limitations</h3>
-                    <p className="mb-6">
-                        Our tool supports standard PDF documents. Because processing takes place locally in your browser, the tool does not rely on a server-side upload limit. However, very large or complex PDFs may require more memory and processing time depending on your device and browser. Note that password-protected PDFs must be unlocked before they can be compressed. Also, if a PDF is already highly optimized, the compression savings may be minimal.
+                        Your files are processed locally in your browser and are not uploaded to our servers. This ensures that your sensitive documents remain on your device, providing absolute confidentiality and security.
                     </p>
                     {/* Related Tools */}
                     <div className="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800">

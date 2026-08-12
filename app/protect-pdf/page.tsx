@@ -353,7 +353,10 @@ export default function ProtectPDF() {
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
                     <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Protect PDF with Password Instantly</h2>
                     <p className="text-lg mb-8">
-                        Welcome to the fastest, most secure way to encrypt and password-protect your sensitive PDF documents online. Whether you are a professional, student, or casual user, our tool makes it effortless and completely private.
+                        <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Password‑Protect PDF Files</h2>
+                        <p className="text-lg mb-8">
+                            Secure your PDF documents with a password directly in the browser. This ensures only authorized recipients can open or edit the file, with no server-side storage of your data.
+                        </p>
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is Protect PDF with Password?</h3>
@@ -362,7 +365,7 @@ export default function ProtectPDF() {
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Protect PDF with Password</h3>
-                    <p className="mb-4">Using our tool is incredibly simple:</p>
+                    <p className="mb-4">Securing your PDF with a password takes just a moment:</p>
                     <ol className="list-decimal pl-6 space-y-4 mb-8">
                         <li><strong>Upload your files:</strong> Upload the PDF document you want to secure.</li>
                         <li><strong>Adjust settings:</strong> Enter a strong password and confirm it. Make sure you remember this password, as it cannot be recovered!</li>

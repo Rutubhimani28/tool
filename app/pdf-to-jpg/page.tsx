@@ -262,40 +262,31 @@ export default function PDFToJPG() {
                         <li><strong>Download JPG files:</strong> Once complete, your high-resolution JPG images will be automatically packaged into a convenient ZIP archive for a single-click download.</li>
                     </ol>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Practical Use Cases</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">When PDF to JPG is Useful</h3>
                     <ul className="list-disc pl-6 space-y-3 mb-8">
-                        <li><strong>Social Media:</strong> Platforms like Instagram, Facebook, and Pinterest do not support PDF uploads. Converting your flyers, infographics, or portfolios to JPG allows you to share them effortlessly.</li>
-                        <li><strong>Web Optimization:</strong> Embedding images on a website is generally faster and more reliable than embedding a PDF viewer.</li>
-                        <li><strong>Presentations:</strong> Inserting JPG images into PowerPoint or Google Slides is much smoother than trying to link or embed PDF files.</li>
-                        <li><strong>Security:</strong> If you want to share a document but prevent others from easily copying the text or editing the content, flattening it into a JPG image adds a layer of difficulty for unauthorized modifications.</li>
+                        <li><strong>Sharing Individual Pages:</strong> If you only need to share a single page of a large document, converting it to a JPG makes it easy to send via email or messaging apps without attaching the entire PDF.</li>
+                        <li><strong>Presentations:</strong> Inserting JPG images into PowerPoint, Keynote, or Google Slides is much smoother and more reliable than trying to link or embed interactive PDF files.</li>
+                        <li><strong>Social Media:</strong> Platforms like Instagram, Facebook, and Pinterest do not support PDF document uploads. Converting your flyers, infographics, or portfolios to JPG allows you to share them effortlessly with your audience.</li>
+                        <li><strong>Preview Images:</strong> Generate high-quality thumbnail previews of your documents to display on your website or in your application before users download the full PDF.</li>
+                        <li><strong>Websites:</strong> Embedding images on a website is generally faster and more universally supported than embedding a clunky PDF viewer plugin.</li>
                     </ul>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Image Quality & Multi-Page Behavior</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Understanding JPG Quality and Rasterization</h3>
                     <p className="mb-6">
-                        Our tool renders PDF pages at a high scale (2.0x viewport) to ensure the resulting JPGs are crisp and high-resolution. When you upload a multi-page PDF, the tool processes every single page sequentially. To make downloading easy, all the generated JPG images are bundled into a single ZIP file, so you don&apos;t have to download each page individually.
+                        When you convert a PDF to a JPG, the process is called <strong>rasterization</strong>. This means that the scalable vector graphics and text in your PDF are converted into a fixed grid of pixels. Our tool renders pages at a high scale (2.0x viewport) to ensure the resulting JPGs have excellent <strong>resolution</strong> and crisp text.
+                    </p>
+                    <p className="mb-6">
+                        <strong>Quality vs. File Size:</strong> JPG uses lossy compression, which is great for keeping file sizes small, but it can introduce slight artifacts around sharp text. For <strong>text-heavy PDFs</strong>, you might notice a slight loss of crispness compared to the original vector text. However, for <strong>image-heavy PDFs</strong> (like photographs or scanned documents), JPG is the ideal format. If you need perfect, lossless quality for text, consider using our PDF to PNG tool instead.
                     </p>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Scanned PDF Considerations</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Multi-Page ZIP Downloads</h3>
                     <p className="mb-6">
-                        If your PDF is already composed of scanned images (rather than selectable text), converting it to JPG will simply extract those visual pages into image files. The quality of the output JPG will depend heavily on the quality of the original scan.
+                        When you upload a multi-page PDF, our tool processes every single page sequentially. To make downloading easy and keep your files organized, all the generated JPG images are automatically bundled into a single <strong>ZIP archive</strong>. This means you only have to click download once, rather than saving each page individually.
                     </p>
-
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">JPG vs PNG vs WebP</h3>
-                    <p className="mb-4">Not sure which image format to choose? Here is a quick guide:</p>
-                    <ul className="list-disc pl-6 space-y-3 mb-8">
-                        <li><strong>JPG:</strong> Best for photographs and complex images. It uses lossy compression, resulting in smaller file sizes, making it the standard for general web use.</li>
-                        <li><strong>PNG:</strong> Best for documents with sharp text, line art, or when you need a transparent background. It uses lossless compression, ensuring no quality is lost, but file sizes are larger. Try our <Link href="/pdf-to-png" className="text-blue-600 dark:text-blue-400 hover:underline">PDF to PNG</Link> tool.</li>
-                        <li><strong>WebP:</strong> A modern format that provides superior compression for the web, offering high quality at very small file sizes. Try our <Link href="/pdf-to-webp" className="text-blue-600 dark:text-blue-400 hover:underline">PDF to WebP</Link> tool.</li>
-                    </ul>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Privacy and Local Processing</h3>
                     <p className="mb-6">
                         Your privacy is our top priority. Unlike many other online converters that upload your sensitive documents to remote cloud servers, <strong>our tool processes your files 100% locally in your browser</strong>. Your files never leave your device, ensuring absolute confidentiality and security. This makes our tool safe for processing financial records, legal contracts, and personal identification documents.
-                    </p>
-
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Supported Files and Limitations</h3>
-                    <p className="mb-6">
-                        Our tool supports standard PDF documents. Because processing happens locally, there are no strict file size limits imposed by a server. However, processing extremely large PDFs (e.g., hundreds of pages) may take longer depending on your device&apos;s memory and processing power. Note that password-protected PDFs must be unlocked before conversion.
                     </p>
                     {/* Related Tools */}
                     <div className="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800">

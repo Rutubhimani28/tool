@@ -61,22 +61,12 @@ export const faqs: FAQ[] = [
     {
         category: "PDF Conversion",
         question: "How do I extract text from a scanned PDF?",
-        answer: "Currently, our tools focus on format conversion and structural manipulation. If your PDF is a scanned image, you would need an OCR (Optical Character Recognition) tool to extract editable text."
+        answer: "Our <a href='/pdf-to-word' class='text-blue-600 hover:underline'>PDF to Word</a> tool includes built-in OCR (Optical Character Recognition) to automatically extract editable text from scanned pages."
     },
     {
         category: "PDF Conversion",
         question: "Why is my converted image blurry?",
         answer: "If you are converting a PDF to an image, the output quality depends on the resolution of the original PDF. If the PDF contains low-resolution assets, the resulting image will reflect that."
-    },
-    {
-        category: "PDF Conversion",
-        question: "Can I convert an Excel spreadsheet to a PDF?",
-        answer: "Yes, you can use our <a href='/excel-to-pdf' class='text-blue-600 hover:underline'>Excel to PDF</a> tool to lock your spreadsheets into a fixed layout for easy sharing and printing."
-    },
-    {
-        category: "PDF Conversion",
-        question: "Is it possible to convert a PowerPoint presentation to PDF?",
-        answer: "Absolutely. Our <a href='/powerpoint-to-pdf' class='text-blue-600 hover:underline'>PowerPoint to PDF</a> tool will convert your slides into a PDF document, preserving all text and images while removing animations."
     },
     {
         category: "PDF Conversion",
@@ -125,7 +115,7 @@ export const faqs: FAQ[] = [
     {
         category: "Supported Formats",
         question: "Which image formats do you support?",
-        answer: "We support all major web image formats, including JPG (JPEG), PNG, WebP, GIF, and BMP for both input and output conversions."
+        answer: "We support major web image formats, including JPG (JPEG), PNG, and WebP for both input and output conversions."
     },
     {
         category: "Supported Formats",
@@ -134,18 +124,8 @@ export const faqs: FAQ[] = [
     },
     {
         category: "Supported Formats",
-        question: "Do you support converting SVG files?",
-        answer: "Yes, we offer tools to convert vector SVG files into raster formats like PNG or JPG, as well as converting them into PDF documents."
-    },
-    {
-        category: "Supported Formats",
-        question: "Can I process animated GIFs?",
-        answer: "While you can convert a GIF to a PDF or extract frames from it, converting a PDF into a GIF will generally result in a static image of the first page."
-    },
-    {
-        category: "Supported Formats",
         question: "What versions of Microsoft Office files are supported?",
-        answer: "We support modern Office formats (.docx, .xlsx, .pptx) as well as older legacy formats (.doc, .xls, .ppt) for conversion to PDF."
+        answer: "We support modern Office formats (.docx) for conversion to PDF."
     },
     {
         category: "Supported Formats",
@@ -157,7 +137,7 @@ export const faqs: FAQ[] = [
     {
         category: "File Size & Compression",
         question: "What is the maximum file size I can upload?",
-        answer: "Currently, the maximum file size for a single upload is 50MB. This limit ensures fast processing times and prevents browser crashes."
+        answer: "Currently, the maximum file size for a single upload is 100MB. This limit ensures fast processing times and prevents browser crashes."
     },
     {
         category: "File Size & Compression",
@@ -226,7 +206,7 @@ export const faqs: FAQ[] = [
     {
         category: "Troubleshooting",
         question: "The tool crashed while processing my file. What should I do?",
-        answer: "This usually happens if the file is too large or corrupted. Try refreshing the page, clearing your browser cache, and attempting the conversion again. Ensure your file is under the 50MB limit."
+        answer: "This usually happens if the file is too large or corrupted. Try refreshing the page, clearing your browser cache, and attempting the conversion again. Ensure your file is under the 100MB limit."
     },
     {
         category: "Troubleshooting",
@@ -263,7 +243,7 @@ export const faqs: FAQ[] = [
     {
         category: "Advanced Usage",
         question: "How do I extract images from a PDF without converting the whole page?",
-        answer: "While our standard PDF to JPG tool converts the entire page into an image, we are developing a dedicated 'Extract Images' tool that will parse the PDF structure and save only the embedded image assets."
+        answer: "You can use our dedicated <a href='/extract-images-pdf' class='text-blue-600 hover:underline'>Extract Images from PDF</a> tool that will parse the PDF structure and save only the embedded image assets."
     },
     {
         category: "Advanced Usage",
@@ -273,7 +253,7 @@ export const faqs: FAQ[] = [
     {
         category: "Advanced Usage",
         question: "Can I process files offline?",
-        answer: "Because our tools rely on WebAssembly modules loaded by the browser, you need an initial internet connection to load the website. However, once the page is fully loaded, the actual file processing happens locally and does not require continuous internet access."
+        answer: "Because our tools rely on WebAssembly modules loaded by the browser, you need an internet connection to load the website and its necessary assets. However, the actual file processing happens locally."
     },
     {
         category: "Advanced Usage",

@@ -322,7 +322,10 @@ export default function RotatePDF() {
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
                     <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Rotate PDF Pages Instantly</h2>
                     <p className="text-lg mb-8">
-                        Welcome to the fastest, most secure way to rotate individual pages or entire PDF documents online. Whether you are a professional, student, or casual user, our tool makes it effortless and completely private.
+                        <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Rotate PDF Pages</h2>
+                        <p className="text-lg mb-8">
+                            Adjust the orientation of individual pages or the entire PDF directly in your browser. Ideal for correcting scanned documents or reformatting presentations without uploading your file.
+                        </p>
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is Rotate PDF Pages?</h3>
@@ -331,7 +334,7 @@ export default function RotatePDF() {
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Rotate PDF Pages</h3>
-                    <p className="mb-4">Using our tool is incredibly simple:</p>
+                    <p className="mb-4">Rotating your PDF pages can be done in seconds:</p>
                     <ol className="list-decimal pl-6 space-y-4 mb-8">
                         <li><strong>Upload your files:</strong> Upload your PDF document to generate visual thumbnails.</li>
                         <li><strong>Adjust settings:</strong> Use the rotation buttons on individual pages, or use the global buttons to rotate all pages at once.</li>

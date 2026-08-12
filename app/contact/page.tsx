@@ -68,7 +68,14 @@ export default function ContactPage() {
                         </div>
                         <div className="flex flex-col gap-1.5">
                             <label htmlFor="subject" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Subject</label>
-                            <input required type="text" id="subject" name="subject" autoComplete="off" className="rounded-xl border border-zinc-300 bg-transparent px-4 py-2.5 text-sm text-zinc-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-zinc-700 dark:text-white" placeholder="How can we help?" disabled={isSubmitting} />
+                            <select required id="subject" name="subject" defaultValue="" className="rounded-xl border border-zinc-300 bg-transparent px-4 py-2.5 text-sm text-zinc-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-zinc-700 dark:text-white dark:bg-zinc-950" disabled={isSubmitting}>
+                                <option value="" disabled>Select a category...</option>
+                                <option value="Bug Report">Bug Report</option>
+                                <option value="Feature Request">Feature Request</option>
+                                <option value="General Feedback">General Feedback</option>
+                                <option value="Privacy Questions">Privacy Questions</option>
+                                <option value="Other">Other</option>
+                            </select>
                         </div>
                         <div className="flex flex-col gap-1.5">
                             <label htmlFor="message" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Message</label>

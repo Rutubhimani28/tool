@@ -33,17 +33,17 @@ export default function AboutPage() {
                         The idea for PDFImageConvert was born out of frustration. We noticed that many online document tools were either cluttered with ads, required expensive subscriptions, or forced users to download bulky software. We wanted to build something different—a platform that respects your time and privacy while delivering professional-grade results.
                     </p>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
-                        Our team of developers set out to create a suite of tools that operate entirely within your web browser. This approach not only ensures lightning-fast processing speeds but also guarantees that your sensitive documents never leave your device. We believe that powerful tools should be accessible to everyone, everywhere, without compromising on security or user experience.
+                        We set out to create a suite of tools that operate entirely within your web browser. This approach not only ensures fast processing speeds but also helps keep your sensitive documents on your device. We believe that powerful tools should be accessible to everyone, everywhere, without compromising on security or user experience.
                     </p>
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">What We Offer</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-4 leading-relaxed">
-                        PDFImageConvert is a comprehensive platform designed to handle all your document and image processing needs. Whether you are a student preparing an assignment, a professional managing contracts, or simply someone looking to optimize photos for social media, we have the right tool for you.
+                        PDFImageConvert is a growing suite of privacy-first document and image tools. All processing happens entirely within your browser using modern WebAssembly technology, not on our servers. Whether you are a student, a professional, or a freelancer, our tools are designed to be fast, simple, and secure.
                     </p>
                     <ul className="list-disc pl-5 space-y-3 text-zinc-600 dark:text-zinc-300 mb-6">
-                        <li><strong>PDF Management:</strong> Merge multiple PDFs into a single document, split large files into manageable pieces, or compress them for easier sharing. We also offer tools to rotate pages, unlock secured PDFs, and add password protection to sensitive files.</li>
-                        <li><strong>Format Conversion:</strong> Seamlessly convert documents between various formats. Transform Word documents into PDFs to preserve formatting, or convert PDFs back to editable Word files. We also support converting PDFs to high-quality JPGs and vice versa.</li>
-                        <li><strong>Image Optimization:</strong> Resize images to specific dimensions, crop out unwanted areas, or compress large photos to save storage space. Our WebP converter helps you optimize images for web use, ensuring faster load times for your websites.</li>
+                        <li><strong>PDF Management:</strong> Merge, split, compress, rotate, and reorder pages in your PDF documents. Add password protection to sensitive files or remove passwords from documents you own.</li>
+                        <li><strong>PDF Conversion:</strong> Convert PDF pages to high-quality JPG, PNG, or WebP images. Extract all text content from PDFs into editable TXT files. Convert Word documents to PDF format, preserving your layout and formatting.</li>
+                        <li><strong>Image Tools:</strong> Resize, crop, compress, and rotate images. Convert between JPG, PNG, WebP, and HEIC formats. All image processing is fast and happens entirely in your browser.</li>
                     </ul>
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Our Core Values</h2>

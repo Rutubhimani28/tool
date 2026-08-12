@@ -687,7 +687,10 @@ export default function SignPDF() {
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
                     <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Sign PDF Document Instantly</h2>
                     <p className="text-lg mb-8">
-                        Welcome to the fastest, most secure way to add your signature, text, and dates to PDF files online. Whether you are a professional, student, or casual user, our tool makes it effortless and completely private.
+                        <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Add Digital Signatures to PDFs</h2>
+                        <p className="text-lg mb-8">
+                            Sign, annotate, and date your PDF documents directly in the browser. This ensures your files stay private while providing a legally‑recognizable electronic signature.
+                        </p>
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is Sign PDF Document?</h3>
@@ -696,7 +699,7 @@ export default function SignPDF() {
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Sign PDF Document</h3>
-                    <p className="mb-4">Using our tool is incredibly simple:</p>
+                    <p className="mb-4">Signing your document digitally is a breeze:</p>
                     <ol className="list-decimal pl-6 space-y-4 mb-8">
                         <li><strong>Upload your files:</strong> Upload the PDF form or document you need to sign.</li>
                         <li><strong>Adjust settings:</strong> Use the toolbar to draw your signature, type text, or add dates. Drag and drop these elements to the correct position on the page.</li>
@@ -708,7 +711,7 @@ export default function SignPDF() {
                         Sign contracts, agreements, and forms entirely digitally, saving paper, ink, and time. Adopting a paperless workflow is not only better for the environment but also significantly reduces the physical clutter in your home or office.
                     </p>
 
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Instant Turnaround</h3>
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">Fast Turnaround</h3>
                     <p className="mb-6">
                         Receive a document, sign it, and email it back in minutes without needing a printer or scanner. This rapid turnaround is essential for closing deals quickly, meeting strict deadlines, and maintaining professional momentum.
                     </p>

@@ -66,9 +66,9 @@ export default function TermsPage() {
                         In no event shall PDFImageConvert, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the service.
                     </p>
 
-                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">7. Governing Law and Jurisdiction</h2>
+                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">7. Governing Law</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
-                        These Terms shall be governed and construed in accordance with the laws of the jurisdiction in which PDFImageConvert operates, without regard to its conflict of law provisions. Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights.
+                        These Terms shall be governed and construed in accordance with applicable laws, without regard to conflict of law provisions. You agree that any dispute arising from or relating to these Terms or the service will be resolved in a competent court of law. Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights.
                     </p>
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">8. Changes to Terms</h2>

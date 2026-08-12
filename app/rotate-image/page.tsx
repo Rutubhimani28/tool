@@ -210,9 +210,9 @@ export default function RotateImage() {
             {/* SEO Content Section */}
             <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Rotate Image Instantly</h2>
+                    <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Rotate Images Online</h2>
                     <p className="text-lg mb-8">
-                        Welcome to the fastest, most secure way to rotate or flip your images quickly and easily online. Whether you are a professional, student, or casual user, our tool makes it effortless and completely private.
+                        Correct the orientation of your photos instantly in your browser. Rotate images left or right by 90 degrees without uploading your files to a server, ensuring complete privacy.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is Rotate Image?</h3>
@@ -221,7 +221,7 @@ export default function RotateImage() {
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Rotate Image</h3>
-                    <p className="mb-4">Using our tool is incredibly simple:</p>
+                    <p className="mb-4">Rotating your images is a simple process:</p>
                     <ol className="list-decimal pl-6 space-y-4 mb-8">
                         <li><strong>Upload your files:</strong> Upload the image you want to adjust.</li>
                         <li><strong>Adjust settings:</strong> Use the rotation buttons to turn the image left or right, or use the flip buttons to mirror it horizontally or vertically.</li>

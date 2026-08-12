@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "PDF to Image Converter Free Online - Convert PDF to JPG/PNG | PDFImageConvert",
 
   description:
-    "Best PDF to image converter free online. Convert PDF to JPG, PNG, or WebP in seconds. Fast, secure, and 100% local processing without uploading files.",
+    "Free online PDF to image converter. Convert PDF to JPG, PNG, or WebP in seconds. Fast, secure, and 100% local processing without uploading files.",
 
   keywords: [
     "pdf to image converter free online",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 
   openGraph: {
     title: "PDF to Image Converter Free Online | PDFImageConvert",
-    description: "Best PDF to image converter free online. Convert PDF to JPG, PNG, or WebP in seconds. Fast, secure, and 100% local processing.",
+    description: "Free online PDF to image converter. Convert PDF to JPG, PNG, or WebP in seconds. Fast, secure, and 100% local processing.",
     url: "https://pdfimageconvert.com",
     siteName: "PDFImageConvert",
     type: "website",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "PDF to Image Converter Free Online | PDFImageConvert",
-    description: "Best PDF to image converter free online. Convert PDF to JPG, PNG, or WebP in seconds. Fast, secure, and 100% local processing.",
+    description: "Free online PDF to image converter. Convert PDF to JPG, PNG, or WebP in seconds. Fast, secure, and 100% local processing.",
     images: ["https://pdfimageconvert.com/logo.png"],
   },
 
@@ -80,7 +80,7 @@ const jsonLd = {
       "@id": "https://pdfimageconvert.com/#website",
       url: "https://pdfimageconvert.com",
       name: "PDFImageConvert",
-      description: "Best PDF to image converter free online. Convert PDF to JPG, PNG, or WebP in seconds.",
+      description: "Free online PDF to image converter. Convert PDF to JPG, PNG, or WebP in seconds.",
       publisher: {
         "@id": "https://pdfimageconvert.com/#organization",
       },
@@ -122,6 +122,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          suppressHydrationWarning
         />
         <script
           async

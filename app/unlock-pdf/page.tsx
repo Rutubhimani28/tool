@@ -298,16 +298,19 @@ export default function UnlockPDF() {
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
                     <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Unlock PDF Instantly</h2>
                     <p className="text-lg mb-8">
-                        Welcome to the fastest, most secure way to remove passwords and restrictions from your PDF files online. Whether you are a professional, student, or casual user, our tool makes it effortless and completely private.
+                        <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Unlock PDF Files (Authorized Use Only)</h2>
+                        <p className="text-lg mb-8">
+                            Remove password protection from PDF files you own or have permission to edit. This tool works entirely in your browser; no file is uploaded or stored on our servers.
+                        </p>
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is Unlock PDF?</h3>
                     <p className="mb-6">
-                        Removing the password protection and encryption from a PDF document. If you know the password to a file but want to remove it permanently for easier access, this tool will create an unlocked copy of the document.
+                        This tool removes password protection and encryption from a PDF document <strong>that you are authorized to access</strong>. If you know the password to a file but want to remove it permanently for easier access, this tool will create an unlocked copy of the document. <strong>Please note:</strong> This tool does not "hack" or bypass unknown passwords. You must provide the correct password to unlock the file.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Unlock PDF</h3>
-                    <p className="mb-4">Using our tool is incredibly simple:</p>
+                    <p className="mb-4">Removing password protection takes only a few steps:</p>
                     <ol className="list-decimal pl-6 space-y-4 mb-8">
                         <li><strong>Upload your files:</strong> Upload the password-protected PDF document.</li>
                         <li><strong>Adjust settings:</strong> Enter the current password for the file to prove you have authorized access.</li>
