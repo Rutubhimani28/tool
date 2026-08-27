@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import {
   Merge,
@@ -21,25 +21,28 @@ import {
   ArrowBack,
   ArrowForward,
   FolderZip,
+  Calculate,
+  TrendingUp,
+  ShowChart,
+  AccountBalanceWallet,
+  HealthAndSafety,
 } from "@mui/icons-material";
 
 import { tools } from "./data/tools";
+import { categories } from "./data/categories";
 
-const categories = [
-  { id: "all", name: "All Tools" },
-  { id: "organize", name: "Organize" },
-  { id: "convert", name: "Convert" },
-  { id: "optimize", name: "Optimize" },
-  { id: "security", name: "Security" },
-  { id: "image", name: "Image Tools" },
-];
+const iconMap: Record<string, React.ElementType> = {
+  Calculate: Calculate,
+  TrendingUp: TrendingUp,
+  ShowChart: ShowChart,
+  AccountBalanceWallet: AccountBalanceWallet,
+  HealthAndSafety: HealthAndSafety,
+};
 
 const categoryColorMap: Record<string, string> = {
-  organize: "bg-orange-50 text-orange-600 dark:bg-orange-950/30 dark:text-orange-400",
-  convert: "bg-blue-50 text-blue-600 dark:bg-blue-950/30 dark:text-blue-400",
-  optimize: "bg-green-50 text-green-600 dark:bg-green-950/30 dark:text-green-400",
-  security: "bg-yellow-50 text-yellow-700 dark:bg-yellow-950/30 dark:text-yellow-400",
-  image: "bg-purple-50 text-purple-600 dark:bg-purple-950/30 dark:text-purple-400",
+  calculators: "bg-blue-50 text-blue-600 dark:bg-blue-950/30 dark:text-blue-400",
+  insurance: "bg-green-50 text-green-600 dark:bg-green-950/30 dark:text-green-400",
+  "personal-finance": "bg-purple-50 text-purple-600 dark:bg-purple-950/30 dark:text-purple-400",
 };
 
 export default function Home() {
@@ -78,40 +81,37 @@ export default function Home() {
 
   const filteredTools = tools.filter((tool) => {
     const matchesSearch =
-      tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      tool.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       tool.description.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory =
-      selectedCategory === "all" || tool.category === selectedCategory;
+      selectedCategory === "all" || tool.categoryId === selectedCategory;
     return matchesSearch && matchesCategory;
   });
-
-  const pdfTools = filteredTools.filter((t) => t.category !== "image");
-  const imageTools = filteredTools.filter((t) => t.category === "image");
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "SoftwareApplication",
-        "name": "PDFImageConvert",
-        "applicationCategory": "UtilitiesApplication",
+        "name": "FinanceTools",
+        "applicationCategory": "FinanceApplication",
         "operatingSystem": "Any",
         "offers": {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "USD"
         },
-        "description": "Free online PDF to image converter. Convert, edit, merge, and manage your documents and images locally."
+        "description": "Free online financial calculators. Calculate EMI, SIP, and compound interest."
       },
       {
         "@type": "FAQPage",
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Is my PDF secure?",
+            "name": "Is my data secure?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Absolutely. We prioritize your privacy. All file processing happens locally directly on your device (in your browser). Your files are never uploaded to our servers, meaning no one else can ever access them."
+              "text": "Absolutely. We prioritize your privacy. All calculations happen locally directly on your device (in your browser). Your data is never uploaded to our servers, meaning no one else can ever access it."
             }
           },
           {
@@ -119,15 +119,7 @@ export default function Home() {
             "name": "Is it really free?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, our tool is 100% free to use. There are no hidden fees, no watermarks added to your images, and no registration required to access the core features."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Maximum file size?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Because all processing happens locally in your browser, there is no strict file size limit. However, very large files (e.g., over 100MB) might take longer to process depending on your device's memory."
+              "text": "Yes, our tool is 100% free to use. There are no hidden fees and no registration required to access the core features."
             }
           },
           {
@@ -135,23 +127,7 @@ export default function Home() {
             "name": "Does it work on mobile?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes! Our website is fully responsive and works seamlessly on smartphones and tablets (iOS and Android). You can convert PDFs directly from your mobile browser without installing any apps."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Can I convert multiple PDFs?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, our tool supports batch conversion. If you upload a multi-page PDF, we will convert every page into a separate image file, which you can download individually or as a convenient ZIP archive."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Can I convert scanned PDFs?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, our tool can convert scanned PDFs into images perfectly. Since we render the PDF exactly as it appears, scanned pages will be converted into high-quality JPG or PNG files."
+              "text": "Yes! Our website is fully responsive and works seamlessly on smartphones and tablets (iOS and Android)."
             }
           }
         ]
@@ -170,7 +146,7 @@ export default function Home() {
       <section className="relative overflow-hidden bg-white px-4 pt-8 pb-4 sm:px-6 sm:pt-12 sm:pb-8 lg:px-8 dark:bg-zinc-950">
         {/* Background decoration */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[1000px] h-[600px] bg-gradient-to-b from-red-500/10 to-transparent rounded-full blur-3xl" />
+          <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[1000px] h-[600px] bg-gradient-to-b from-blue-500/10 to-transparent rounded-full blur-3xl" />
         </div>
 
         <div className="mx-auto max-w-7xl relative z-10">
@@ -179,43 +155,34 @@ export default function Home() {
             {/* Left Column: Text & CTA */}
             <div className="text-center lg:text-left">
               <h1 className="text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-white sm:text-5xl lg:text-6xl leading-tight">
-                PDF to Image Converter Free Online
+                Empower Your Financial Journey
               </h1>
               <p className="mt-6 text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                A free online PDF to image converter. Convert, edit, merge, and manage your documents and images. Fast, reliable, and 100% local processing.
+                Discover our collection of free, reliable calculators and tools designed to help you plan your investments, manage loans, and grow your wealth. Fast, accurate, and 100% local processing.
               </p>
-
-              {/* CTA */}
-              {/* <div className="mt-10 flex justify-center lg:justify-start">
-                <a href="#tools" className="inline-flex items-center justify-center rounded-full bg-red-600 px-8 py-4 text-lg font-bold text-white shadow-lg shadow-red-500/30 hover:bg-red-700 hover:shadow-red-500/50 hover:-translate-y-0.5 transition-all duration-200">
-                  Explore All Tools
-                </a>
-              </div> */}
-
-              {/* Trust Indicators */}
             </div>
 
             {/* Right Column: Visual Composition */}
             <div className="relative h-[300px] sm:h-[350px] w-full mt-4 lg:mt-0 flex items-center justify-center overflow-hidden">
               <div className="relative w-[500px] h-[350px] scale-[0.65] sm:scale-75 md:scale-90 lg:scale-100 origin-center">
-                {/* Main PDF Card */}
+                {/* Main Card */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-80 bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl border border-zinc-200 dark:border-zinc-800 z-10 flex flex-col items-center justify-center p-6 transform -rotate-6 hover:rotate-0 transition-transform duration-500">
-                  <Description className="h-24 w-24 text-red-500 mb-6" />
+                  <Calculate className="h-24 w-24 text-blue-500 mb-6" />
                   <div className="w-3/4 h-3 bg-zinc-100 dark:bg-zinc-800 rounded-full mb-4"></div>
                   <div className="w-full h-3 bg-zinc-100 dark:bg-zinc-800 rounded-full mb-4"></div>
                   <div className="w-5/6 h-3 bg-zinc-100 dark:bg-zinc-800 rounded-full"></div>
                 </div>
 
-                {/* JPG Card */}
+                {/* Sub Card 1 */}
                 <div className="absolute top-[15%] right-[5%] w-36 h-36 bg-white dark:bg-zinc-900 rounded-2xl shadow-xl border border-zinc-200 dark:border-zinc-800 z-20 flex flex-col items-center justify-center p-4 transform rotate-12 hover:rotate-0 transition-transform duration-500 hover:scale-110">
-                  <ImageIcon className="h-12 w-12 text-blue-500 mb-3" />
-                  <span className="font-bold text-zinc-900 dark:text-white">JPG</span>
+                  <TrendingUp className="h-12 w-12 text-green-500 mb-3" />
+                  <span className="font-bold text-zinc-900 dark:text-white">SIP</span>
                 </div>
 
-                {/* PNG Card */}
+                {/* Sub Card 2 */}
                 <div className="absolute bottom-[15%] left-[5%] w-36 h-36 bg-white dark:bg-zinc-900 rounded-2xl shadow-xl border border-zinc-200 dark:border-zinc-800 z-20 flex flex-col items-center justify-center p-4 transform -rotate-12 hover:rotate-0 transition-transform duration-500 hover:scale-110">
-                  <ImageIcon className="h-12 w-12 text-green-500 mb-3" />
-                  <span className="font-bold text-zinc-900 dark:text-white">PNG</span>
+                  <ShowChart className="h-12 w-12 text-purple-500 mb-3" />
+                  <span className="font-bold text-zinc-900 dark:text-white">Growth</span>
                 </div>
 
                 {/* Decorative Elements */}
@@ -228,37 +195,33 @@ export default function Home() {
         </div>
       </section>
 
-
-
       {/* SEO Content Section */}
       <section className="bg-white dark:bg-zinc-950 px-4 py-16 sm:px-6 lg:px-8 border-b border-zinc-200 dark:border-zinc-800">
         <div className="mx-auto max-w-4xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
-          <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mb-6">Your Complete Local PDF & Image Toolkit</h2>
+          <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mb-6">Your Complete Local Financial Toolkit</h2>
           <p className="mb-6 text-lg">
-            PDFImageConvert provides a comprehensive suite of tools to manage, edit, and convert your documents and images. Whether you need to convert a PDF to JPG, merge multiple PDFs, or compress an image for the web, our platform offers fast, reliable, and completely free solutions.
+            Our platform provides a comprehensive suite of tools to manage and calculate your finances. Whether you need to calculate an EMI for a loan, estimate SIP returns, or check compound interest, our platform offers fast, reliable, and completely free solutions.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             <div>
               <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">Why Choose Our Tools?</h3>
               <ul className="list-disc pl-6 space-y-2">
                 <li><strong className="text-zinc-900 dark:text-white">100% Free:</strong> No hidden fees or subscriptions.</li>
-                <li><strong className="text-zinc-900 dark:text-white">No Watermarks:</strong> We never add watermarks to your files.</li>
+                <li><strong className="text-zinc-900 dark:text-white">Accurate:</strong> We use industry-standard formulas.</li>
                 <li><strong className="text-zinc-900 dark:text-white">No Registration:</strong> Start using the tools immediately.</li>
-                <li><strong className="text-zinc-900 dark:text-white">High Quality:</strong> Preserve the original quality of your documents.</li>
               </ul>
             </div>
             <div>
               <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">Uncompromising Privacy</h3>
               <ul className="list-disc pl-6 space-y-2">
-                <li><strong className="text-zinc-900 dark:text-white">Local Processing:</strong> All operations happen in your browser.</li>
-                <li><strong className="text-zinc-900 dark:text-white">No Uploads:</strong> Your files never leave your device.</li>
-                <li><strong className="text-zinc-900 dark:text-white">No Server Storage:</strong> Your files are processed locally and are not uploaded to our servers.</li>
-                <li><strong className="text-zinc-900 dark:text-white">Secure:</strong> Safe for sensitive and confidential documents.</li>
+                <li><strong className="text-zinc-900 dark:text-white">Local Processing:</strong> All calculations happen in your browser.</li>
+                <li><strong className="text-zinc-900 dark:text-white">No Uploads:</strong> Your data never leaves your device.</li>
+                <li><strong className="text-zinc-900 dark:text-white">No Server Storage:</strong> Your data is processed locally and is not uploaded to our servers.</li>
               </ul>
             </div>
           </div>
           <p>
-            Explore our collection of tools below. Use the search bar or category filters to quickly find exactly what you need.
+            Explore our collection of calculators below. Use the search bar or category filters to quickly find exactly what you need.
           </p>
         </div>
       </section>
@@ -268,7 +231,7 @@ export default function Home() {
         <div className="mx-auto max-w-5xl">
           {/* Search Bar */}
           <div className="mx-auto max-w-lg">
-            <div className="relative flex items-center rounded-2xl border border-zinc-200 bg-white px-4 shadow-sm dark:border-zinc-800 dark:bg-zinc-900 focus-within:border-red-400 focus-within:ring-1 focus-within:ring-red-400 transition-all duration-200">
+            <div className="relative flex items-center rounded-2xl border border-zinc-200 bg-white px-4 shadow-sm dark:border-zinc-800 dark:bg-zinc-900 focus-within:border-blue-400 focus-within:ring-1 focus-within:ring-blue-400 transition-all duration-200">
               <Search className="h-5 w-5 flex-shrink-0 text-zinc-400" />
               <input
                 id="search-input"
@@ -285,16 +248,27 @@ export default function Home() {
 
           {/* Category Filters */}
           <div className="mt-6 flex items-center justify-start sm:justify-center gap-2 overflow-x-auto scrollbar-hide pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
+            <button
+              onClick={() => setSelectedCategory("all")}
+              className={`flex-shrink-0 flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                selectedCategory === "all"
+                  ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 shadow-sm"
+                  : "bg-white text-zinc-600 hover:bg-zinc-100 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800"
+              }`}
+            >
+              All Tools
+            </button>
             {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`flex-shrink-0 flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 whitespace-nowrap ${selectedCategory === category.id
-                  ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 shadow-sm"
-                  : "bg-white text-zinc-600 hover:bg-zinc-100 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800"
-                  }`}
+                className={`flex-shrink-0 flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                  selectedCategory === category.id
+                    ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 shadow-sm"
+                    : "bg-white text-zinc-600 hover:bg-zinc-100 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800"
+                }`}
               >
-                {category.name}
+                {category.title}
               </button>
             ))}
           </div>
@@ -304,88 +278,40 @@ export default function Home() {
 
       {/* Tools Sections */}
       <section className="mx-auto max-w-[1600px] px-4 pt-8 pb-24 sm:px-6 lg:px-8 flex flex-col gap-16">
-        {/* PDF Tools Section */}
-        {pdfTools.length > 0 && (
+        {filteredTools.length > 0 && (
           <div>
             <div className="mb-6">
               <h2 className="text-2xl font-extrabold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
-                PDF Utilities
+                Financial Utilities
               </h2>
               <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
-                Merge, split, compress, convert, and secure your PDF documents.
+                Calculate loans, investments, and compounding interest.
               </p>
             </div>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 sm:gap-8">
-              {pdfTools.map((tool) => {
-                const Icon = tool.icon;
+              {filteredTools.map((tool) => {
+                const Icon = iconMap[tool.icon] || Calculate;
                 return (
                   <Link
                     key={tool.id}
                     href={tool.href}
                     className="group relative flex flex-col rounded-2xl sm:rounded-3xl border border-zinc-200 bg-white p-5 sm:p-6 shadow-sm hover:shadow-lg dark:border-zinc-800 dark:bg-zinc-900 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
                   >
-                    <div className={`absolute inset-0 bg-gradient-to-br ${tool.gradient} opacity-0 group-hover:opacity-[0.04] transition-opacity duration-300 rounded-2xl sm:rounded-3xl`} />
                     <div className="relative">
                       <div className="flex items-start justify-between">
-                        <div className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr ${tool.gradient} text-white shadow-md ${tool.shadow} transition-transform group-hover:scale-110 duration-300`}>
+                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 transition-transform group-hover:scale-110 duration-300">
                           <Icon className="h-6 w-6" />
                         </div>
-                        <span className={`rounded-full px-2.5 py-1 text-xs font-medium capitalize ${categoryColorMap[tool.category]}`}>
-                          {tool.category}
+                        <span className={`rounded-full px-2.5 py-1 text-xs font-medium capitalize ${categoryColorMap[tool.categoryId] || categoryColorMap['calculators']}`}>
+                          {tool.categoryId.replace("-", " ")}
                         </span>
                       </div>
-                      <h3 className="mt-5 text-lg font-bold text-zinc-900 dark:text-white group-hover:text-red-500 dark:group-hover:text-red-400 transition-colors duration-200">
-                        {tool.name}
+                      <h3 className="mt-5 text-lg font-bold text-zinc-900 dark:text-white group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors duration-200">
+                        {tool.title}
                       </h3>
                       <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed flex-1">
                         {tool.description}
                       </p>
-
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        )}
-
-        {/* Image Tools Section */}
-        {imageTools.length > 0 && (
-          <div>
-            <div className="mb-6">
-              <h2 className="text-2xl font-extrabold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
-                Image Utilities
-              </h2>
-              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
-                Compress, resize, crop, convert, and remove backgrounds from images.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 sm:gap-8">
-              {imageTools.map((tool) => {
-                const Icon = tool.icon;
-                return (
-                  <Link
-                    key={tool.id}
-                    href={tool.href}
-                    className="group relative flex flex-col rounded-2xl sm:rounded-3xl border border-zinc-200 bg-white p-5 sm:p-6 shadow-sm hover:shadow-lg dark:border-zinc-800 dark:bg-zinc-900 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
-                  >
-                    <div className={`absolute inset-0 bg-gradient-to-br ${tool.gradient} opacity-0 group-hover:opacity-[0.04] transition-opacity duration-300 rounded-2xl sm:rounded-3xl`} />
-                    <div className="relative">
-                      <div className="flex items-start justify-between">
-                        <div className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr ${tool.gradient} text-white shadow-md ${tool.shadow} transition-transform group-hover:scale-110 duration-300`}>
-                          <Icon className="h-6 w-6" />
-                        </div>
-                        <span className={`rounded-full px-2.5 py-1 text-xs font-medium capitalize ${categoryColorMap[tool.category]}`}>
-                          Image
-                        </span>
-                      </div>
-                      <h3 className="mt-5 text-lg font-bold text-zinc-900 dark:text-white group-hover:text-red-500 dark:group-hover:text-red-400 transition-colors duration-200">
-                        {tool.name}
-                      </h3>
-                      <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed flex-1">
-                        {tool.description}
-                      </p>
-
                     </div>
                   </Link>
                 );
@@ -412,331 +338,149 @@ export default function Home() {
           </div>
         )}
       </section>
-      {/* Privacy First: 100% Local Processing Feature Section */}
-      <section className="bg-white dark:bg-zinc-950 py-16 sm:py-4 border-b border-zinc-200 dark:border-zinc-800">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl mb-6">
-            100% Local Processing
-          </h2>
-          <p className="mx-auto max-w-2xl text-lg text-zinc-600 dark:text-zinc-400 mb-12">
-            Unlike other tools that upload your sensitive documents to the cloud, PDFImageConvert processes everything directly inside your browser. Your files never leave your device.
-          </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="flex flex-col items-center p-6 bg-zinc-50 dark:bg-zinc-900/50 rounded-3xl border border-zinc-200 dark:border-zinc-800 hover:shadow-lg transition-shadow duration-300">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400 mb-6">
-                <Lock className="h-8 w-8" />
-              </div>
-              <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">Local Processing</h3>
-              <p className="text-zinc-600 dark:text-zinc-400">Your files are processed locally in your browser and are not uploaded to our servers. This helps keep your documents on your device during processing.</p>
-            </div>
 
-            <div className="flex flex-col items-center p-6 bg-zinc-50 dark:bg-zinc-900/50 rounded-3xl border border-zinc-200 dark:border-zinc-800 hover:shadow-lg transition-shadow duration-300">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 mb-6">
-                <Transform className="h-8 w-8" />
-              </div>
-              <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">Lightning Fast</h3>
-              <p className="text-zinc-600 dark:text-zinc-400">Skip the upload and download wait times. Processing happens instantly using your device&apos;s power.</p>
-            </div>
 
-            <div className="flex flex-col items-center p-6 bg-zinc-50 dark:bg-zinc-900/50 rounded-3xl border border-zinc-200 dark:border-zinc-800 hover:shadow-lg transition-shadow duration-300">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400 mb-6">
-                <FolderZip className="h-8 w-8" />
-              </div>
-              <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">Browser-Based Processing</h3>
-              <p className="text-zinc-600 dark:text-zinc-400">Because processing happens in your browser, there is no server-side upload limit. Very large files may still be limited by your browser, device memory, and available processing resources.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works & Supported Formats */}
+      {/* How It Works */}
       <section className="bg-zinc-50 dark:bg-zinc-900/50 py-12 sm:py-16 border-b border-zinc-200 dark:border-zinc-800">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* How It Works */}
-            <div>
-              <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
-                How It Works
-              </h2>
-              <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
-                Convert your PDF files to high-quality images in three simple steps. No technical skills required.
-              </p>
-              <div className="mt-8 space-y-8">
-                <div className="flex gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400 font-bold text-xl">
-                    1
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">Select a Tool</h3>
-                    <p className="mt-2 text-zinc-600 dark:text-zinc-400">Choose the specific tool you need from our collection (e.g., PDF to JPG, Merge PDF).</p>
-                  </div>
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl mb-4 text-center">
+              How It Works
+            </h2>
+            <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-12 text-center">
+              Calculate your financials accurately in three simple steps.
+            </p>
+            <div className="space-y-8">
+              <div className="flex gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 font-bold text-xl">
+                  1
                 </div>
-                <div className="flex gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400 font-bold text-xl">
-                    2
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">Upload Files</h3>
-                    <p className="mt-2 text-zinc-600 dark:text-zinc-400">Drag and drop your files into the upload area or click to select them from your device.</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400 font-bold text-xl">
-                    3
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">Download Result</h3>
-                    <p className="mt-2 text-zinc-600 dark:text-zinc-400">Click convert and download your processed files instantly. Your files are processed locally and are not uploaded to our servers.</p>
-                  </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">Select a Calculator</h3>
+                  <p className="mt-2 text-zinc-600 dark:text-zinc-400">Choose the specific tool you need from our collection (e.g., EMI Calculator, SIP Calculator).</p>
                 </div>
               </div>
-            </div>
-
-            {/* Supported Formats */}
-            <div className="bg-white dark:bg-zinc-950 rounded-3xl p-8 sm:p-10 shadow-xl shadow-zinc-200/50 dark:shadow-none border border-zinc-200 dark:border-zinc-800">
-              <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white mb-8 text-center">
-                Supported Conversions
-              </h2>
-              <div className="space-y-4">
-                <div className="flex items-center justify-between p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-red-200 dark:hover:border-red-900/50 transition-colors">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400">
-                      <Description className="h-5 w-5" />
-                    </div>
-                    <span className="font-semibold text-zinc-900 dark:text-white">PDF</span>
-                  </div>
-                  <ArrowRightAlt className="h-6 w-6 text-zinc-400" />
-                  <div className="flex items-center gap-3">
-                    <span className="font-semibold text-zinc-900 dark:text-white">JPG</span>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
-                      <ImageIcon className="h-5 w-5" />
-                    </div>
-                  </div>
+              <div className="flex gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 font-bold text-xl">
+                  2
                 </div>
-                <div className="flex items-center justify-between p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-red-200 dark:hover:border-red-900/50 transition-colors">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400">
-                      <Description className="h-5 w-5" />
-                    </div>
-                    <span className="font-semibold text-zinc-900 dark:text-white">PDF</span>
-                  </div>
-                  <ArrowRightAlt className="h-6 w-6 text-zinc-400" />
-                  <div className="flex items-center gap-3">
-                    <span className="font-semibold text-zinc-900 dark:text-white">PNG</span>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400">
-                      <ImageIcon className="h-5 w-5" />
-                    </div>
-                  </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">Enter Your Details</h3>
+                  <p className="mt-2 text-zinc-600 dark:text-zinc-400">Provide the required inputs like loan amount, interest rate, or investment duration.</p>
                 </div>
-                <div className="flex items-center justify-between p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-red-200 dark:hover:border-red-900/50 transition-colors">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400">
-                      <Description className="h-5 w-5" />
-                    </div>
-                    <span className="font-semibold text-zinc-900 dark:text-white">PDF</span>
-                  </div>
-                  <ArrowRightAlt className="h-6 w-6 text-zinc-400" />
-                  <div className="flex items-center gap-3">
-                    <span className="font-semibold text-zinc-900 dark:text-white">WEBP</span>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400">
-                      <ImageIcon className="h-5 w-5" />
-                    </div>
-                  </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 font-bold text-xl">
+                  3
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">View Results</h3>
+                  <p className="mt-2 text-zinc-600 dark:text-zinc-400">Instantly see the breakdown, graphs, and complete schedule.</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-      {/* SEO Content & FAQ Section */}
+
+      {/* FAQ Section */}
       <section className="bg-white dark:bg-zinc-950 py-16 sm:py-24 border-t border-zinc-200 dark:border-zinc-800">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="prose prose-zinc dark:prose-invert max-w-none">
-            <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white mb-6">
-              A Versatile PDF to Image Converter Free Online
-            </h2>
-
-            <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8 leading-relaxed">
-              In today&apos;s fast-paced digital environment, the Portable Document Format (PDF) remains a widely used standard for sharing and archiving documents. However, PDFs are not always the most flexible format. There are countless scenarios where an image format—like JPG, PNG, or WebP—is far more practical. Whether you are a student submitting an assignment, a professional preparing a presentation, or a web developer optimizing assets, using a reliable PDF to image converter free online can drastically streamline your daily workflow.
-            </p>
-
-            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">
-              How to Convert PDF to Image: A Step-by-Step Guide
+          <div className="mb-10 flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 pb-4">
+            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white m-0">
+              Most people ask about
             </h3>
-            <p className="text-zinc-600 dark:text-zinc-400 mb-4 leading-relaxed">
-              Converting your PDF documents into high-quality images has never been easier. Our platform is designed to be incredibly intuitive, requiring absolutely no technical expertise. Follow these simple steps to transform your files in seconds:
-            </p>
-            <ol className="list-decimal pl-6 space-y-4 text-zinc-600 dark:text-zinc-400 mb-8">
-              <li><strong>Select the Right Tool:</strong> Navigate to our tools section above and choose the specific conversion you need. If you want a standard image, select <Link href="/pdf-to-jpg" className="text-blue-600 dark:text-blue-400 hover:underline">PDF to JPG</Link>. For lossless quality with text, choose <Link href="/pdf-to-png" className="text-blue-600 dark:text-blue-400 hover:underline">PDF to PNG</Link>. For web optimization, select <Link href="/pdf-to-webp" className="text-blue-600 dark:text-blue-400 hover:underline">PDF to WebP</Link>.</li>
-              <li><strong>Upload Your Document:</strong> Click the upload area to browse your device&apos;s files, or simply drag and drop your PDF directly into the browser window. Because we use local processing, your file is loaded instantly without waiting for a slow server upload.</li>
-              <li><strong>Configure Settings (Optional):</strong> Depending on the tool, you may have options to adjust the output quality or select specific pages to convert. For most users, the default high-quality settings are perfect.</li>
-              <li><strong>Start the Conversion:</strong> Click the &quot;Convert&quot; button. Your device&apos;s processor will immediately begin rendering the PDF pages into image files. Processing time depends on the PDF size, number of pages, and your device&apos;s available memory.</li>
-              <li><strong>Download Your Images:</strong> Once complete, you can download your new images. If your PDF had multiple pages, our tool will automatically package them into a convenient ZIP archive so you can download everything with a single click.</li>
-            </ol>
-
-            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">
-              What is PDF to Image Conversion?
-            </h3>
-            <p className="text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed">
-              PDF to image conversion is the technical process of extracting the visual representation of a PDF document and saving it as a standard, rasterized image file. Unlike PDFs, which can contain selectable text, embedded fonts, scalable vector graphics, and interactive elements, image files are composed of a fixed grid of pixels. This fundamental difference makes images universally viewable on virtually any device, operating system, or web browser without requiring specialized PDF reader software like Adobe Acrobat.
-            </p>
-
-            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">
-              Why Convert PDFs to Images? The Key Benefits
-            </h3>
-            <p className="text-zinc-600 dark:text-zinc-400 mb-4 leading-relaxed">
-              Transforming your documents into images unlocks a new level of versatility. Here are some common reasons people convert PDFs to images:
-            </p>
-            <ul className="list-disc pl-6 space-y-3 text-zinc-600 dark:text-zinc-400 mb-8">
-              <li><strong>Seamless Social Media Sharing:</strong> Major social platforms like Instagram, Facebook, Pinterest, and X (formerly Twitter) do not support direct PDF document uploads. By converting your document to a high-quality JPG or PNG, you can share your content, infographics, or flyers effortlessly with your audience.</li>
-              <li><strong>Web Design and Development Optimization:</strong> Embedding a PDF directly on a website often requires clunky third-party plugins (like PDF.js) or forces the user to download the file to view it. Images, on the other hand, can be displayed natively in any web browser, significantly improving the user experience and reducing page load times.</li>
-              <li><strong>Flawless Presentations:</strong> When building a PowerPoint, Keynote, or Google Slides presentation, inserting images is much easier and more reliable than attempting to embed interactive PDF files, which often break formatting or fail to load on different computers.</li>
-              <li><strong>Enhanced Security and Immutability:</strong> While PDFs can be easily edited, text-copied, or modified with the right software, a rasterized image is &quot;flattened&quot; and much harder to alter. If you want to share a document (like a contract or invoice) and ensure the text cannot be easily copied or digitally manipulated, converting it to an image is an excellent, simple security measure.</li>
-            </ul>
-
-            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">
-              JPG vs. PNG vs. WebP: Choosing the Right Format
-            </h3>
-            <p className="text-zinc-600 dark:text-zinc-400 mb-4 leading-relaxed">
-              Selecting the correct output format is crucial for balancing visual quality and file size. Our platform supports the three most popular web formats. Here is a quick breakdown to help you choose:
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <div className="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-2xl border border-zinc-100 dark:border-zinc-800">
-                <h4 className="font-bold text-zinc-900 dark:text-white mb-2">JPG (JPEG)</h4>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400">Best for photographs and complex images with many colors. It uses <strong>lossy compression</strong>, meaning it reduces file size by permanently discarding some visual data. This may result in a slight, often unnoticeable, loss of quality, but produces very small file sizes.</p>
-              </div>
-              <div className="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-2xl border border-zinc-100 dark:border-zinc-800">
-                <h4 className="font-bold text-zinc-900 dark:text-white mb-2">PNG</h4>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400">Ideal for documents containing sharp text, line art, logos, and images requiring transparent backgrounds. It uses <strong>lossless compression</strong>, ensuring crisp text and minimal quality degradation, though the resulting file sizes are generally larger than JPGs.</p>
-              </div>
-              <div className="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-2xl border border-zinc-100 dark:border-zinc-800">
-                <h4 className="font-bold text-zinc-900 dark:text-white mb-2">WebP</h4>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400">The modern web standard developed by Google. WebP provides superior compression compared to both JPG and PNG, offering high visual quality at significantly smaller file sizes. It is the perfect choice if you are optimizing images for a website.</p>
-              </div>
+            <div className="flex items-center gap-2">
+              <button
+                suppressHydrationWarning
+                onClick={() => setFaqIndex((prev) => (prev - 1 + 6) % 6)}
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+                aria-label="Previous FAQ"
+              >
+                <ArrowBack className="h-5 w-5" />
+              </button>
+              <button
+                suppressHydrationWarning
+                onClick={() => setFaqIndex((prev) => (prev + 1) % 6)}
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+                aria-label="Next FAQ"
+              >
+                <ArrowForward className="h-5 w-5" />
+              </button>
             </div>
+          </div>
 
-            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">
-              Uncompromising Privacy: The Power of Local Processing
-            </h3>
-            <p className="text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed">
-              The biggest concern when using online document converters is data privacy. Most traditional platforms require you to upload your sensitive files—such as financial records, legal contracts, or personal identification—to their remote cloud servers for processing. This exposes your data to potential breaches, unauthorized access, and retention policies you cannot control.
-            </p>
-            <p className="text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed">
-              <strong>PDFImageConvert is fundamentally different.</strong> We utilize cutting-edge WebAssembly (Wasm) and modern browser APIs to perform 100% of the file processing locally, directly on your device. When you select a file, it never leaves your computer, tablet, or smartphone. There are no uploads and no cloud servers. This browser-based architecture is designed to keep document processing on your device, which can be useful when working with personal or sensitive files.
-            </p>
+          <div
+            className="relative h-[380px] w-full flex items-center justify-center py-4 cursor-grab active:cursor-grabbing select-none"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            onMouseDown={handleTouchStart}
+            onMouseMove={handleTouchMove}
+            onMouseUp={handleTouchEnd}
+            onMouseLeave={handleTouchEnd}
+          >
+            {[
+              {
+                q: "Is my data secure?",
+                a: "Absolutely. We prioritize your privacy. All calculations happen locally directly on your device (in your browser). Your data is never uploaded to our servers, meaning no one else can ever access it."
+              },
+              {
+                q: "Is it really free?",
+                a: "Yes, our tool is 100% free to use. There are no hidden fees and no registration required to access the core features."
+              },
+              {
+                q: "Does it work on mobile?",
+                a: "Yes! Our website is fully responsive and works seamlessly on smartphones and tablets (iOS and Android)."
+              },
+              {
+                q: "What is an EMI?",
+                a: "EMI stands for Equated Monthly Installment. It is a fixed payment amount made by a borrower to a lender at a specified date each calendar month to pay off both interest and principal."
+              },
+              {
+                q: "What is a SIP?",
+                a: "SIP stands for Systematic Investment Plan. It is an investment strategy where you invest a fixed amount of money at regular intervals in a mutual fund or other investment vehicle."
+              },
+              {
+                q: "How accurate are the calculators?",
+                a: "Our calculators use standard financial formulas to provide accurate estimates. However, actual bank figures may vary slightly due to processing fees or exact days in a month."
+              }
+            ].map((faq, idx) => {
+              const diff = (idx - faqIndex + 6) % 6;
+              let positionClass = "";
+              if (diff === 0) positionClass = "z-30 translate-x-0 scale-100 opacity-100";
+              else if (diff === 1) positionClass = "z-20 translate-x-[40%] scale-90 opacity-100 brightness-75";
+              else if (diff === 5) positionClass = "z-20 -translate-x-[40%] scale-90 opacity-100 brightness-75";
+              else if (diff === 2) positionClass = "z-10 translate-x-[70%] scale-75 opacity-100 brightness-50";
+              else if (diff === 4) positionClass = "z-10 -translate-x-[70%] scale-75 opacity-100 brightness-50";
+              else positionClass = "z-0 translate-x-0 scale-50 opacity-0";
 
-            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">
-              Who Can Benefit from PDFImageConvert?
-            </h3>
-            <ul className="list-disc pl-6 space-y-3 text-zinc-600 dark:text-zinc-400 mb-8">
-              <li><strong>Students & Educators:</strong> Quickly convert lecture slides, research papers, and assignments into easily shareable images for study groups or online forums.</li>
-              <li><strong>Designers & Developers:</strong> Extract high-resolution assets from client PDFs or convert heavy documents into optimized WebP images for faster website performance.</li>
-              <li><strong>Business Professionals:</strong> Securely convert sensitive contracts, invoices, and reports into flattened images to prevent unauthorized editing before emailing them to clients.</li>
-              <li><strong>Social Media Managers:</strong> Turn multi-page PDF reports, infographics, or promotional flyers into a series of JPGs ready for Instagram carousels or LinkedIn posts.</li>
-            </ul>
-
-            <div className="mt-16 mb-10 flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 pb-4">
-              <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white m-0">
-                Most people ask about
-              </h3>
-              <div className="flex items-center gap-2">
-                <button
-                  suppressHydrationWarning
-                  onClick={() => setFaqIndex((prev) => (prev - 1 + 6) % 6)}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
-                  aria-label="Previous FAQ"
+              return (
+                <div
+                  key={idx}
+                  className={`absolute w-full max-w-lg rounded-3xl bg-white p-8 sm:p-10 shadow-2xl transition-all duration-500 border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 ${positionClass}`}
                 >
-                  <ArrowBack className="h-5 w-5" />
-                </button>
-                <button
-                  suppressHydrationWarning
-                  onClick={() => setFaqIndex((prev) => (prev + 1) % 6)}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
-                  aria-label="Next FAQ"
-                >
-                  <ArrowForward className="h-5 w-5" />
-                </button>
-              </div>
-            </div>
-
-            <div
-              className="relative h-[380px] w-full flex items-center justify-center py-4 cursor-grab active:cursor-grabbing select-none overflow-hidden"
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
-              onMouseDown={handleTouchStart}
-              onMouseMove={handleTouchMove}
-              onMouseUp={handleTouchEnd}
-              onMouseLeave={handleTouchEnd}
-            >
-              {[
-                {
-                  q: "Is my PDF secure?",
-                  a: "Absolutely. We prioritize your privacy. All file processing happens locally directly on your device (in your browser). Your files are never uploaded to our servers, meaning no one else can ever access them."
-                },
-                {
-                  q: "Is it really free?",
-                  a: "Yes, our tool is 100% free to use. There are no hidden fees, no watermarks added to your images, and no registration required to access the core features."
-                },
-                {
-                  q: "Maximum file size?",
-                  a: "Because all processing happens locally in your browser, there is no strict file size limit. However, very large files (e.g., over 100MB) might take longer to process depending on your device's memory."
-                },
-                {
-                  q: "Does it work on mobile?",
-                  a: "Yes! Our website is fully responsive and works seamlessly on smartphones and tablets (iOS and Android). You can convert PDFs directly from your mobile browser without installing any apps."
-                },
-                {
-                  q: "Can I convert multiple PDFs?",
-                  a: "Yes, our tool supports batch conversion. If you upload a multi-page PDF, we will convert every page into a separate image file, which you can download individually or as a convenient ZIP archive."
-                },
-                {
-                  q: "Can I convert scanned PDFs?",
-                  a: "Yes, our tool can convert scanned PDFs into images perfectly. Since we render the PDF exactly as it appears, scanned pages will be converted into high-quality JPG or PNG files."
-                }
-              ].map((faq, index) => {
-                let offset = index - faqIndex;
-                if (offset < -2) offset += 6;
-                if (offset > 3) offset -= 6;
-
-                const isCenter = offset === 0;
-                const isLeft = offset === -1;
-                const isRight = offset === 1;
-                const isHidden = offset < -1 || offset > 1;
-
-                let positionClass = '';
-                if (isLeft) {
-                  positionClass = '-translate-x-[50%] sm:-translate-x-[75%] scale-[0.85] z-0 opacity-60';
-                } else if (isRight) {
-                  positionClass = 'translate-x-[50%] sm:translate-x-[75%] scale-[0.85] z-0 opacity-60';
-                } else if (isHidden) {
-                  positionClass = `${offset < 0 ? '-translate-x-[150%]' : 'translate-x-[150%]'} scale-50 -z-10 opacity-0 pointer-events-none`;
-                } else {
-                  positionClass = 'translate-x-0 scale-100 z-10 opacity-100';
-                }
-
-                return (
-                  <div
-                    key={index}
-                    className={`absolute transition-all duration-500 ease-in-out w-[280px] sm:w-[320px] rounded-2xl border p-6 flex flex-col h-[320px] ${isCenter
-                      ? 'border-blue-500 bg-white dark:bg-zinc-950 shadow-[0_10px_40px_-10px_rgba(59,130,246,0.3)] dark:shadow-[0_10px_40px_-10px_rgba(59,130,246,0.2)]'
-                      : 'border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900'
-                      } ${positionClass}`}
-                  >
-                    <h4 className={`text-lg font-bold mb-3 ${isCenter ? 'text-blue-600 dark:text-blue-400' : 'text-zinc-900 dark:text-white'}`}>
-                      {faq.q}
-                    </h4>
-                    <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed flex-grow">
-                      {faq.a}
-                    </p>
-                    <Link href="/faq" className={`mt-6 text-sm font-semibold inline-flex items-center ${isCenter ? 'text-blue-600 dark:text-blue-400 hover:text-blue-700' : 'text-blue-600 dark:text-blue-400 hover:text-blue-700'}`}>
-                      Read More FAQ
-                    </Link>
-                  </div>
-                );
-              })}
-            </div>
+                  <h4 className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+                    {faq.q}
+                  </h4>
+                  <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    {faq.a}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+          <div className="mt-8 flex justify-center gap-2">
+            {[0, 1, 2, 3, 4, 5].map((idx) => (
+              <button
+                key={idx}
+                suppressHydrationWarning
+                onClick={() => setFaqIndex(idx)}
+                className={`h-2.5 rounded-full transition-all duration-300 ${faqIndex === idx ? "w-8 bg-blue-600" : "w-2.5 bg-zinc-300 dark:bg-zinc-700"}`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
           </div>
         </div>
       </section>

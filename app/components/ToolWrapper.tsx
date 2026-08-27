@@ -35,34 +35,31 @@ export default function ToolWrapper({
     const gradient = accentMap[accentColor] ?? accentMap["red"];
 
     return (
-        <div className={`mx-auto w-full max-w-4xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 flex-1 flex flex-col ${className ? className : ''}`}>
-            {/* Back link */}
-            <div className="mb-6">
+        <div className={`mx-auto w-full max-w-5xl px-4 py-4 sm:px-6 sm:py-6 lg:px-8 flex-1 flex flex-col ${className ? className : ''}`}>
+            {/* Header Row */}
+            <div className="mb-6 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mt-2">
                 <Link
                     href="/"
-                    className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-white transition-colors group"
+                    className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800/60 dark:hover:bg-zinc-800 text-sm font-medium text-zinc-600 dark:text-zinc-300 transition-colors group shrink-0 w-fit border border-zinc-200 dark:border-zinc-700/50"
                 >
                     <ArrowBack className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-                    Back to Tools
+                    Back
                 </Link>
+                
+                <div>
+                    <h1 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
+                        {title}
+                    </h1>
+                    <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+                        {description}
+                    </p>
+                </div>
             </div>
 
-            {/* Header */}
-            <div className="mb-8">
-                {/* Gradient accent line */}
-                <div className={`h-1 w-12 rounded-full bg-gradient-to-r ${gradient} mb-4`} />
-                <h1 className="text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
-                    {title}
-                </h1>
-                <p className="mt-2 text-base text-zinc-500 dark:text-zinc-400 max-w-2xl">
-                    {description}
-                </p>
-            </div>
-
-            {/* Card */}
-            <div className="flex-1 rounded-2xl sm:rounded-3xl border border-zinc-200 bg-white p-5 sm:p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-950 transition-all duration-300 flex flex-col justify-center min-h-[380px]">
-                {children}
-            </div>
+                {/* Card */}
+                <div className="flex-1 rounded-2xl sm:rounded-3xl border border-zinc-200 bg-white p-5 sm:p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-950 transition-all duration-300 flex flex-col justify-center min-h-[380px]">
+                    {children}
+                </div>
         </div>
     );
 }

@@ -10,46 +10,45 @@ const ibmPlexSans = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://pdfimageconvert.com"),
+  metadataBase: new URL("https://financetools.com"),
 
   title:
-    "PDF to Image Converter Free Online - Convert PDF to JPG/PNG | PDFImageConvert",
+    "Finance Tools - Free EMI, SIP, and Compound Interest Calculators",
 
   description:
-    "Free online PDF to image converter. Convert PDF to JPG, PNG, or WebP in seconds. Fast, secure, and 100% local processing without uploading files.",
+    "Free online financial calculators. Calculate EMI for loans, SIP returns, and compound interest in seconds. Fast, secure, and accurate.",
 
   keywords: [
-    "pdf to image converter free online",
-    "pdf to image",
-    "pdf to png",
-    "extract images from pdf",
-    "pdf to jpg without upload",
-    "local pdf converter",
-    "PDF tools",
-    "image tools",
+    "emi calculator",
+    "sip calculator",
+    "compound interest calculator",
+    "financial tools",
+    "loan calculator",
+    "mutual fund calculator",
+    "investment tools",
   ],
 
   openGraph: {
-    title: "PDF to Image Converter Free Online | PDFImageConvert",
-    description: "Free online PDF to image converter. Convert PDF to JPG, PNG, or WebP in seconds. Fast, secure, and 100% local processing.",
-    url: "https://pdfimageconvert.com",
-    siteName: "PDFImageConvert",
+    title: "Finance Tools - Free EMI, SIP, and Compound Interest Calculators",
+    description: "Free online financial calculators. Calculate EMI for loans, SIP returns, and compound interest in seconds.",
+    url: "https://financetools.com",
+    siteName: "FinanceTools",
     type: "website",
     images: [
       {
-        url: "https://pdfimageconvert.com/logo.png",
+        url: "https://financetools.com/logo.png",
         width: 800,
         height: 600,
-        alt: "PDFImageConvert Logo",
+        alt: "FinanceTools Logo",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "PDF to Image Converter Free Online | PDFImageConvert",
-    description: "Free online PDF to image converter. Convert PDF to JPG, PNG, or WebP in seconds. Fast, secure, and 100% local processing.",
-    images: ["https://pdfimageconvert.com/logo.png"],
+    title: "Finance Tools - Free EMI, SIP, and Compound Interest Calculators",
+    description: "Free online financial calculators. Calculate EMI for loans, SIP returns, and compound interest in seconds.",
+    images: ["https://financetools.com/logo.png"],
   },
 
   icons: {
@@ -77,22 +76,22 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://pdfimageconvert.com/#website",
-      url: "https://pdfimageconvert.com",
-      name: "PDFImageConvert",
-      description: "Free online PDF to image converter. Convert PDF to JPG, PNG, or WebP in seconds.",
+      "@id": "https://financetools.com/#website",
+      url: "https://financetools.com",
+      name: "FinanceTools",
+      description: "Free online financial calculators. Calculate EMI for loans, SIP returns, and compound interest in seconds.",
       publisher: {
-        "@id": "https://pdfimageconvert.com/#organization",
+        "@id": "https://financetools.com/#organization",
       },
     },
     {
       "@type": "Organization",
-      "@id": "https://pdfimageconvert.com/#organization",
-      name: "PDFImageConvert",
-      url: "https://pdfimageconvert.com",
+      "@id": "https://financetools.com/#organization",
+      name: "FinanceTools",
+      url: "https://financetools.com",
       logo: {
         "@type": "ImageObject",
-        url: "https://pdfimageconvert.com/logo.png",
+        url: "https://financetools.com/logo.png",
       },
     },
   ],
