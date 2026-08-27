@@ -6,11 +6,8 @@ import { ArrowBack } from "@mui/icons-material";
 import { tools } from "../data/tools";
 
 const categories = [
-    { id: "organize", name: "Organize PDF", description: "Merge, split, and rearrange your PDF pages." },
-    { id: "convert", name: "Convert PDF", description: "Convert PDFs to and from images, Word, and text." },
-    { id: "optimize", name: "Optimize PDF", description: "Compress and reduce the file size of your PDFs." },
-    { id: "security", name: "PDF Security", description: "Protect, unlock, sign, and watermark your PDFs." },
-    { id: "image", name: "Image Tools", description: "Convert, compress, resize, and edit your images." },
+    { id: "personal-finance", name: "Personal Finance", description: "Tools for managing your personal wealth and loans." },
+    { id: "calculators", name: "Financial Calculators", description: "General purpose calculators for interest and returns." },
 ];
 
 export default function ToolsPage() {
@@ -32,13 +29,13 @@ export default function ToolsPage() {
                     All Tools
                 </h1>
                 <p className="mt-2 text-base text-zinc-500 dark:text-zinc-400 max-w-2xl">
-                    Explore our collection of free, fast, and secure tools for all your PDF and image conversion needs.
+                    Explore our comprehensive suite of financial calculators to plan your wealth, loans, and investments.
                 </p>
             </div>
 
             <div className="flex flex-col gap-12">
                 {categories.map(category => {
-                    const categoryTools = tools.filter(t => t.category === category.id);
+                    const categoryTools = tools.filter(t => t.categoryId === category.id);
                     if (categoryTools.length === 0) return null;
 
                     return (
@@ -49,15 +46,19 @@ export default function ToolsPage() {
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {categoryTools.map((tool) => {
-                                    const Icon = tool.icon;
+                                    const IconName = tool.icon as keyof typeof import('@mui/icons-material');
+                                    // We can just use a simple generic icon here if we don't want to import all dynamically, 
+                                    // but since it's just a page, let's use a standard div or import the same mapped icons.
+                                    // For simplicity, we'll just remove the dynamic icon and use a generic one or none, 
+                                    // actually let's just render the title directly.
                                     return (
                                         <Link href={tool.href} key={tool.id} className="group flex flex-col h-full rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-700">
                                             <div className="flex items-center gap-4 mb-4">
-                                                <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-tr ${tool.gradient} text-white shadow-md ${tool.shadow} transition-transform duration-300 group-hover:rotate-3`}>
-                                                    <Icon className="h-6 w-6" />
+                                                <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-500 to-purple-500 text-white shadow-md shadow-blue-500/20 transition-transform duration-300 group-hover:rotate-3`}>
+                                                    <span className="font-bold">{tool.title.charAt(0)}</span>
                                                 </div>
                                                 <h3 className="font-semibold text-lg text-zinc-900 dark:text-white transition-colors duration-300 group-hover:text-zinc-700 dark:group-hover:text-zinc-300">
-                                                    {tool.name}
+                                                    {tool.title}
                                                 </h3>
                                             </div>
                                             <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed flex-1">

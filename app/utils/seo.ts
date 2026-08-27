@@ -13,7 +13,7 @@ export function generateToolMetadata(toolId: string): Metadata {
         };
     }
 
-    const title = `${tool.name} Free Online | ${siteName}`;
+    const title = `${tool.title} Free Online | ${siteName}`;
     const description = `${tool.description} Fast, secure, and 100% local processing in your browser. No file uploads required.`;
     const url = `${baseUrl}${tool.href}`;
 
@@ -54,9 +54,9 @@ export function generateToolSchema(toolId: string) {
     return {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
-        name: tool.name,
+        name: tool.title,
         description: tool.description,
-        applicationCategory: "UtilitiesApplication",
+        applicationCategory: "FinanceApplication",
         operatingSystem: "Any",
         offers: {
             "@type": "Offer",
