@@ -29,7 +29,7 @@ export default function LoanEligibilityCalculator() {
         const numTenure = Number(tenure);
 
         if (emi !== "") {
-            const emiValidation = validateAmount(numEmi, 500); // min affordable emi 500
+            const emiValidation = validateAmount(numEmi, "Affordable Monthly EMI", 500, 10000000, false);
             if (!emiValidation.isValid) {
                 newErrors.emi = emiValidation.error;
                 hasError = true;
@@ -37,7 +37,7 @@ export default function LoanEligibilityCalculator() {
         }
         
         if (rate !== "") {
-            const rateValidation = validateRate(numRate);
+            const rateValidation = validateRate(numRate, 0, 50, "Interest Rate");
             if (!rateValidation.isValid) {
                 newErrors.rate = rateValidation.error;
                 hasError = true;
@@ -46,7 +46,7 @@ export default function LoanEligibilityCalculator() {
         
         const totalMonths = tenureType === "years" ? numTenure * 12 : numTenure;
         if (tenure !== "") {
-            const tenureValidation = validateTenure(totalMonths, 1, 600);
+            const tenureValidation = validateTenure(totalMonths, 1, 600, "months", "Loan Tenure");
             if (!tenureValidation.isValid) {
                 newErrors.tenure = tenureValidation.error;
                 hasError = true;
@@ -55,7 +55,7 @@ export default function LoanEligibilityCalculator() {
 
         setErrors(newErrors);
 
-        if (!hasError && numEmi > 0 && numRate > 0 && numTenure > 0) {
+        if (!hasError && emi !== "" && rate !== "" && tenure !== "") {
             const eligibleLoan = calculateLoanEligibility(numEmi, numRate, totalMonths);
             setMaxLoan(eligibleLoan);
         } else {

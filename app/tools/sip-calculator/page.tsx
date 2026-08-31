@@ -32,7 +32,7 @@ export default function SIPCalculator() {
         const numTenure = Number(tenure);
 
         if (amount !== "") {
-            const amountValidation = validateAmount(numAmount, 100);
+            const amountValidation = validateAmount(numAmount, "Monthly Investment", 100, 100000000, false);
             if (!amountValidation.isValid) {
                 newErrors.amount = amountValidation.error;
                 hasError = true;
@@ -40,7 +40,7 @@ export default function SIPCalculator() {
         }
         
         if (rate !== "") {
-            const rateValidation = validateRate(numRate);
+            const rateValidation = validateRate(numRate, 0, 50, "Expected Return Rate");
             if (!rateValidation.isValid) {
                 newErrors.rate = rateValidation.error;
                 hasError = true;
@@ -49,7 +49,7 @@ export default function SIPCalculator() {
         
         const totalMonths = tenureType === "years" ? numTenure * 12 : numTenure;
         if (tenure !== "") {
-            const tenureValidation = validateTenure(totalMonths, 1, 600);
+            const tenureValidation = validateTenure(totalMonths, 1, 600, "months", "Time Period");
             if (!tenureValidation.isValid) {
                 newErrors.tenure = tenureValidation.error;
                 hasError = true;
@@ -58,7 +58,7 @@ export default function SIPCalculator() {
 
         setErrors(newErrors);
 
-        if (!hasError && numAmount > 0 && numRate > 0 && numTenure > 0) {
+        if (!hasError && amount !== "" && rate !== "" && tenure !== "") {
             const result = calculateSIP(numAmount, numRate, totalMonths);
             setInvestedAmount(result.investedAmount);
             setEstimatedReturns(result.estimatedReturns);

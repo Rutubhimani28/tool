@@ -42,7 +42,7 @@ export default function CompoundInterestCalculator() {
         const numTenure = Number(tenure);
 
         if (amount !== "") {
-            const amountValidation = validateAmount(numAmount, 100);
+            const amountValidation = validateAmount(numAmount, "Principal Amount", 100, 1000000000, false);
             if (!amountValidation.isValid) {
                 newErrors.amount = amountValidation.error;
                 hasError = true;
@@ -50,7 +50,7 @@ export default function CompoundInterestCalculator() {
         }
         
         if (rate !== "") {
-            const rateValidation = validateRate(numRate);
+            const rateValidation = validateRate(numRate, 0, 50, "Annual Interest Rate");
             if (!rateValidation.isValid) {
                 newErrors.rate = rateValidation.error;
                 hasError = true;
@@ -58,7 +58,7 @@ export default function CompoundInterestCalculator() {
         }
         
         if (tenure !== "") {
-            const tenureValidation = validateTenure(numTenure, 1, 50, "years");
+            const tenureValidation = validateTenure(numTenure, 1, 100, "years", "Time Period");
             if (!tenureValidation.isValid) {
                 newErrors.tenure = tenureValidation.error;
                 hasError = true;
@@ -67,7 +67,7 @@ export default function CompoundInterestCalculator() {
 
         setErrors(newErrors);
 
-        if (!hasError && numAmount > 0 && numRate > 0 && numTenure > 0) {
+        if (!hasError && amount !== "" && rate !== "" && tenure !== "") {
             const result = calculateCompoundInterest(numAmount, numRate, numTenure, frequency);
             setPrincipalAmount(result.principalAmount);
             setTotalInterest(result.totalInterest);

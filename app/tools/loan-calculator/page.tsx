@@ -34,7 +34,7 @@ export default function AdvancedLoanCalculator() {
         const numTenure = Number(tenure);
 
         if (amount !== "") {
-            const amountValidation = validateAmount(numAmount, 1000);
+            const amountValidation = validateAmount(numAmount, "Loan Amount", 1000, 100000000, false);
             if (!amountValidation.isValid) {
                 newErrors.amount = amountValidation.error;
                 hasError = true;
@@ -42,7 +42,7 @@ export default function AdvancedLoanCalculator() {
         }
         
         if (rate !== "") {
-            const rateValidation = validateRate(numRate);
+            const rateValidation = validateRate(numRate, 0, 50, "Interest Rate");
             if (!rateValidation.isValid) {
                 newErrors.rate = rateValidation.error;
                 hasError = true;
@@ -51,7 +51,7 @@ export default function AdvancedLoanCalculator() {
         
         const totalMonths = tenureType === "years" ? numTenure * 12 : numTenure;
         if (tenure !== "") {
-            const tenureValidation = validateTenure(totalMonths, 1, 600);
+            const tenureValidation = validateTenure(totalMonths, 1, 600, "months", "Loan Tenure");
             if (!tenureValidation.isValid) {
                 newErrors.tenure = tenureValidation.error;
                 hasError = true;
@@ -60,7 +60,7 @@ export default function AdvancedLoanCalculator() {
 
         setErrors(newErrors);
 
-        if (!hasError && numAmount > 0 && numRate > 0 && numTenure > 0) {
+        if (!hasError && amount !== "" && rate !== "" && tenure !== "") {
             const result = calculateEMI(numAmount, numRate, totalMonths);
             setEmi(result.emi);
             setTotalInterest(result.totalInterest);

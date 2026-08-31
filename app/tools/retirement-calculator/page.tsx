@@ -5,7 +5,7 @@ import ToolWrapper from "@/app/components/ToolWrapper";
 import { TrendingUp as TrendingUpIcon } from "@mui/icons-material";
 import { calculateRetirementCorpus, RetirementResult } from "@/app/lib/finance/calculations";
 import { formatCurrency } from "@/app/utils/formatCurrency";
-import { validateAmount, validateRate, validateTenure } from "@/app/utils/validation";
+import { validateAmount, validateRate, validateAge } from "@/app/utils/validation";
 
 export default function RetirementCalculator() {
     const [currentAge, setCurrentAge] = useState<number | "">(30);
@@ -36,34 +36,31 @@ export default function RetirementCalculator() {
         const numRate = Number(rate);
 
         if (currentAge !== "" && retirementAge !== "") {
-            if (numCurrentAge < 18 || numCurrentAge > 80) {
-                newErrors.age = "Current age must be between 18 and 80";
-                hasError = true;
-            } else if (numRetirementAge <= numCurrentAge) {
-                newErrors.age = "Retirement age must be greater than current age";
-                hasError = true;
-            } else if (numRetirementAge > 100) {
-                newErrors.age = "Retirement age cannot exceed 100";
+            const ageValidation = validateAge(numCurrentAge, numRetirementAge, 1, 100);
+            if (!ageValidation.isValid) {
+                newErrors.age = ageValidation.error;
                 hasError = true;
             }
         }
 
         if (currentSavings !== "") {
-            if (numCurrentSavings < 0) {
-                newErrors.currentSavings = "Savings cannot be negative";
+            const savingsValidation = validateAmount(numCurrentSavings, "Current Savings", 0, 1000000000, true);
+            if (!savingsValidation.isValid) {
+                newErrors.currentSavings = savingsValidation.error;
                 hasError = true;
             }
         }
 
         if (monthlyInvestment !== "") {
-            if (numMonthlyInvestment < 0) {
-                newErrors.monthlyInvestment = "Investment cannot be negative";
+            const sipValidation = validateAmount(numMonthlyInvestment, "Monthly Investment", 0, 100000000, true);
+            if (!sipValidation.isValid) {
+                newErrors.monthlyInvestment = sipValidation.error;
                 hasError = true;
             }
         }
         
         if (rate !== "") {
-            const rateValidation = validateRate(numRate);
+            const rateValidation = validateRate(numRate, 0, 50, "Expected Return Rate");
             if (!rateValidation.isValid) {
                 newErrors.rate = rateValidation.error;
                 hasError = true;
@@ -72,7 +69,7 @@ export default function RetirementCalculator() {
 
         setErrors(newErrors);
 
-        if (!hasError && numCurrentAge > 0 && numRetirementAge > numCurrentAge && numRate > 0) {
+        if (!hasError && currentAge !== "" && retirementAge !== "" && rate !== "") {
             setResult(calculateRetirementCorpus(numCurrentAge, numRetirementAge, numCurrentSavings, numMonthlyInvestment, numRate));
         } else {
             setResult({ totalCorpus: 0, totalInvested: 0, wealthGained: 0 });

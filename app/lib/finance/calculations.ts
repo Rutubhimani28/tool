@@ -6,27 +6,32 @@ export interface EMIResult {
 
 /**
  * Calculate EMI and breakdown
- * @param principal The loan amount
- * @param rateAnnual The annual interest rate in percentage
- * @param tenure The total tenure in months
- * @returns The calculated EMI, total interest, and total payment
  */
 export function calculateEMI(principal: number, rateAnnual: number, tenureMonths: number): EMIResult {
-    if (!principal || !rateAnnual || !tenureMonths) {
+    if (principal <= 0 || tenureMonths <= 0 || isNaN(rateAnnual) || rateAnnual < 0) {
         return { emi: 0, totalInterest: 0, totalPayment: 0 };
     }
 
-    const r = rateAnnual / 12 / 100; // Monthly interest rate
-    const n = tenureMonths; // Total number of months
+    const r = rateAnnual / 12 / 100;
+    const n = tenureMonths;
     
-    // EMI Formula: P x R x (1+R)^N / [(1+R)^N-1]
-    const emi = (principal * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-    const totalPayment = emi * n;
-    const totalInterest = totalPayment - principal;
+    let emi = 0;
+    let totalPayment = 0;
+    let totalInterest = 0;
+
+    if (r === 0) {
+        emi = principal / n;
+        totalPayment = principal;
+        totalInterest = 0;
+    } else {
+        emi = (principal * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+        totalPayment = emi * n;
+        totalInterest = totalPayment - principal;
+    }
 
     return {
         emi: isNaN(emi) || !isFinite(emi) ? 0 : Math.round(emi),
-        totalInterest: isNaN(totalInterest) || !isFinite(totalInterest) ? 0 : Math.round(totalInterest),
+        totalInterest: isNaN(totalInterest) || !isFinite(totalInterest) || totalInterest < 0 ? 0 : Math.round(totalInterest),
         totalPayment: isNaN(totalPayment) || !isFinite(totalPayment) ? 0 : Math.round(totalPayment),
     };
 }
@@ -39,27 +44,29 @@ export interface SIPResult {
 
 /**
  * Calculate SIP Returns
- * @param monthlyInvestment The monthly investment amount
- * @param rateAnnual The expected annual return rate in percentage
- * @param tenureMonths The total tenure in months
- * @returns The invested amount, estimated returns, and total value
  */
 export function calculateSIP(monthlyInvestment: number, rateAnnual: number, tenureMonths: number): SIPResult {
-    if (!monthlyInvestment || !rateAnnual || !tenureMonths) {
+    if (monthlyInvestment <= 0 || tenureMonths <= 0 || isNaN(rateAnnual) || rateAnnual < 0) {
         return { investedAmount: 0, estimatedReturns: 0, totalValue: 0 };
     }
 
-    const i = rateAnnual / 12 / 100; // Monthly rate of return
-    const n = tenureMonths; // Total number of months
+    const i = rateAnnual / 12 / 100;
+    const n = tenureMonths;
     
-    // SIP Formula: P × ({[1 + i]^n - 1} / i) × (1 + i)
-    const totalValue = monthlyInvestment * ((Math.pow(1 + i, n) - 1) / i) * (1 + i);
+    let totalValue = 0;
     const investedAmount = monthlyInvestment * n;
+
+    if (i === 0) {
+        totalValue = investedAmount;
+    } else {
+        totalValue = monthlyInvestment * ((Math.pow(1 + i, n) - 1) / i) * (1 + i);
+    }
+    
     const estimatedReturns = totalValue - investedAmount;
 
     return {
         investedAmount: isNaN(investedAmount) || !isFinite(investedAmount) ? 0 : Math.round(investedAmount),
-        estimatedReturns: isNaN(estimatedReturns) || !isFinite(estimatedReturns) ? 0 : Math.round(estimatedReturns),
+        estimatedReturns: isNaN(estimatedReturns) || !isFinite(estimatedReturns) || estimatedReturns < 0 ? 0 : Math.round(estimatedReturns),
         totalValue: isNaN(totalValue) || !isFinite(totalValue) ? 0 : Math.round(totalValue),
     };
 }
@@ -72,14 +79,9 @@ export interface CompoundInterestResult {
 
 /**
  * Calculate Compound Interest
- * @param principal The initial investment amount
- * @param rateAnnual The annual interest rate in percentage
- * @param tenureYears The total tenure in years
- * @param compoundingFrequency The number of times interest is compounded per year (e.g., 1 for annually, 12 for monthly)
- * @returns The principal amount, total interest earned, and total value
  */
 export function calculateCompoundInterest(principal: number, rateAnnual: number, tenureYears: number, compoundingFrequency: number = 1): CompoundInterestResult {
-    if (!principal || !rateAnnual || !tenureYears) {
+    if (principal <= 0 || tenureYears <= 0 || isNaN(rateAnnual) || rateAnnual < 0 || compoundingFrequency <= 0) {
         return { principalAmount: 0, totalInterest: 0, totalValue: 0 };
     }
 
@@ -87,13 +89,18 @@ export function calculateCompoundInterest(principal: number, rateAnnual: number,
     const n = compoundingFrequency;
     const t = tenureYears;
     
-    // Formula: A = P(1 + r/n)^(nt)
-    const amount = principal * Math.pow(1 + r / n, n * t);
+    let amount = 0;
+    if (r === 0) {
+        amount = principal;
+    } else {
+        amount = principal * Math.pow(1 + r / n, n * t);
+    }
+    
     const totalInterest = amount - principal;
 
     return {
         principalAmount: isNaN(principal) || !isFinite(principal) ? 0 : Math.round(principal),
-        totalInterest: isNaN(totalInterest) || !isFinite(totalInterest) ? 0 : Math.round(totalInterest),
+        totalInterest: isNaN(totalInterest) || !isFinite(totalInterest) || totalInterest < 0 ? 0 : Math.round(totalInterest),
         totalValue: isNaN(amount) || !isFinite(amount) ? 0 : Math.round(amount),
     };
 }
@@ -110,7 +117,7 @@ export interface AmortizationRow {
  * Generate an Amortization Schedule
  */
 export function calculateAmortizationSchedule(principal: number, rateAnnual: number, tenureMonths: number): AmortizationRow[] {
-    if (!principal || !rateAnnual || !tenureMonths) return [];
+    if (principal <= 0 || tenureMonths <= 0 || isNaN(rateAnnual) || rateAnnual < 0) return [];
     
     const emiResult = calculateEMI(principal, rateAnnual, tenureMonths);
     const emi = emiResult.emi;
@@ -120,15 +127,23 @@ export function calculateAmortizationSchedule(principal: number, rateAnnual: num
     let balance = principal;
 
     for (let month = 1; month <= tenureMonths; month++) {
-        const interest = balance * r;
-        let principalPayment = emi - interest;
+        let interest = 0;
+        let principalPayment = 0;
+
+        if (r === 0) {
+            interest = 0;
+            principalPayment = emi;
+        } else {
+            interest = balance * r;
+            principalPayment = emi - interest;
+        }
 
         if (month === tenureMonths) {
-            principalPayment = balance; // Adjust last payment
+            principalPayment = balance; // Adjust last payment to close exact balance
         }
 
         balance -= principalPayment;
-        if (balance < 0) balance = 0;
+        if (balance < 0 || Math.abs(balance) < 0.1) balance = 0;
 
         schedule.push({
             month,
@@ -144,13 +159,20 @@ export function calculateAmortizationSchedule(principal: number, rateAnnual: num
 
 /**
  * Calculate Max Eligible Loan Amount based on EMI
- * Formula: P = EMI * [(1+r)^n - 1] / [r * (1+r)^n]
  */
 export function calculateLoanEligibility(affordableEmi: number, rateAnnual: number, tenureMonths: number): number {
-    if (!affordableEmi || !rateAnnual || !tenureMonths) return 0;
+    if (affordableEmi <= 0 || tenureMonths <= 0 || isNaN(rateAnnual) || rateAnnual < 0) return 0;
+    
     const r = rateAnnual / 12 / 100;
     const n = tenureMonths;
-    const maxLoan = affordableEmi * (Math.pow(1 + r, n) - 1) / (r * Math.pow(1 + r, n));
+    let maxLoan = 0;
+
+    if (r === 0) {
+        maxLoan = affordableEmi * n;
+    } else {
+        maxLoan = affordableEmi * (Math.pow(1 + r, n) - 1) / (r * Math.pow(1 + r, n));
+    }
+    
     return isNaN(maxLoan) || !isFinite(maxLoan) ? 0 : Math.round(maxLoan);
 }
 
@@ -164,7 +186,10 @@ export interface CreditUtilizationResult {
  * Calculate Credit Utilization Ratio
  */
 export function calculateCreditUtilization(totalLimit: number, totalBalance: number): CreditUtilizationResult {
-    if (!totalLimit || totalLimit <= 0) return { utilizationRatio: 0, status: "Excellent", statusColor: "text-green-500" };
+    if (totalLimit <= 0 || isNaN(totalLimit) || isNaN(totalBalance)) {
+        return { utilizationRatio: 0, status: "Excellent", statusColor: "text-green-500" };
+    }
+    if (totalBalance < 0) totalBalance = 0; // Prevent negative balance logically
     
     const ratio = (totalBalance / totalLimit) * 100;
     let status: "Excellent" | "Good" | "Fair" | "Poor" = "Poor";
@@ -182,7 +207,7 @@ export function calculateCreditUtilization(totalLimit: number, totalBalance: num
     }
 
     return {
-        utilizationRatio: parseFloat(ratio.toFixed(2)),
+        utilizationRatio: isNaN(ratio) || !isFinite(ratio) ? 0 : parseFloat(ratio.toFixed(2)),
         status,
         statusColor
     };
@@ -196,7 +221,6 @@ export interface RetirementResult {
 
 /**
  * Calculate Retirement Corpus
- * Considers current savings compounding and future monthly SIP compounding.
  */
 export function calculateRetirementCorpus(
     currentAge: number, 
@@ -205,32 +229,42 @@ export function calculateRetirementCorpus(
     monthlyInvestment: number, 
     expectedReturnRate: number
 ): RetirementResult {
-    if (currentAge >= retirementAge) return { totalCorpus: 0, totalInvested: 0, wealthGained: 0 };
+    if (currentAge <= 0 || retirementAge <= currentAge || isNaN(expectedReturnRate) || expectedReturnRate < 0) {
+        return { totalCorpus: 0, totalInvested: 0, wealthGained: 0 };
+    }
     
     const years = retirementAge - currentAge;
     const months = years * 12;
     const rAnnual = expectedReturnRate / 100;
     const rMonthly = rAnnual / 12;
 
-    // Compounding current savings
-    const fvSavings = currentSavings * Math.pow(1 + rAnnual, years);
+    const savings = currentSavings >= 0 ? currentSavings : 0;
+    const sip = monthlyInvestment >= 0 ? monthlyInvestment : 0;
 
-    // Compounding monthly investments (SIP formula)
+    let fvSavings = 0;
+    if (rAnnual === 0) {
+        fvSavings = savings;
+    } else {
+        fvSavings = savings * Math.pow(1 + rAnnual, years);
+    }
+
     let fvSip = 0;
-    if (monthlyInvestment > 0 && rMonthly > 0) {
-        fvSip = monthlyInvestment * (Math.pow(1 + rMonthly, months) - 1) * (1 + rMonthly) / rMonthly;
-    } else if (rMonthly === 0) {
-        fvSip = monthlyInvestment * months;
+    if (sip > 0) {
+        if (rMonthly === 0) {
+            fvSip = sip * months;
+        } else {
+            fvSip = sip * (Math.pow(1 + rMonthly, months) - 1) * (1 + rMonthly) / rMonthly;
+        }
     }
 
     const totalCorpus = fvSavings + fvSip;
-    const totalInvested = currentSavings + (monthlyInvestment * months);
+    const totalInvested = savings + (sip * months);
     const wealthGained = totalCorpus - totalInvested;
 
     return {
-        totalCorpus: Math.round(totalCorpus),
-        totalInvested: Math.round(totalInvested),
-        wealthGained: Math.round(wealthGained)
+        totalCorpus: isNaN(totalCorpus) || !isFinite(totalCorpus) ? 0 : Math.round(totalCorpus),
+        totalInvested: isNaN(totalInvested) || !isFinite(totalInvested) ? 0 : Math.round(totalInvested),
+        wealthGained: isNaN(wealthGained) || !isFinite(wealthGained) ? 0 : Math.round(wealthGained)
     };
 }
 
@@ -244,8 +278,11 @@ export interface NetWorthResult {
  * Calculate Net Worth
  */
 export function calculateNetWorth(assets: number[], liabilities: number[]): NetWorthResult {
-    const totalAssets = assets.reduce((sum, val) => sum + (val || 0), 0);
-    const totalLiabilities = liabilities.reduce((sum, val) => sum + (val || 0), 0);
+    const sumValid = (arr: number[]) => arr.reduce((sum, val) => sum + (isNaN(val) || val < 0 ? 0 : val), 0);
+    
+    const totalAssets = sumValid(assets);
+    const totalLiabilities = sumValid(liabilities);
+    
     return {
         totalAssets,
         totalLiabilities,
@@ -254,25 +291,31 @@ export function calculateNetWorth(assets: number[], liabilities: number[]): NetW
 }
 
 export interface InflationResult {
-    futureValue: number;    // How much you need in future to have same purchasing power
-    degradedValue: number;  // Purchasing power of today's amount in future
+    futureValue: number;
+    degradedValue: number;
 }
 
 /**
  * Calculate Inflation Impact
  */
 export function calculateInflation(amount: number, inflationRate: number, years: number): InflationResult {
+    if (amount <= 0 || isNaN(inflationRate) || inflationRate < 0 || years <= 0) {
+        return { futureValue: 0, degradedValue: 0 };
+    }
+
     const r = inflationRate / 100;
     
-    // Future Value (cost of item in future)
-    const futureValue = amount * Math.pow(1 + r, years);
-    
-    // Degraded Value (purchasing power in future)
-    const degradedValue = amount / Math.pow(1 + r, years);
+    let futureValue = amount;
+    let degradedValue = amount;
+
+    if (r > 0) {
+        futureValue = amount * Math.pow(1 + r, years);
+        degradedValue = amount / Math.pow(1 + r, years);
+    }
 
     return {
-        futureValue: Math.round(futureValue),
-        degradedValue: Math.round(degradedValue)
+        futureValue: isNaN(futureValue) || !isFinite(futureValue) ? 0 : Math.round(futureValue),
+        degradedValue: isNaN(degradedValue) || !isFinite(degradedValue) ? 0 : Math.round(degradedValue)
     };
 }
 
@@ -283,20 +326,25 @@ export interface FDResult {
 
 /**
  * Calculate Fixed Deposit Maturity
- * @param compoundingFrequency 1=Yearly, 2=Half-Yearly, 4=Quarterly, 12=Monthly
  */
 export function calculateFixedDeposit(principal: number, rateAnnual: number, tenureYears: number, compoundingFrequency: number = 4): FDResult {
+    if (principal <= 0 || isNaN(rateAnnual) || rateAnnual < 0 || tenureYears <= 0 || compoundingFrequency <= 0) {
+        return { maturityAmount: 0, totalInterest: 0 };
+    }
+
     const r = rateAnnual / 100;
     const n = compoundingFrequency;
     const t = tenureYears;
     
-    const maturityAmount = principal * Math.pow(1 + r / n, n * t);
+    let maturityAmount = principal;
+    if (r > 0) {
+        maturityAmount = principal * Math.pow(1 + r / n, n * t);
+    }
+    
     const totalInterest = maturityAmount - principal;
 
     return {
-        maturityAmount: Math.round(maturityAmount),
-        totalInterest: Math.round(totalInterest)
+        maturityAmount: isNaN(maturityAmount) || !isFinite(maturityAmount) ? 0 : Math.round(maturityAmount),
+        totalInterest: isNaN(totalInterest) || !isFinite(totalInterest) ? 0 : Math.round(totalInterest)
     };
 }
-
-

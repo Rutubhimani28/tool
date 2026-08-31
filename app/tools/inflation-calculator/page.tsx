@@ -30,7 +30,7 @@ export default function InflationCalculator() {
         const numTenure = Number(tenure);
 
         if (amount !== "") {
-            const amountValidation = validateAmount(numAmount, 100);
+            const amountValidation = validateAmount(numAmount, "Current Amount", 100, 1000000000, false);
             if (!amountValidation.isValid) {
                 newErrors.amount = amountValidation.error;
                 hasError = true;
@@ -38,7 +38,7 @@ export default function InflationCalculator() {
         }
         
         if (rate !== "") {
-            const rateValidation = validateRate(numRate, 0.1, 100); // Inflation can be high
+            const rateValidation = validateRate(numRate, 0.1, 100, "Inflation Rate"); // Inflation can be high
             if (!rateValidation.isValid) {
                 newErrors.rate = rateValidation.error;
                 hasError = true;
@@ -46,7 +46,7 @@ export default function InflationCalculator() {
         }
         
         if (tenure !== "") {
-            const tenureValidation = validateTenure(numTenure, 1, 100, "years");
+            const tenureValidation = validateTenure(numTenure, 1, 100, "years", "Years in Future");
             if (!tenureValidation.isValid) {
                 newErrors.tenure = tenureValidation.error;
                 hasError = true;
@@ -55,7 +55,7 @@ export default function InflationCalculator() {
 
         setErrors(newErrors);
 
-        if (!hasError && numAmount > 0 && numRate > 0 && numTenure > 0) {
+        if (!hasError && amount !== "" && rate !== "" && tenure !== "") {
             setResult(calculateInflation(numAmount, numRate, numTenure));
         } else {
             setResult({ futureValue: 0, degradedValue: 0 });

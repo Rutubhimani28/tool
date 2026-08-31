@@ -29,7 +29,7 @@ export default function CreditUtilizationCalculator() {
         const numBalance = Number(balance);
 
         if (limit !== "") {
-            const limitValidation = validateAmount(numLimit, 1000);
+            const limitValidation = validateAmount(numLimit, "Total Credit Limit", 1000, 10000000, false);
             if (!limitValidation.isValid) {
                 newErrors.limit = limitValidation.error;
                 hasError = true;
@@ -37,18 +37,16 @@ export default function CreditUtilizationCalculator() {
         }
         
         if (balance !== "") {
-            if (numBalance < 0) {
-                newErrors.balance = "Balance cannot be negative";
-                hasError = true;
-            } else if (numBalance > numLimit && limit !== "") {
-                newErrors.balance = "Balance cannot exceed total limit in this calculator";
+            const balanceValidation = validateAmount(numBalance, "Outstanding Balance", 0, 10000000, true);
+            if (!balanceValidation.isValid) {
+                newErrors.balance = balanceValidation.error;
                 hasError = true;
             }
         }
 
         setErrors(newErrors);
 
-        if (!hasError && numLimit > 0 && numBalance >= 0) {
+        if (!hasError && limit !== "" && balance !== "") {
             setResult(calculateCreditUtilization(numLimit, numBalance));
         } else {
             setResult({ utilizationRatio: 0, status: "Excellent", statusColor: "text-green-500" });

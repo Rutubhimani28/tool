@@ -43,7 +43,7 @@ export default function FixedDepositCalculator() {
         const numTenure = Number(tenure);
 
         if (principal !== "") {
-            const principalValidation = validateAmount(numPrincipal, 1000);
+            const principalValidation = validateAmount(numPrincipal, "Deposit Amount", 1000, 100000000, false);
             if (!principalValidation.isValid) {
                 newErrors.principal = principalValidation.error;
                 hasError = true;
@@ -51,7 +51,7 @@ export default function FixedDepositCalculator() {
         }
         
         if (rate !== "") {
-            const rateValidation = validateRate(numRate);
+            const rateValidation = validateRate(numRate, 0, 50, "Interest Rate");
             if (!rateValidation.isValid) {
                 newErrors.rate = rateValidation.error;
                 hasError = true;
@@ -59,7 +59,7 @@ export default function FixedDepositCalculator() {
         }
         
         if (tenure !== "") {
-            const tenureValidation = validateTenure(numTenure, 1, 50, "years");
+            const tenureValidation = validateTenure(numTenure, 1, 50, "years", "Time Period");
             if (!tenureValidation.isValid) {
                 newErrors.tenure = tenureValidation.error;
                 hasError = true;
@@ -68,7 +68,7 @@ export default function FixedDepositCalculator() {
 
         setErrors(newErrors);
 
-        if (!hasError && numPrincipal > 0 && numRate > 0 && numTenure > 0) {
+        if (!hasError && principal !== "" && rate !== "" && tenure !== "") {
             setResult(calculateFixedDeposit(numPrincipal, numRate, numTenure, frequency));
         } else {
             setResult({ maturityAmount: 0, totalInterest: 0 });
