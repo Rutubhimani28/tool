@@ -8,283 +8,243 @@ export const faqs: FAQ[] = [
     // General Questions
     {
         category: "General Questions",
-        question: "What is PDFImageConvert?",
-        answer: "PDFImageConvert is a comprehensive suite of free online tools designed to help you manipulate, convert, and optimize PDF and image files directly in your web browser without requiring any software installation."
+        question: "What is Pdfimage Convert?",
+        answer: "Pdfimage Convert provides a suite of online calculators designed to help you estimate loans, investments, and personal finances in your web browser."
     },
     {
         category: "General Questions",
-        question: "Is PDFImageConvert completely free to use?",
-        answer: "Yes, all of our core conversion and optimization tools are 100% free to use. We do not require a credit card or a subscription to access our basic features."
+        question: "Is Pdfimage Convert free to use?",
+        answer: "Yes, our core calculators are free to use. We do not require a credit card or a subscription."
     },
     {
         category: "General Questions",
         question: "Do I need to create an account to use the tools?",
-        answer: "No account creation is required. You can start using our tools immediately without signing up or providing any personal information."
+        answer: "No account creation is required. You can start planning your finances without signing up."
     },
     {
         category: "General Questions",
-        question: "Are there any limitations on how many files I can process?",
-        answer: "Because processing happens locally in your browser, there are no server-side rate limits. However, processing very large numbers of files simultaneously may be limited by your device's memory and processing power."
-    },
-    {
-        category: "General Questions",
-        question: "Can I use these tools on my mobile device?",
-        answer: "Absolutely. Our website is fully responsive and optimized for mobile browsers, allowing you to convert and compress files directly from your smartphone or tablet."
+        question: "Can I use these calculators on my mobile device?",
+        answer: "Yes, our website is designed to be responsive and optimized for mobile browsers, allowing you to estimate loan EMIs or SIP returns from your smartphone."
     },
     {
         category: "General Questions",
         question: "Do I need to download any software?",
-        answer: "No. All processing happens entirely within your web browser. There are no plugins, extensions, or desktop applications to install."
+        answer: "No. Pdfimage Convert is a web-based application, and calculations happen within your web browser."
     },
     {
         category: "General Questions",
         question: "How do I contact support if I encounter an issue?",
-        answer: "You can reach out to our support team via the Contact Us page. We strive to respond to all technical inquiries within 24-48 hours."
+        answer: "You can contact us through the Contact Us page for questions or issues."
     },
 
-    // PDF Conversion
+    // Financial Planning
     {
-        category: "PDF Conversion",
-        question: "How do I convert a PDF to a JPG image?",
-        answer: "Simply navigate to our <a href='/pdf-to-jpg' class='text-blue-600 hover:underline'>PDF to JPG</a> tool, upload your PDF file, and click convert. The tool will render each page of your PDF into a high-quality JPG image."
+        category: "Financial Planning",
+        question: "How do I calculate my monthly loan EMI?",
+        answer: "Navigate to our <a href='/tools/emi-calculator' class='text-blue-600 hover:underline dark:text-blue-400'>EMI Calculator</a>, enter your loan amount, interest rate, and tenure, and click calculate. The tool will provide an estimate of your monthly payment and total interest."
     },
     {
-        category: "PDF Conversion",
-        question: "Will converting my Word document to PDF change the formatting?",
-        answer: "Our <a href='/word-to-pdf' class='text-blue-600 hover:underline'>Word to PDF</a> converter is designed to preserve your layout, fonts, and margins, ensuring the resulting PDF looks as close as possible to your original document."
+        category: "Financial Planning",
+        question: "Can I estimate my mutual fund returns?",
+        answer: "Our <a href='/tools/sip-calculator' class='text-blue-600 hover:underline dark:text-blue-400'>SIP Calculator</a> is designed to project the potential future value of your regular investments based on an expected rate of return."
     },
     {
-        category: "PDF Conversion",
-        question: "Can I convert multiple images into a single PDF?",
-        answer: "Yes. Using our <a href='/jpg-to-pdf' class='text-blue-600 hover:underline'>JPG to PDF</a> tool, you can upload multiple images, arrange them in your desired order, and combine them into one cohesive PDF document."
+        category: "Financial Planning",
+        question: "How do I compare compound interest vs simple interest?",
+        answer: "Using our <a href='/tools/compound-interest-calculator' class='text-blue-600 hover:underline dark:text-blue-400'>Compound Interest Calculator</a>, you can see how compounding can affect the future value of money over time."
     },
     {
-        category: "PDF Conversion",
-        question: "How do I extract text from a scanned PDF?",
-        answer: "Our <a href='/pdf-to-word' class='text-blue-600 hover:underline'>PDF to Word</a> tool includes built-in OCR (Optical Character Recognition) to automatically extract editable text from scanned pages."
+        category: "Financial Planning",
+        question: "Is it possible to estimate returns for a Fixed Deposit (FD)?",
+        answer: "Yes, our <a href='/tools/fd-calculator' class='text-blue-600 hover:underline dark:text-blue-400'>FD Calculator</a> allows you to input your deposit amount, tenure, assumed interest rate, and compounding frequency to estimate the maturity value."
     },
     {
-        category: "PDF Conversion",
-        question: "Why is my converted image blurry?",
-        answer: "If you are converting a PDF to an image, the output quality depends on the resolution of the original PDF. If the PDF contains low-resolution assets, the resulting image will reflect that."
+        category: "Financial Planning",
+        question: "How do I know how much I need for retirement?",
+        answer: "Our <a href='/tools/retirement-calculator' class='text-blue-600 hover:underline dark:text-blue-400'>Retirement Calculator</a> helps you estimate a retirement corpus based on inputs like your current age, retirement age, current savings, monthly investment, and expected return."
     },
     {
-        category: "PDF Conversion",
-        question: "How do I turn a PNG into a PDF?",
-        answer: "You can use our <a href='/png-to-pdf' class='text-blue-600 hover:underline'>PNG to PDF</a> converter. It works exactly like the JPG converter, allowing you to turn transparent graphics into standard PDF files."
+        category: "Financial Planning",
+        question: "What is a credit utilization ratio?",
+        answer: "It is the percentage of your available credit that you are currently using. You can use our <a href='/tools/credit-utilization-calculator' class='text-blue-600 hover:underline dark:text-blue-400'>Credit Utilization Calculator</a> to calculate this ratio, which is one of several factors used in credit scoring models."
     },
 
     // Privacy & Security
     {
         category: "Privacy & Security",
-        question: "Are my files safe when I upload them?",
-        answer: "Yes. We utilize 100% local browser processing for all of our tools. Your files never leave your device and are never uploaded to any external servers."
+        question: "Is my financial data safe when using these tools?",
+        answer: "Calculator calculations are processed locally in your web browser, and calculator inputs are not transmitted to our servers for calculation processing. For information about analytics, cookies, and other website data handling, please refer to our Privacy Policy."
     },
     {
         category: "Privacy & Security",
-        question: "Do you store my documents on your servers?",
-        answer: "No. Files are processed locally on your device, not on our servers. Once you close the browser tab, the processed files are gone."
+        question: "Do you store my calculator inputs on your servers?",
+        answer: "No. According to our Privacy Policy, calculator inputs are not transmitted to our servers for calculation processing, and the financial numbers entered into calculators are not stored or retained."
     },
     {
         category: "Privacy & Security",
-        question: "Can anyone else access my converted files?",
-        answer: "No. The download link generated for your converted file is a local blob URL that only exists in your current browser session and cannot be accessed by anyone else or indexed by search engines."
+        question: "Can anyone else access the numbers I enter?",
+        answer: "Calculator inputs are processed in your browser and are not transmitted to our servers for calculation processing. However, the security of your device, browser, and network is also important when entering financial information."
     },
     {
         category: "Privacy & Security",
-        question: "Do you read or analyze the content of my documents?",
-        answer: "Absolutely not. The local browser scripts process the files strictly for conversion purposes. No human ever views your documents, and no data is extracted or analyzed."
-    },
-    {
-        category: "Privacy & Security",
-        question: "How do I password protect a sensitive PDF?",
-        answer: "You can use our <a href='/protect-pdf' class='text-blue-600 hover:underline'>Protect PDF</a> tool to encrypt your document with a strong password, ensuring only authorized individuals can open it."
-    },
-    {
-        category: "Privacy & Security",
-        question: "Is it safe to process financial or legal documents here?",
-        answer: "Yes. Because files are processed locally and never uploaded, our platform is safe for processing sensitive business, legal, and financial documents."
-    },
-    {
-        category: "Privacy & Security",
-        question: "Do you sell user data to third parties?",
-        answer: "No. We respect your privacy and do not sell, rent, or share your personal data or uploaded files with any third-party advertisers or data brokers."
+        question: "Do you sell user financial data to third parties?",
+        answer: "We do not sell, trade, or rent your personal information to third parties. Calculator inputs are not transmitted to our servers for calculation processing."
     },
 
-    // Supported Formats
+    // Supported Calculations
     {
-        category: "Supported Formats",
-        question: "Which image formats do you support?",
-        answer: "We support major web image formats, including JPG (JPEG), PNG, and WebP for both input and output conversions."
+        category: "Supported Calculations",
+        question: "Which currencies do your calculators support?",
+        answer: "Our calculators work with numeric values and do not rely on a specific currency selector. The results should be interpreted in the same unit you entered. The underlying mathematical formulas remain the same."
     },
     {
-        category: "Supported Formats",
-        question: "Can I convert HEIC images from my iPhone?",
-        answer: "Yes, our <a href='/heic-to-jpg' class='text-blue-600 hover:underline'>HEIC to JPG</a> tool allows you to easily convert Apple's high-efficiency image format into standard JPGs viewable on any device."
+        category: "Supported Calculations",
+        question: "Can I calculate both monthly and yearly compounding?",
+        answer: "Yes, our <a href='/tools/compound-interest-calculator' class='text-blue-600 hover:underline dark:text-blue-400'>Compound Interest tool</a> allows you to adjust the compounding frequency (annually, semi-annually, quarterly, or monthly) to match your specific terms."
     },
     {
-        category: "Supported Formats",
-        question: "What versions of Microsoft Office files are supported?",
-        answer: "We support modern Office formats (.docx) for conversion to PDF."
+        category: "Supported Calculations",
+        question: "Do you support inflation-adjusted calculations?",
+        answer: "Yes, our <a href='/tools/inflation-calculator' class='text-blue-600 hover:underline dark:text-blue-400'>Inflation Calculator</a> helps you estimate how the purchasing power of money might change over time."
     },
     {
-        category: "Supported Formats",
-        question: "Are there any file formats you do not support?",
-        answer: "We currently do not support highly specialized CAD formats (like .dwg) or proprietary raw camera files (like .cr2 or .nef)."
-    },
-
-    // File Size & Compression
-    {
-        category: "File Size & Compression",
-        question: "What is the maximum file size I can upload?",
-        answer: "Currently, the maximum file size for a single upload is 100MB. This limit ensures fast processing times and prevents browser crashes."
-    },
-    {
-        category: "File Size & Compression",
-        question: "How can I reduce the size of a large PDF?",
-        answer: "You can drastically reduce file size using our <a href='/compress-pdf' class='text-blue-600 hover:underline'>Compress PDF</a> tool, which optimizes embedded images and removes redundant data."
-    },
-    {
-        category: "File Size & Compression",
-        question: "Will compressing an image ruin its quality?",
-        answer: "Our <a href='/compress-image' class='text-blue-600 hover:underline'>Image Compressor</a> uses smart algorithms to find the perfect balance. It significantly reduces file size while keeping the visual degradation nearly imperceptible to the human eye."
-    },
-    {
-        category: "File Size & Compression",
-        question: "Why is my PDF still large after compression?",
-        answer: "If your PDF consists entirely of text or vector graphics, there is very little data to compress. Compression is most effective on PDFs containing large, unoptimized raster images."
-    },
-    {
-        category: "File Size & Compression",
-        question: "How do I split a large PDF into smaller files?",
-        answer: "Use our <a href='/split-pdf' class='text-blue-600 hover:underline'>Split PDF</a> tool to extract specific pages or divide a massive document into multiple smaller, manageable files."
-    },
-    {
-        category: "File Size & Compression",
-        question: "Can I compress multiple images at once?",
-        answer: "Yes, our image compression tools support batch processing. You can upload multiple images and compress them all simultaneously."
+        category: "Supported Calculations",
+        question: "Are there any complex tax scenarios supported?",
+        answer: "Currently, our tools provide gross estimates. They do not automatically account for complex, country-specific tax brackets or deductions."
     },
 
-    // Document Manipulation
+    // Usage & Limits
     {
-        category: "Document Manipulation",
-        question: "How do I combine multiple PDFs into one?",
-        answer: "Navigate to our <a href='/merge-pdf' class='text-blue-600 hover:underline'>Merge PDF</a> tool, upload your files, arrange them in the desired order, and click merge to combine them into a single document."
+        category: "Usage & Limits",
+        question: "What is the maximum amount I can enter?",
+        answer: "Input limits depend on the specific calculator, but they generally accommodate standard personal and business financial figures."
     },
     {
-        category: "Document Manipulation",
-        question: "Can I delete a specific page from a PDF?",
-        answer: "Yes. Use our <a href='/remove-pages' class='text-blue-600 hover:underline'>Remove Pages</a> tool. Simply upload the document, select the thumbnails of the pages you want to delete, and save the new file."
+        category: "Usage & Limits",
+        question: "How can I compare two different loan offers?",
+        answer: "You can open the <a href='/tools/loan-calculator' class='text-blue-600 hover:underline dark:text-blue-400'>Loan Calculator</a> in two separate browser tabs and enter the different rates to compare the estimated interest."
     },
     {
-        category: "Document Manipulation",
-        question: "How do I rotate a PDF that was scanned upside down?",
-        answer: "Our <a href='/rotate-pdf' class='text-blue-600 hover:underline'>Rotate PDF</a> tool allows you to rotate individual pages or the entire document by 90, 180, or 270 degrees."
+        category: "Usage & Limits",
+        question: "Will entering large numbers crash the browser?",
+        answer: "Very large inputs may require additional processing time depending on the calculator and your device."
     },
     {
-        category: "Document Manipulation",
-        question: "Can I add page numbers to my PDF?",
-        answer: "Yes, using our <a href='/add-page-numbers' class='text-blue-600 hover:underline'>Add Page Numbers</a> utility, you can customize the position, font, and starting number for your document."
+        category: "Usage & Limits",
+        question: "Why is the calculator not accepting my input?",
+        answer: "Ensure you are entering valid numerical digits. Some fields may prevent the entry of negative numbers or letters."
     },
     {
-        category: "Document Manipulation",
-        question: "How do I add a watermark to my document?",
-        answer: "Use the <a href='/watermark-pdf' class='text-blue-600 hover:underline'>Watermark PDF</a> tool to stamp text or an image across your pages to protect your copyright or indicate confidentiality."
+        category: "Usage & Limits",
+        question: "How do I calculate a step-up SIP?",
+        answer: "Currently, the <a href='/tools/sip-calculator' class='text-blue-600 hover:underline dark:text-blue-400'>SIP Calculator</a> supports fixed regular investments. Step-up SIP calculations are not currently available."
     },
     {
-        category: "Document Manipulation",
-        question: "Is it possible to reorder pages within a PDF?",
-        answer: "Yes. Upload your file to our <a href='/organize-pdf' class='text-blue-600 hover:underline'>Organize PDF</a> tool, where you can drag and drop page thumbnails to rearrange them exactly as needed."
+        category: "Usage & Limits",
+        question: "Can I print my calculation results?",
+        answer: "Yes, you can use your browser's built-in print function (Ctrl+P or Cmd+P) to print the results."
+    },
+
+    // Advanced Tools
+    {
+        category: "Advanced Tools",
+        question: "How do I determine if I am eligible for a loan?",
+        answer: "Navigate to our <a href='/tools/loan-eligibility-calculator' class='text-blue-600 hover:underline dark:text-blue-400'>Loan Eligibility Calculator</a> to get an estimate based on your inputs. Actual eligibility depends on the specific lender's criteria."
+    },
+    {
+        category: "Advanced Tools",
+        question: "Can I calculate my overall net worth?",
+        answer: "Yes. Use our <a href='/tools/net-worth-calculator' class='text-blue-600 hover:underline dark:text-blue-400'>Net Worth Calculator</a> to estimate your net worth by inputting your assets and liabilities."
+    },
+    {
+        category: "Advanced Tools",
+        question: "How do I account for prepayments on my loan?",
+        answer: "Our standard EMI calculator assumes consistent payments. For prepayments, you would need to adjust the principal balance manually and recalculate."
+    },
+    {
+        category: "Advanced Tools",
+        question: "How do I calculate the future value of a lump sum?",
+        answer: "Use the <a href='/tools/compound-interest-calculator' class='text-blue-600 hover:underline dark:text-blue-400'>Compound Interest Calculator</a> and enter your lump sum as the principal amount."
+    },
+    {
+        category: "Advanced Tools",
+        question: "Is it possible to calculate reverse mortgages?",
+        answer: "Currently, our suite focuses on standard forward-amortizing loans and investments."
     },
 
     // Troubleshooting & Performance
     {
         category: "Troubleshooting",
-        question: "Why is the conversion taking so long?",
-        answer: "Processing time depends on your internet connection speed and the complexity of the file. A 50-page PDF with high-resolution images will take longer to process than a 2-page text document."
+        question: "Why is the calculator taking a moment to load?",
+        answer: "Loading times depend on your internet connection. Once the interface is loaded, the calculations are performed locally."
     },
     {
         category: "Troubleshooting",
-        question: "The tool crashed while processing my file. What should I do?",
-        answer: "This usually happens if the file is too large or corrupted. Try refreshing the page, clearing your browser cache, and attempting the conversion again. Ensure your file is under the 100MB limit."
+        question: "Why did my EMI calculation differ slightly from my bank's quote?",
+        answer: "Differences may arise from rounding, payment dates, specific interest calculation methodologies, loan disbursement dates, or fees applied by the lender. Our tools provide an estimate using standard amortization formulas."
     },
     {
         category: "Troubleshooting",
-        question: "Why did my PDF to Word conversion lose some formatting?",
-        answer: "PDFs are fixed-layout documents, while Word is fluid. Complex layouts with overlapping elements or custom fonts may not translate perfectly. We continually improve our algorithms to minimize these discrepancies."
+        question: "I can't find a way to save my results. How do I do this?",
+        answer: "We do not save calculation data to databases. You can bookmark the page or print the screen to keep a record of your calculations."
     },
     {
         category: "Troubleshooting",
-        question: "I can't find my downloaded file. Where did it go?",
-        answer: "By default, most web browsers save files to your computer's 'Downloads' folder. Check your browser's download history (usually accessible via Ctrl+J or Cmd+J) to locate the file."
+        question: "Does this website work on Safari and Firefox?",
+        answer: "The website is designed to work with modern browsers such as Chrome, Safari, Firefox, and Edge."
     },
     {
         category: "Troubleshooting",
-        question: "Why am I getting an 'Invalid File Format' error?",
-        answer: "This error occurs if you try to upload a file type that the specific tool does not support (e.g., uploading an MP3 to the PDF to JPG converter). Ensure you are using the correct tool for your file type."
-    },
-    {
-        category: "Troubleshooting",
-        question: "Does this work on Safari and Firefox?",
-        answer: "Yes, our platform is thoroughly tested and fully compatible with all modern web browsers, including Google Chrome, Apple Safari, Mozilla Firefox, and Microsoft Edge."
-    },
-    {
-        category: "Troubleshooting",
-        question: "The website looks broken on my screen.",
-        answer: "If the layout appears distorted, you may be using an outdated browser version. Please update your browser to the latest version. If the issue persists, try disabling ad-blockers or extensions that might interfere with the site's CSS."
+        question: "The website layout looks broken on my screen.",
+        answer: "If the layout appears distorted, you may be using an outdated browser version. Please update your browser."
     },
 
     // Advanced Usage
     {
         category: "Advanced Usage",
-        question: "Can I use PDFImageConvert via an API?",
-        answer: "Currently, PDFImageConvert is designed as a consumer-facing web application. We do not offer a public API for developers at this time, as our architecture is heavily focused on client-side browser processing rather than server-side endpoints."
+        question: "Can I integrate Pdfimage Convert calculators via an API?",
+        answer: "Currently, Pdfimage Convert is a consumer-facing web application. We do not offer a public API at this time."
     },
     {
         category: "Advanced Usage",
-        question: "How do I extract images from a PDF without converting the whole page?",
-        answer: "You can use our dedicated <a href='/extract-images-pdf' class='text-blue-600 hover:underline'>Extract Images from PDF</a> tool that will parse the PDF structure and save only the embedded image assets."
+        question: "How do I embed these calculators on my own website?",
+        answer: "We currently do not offer iframe embedding or widgets for external websites. You are welcome to link directly to our tools."
     },
     {
         category: "Advanced Usage",
-        question: "Is there a command-line interface (CLI) available?",
-        answer: "No, we do not provide a CLI. Our tools are built exclusively for the web browser to ensure maximum accessibility across all operating systems without requiring terminal knowledge."
+        question: "Is there a downloadable version available?",
+        answer: "No, Pdfimage Convert is a web-based application. There is no downloadable desktop version."
     },
     {
         category: "Advanced Usage",
-        question: "Can I process files offline?",
-        answer: "Because our tools rely on WebAssembly modules loaded by the browser, you need an internet connection to load the website and its necessary assets. However, the actual file processing happens locally."
+        question: "Can I use the calculators offline?",
+        answer: "An internet connection is required to load the website. After the calculator interface has loaded, calculations that run locally do not require a separate calculation server."
     },
     {
         category: "Advanced Usage",
-        question: "Do you support batch processing of hundreds of files?",
-        answer: "While our tools support batch processing, attempting to process hundreds of high-resolution files simultaneously may cause your browser to run out of memory and crash. We recommend processing files in batches of 20-50 depending on your device's RAM."
+        question: "Do you support importing data from spreadsheets?",
+        answer: "Currently, our tools require manual data entry. We do not support bulk importing from CSV or Excel files."
     },
 
-    // Quality & Formatting
+    // Accuracy & Assumptions
     {
-        category: "Quality & Formatting",
-        question: "How do I ensure the highest quality output?",
-        answer: "For the best image quality, always start with a high-resolution source file. When converting to JPG, our tools automatically use a high-quality setting (typically 90-100%). For lossless quality, choose PNG as your output format."
+        category: "Accuracy & Assumptions",
+        question: "How accurate are the investment returns shown?",
+        answer: "The tools provide illustrative estimates based on the assumed rate you provide. Real-world investments are subject to market risks, and actual returns will vary."
     },
     {
-        category: "Quality & Formatting",
-        question: "Why did the fonts change when converting Word to PDF?",
-        answer: "If your Word document uses custom or premium fonts that are not installed on our rendering engine, the system will substitute them with the closest available standard font. To prevent this, embed the fonts within your Word document before converting."
+        category: "Accuracy & Assumptions",
+        question: "Are the calculations guaranteed?",
+        answer: "No. All calculators are provided for educational and estimation purposes only. They do not constitute financial advice or guarantees of returns or loan approvals."
     },
     {
-        category: "Quality & Formatting",
-        question: "Can I adjust the DPI of the output image?",
-        answer: "Currently, our PDF to Image converter outputs at a standard web-optimized DPI (usually 150-300 DPI depending on the source). We plan to add manual DPI selection in a future update for print professionals."
+        category: "Accuracy & Assumptions",
+        question: "Does the EMI calculation include taxes or insurance?",
+        answer: "Our standard EMI calculator computes only the principal and interest components. It does not include property taxes or insurance."
     },
     {
-        category: "Quality & Formatting",
-        question: "Does compressing an image remove its EXIF data?",
-        answer: "Yes, by default, our image compressor strips unnecessary metadata, including EXIF data (like GPS location and camera settings), to maximize file size reduction and protect your privacy."
-    },
-    {
-        category: "Quality & Formatting",
-        question: "Why does my converted PDF have a white margin?",
-        answer: "This usually happens when converting images to PDF. If the aspect ratio of your image doesn't perfectly match the standard PDF page size (like A4 or Letter), the tool will add white margins (letterboxing) to fit the image without distorting it."
+        category: "Accuracy & Assumptions",
+        question: "Why does the net worth tool not update automatically?",
+        answer: "The Net Worth Calculator relies on the inputs you enter manually. It does not connect to external financial institutions."
     }
 ];

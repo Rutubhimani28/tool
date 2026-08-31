@@ -2,21 +2,21 @@ import type { Metadata } from "next";
 import { faqs } from "../data/faqs";
 
 export const metadata: Metadata = {
-    title: "Help Center & FAQ | PDFImageConvert",
+    title: "Help Center & FAQ | Pdfimage Convert",
     description: "Find answers to frequently asked questions about our free PDF and image conversion tools. Learn about our privacy policies, supported formats, and troubleshooting.",
     alternates: {
         canonical: "https://pdfimageconvert.com/faq",
     },
     openGraph: {
-        title: "Help Center & FAQ | PDFImageConvert",
+        title: "Help Center & FAQ | Pdfimage Convert",
         description: "Find answers to frequently asked questions about our free PDF and image conversion tools.",
         url: "https://pdfimageconvert.com/faq",
-        siteName: "PDFImageConvert",
+        siteName: "Pdfimage Convert",
         type: "website",
     },
     twitter: {
         card: "summary_large_image",
-        title: "Help Center & FAQ | PDFImageConvert",
+        title: "Help Center & FAQ | Pdfimage Convert",
         description: "Find answers to frequently asked questions about our free PDF and image conversion tools.",
     },
 };

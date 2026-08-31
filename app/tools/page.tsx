@@ -54,7 +54,7 @@ export default function ToolsPage() {
                                     return (
                                         <Link href={tool.href} key={tool.id} className="group flex flex-col h-full rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-700">
                                             <div className="flex items-center gap-4 mb-4">
-                                                <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-500 to-purple-500 text-white shadow-md shadow-blue-500/20 transition-transform duration-300 group-hover:rotate-3`}>
+                                                <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-500 to-indigo-500 text-white shadow-md shadow-blue-500/20 transition-transform duration-300 group-hover:rotate-3`}>
                                                     <span className="font-bold">{tool.title.charAt(0)}</span>
                                                 </div>
                                                 <h3 className="font-semibold text-lg text-zinc-900 dark:text-white transition-colors duration-300 group-hover:text-zinc-700 dark:group-hover:text-zinc-300">

@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { tools } from "../data/tools";
 
-const siteName = "PDFImageConvert";
+const siteName = "Pdfimage Convert";
 const baseUrl = "https://pdfimageconvert.com";
 
 export function generateToolMetadata(toolId: string): Metadata {
@@ -9,7 +9,7 @@ export function generateToolMetadata(toolId: string): Metadata {
 
     if (!tool) {
         return {
-            title: "PDF Tools | PDFImageConvert",
+            title: "PDF Tools | Pdfimage Convert",
         };
     }
 

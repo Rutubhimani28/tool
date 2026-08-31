@@ -10,7 +10,7 @@ const ibmPlexSans = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://financetools.com"),
+  metadataBase: new URL("https://pdfimageconvert.com"),
 
   title:
     "Finance Tools - Free EMI, SIP, and Compound Interest Calculators",
@@ -31,15 +31,15 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Finance Tools - Free EMI, SIP, and Compound Interest Calculators",
     description: "Free online financial calculators. Calculate EMI for loans, SIP returns, and compound interest in seconds.",
-    url: "https://financetools.com",
-    siteName: "FinanceTools",
+    url: "https://pdfimageconvert.com",
+    siteName: "Pdfimage Convert",
     type: "website",
     images: [
       {
-        url: "https://financetools.com/logo.png",
+        url: "https://pdfimageconvert.com/logo.png",
         width: 800,
         height: 600,
-        alt: "FinanceTools Logo",
+        alt: "Pdfimage Convert Logo",
       },
     ],
   },
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Finance Tools - Free EMI, SIP, and Compound Interest Calculators",
     description: "Free online financial calculators. Calculate EMI for loans, SIP returns, and compound interest in seconds.",
-    images: ["https://financetools.com/logo.png"],
+    images: ["https://pdfimageconvert.com/logo.png"],
   },
 
   icons: {
@@ -76,22 +76,22 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://financetools.com/#website",
-      url: "https://financetools.com",
-      name: "FinanceTools",
+      "@id": "https://pdfimageconvert.com/#website",
+      url: "https://pdfimageconvert.com",
+      name: "Pdfimage Convert",
       description: "Free online financial calculators. Calculate EMI for loans, SIP returns, and compound interest in seconds.",
       publisher: {
-        "@id": "https://financetools.com/#organization",
+        "@id": "https://pdfimageconvert.com/#organization",
       },
     },
     {
       "@type": "Organization",
-      "@id": "https://financetools.com/#organization",
-      name: "FinanceTools",
-      url: "https://financetools.com",
+      "@id": "https://pdfimageconvert.com/#organization",
+      name: "Pdfimage Convert",
+      url: "https://pdfimageconvert.com",
       logo: {
         "@type": "ImageObject",
-        url: "https://financetools.com/logo.png",
+        url: "https://pdfimageconvert.com/logo.png",
       },
     },
   ],

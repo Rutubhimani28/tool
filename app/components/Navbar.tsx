@@ -41,7 +41,7 @@ export default function Navbar() {
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 group flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 rounded-lg">
                     <div className="flex h-12 w-12 items-center justify-center transition-transform group-hover:scale-105 overflow-hidden">
-                        <img src="/logo.png" alt="PDFImageConvert Logo - Free PDF Tools" className="h-full w-full object-contain scale-[1.6]" />
+                        <img src="/logo.png" alt="Pdfimage Convert Logo - Free PDF Tools" className="h-full w-full object-contain scale-[1.6]" />
                     </div>
                 </Link>
 

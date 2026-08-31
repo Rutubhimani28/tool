@@ -80,7 +80,7 @@ export default function NetWorthCalculator() {
                                             value={cash === "" ? "" : cash.toLocaleString('en-IN')}
                                             onChange={handleNumberInput(setCash)}
                                             placeholder="0"
-                                            className="w-full pl-8 pr-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 focus:ring-emerald-500 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white outline-none transition-all"
+                                            className="w-full pl-8 pr-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 focus:ring-blue-500 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white outline-none transition-all"
                                         />
                                     </div>
                                 </div>
@@ -93,7 +93,7 @@ export default function NetWorthCalculator() {
                                             value={investments === "" ? "" : investments.toLocaleString('en-IN')}
                                             onChange={handleNumberInput(setInvestments)}
                                             placeholder="0"
-                                            className="w-full pl-8 pr-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 focus:ring-emerald-500 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white outline-none transition-all"
+                                            className="w-full pl-8 pr-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 focus:ring-blue-500 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white outline-none transition-all"
                                         />
                                     </div>
                                 </div>
@@ -106,7 +106,7 @@ export default function NetWorthCalculator() {
                                             value={realEstate === "" ? "" : realEstate.toLocaleString('en-IN')}
                                             onChange={handleNumberInput(setRealEstate)}
                                             placeholder="0"
-                                            className="w-full pl-8 pr-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 focus:ring-emerald-500 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white outline-none transition-all"
+                                            className="w-full pl-8 pr-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 focus:ring-blue-500 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white outline-none transition-all"
                                         />
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@ export default function NetWorthCalculator() {
                                             value={otherAssets === "" ? "" : otherAssets.toLocaleString('en-IN')}
                                             onChange={handleNumberInput(setOtherAssets)}
                                             placeholder="0"
-                                            className="w-full pl-8 pr-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 focus:ring-emerald-500 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white outline-none transition-all"
+                                            className="w-full pl-8 pr-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 focus:ring-blue-500 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white outline-none transition-all"
                                         />
                                     </div>
                                 </div>

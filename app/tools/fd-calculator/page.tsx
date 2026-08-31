@@ -148,7 +148,7 @@ export default function FixedDepositCalculator() {
                                     value={principalText}
                                     onChange={handlePrincipalChange}
                                     placeholder="1,00,000"
-                                    className={`w-full pl-8 pr-4 py-3 rounded-xl border ${errors.principal ? 'border-red-500 focus:ring-red-500' : 'border-zinc-200 dark:border-zinc-800 focus:ring-sky-500'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 outline-none transition-all`}
+                                    className={`w-full pl-8 pr-4 py-3 rounded-xl border ${errors.principal ? 'border-red-500 focus:ring-red-500' : 'border-zinc-200 dark:border-zinc-800 focus:ring-blue-500'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 outline-none transition-all`}
                                 />
                             </div>
                             {errors.principal && <p className="text-red-500 text-xs mt-1">{errors.principal}</p>}
@@ -166,7 +166,7 @@ export default function FixedDepositCalculator() {
                                         value={rateText}
                                         onChange={handleRateChange}
                                         placeholder="7.5"
-                                        className={`w-full pl-4 pr-10 py-3 rounded-xl border ${errors.rate ? 'border-red-500 focus:ring-red-500' : 'border-zinc-200 dark:border-zinc-800 focus:ring-sky-500'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 outline-none transition-all`}
+                                        className={`w-full pl-4 pr-10 py-3 rounded-xl border ${errors.rate ? 'border-red-500 focus:ring-red-500' : 'border-zinc-200 dark:border-zinc-800 focus:ring-blue-500'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 outline-none transition-all`}
                                     />
                                     <span className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 font-medium">%</span>
                                 </div>
@@ -184,7 +184,7 @@ export default function FixedDepositCalculator() {
                                         value={tenure}
                                         onChange={handleTenureChange}
                                         placeholder="5"
-                                        className={`w-full px-4 py-3 rounded-xl border ${errors.tenure ? 'border-red-500 focus:ring-red-500' : 'border-zinc-200 dark:border-zinc-800 focus:ring-sky-500'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 outline-none transition-all`}
+                                        className={`w-full px-4 py-3 rounded-xl border ${errors.tenure ? 'border-red-500 focus:ring-red-500' : 'border-zinc-200 dark:border-zinc-800 focus:ring-blue-500'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 outline-none transition-all`}
                                     />
                                 </div>
                                 {errors.tenure && <p className="text-red-500 text-xs mt-1">{errors.tenure}</p>}
@@ -200,7 +200,7 @@ export default function FixedDepositCalculator() {
                                     suppressHydrationWarning
                                     type="button"
                                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                                    className={`w-full flex items-center justify-between px-4 py-3 rounded-xl border ${isDropdownOpen ? 'border-sky-500 ring-2 ring-sky-500/20' : 'border-zinc-200 dark:border-zinc-800'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 transition-all`}
+                                    className={`w-full flex items-center justify-between px-4 py-3 rounded-xl border ${isDropdownOpen ? 'border-blue-500 ring-2 ring-blue-500/20' : 'border-zinc-200 dark:border-zinc-800'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all`}
                                 >
                                     <span className="capitalize font-medium">{frequencyLabels[frequency]}</span>
                                     <svg className={`w-4 h-4 text-zinc-500 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -215,7 +215,7 @@ export default function FixedDepositCalculator() {
                                                     key={f}
                                                     variant="ghost"
                                                     fullWidth
-                                                    className={`justify-center !rounded-none py-2.5 text-sm transition-colors ${frequency === f ? "bg-sky-50 dark:bg-sky-500/10 text-sky-600 dark:text-sky-400 font-semibold hover:bg-sky-100 dark:hover:bg-sky-500/20" : "text-zinc-700 dark:text-zinc-300 font-medium"}`}
+                                                    className={`justify-center !rounded-none py-2.5 text-sm transition-colors ${frequency === f ? "bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 font-semibold hover:bg-blue-100 dark:hover:bg-blue-500/20" : "text-zinc-700 dark:text-zinc-300 font-medium"}`}
                                                     onClick={() => { setFrequency(f); setIsDropdownOpen(false); }}
                                                 >
                                                     {frequencyLabels[f]}
@@ -230,9 +230,9 @@ export default function FixedDepositCalculator() {
                     </div>
 
                     {/* Result Section */}
-                    <div className="w-full lg:w-1/2 flex flex-col justify-center p-8 bg-sky-50 dark:bg-sky-950/20 rounded-2xl border border-sky-100 dark:border-sky-900/30 overflow-hidden">
+                    <div className="w-full lg:w-1/2 flex flex-col justify-center p-8 bg-zinc-100 dark:bg-zinc-900/50 rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
                         <div className="flex flex-col items-center mb-6">
-                            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-sky-100 text-sky-600 dark:bg-sky-900/50 dark:text-sky-400 mb-4">
+                            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/50 dark:text-blue-400 mb-4">
                                 <CalculateIcon className="h-8 w-8" />
                             </div>
                             <h3 className="text-xl font-medium text-zinc-600 dark:text-zinc-400 mb-2">Total Maturity Value</h3>
@@ -242,11 +242,11 @@ export default function FixedDepositCalculator() {
                         </div>
 
                         <div className="w-full space-y-4 mb-6">
-                            <div className="flex justify-between items-start py-2 border-b border-sky-100 dark:border-sky-900/30">
+                            <div className="flex justify-between items-start py-2 border-b border-zinc-200 dark:border-zinc-800">
                                 <span className="text-zinc-600 dark:text-zinc-400 shrink-0">Principal Amount</span>
                                 <span className="font-semibold text-zinc-900 dark:text-white break-all text-right ml-4">{formatCurrency(Number(principal))}</span>
                             </div>
-                            <div className="flex justify-between items-start py-2 border-b border-sky-100 dark:border-sky-900/30">
+                            <div className="flex justify-between items-start py-2 border-b border-zinc-200 dark:border-zinc-800">
                                 <span className="text-zinc-600 dark:text-zinc-400 shrink-0">Total Interest Earned</span>
                                 <span className="font-semibold text-sky-600 dark:text-sky-400 break-all text-right ml-4">{formatCurrency(result.totalInterest)}</span>
                             </div>

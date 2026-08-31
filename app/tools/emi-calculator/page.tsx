@@ -38,7 +38,7 @@ export default function EMICalculator() {
                 hasError = true;
             }
         }
-        
+
         if (rate !== "") {
             const rateValidation = validateRate(numRate, 0, 50, "Interest Rate");
             if (!rateValidation.isValid) {
@@ -46,7 +46,7 @@ export default function EMICalculator() {
                 hasError = true;
             }
         }
-        
+
         const totalMonths = tenureType === "years" ? numTenure * 12 : numTenure;
         if (tenure !== "") {
             const tenureValidation = validateTenure(totalMonths, 1, 600, "months", "Loan Tenure");
@@ -78,7 +78,7 @@ export default function EMICalculator() {
             return;
         }
         if (rawValue.length > 12) return;
-        
+
         const numValue = Number(rawValue);
         setAmount(numValue);
         setAmountText(numValue.toLocaleString('en-IN'));
@@ -91,7 +91,7 @@ export default function EMICalculator() {
             val = parts[0] + '.' + parts.slice(1).join('');
         }
         if (val.length > 5) return;
-        
+
         setRateText(val);
         setRate(val === "" || val === "." ? "" : Number(val));
     };
@@ -229,7 +229,7 @@ export default function EMICalculator() {
                     </div>
 
                     {/* Result Section */}
-                    <div className="w-full lg:w-1/2 flex flex-col justify-center p-8 bg-blue-50 dark:bg-blue-950/20 rounded-2xl border border-blue-100 dark:border-blue-900/30 overflow-hidden">
+                    <div className="w-full lg:w-1/2 flex flex-col justify-center p-8 bg-zinc-100 dark:bg-zinc-900/50 rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
                         <div className="flex flex-col items-center mb-6">
                             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/50 dark:text-blue-400 mb-4">
                                 <CalculateIcon className="h-8 w-8" />
@@ -241,11 +241,11 @@ export default function EMICalculator() {
                         </div>
 
                         <div className="w-full space-y-4 mb-6">
-                            <div className="flex justify-between items-start py-2 border-b border-blue-100 dark:border-blue-900/30">
+                            <div className="flex justify-between items-start py-2 border-b border-zinc-200 dark:border-zinc-800">
                                 <span className="text-zinc-600 dark:text-zinc-400 shrink-0">Principal Amount</span>
                                 <span className="font-semibold text-zinc-900 dark:text-white break-all text-right ml-4">{formatCurrency(Number(amount) || 0)}</span>
                             </div>
-                            <div className="flex justify-between items-start py-2 border-b border-blue-100 dark:border-blue-900/30">
+                            <div className="flex justify-between items-start py-2 border-b border-zinc-200 dark:border-zinc-800">
                                 <span className="text-zinc-600 dark:text-zinc-400 shrink-0">Total Interest</span>
                                 <span className="font-semibold text-zinc-900 dark:text-white break-all text-right ml-4">{formatCurrency(totalInterest)}</span>
                             </div>

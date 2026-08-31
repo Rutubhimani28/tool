@@ -202,8 +202,8 @@ export default function CreditUtilizationCalculator() {
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to Improve Your Ratio</h3>
                     <ul className="list-disc pl-6 space-y-3 mb-8">
                         <li><strong>Pay down balances:</strong> The most direct way is to pay off your credit card debt.</li>
-                        <li><strong>Request a limit increase:</strong> Ask your credit card issuer for a higher limit (but don't increase your spending).</li>
-                        <li><strong>Keep cards open:</strong> Don't close old credit cards, as closing them reduces your total available credit limit and increases your utilization ratio.</li>
+                        <li><strong>Request a limit increase:</strong> Ask your credit card issuer for a higher limit (but don&apos;t increase your spending).</li>
+                        <li><strong>Keep cards open:</strong> Don&apos;t close old credit cards, as closing them reduces your total available credit limit and increases your utilization ratio.</li>
                     </ul>
                 </div>
             </div>

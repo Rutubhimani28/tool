@@ -139,7 +139,7 @@ export default function RetirementCalculator() {
                                     value={currentAge}
                                     onChange={handleNumberInput(setCurrentAge, null, 2)}
                                     placeholder="30"
-                                    className={`w-full px-4 py-3 rounded-xl border ${errors.age ? 'border-red-500 focus:ring-red-500' : 'border-zinc-200 dark:border-zinc-800 focus:ring-amber-500'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 outline-none transition-all`}
+                                    className={`w-full px-4 py-3 rounded-xl border ${errors.age ? 'border-red-500 focus:ring-red-500' : 'border-zinc-200 dark:border-zinc-800 focus:ring-blue-500'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 outline-none transition-all`}
                                 />
                             </div>
                             <div className="flex-1">
@@ -152,7 +152,7 @@ export default function RetirementCalculator() {
                                     value={retirementAge}
                                     onChange={handleNumberInput(setRetirementAge, null, 3)}
                                     placeholder="60"
-                                    className={`w-full px-4 py-3 rounded-xl border ${errors.age ? 'border-red-500 focus:ring-red-500' : 'border-zinc-200 dark:border-zinc-800 focus:ring-amber-500'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 outline-none transition-all`}
+                                    className={`w-full px-4 py-3 rounded-xl border ${errors.age ? 'border-red-500 focus:ring-red-500' : 'border-zinc-200 dark:border-zinc-800 focus:ring-blue-500'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 outline-none transition-all`}
                                 />
                             </div>
                         </div>
@@ -170,7 +170,7 @@ export default function RetirementCalculator() {
                                     value={currentSavingsText}
                                     onChange={handleNumberInput(setCurrentSavings, setCurrentSavingsText, 10)}
                                     placeholder="5,00,000"
-                                    className={`w-full pl-8 pr-4 py-3 rounded-xl border ${errors.currentSavings ? 'border-red-500 focus:ring-red-500' : 'border-zinc-200 dark:border-zinc-800 focus:ring-amber-500'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 outline-none transition-all`}
+                                    className={`w-full pl-8 pr-4 py-3 rounded-xl border ${errors.currentSavings ? 'border-red-500 focus:ring-red-500' : 'border-zinc-200 dark:border-zinc-800 focus:ring-blue-500'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 outline-none transition-all`}
                                 />
                             </div>
                             {errors.currentSavings && <p className="text-red-500 text-xs mt-1">{errors.currentSavings}</p>}
@@ -188,7 +188,7 @@ export default function RetirementCalculator() {
                                     value={monthlyInvestmentText}
                                     onChange={handleNumberInput(setMonthlyInvestment, setMonthlyInvestmentText, 8)}
                                     placeholder="10,000"
-                                    className={`w-full pl-8 pr-4 py-3 rounded-xl border ${errors.monthlyInvestment ? 'border-red-500 focus:ring-red-500' : 'border-zinc-200 dark:border-zinc-800 focus:ring-amber-500'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 outline-none transition-all`}
+                                    className={`w-full pl-8 pr-4 py-3 rounded-xl border ${errors.monthlyInvestment ? 'border-red-500 focus:ring-red-500' : 'border-zinc-200 dark:border-zinc-800 focus:ring-blue-500'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 outline-none transition-all`}
                                 />
                             </div>
                             {errors.monthlyInvestment && <p className="text-red-500 text-xs mt-1">{errors.monthlyInvestment}</p>}
@@ -205,7 +205,7 @@ export default function RetirementCalculator() {
                                     value={rateText}
                                     onChange={handleRateChange}
                                     placeholder="12"
-                                    className={`w-full pl-4 pr-10 py-3 rounded-xl border ${errors.rate ? 'border-red-500 focus:ring-red-500' : 'border-zinc-200 dark:border-zinc-800 focus:ring-amber-500'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 outline-none transition-all`}
+                                    className={`w-full pl-4 pr-10 py-3 rounded-xl border ${errors.rate ? 'border-red-500 focus:ring-red-500' : 'border-zinc-200 dark:border-zinc-800 focus:ring-blue-500'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 outline-none transition-all`}
                                 />
                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 font-medium">%</span>
                             </div>
@@ -214,9 +214,9 @@ export default function RetirementCalculator() {
                     </div>
 
                     {/* Result Section */}
-                    <div className="w-full lg:w-1/2 flex flex-col justify-center p-8 bg-amber-50 dark:bg-amber-950/20 rounded-2xl border border-amber-100 dark:border-amber-900/30 overflow-hidden">
+                    <div className="w-full lg:w-1/2 flex flex-col justify-center p-8 bg-zinc-100 dark:bg-zinc-900/50 rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
                         <div className="flex flex-col items-center mb-6">
-                            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-amber-100 text-amber-600 dark:bg-amber-900/50 dark:text-amber-400 mb-4">
+                            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/50 dark:text-blue-400 mb-4">
                                 <TrendingUpIcon className="h-8 w-8" />
                             </div>
                             <h3 className="text-xl font-medium text-zinc-600 dark:text-zinc-400 mb-2">Estimated Retirement Corpus</h3>
@@ -229,11 +229,11 @@ export default function RetirementCalculator() {
                         </div>
 
                         <div className="w-full space-y-4 mb-6">
-                            <div className="flex justify-between items-start py-2 border-b border-amber-100 dark:border-amber-900/30">
+                            <div className="flex justify-between items-start py-2 border-b border-zinc-200 dark:border-zinc-800">
                                 <span className="text-zinc-600 dark:text-zinc-400 shrink-0">Total Invested</span>
                                 <span className="font-semibold text-zinc-900 dark:text-white break-all text-right ml-4">{formatCurrency(result.totalInvested)}</span>
                             </div>
-                            <div className="flex justify-between items-start py-2 border-b border-amber-100 dark:border-amber-900/30">
+                            <div className="flex justify-between items-start py-2 border-b border-zinc-200 dark:border-zinc-800">
                                 <span className="text-zinc-600 dark:text-zinc-400 shrink-0">Wealth Gained</span>
                                 <span className="font-semibold text-amber-600 dark:text-amber-400 break-all text-right ml-4">{formatCurrency(result.wealthGained)}</span>
                             </div>

@@ -158,7 +158,7 @@ export default function CompoundInterestCalculator() {
                                     value={amountText}
                                     onChange={handleAmountChange}
                                     placeholder="10,000"
-                                    className={`w-full pl-8 pr-4 py-3 rounded-xl border ${errors.amount ? 'border-red-500 focus:ring-red-500' : 'border-zinc-200 dark:border-zinc-800 focus:ring-purple-500'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 outline-none transition-all`}
+                                    className={`w-full pl-8 pr-4 py-3 rounded-xl border ${errors.amount ? 'border-red-500 focus:ring-red-500' : 'border-zinc-200 dark:border-zinc-800 focus:ring-blue-500'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 outline-none transition-all`}
                                 />
                             </div>
                             {errors.amount && <p className="text-red-500 text-xs mt-1">{errors.amount}</p>}
@@ -176,7 +176,7 @@ export default function CompoundInterestCalculator() {
                                         value={rateText}
                                         onChange={handleRateChange}
                                         placeholder="10"
-                                        className={`w-full pl-4 pr-10 py-3 rounded-xl border ${errors.rate ? 'border-red-500 focus:ring-red-500' : 'border-zinc-200 dark:border-zinc-800 focus:ring-purple-500'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 outline-none transition-all`}
+                                        className={`w-full pl-4 pr-10 py-3 rounded-xl border ${errors.rate ? 'border-red-500 focus:ring-red-500' : 'border-zinc-200 dark:border-zinc-800 focus:ring-blue-500'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 outline-none transition-all`}
                                     />
                                     <span className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 font-medium">%</span>
                                 </div>
@@ -194,7 +194,7 @@ export default function CompoundInterestCalculator() {
                                         value={tenure}
                                         onChange={handleTenureChange}
                                         placeholder="10"
-                                        className={`w-full px-4 py-3 rounded-xl border ${errors.tenure ? 'border-red-500 focus:ring-red-500' : 'border-zinc-200 dark:border-zinc-800 focus:ring-purple-500'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 outline-none transition-all`}
+                                        className={`w-full px-4 py-3 rounded-xl border ${errors.tenure ? 'border-red-500 focus:ring-red-500' : 'border-zinc-200 dark:border-zinc-800 focus:ring-blue-500'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 outline-none transition-all`}
                                     />
                                 </div>
                                 {errors.tenure && <p className="text-red-500 text-xs mt-1">{errors.tenure}</p>}
@@ -210,7 +210,7 @@ export default function CompoundInterestCalculator() {
                                     suppressHydrationWarning
                                     type="button"
                                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                                    className={`w-full flex items-center justify-between px-4 py-3 rounded-xl border ${isDropdownOpen ? 'border-purple-500 ring-2 ring-purple-500/20' : 'border-zinc-200 dark:border-zinc-800'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all`}
+                                    className={`w-full flex items-center justify-between px-4 py-3 rounded-xl border ${isDropdownOpen ? 'border-blue-500 ring-2 ring-blue-500/20' : 'border-zinc-200 dark:border-zinc-800'} bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all`}
                                 >
                                     <span className="capitalize font-medium">{frequencyLabels[frequency]}</span>
                                     <svg className={`w-4 h-4 text-zinc-500 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -225,7 +225,7 @@ export default function CompoundInterestCalculator() {
                                                     key={f}
                                                     variant="ghost"
                                                     fullWidth
-                                                    className={`justify-center !rounded-none py-2.5 text-sm transition-colors ${frequency === f ? "bg-purple-50 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 font-semibold hover:bg-purple-100 dark:hover:bg-purple-500/20" : "text-zinc-700 dark:text-zinc-300 font-medium"}`}
+                                                    className={`justify-center !rounded-none py-2.5 text-sm transition-colors ${frequency === f ? "bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 font-semibold hover:bg-blue-100 dark:hover:bg-blue-500/20" : "text-zinc-700 dark:text-zinc-300 font-medium"}`}
                                                     onClick={() => { setFrequency(f); setIsDropdownOpen(false); }}
                                                 >
                                                     {frequencyLabels[f]}
@@ -239,9 +239,9 @@ export default function CompoundInterestCalculator() {
                     </div>
 
                     {/* Result Section */}
-                    <div className="w-full lg:w-1/2 flex flex-col justify-center p-8 bg-purple-50 dark:bg-purple-950/20 rounded-2xl border border-purple-100 dark:border-purple-900/30 overflow-hidden">
+                    <div className="w-full lg:w-1/2 flex flex-col justify-center p-8 bg-zinc-100 dark:bg-zinc-900/50 rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
                         <div className="flex flex-col items-center mb-6">
-                            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-purple-100 text-purple-600 dark:bg-purple-900/50 dark:text-purple-400 mb-4">
+                            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/50 dark:text-blue-400 mb-4">
                                 <ShowChartIcon className="h-8 w-8" />
                             </div>
                             <h3 className="text-xl font-medium text-zinc-600 dark:text-zinc-400 mb-2">Total Value</h3>
@@ -251,11 +251,11 @@ export default function CompoundInterestCalculator() {
                         </div>
 
                         <div className="w-full space-y-4 mb-6">
-                            <div className="flex justify-between items-start py-2 border-b border-purple-100 dark:border-purple-900/30">
+                            <div className="flex justify-between items-start py-2 border-b border-zinc-200 dark:border-zinc-800">
                                 <span className="text-zinc-600 dark:text-zinc-400 shrink-0">Principal Amount</span>
                                 <span className="font-semibold text-zinc-900 dark:text-white break-all text-right ml-4">{formatCurrency(principalAmount)}</span>
                             </div>
-                            <div className="flex justify-between items-start py-2 border-b border-purple-100 dark:border-purple-900/30">
+                            <div className="flex justify-between items-start py-2 border-b border-zinc-200 dark:border-zinc-800">
                                 <span className="text-zinc-600 dark:text-zinc-400 shrink-0">Total Interest</span>
                                 <span className="font-semibold text-purple-600 dark:text-purple-400 break-all text-right ml-4">{formatCurrency(totalInterest)}</span>
                             </div>
@@ -287,12 +287,12 @@ export default function CompoundInterestCalculator() {
                 <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
                     <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mt-12 mb-6">Free Compound Interest Calculator</h2>
                     <p className="text-lg mb-8">
-                        Albert Einstein is reputed to have said, "Compound interest is the eighth wonder of the world. He who understands it, earns it... he who doesn't... pays it." Our free compound interest calculator helps you discover how your investments can grow over time through the power of compounding.
+                        Albert Einstein is reputed to have said, &quot;Compound interest is the eighth wonder of the world. He who understands it, earns it... he who doesn&apos;t... pays it.&quot; Our free compound interest calculator helps you discover how your investments can grow over time through the power of compounding.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">What is Compound Interest?</h3>
                     <p className="mb-6">
-                        Compound interest is the interest on a deposit or loan calculated based on both the initial principal and the accumulated interest from previous periods. In simple terms, it is "interest on interest," which makes a sum grow at a faster rate than simple interest, which is calculated only on the principal amount.
+                        Compound interest is the interest on a deposit or loan calculated based on both the initial principal and the accumulated interest from previous periods. In simple terms, it is &quot;interest on interest,&quot; which makes a sum grow at a faster rate than simple interest, which is calculated only on the principal amount.
                     </p>
 
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mt-10 mb-4">How to use this calculator</h3>

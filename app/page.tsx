@@ -93,7 +93,7 @@ export default function Home() {
     "@graph": [
       {
         "@type": "SoftwareApplication",
-        "name": "FinanceTools",
+        "name": "Pdfimage Convert",
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "Any",
         "offers": {

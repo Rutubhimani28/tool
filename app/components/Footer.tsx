@@ -2,19 +2,19 @@ import React from "react";
 import Link from "next/link";
 
 const quickLinks = [
-    { label: "Merge PDF", href: "/merge-pdf" },
-    { label: "Split PDF", href: "/split-pdf" },
-    { label: "Compress PDF", href: "/compress-pdf" },
-    { label: "Word to PDF", href: "/word-to-pdf" },
-    { label: "PDF to Word", href: "/pdf-to-word" },
+    { label: "EMI Calculator", href: "/tools/emi-calculator" },
+    { label: "SIP Calculator", href: "/tools/sip-calculator" },
+    { label: "Compound Interest", href: "/tools/compound-interest-calculator" },
+    { label: "FD Calculator", href: "/tools/fd-calculator" },
+    { label: "Retirement Calculator", href: "/tools/retirement-calculator" },
 ];
 
 const moreLinks = [
-    { label: "JPG to PDF", href: "/jpg-to-pdf" },
-    { label: "PDF to JPG", href: "/pdf-to-jpg" },
-    { label: "Rotate PDF", href: "/rotate-pdf" },
-    { label: "Unlock PDF", href: "/unlock-pdf" },
-    { label: "Protect PDF", href: "/protect-pdf" },
+    { label: "Loan Eligibility", href: "/tools/loan-eligibility-calculator" },
+    { label: "Loan Calculator", href: "/tools/loan-calculator" },
+    { label: "Inflation Calculator", href: "/tools/inflation-calculator" },
+    { label: "Net Worth", href: "/tools/net-worth-calculator" },
+    { label: "Credit Utilization", href: "/tools/credit-utilization-calculator" },
 ];
 
 export default function Footer() {
@@ -24,16 +24,16 @@ export default function Footer() {
                 <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-5">
                     {/* Brand */}
                     <div className="flex flex-col gap-4 items-center sm:items-start text-center sm:text-left md:col-span-2">
-                        <Link href="/" className="flex items-center gap-2 group w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 rounded-lg">
+                        <Link href="/" className="flex items-center gap-2 group w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg">
                             <div className="flex h-12 w-12 items-center justify-center transition-transform group-hover:scale-105 overflow-hidden">
-                                <img src="/logo.png" alt="PDFImageConvert Logo - Free PDF Tools" className="h-full w-full object-contain scale-[1.6]" />
+                                <img src="/logo.png" alt="Pdfimage Convert Logo" className="h-full w-full object-contain scale-[1.6]" />
                             </div>
                             <span className="text-lg font-bold text-zinc-900 dark:text-white">
-                                PDFImage<span className="text-red-500">Convert</span>
+                                Finance<span className="text-blue-600">Tools</span>
                             </span>
                         </Link>
                         <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                            Your all-in-one platform for managing documents and images. Secure, fast, and completely free to use directly in your browser.
+                            Free, fast, and easy-to-use financial calculators. Plan your loans, investments, and personal finances directly in your browser.
                         </p>
                     </div>
 
@@ -90,7 +90,7 @@ export default function Footer() {
                 {/* Bottom bar */}
                 <div className="mt-10 pt-6 border-t border-zinc-100 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
                     <p className="text-xs text-zinc-400 dark:text-zinc-500">
-                        © {new Date().getFullYear()} PDFImageConvert. All rights reserved.
+                        © {new Date().getFullYear()} Pdfimage Convert. All rights reserved.
                     </p>
                     <div className="flex gap-5 text-xs text-zinc-400 dark:text-zinc-500 justify-center sm:justify-start">
                         <Link href="/privacy" className="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Privacy Policy</Link>

@@ -28,57 +28,65 @@ export default function TermsPage() {
             <div className="rounded-2xl sm:rounded-3xl border border-zinc-200 bg-white p-6 sm:p-10 shadow-sm dark:border-zinc-800 dark:bg-zinc-950 transition-all duration-300">
                 <div className="prose prose-zinc dark:prose-invert max-w-none">
                     <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
-                        Welcome to PDFImageConvert. By accessing or using our website and tools, you agree to be bound by these Terms & Conditions. If you disagree with any part of these terms, you may not access the service.
+                        Welcome to Pdfimage Convert. By accessing or using our website and tools, you agree to be bound by these Terms & Conditions. If you disagree with any part of these terms, please do not use the service.
                     </p>
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">1. Use of Service and User Responsibilities</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-4 leading-relaxed">
-                        PDFImageConvert provides a suite of online tools for processing PDF documents and images. You agree to use these tools responsibly and in compliance with all applicable laws.
+                        Pdfimage Convert provides a suite of online financial calculators. You agree to use these tools responsibly and in compliance with all applicable laws.
                     </p>
                     <ul className="list-disc pl-5 space-y-2 text-zinc-600 dark:text-zinc-300 mb-6">
-                        <li>You must not use our tools to process illegal, copyrighted (without permission), or malicious content.</li>
-                        <li>You are solely responsible for the files you process using our service.</li>
-                        <li>You agree not to attempt to disrupt, exploit, or gain unauthorized access to our servers or infrastructure.</li>
+                        <li>You must use our financial calculators for their intended purpose.</li>
+                        <li>You agree not to attempt to disrupt, misuse, or gain unauthorized access to our servers or infrastructure.</li>
                     </ul>
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">2. Privacy and Cookies</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
-                        Your use of PDFImageConvert is also governed by our <Link href="/privacy" className="text-blue-600 hover:underline dark:text-blue-400">Privacy Policy</Link>. By using our service, you consent to the practices described in the Privacy Policy, including our use of cookies to enhance your experience and analyze site traffic.
+                        Your use of Pdfimage Convert is also governed by our <Link href="/privacy" className="text-blue-600 hover:underline dark:text-blue-400">Privacy Policy</Link>. Our use of cookies, analytics, and other website data practices is described in our Privacy Policy.
                     </p>
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">3. Intellectual Property</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
-                        The website, its original content, features, and functionality are owned by PDFImageConvert and are protected by international copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws. You retain all rights to the files you process using our tools.
+                        The website, its original content, design, branding, features, and functionality are owned by or licensed to Pdfimage Convert and are protected by applicable intellectual property laws.
                     </p>
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">4. Termination</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
-                        We may terminate or suspend your access to our service immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach these Terms. Upon termination, your right to use the service will immediately cease.
+                        We may suspend or terminate access to our service where reasonably necessary, including if you breach these Terms or misuse the service. Upon termination or suspension, your right to use the affected service may cease.
                     </p>
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">5. Disclaimer of Warranties</h2>
+                    <p className="text-zinc-600 dark:text-zinc-300 mb-4 leading-relaxed">
+                        Our service is provided on an &quot;AS IS&quot; and &quot;AS AVAILABLE&quot; basis. Pdfimage Convert makes no representations or warranties, express or implied, regarding the availability, operation, or error-free performance of the service.
+                    </p>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
-                        Our service is provided on an &quot;AS IS&quot; and &quot;AS AVAILABLE&quot; basis. PDFImageConvert makes no representations or warranties of any kind, express or implied, regarding the operation of the service, the accuracy of the tools, or the information, content, or materials included on the website. We do not warrant that the service will be uninterrupted, secure, or error-free.
+                        The calculators provide estimates based on the information, assumptions, and methodology used by each tool. Results should not be treated as guaranteed outcomes. The calculators are provided for educational and estimation purposes only and do not constitute professional financial, investment, tax, or legal advice.
                     </p>
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">6. Limitation of Liability</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
-                        In no event shall PDFImageConvert, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the service.
+                        To the extent permitted by applicable law, Pdfimage Convert, including its directors, employees, partners, agents, suppliers, and affiliates, will not be liable for indirect, incidental, special, consequential, or punitive damages arising from or related to your access to, use of, or inability to use the service.
                     </p>
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">7. Governing Law</h2>
+                    <p className="text-zinc-600 dark:text-zinc-300 mb-4 leading-relaxed">
+                        These Terms shall be governed and construed in accordance with applicable laws, without regard to conflict of law provisions. Any dispute arising from or relating to these Terms or the service will be subject to the jurisdiction of the appropriate courts, as applicable.
+                    </p>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
-                        These Terms shall be governed and construed in accordance with applicable laws, without regard to conflict of law provisions. You agree that any dispute arising from or relating to these Terms or the service will be resolved in a competent court of law. Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights.
+                        Our failure to enforce any right or provision of these Terms will not constitute a waiver of that right or provision.
                     </p>
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">8. Changes to Terms</h2>
+                    <p className="text-zinc-600 dark:text-zinc-300 mb-4 leading-relaxed">
+                        We may update these Terms &amp; Conditions from time to time. Any changes will be posted on this page with an updated revision date.
+                    </p>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
-                        We reserve the right, at our sole discretion, to modify or replace these Terms at any time. By continuing to access or use our service after those revisions become effective, you agree to be bound by the revised terms.
+                        Your continued use of the service after changes are posted constitutes acceptance of the updated Terms, where permitted by applicable law.
                     </p>
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Contact Us</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                        If you have any questions about these Terms, please contact us at support@pdfimageconvert.com.
+                        If you have any questions about these Terms, please <Link href="/contact" className="text-blue-600 hover:underline dark:text-blue-400">contact us</Link>.
                     </p>
                 </div>
             </div>
