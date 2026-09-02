@@ -25,12 +25,12 @@ export default function AboutPage() {
             <div className="rounded-2xl sm:rounded-3xl border border-zinc-200 bg-white p-6 sm:p-10 shadow-sm dark:border-zinc-800 dark:bg-zinc-950 transition-all duration-300">
                 <div className="prose prose-zinc dark:prose-invert max-w-none">
                     <p className="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300 mb-6">
-                        <strong>Pdfimage Convert</strong> was created with a simple goal: to provide fast, easy-to-use financial calculators that help people understand common loan, investment, and personal finance calculations directly from their browser.
+                        <strong>Finance Tools</strong> was created with a simple goal: to provide fast, easy-to-use financial calculators that help people understand common loan, investment, and personal finance calculations directly from their browser.
                     </p>
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Our Story</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-4 leading-relaxed">
-                        Pdfimage Convert was created to provide a simpler way to explore common financial calculations without unnecessary complexity. The platform focuses on clear interfaces, transparent assumptions, and easy-to-understand results.
+                        Finance Tools was created to provide a simpler way to explore common financial calculations without unnecessary complexity. The platform focuses on clear interfaces, transparent assumptions, and easy-to-understand results.
                     </p>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
                         Many calculations are performed directly in your browser, allowing results to be generated without unnecessary server processing. We believe that educational financial planning tools should be accessible to everyone without hidden costs.
@@ -38,7 +38,7 @@ export default function AboutPage() {
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">What We Offer</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-4 leading-relaxed">
-                        Pdfimage Convert provides a collection of financial calculators to help you explore different scenarios.
+                        Finance Tools provides a collection of financial calculators to help you explore different scenarios.
                     </p>
                     <ul className="list-disc pl-5 space-y-3 text-zinc-600 dark:text-zinc-300 mb-6">
                         <li><strong>Loan & EMI Tools:</strong> Calculate your Equated Monthly Installment (EMI), view standard amortization schedules, and estimate loan eligibility.</li>
@@ -60,7 +60,7 @@ export default function AboutPage() {
                     </p>
 
                     <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-10 p-4 bg-zinc-100 dark:bg-zinc-900 rounded-lg">
-                        <strong>Disclaimer:</strong> Pdfimage Convert provides calculators and educational information for general informational purposes. Calculator results are estimates based on the inputs and assumptions provided and should not be considered financial, investment, tax, or legal advice.
+                        <strong>Disclaimer:</strong> Finance Tools provides calculators and educational information for general informational purposes. Calculator results are estimates based on the inputs and assumptions provided and should not be considered financial, investment, tax, or legal advice.
                     </p>
                 </div>
             </div>

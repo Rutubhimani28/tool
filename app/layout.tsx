@@ -32,14 +32,14 @@ export const metadata: Metadata = {
     title: "Finance Tools - Free EMI, SIP, and Compound Interest Calculators",
     description: "Free online financial calculators. Calculate EMI for loans, SIP returns, and compound interest in seconds.",
     url: "https://pdfimageconvert.com",
-    siteName: "Pdfimage Convert",
+    siteName: "Finance Tools",
     type: "website",
     images: [
       {
         url: "https://pdfimageconvert.com/logo.png",
         width: 800,
         height: 600,
-        alt: "Pdfimage Convert Logo",
+        alt: "Finance Tools Logo",
       },
     ],
   },
@@ -78,7 +78,7 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": "https://pdfimageconvert.com/#website",
       url: "https://pdfimageconvert.com",
-      name: "Pdfimage Convert",
+      name: "Finance Tools",
       description: "Free online financial calculators. Calculate EMI for loans, SIP returns, and compound interest in seconds.",
       publisher: {
         "@id": "https://pdfimageconvert.com/#organization",
@@ -87,7 +87,7 @@ const jsonLd = {
     {
       "@type": "Organization",
       "@id": "https://pdfimageconvert.com/#organization",
-      name: "Pdfimage Convert",
+      name: "Finance Tools",
       url: "https://pdfimageconvert.com",
       logo: {
         "@type": "ImageObject",
@@ -131,7 +131,7 @@ export default function RootLayout({
         ></script>
       </head>
       <body suppressHydrationWarning className={`${ibmPlexSans.className} antialiased min-h-full flex flex-col bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-300 overflow-x-hidden`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <Navbar />
           <main className="flex-1 flex flex-col">{children}</main>
           <Footer />

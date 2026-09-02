@@ -8,12 +8,12 @@ export const faqs: FAQ[] = [
     // General Questions
     {
         category: "General Questions",
-        question: "What is Pdfimage Convert?",
-        answer: "Pdfimage Convert provides a suite of online calculators designed to help you estimate loans, investments, and personal finances in your web browser."
+        question: "What is Finance Tools?",
+        answer: "Finance Tools provides a suite of online calculators designed to help you estimate loans, investments, and personal finances in your web browser."
     },
     {
         category: "General Questions",
-        question: "Is Pdfimage Convert free to use?",
+        question: "Is Finance Tools free to use?",
         answer: "Yes, our core calculators are free to use. We do not require a credit card or a subscription."
     },
     {
@@ -29,7 +29,7 @@ export const faqs: FAQ[] = [
     {
         category: "General Questions",
         question: "Do I need to download any software?",
-        answer: "No. Pdfimage Convert is a web-based application, and calculations happen within your web browser."
+        answer: "No. Finance Tools is a web-based application, and calculations happen within your web browser."
     },
     {
         category: "General Questions",
@@ -202,8 +202,8 @@ export const faqs: FAQ[] = [
     // Advanced Usage
     {
         category: "Advanced Usage",
-        question: "Can I integrate Pdfimage Convert calculators via an API?",
-        answer: "Currently, Pdfimage Convert is a consumer-facing web application. We do not offer a public API at this time."
+        question: "Can I integrate Finance Tools calculators via an API?",
+        answer: "Currently, Finance Tools is a consumer-facing web application. We do not offer a public API at this time."
     },
     {
         category: "Advanced Usage",
@@ -213,7 +213,7 @@ export const faqs: FAQ[] = [
     {
         category: "Advanced Usage",
         question: "Is there a downloadable version available?",
-        answer: "No, Pdfimage Convert is a web-based application. There is no downloadable desktop version."
+        answer: "No, Finance Tools is a web-based application. There is no downloadable desktop version."
     },
     {
         category: "Advanced Usage",

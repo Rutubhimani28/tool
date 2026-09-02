@@ -25,12 +25,9 @@ export default function Footer() {
                     {/* Brand */}
                     <div className="flex flex-col gap-4 items-center sm:items-start text-center sm:text-left md:col-span-2">
                         <Link href="/" className="flex items-center gap-2 group w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg">
-                            <div className="flex h-12 w-12 items-center justify-center transition-transform group-hover:scale-105 overflow-hidden">
-                                <img src="/logo.png" alt="Pdfimage Convert Logo" className="h-full w-full object-contain scale-[1.6]" />
+                            <div className="flex h-20 w-52 items-center justify-start transition-transform group-hover:scale-105">
+                                <img src="/logo.png" alt="Finance Tools Logo" className="h-full w-full object-contain" />
                             </div>
-                            <span className="text-lg font-bold text-zinc-900 dark:text-white">
-                                Finance<span className="text-blue-600">Tools</span>
-                            </span>
                         </Link>
                         <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
                             Free, fast, and easy-to-use financial calculators. Plan your loans, investments, and personal finances directly in your browser.
@@ -90,7 +87,7 @@ export default function Footer() {
                 {/* Bottom bar */}
                 <div className="mt-10 pt-6 border-t border-zinc-100 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
                     <p className="text-xs text-zinc-400 dark:text-zinc-500">
-                        © {new Date().getFullYear()} Pdfimage Convert. All rights reserved.
+                        © {new Date().getFullYear()} Finance Tools. All rights reserved.
                     </p>
                     <div className="flex gap-5 text-xs text-zinc-400 dark:text-zinc-500 justify-center sm:justify-start">
                         <Link href="/privacy" className="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Privacy Policy</Link>

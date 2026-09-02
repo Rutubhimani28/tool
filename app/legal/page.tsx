@@ -55,7 +55,7 @@ export default function LegalPage() {
                 <div className="rounded-2xl sm:rounded-3xl border border-zinc-200 bg-white p-6 sm:p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-950">
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mb-4">1. Data Collection and Usage</h2>
                     <p className="text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed">
-                        When you use Pdfimage Convert, we only collect the minimum amount of data necessary to provide our services.
+                        When you use Finance Tools, we only collect the minimum amount of data necessary to provide our services.
                         The files you upload are temporarily stored on our secure servers solely for the purpose of processing your conversion request.
                         We do not analyze, read, or extract any information from the contents of your files.
                     </p>
@@ -74,7 +74,7 @@ export default function LegalPage() {
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mb-4">4. Terms of Service</h2>
                     <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                        By using our services, you agree not to use Pdfimage Convert for any illegal activities or to process malicious files.
+                        By using our services, you agree not to use Finance Tools for any illegal activities or to process malicious files.
                         We provide our tools &quot;as is&quot; without any warranties. We reserve the right to block access to our services if we detect abuse or violations of these terms.
                     </p>
                 </div>

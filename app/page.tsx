@@ -93,7 +93,7 @@ export default function Home() {
     "@graph": [
       {
         "@type": "SoftwareApplication",
-        "name": "Pdfimage Convert",
+        "name": "Finance Tools",
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "Any",
         "offers": {
@@ -163,31 +163,31 @@ export default function Home() {
             </div>
 
             {/* Right Column: Visual Composition */}
-            <div className="relative h-[300px] sm:h-[350px] w-full mt-4 lg:mt-0 flex items-center justify-center overflow-hidden">
+            <div className="relative h-[300px] sm:h-[350px] w-full mt-4 lg:mt-0 flex items-center justify-center">
               <div className="relative w-[500px] h-[350px] scale-[0.65] sm:scale-75 md:scale-90 lg:scale-100 origin-center">
                 {/* Main Card */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-80 bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl border border-zinc-200 dark:border-zinc-800 z-10 flex flex-col items-center justify-center p-6 transform -rotate-6 hover:rotate-0 transition-transform duration-500">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-80 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-400 dark:border-zinc-800 shadow-2xl dark:shadow-none z-10 flex flex-col items-center justify-center p-6 transform -rotate-6 hover:rotate-0 transition-transform duration-500">
                   <Calculate className="h-24 w-24 text-blue-500 mb-6" />
-                  <div className="w-3/4 h-3 bg-zinc-100 dark:bg-zinc-800 rounded-full mb-4"></div>
-                  <div className="w-full h-3 bg-zinc-100 dark:bg-zinc-800 rounded-full mb-4"></div>
-                  <div className="w-5/6 h-3 bg-zinc-100 dark:bg-zinc-800 rounded-full"></div>
+                  <div className="w-3/4 h-3 bg-zinc-200 dark:bg-zinc-800 rounded-full mb-4"></div>
+                  <div className="w-full h-3 bg-zinc-200 dark:bg-zinc-800 rounded-full mb-4"></div>
+                  <div className="w-5/6 h-3 bg-zinc-200 dark:bg-zinc-800 rounded-full"></div>
                 </div>
 
                 {/* Sub Card 1 */}
-                <div className="absolute top-[15%] right-[5%] w-36 h-36 bg-white dark:bg-zinc-900 rounded-2xl shadow-xl border border-zinc-200 dark:border-zinc-800 z-20 flex flex-col items-center justify-center p-4 transform rotate-12 hover:rotate-0 transition-transform duration-500 hover:scale-110">
+                <div className="absolute top-[15%] right-[5%] w-36 h-36 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-400 dark:border-zinc-800 shadow-xl dark:shadow-none z-20 flex flex-col items-center justify-center p-4 transform rotate-12 hover:rotate-0 transition-transform duration-500 hover:scale-110">
                   <TrendingUp className="h-12 w-12 text-green-500 mb-3" />
                   <span className="font-bold text-zinc-900 dark:text-white">SIP</span>
                 </div>
 
                 {/* Sub Card 2 */}
-                <div className="absolute bottom-[15%] left-[5%] w-36 h-36 bg-white dark:bg-zinc-900 rounded-2xl shadow-xl border border-zinc-200 dark:border-zinc-800 z-20 flex flex-col items-center justify-center p-4 transform -rotate-12 hover:rotate-0 transition-transform duration-500 hover:scale-110">
+                <div className="absolute bottom-[15%] left-[5%] w-36 h-36 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-400 dark:border-zinc-800 shadow-xl dark:shadow-none z-20 flex flex-col items-center justify-center p-4 transform -rotate-12 hover:rotate-0 transition-transform duration-500 hover:scale-110">
                   <ShowChart className="h-12 w-12 text-purple-500 mb-3" />
                   <span className="font-bold text-zinc-900 dark:text-white">Growth</span>
                 </div>
 
                 {/* Decorative Elements */}
-                <div className="absolute top-1/2 right-[15%] w-24 h-24 border-t-2 border-r-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-tr-3xl -z-10 opacity-50"></div>
-                <div className="absolute bottom-1/2 left-[15%] w-24 h-24 border-b-2 border-l-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-bl-3xl -z-10 opacity-50"></div>
+                <div className="absolute top-1/2 right-[15%] w-24 h-24 border-t-2 border-r-2 border-dashed border-zinc-400 dark:border-zinc-700 rounded-tr-3xl -z-10 opacity-50"></div>
+                <div className="absolute bottom-1/2 left-[15%] w-24 h-24 border-b-2 border-l-2 border-dashed border-zinc-400 dark:border-zinc-700 rounded-bl-3xl -z-10 opacity-50"></div>
               </div>
             </div>
 

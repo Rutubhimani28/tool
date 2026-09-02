@@ -37,13 +37,15 @@ export default function Navbar() {
 
     return (
         <header className="sticky top-0 z-50 w-full border-b border-zinc-200/80 bg-white/80 backdrop-blur-md dark:border-zinc-800/80 dark:bg-zinc-950/80 transition-colors duration-300">
-            <div className="mx-auto flex h-16 max-w-[1600px] items-center justify-between px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto flex h-20 max-w-[1600px] items-center justify-between px-4 sm:px-6 lg:px-8">
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-2 group flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 rounded-lg">
-                    <div className="flex h-12 w-12 items-center justify-center transition-transform group-hover:scale-105 overflow-hidden">
-                        <img src="/logo.png" alt="Pdfimage Convert Logo - Free PDF Tools" className="h-full w-full object-contain scale-[1.6]" />
-                    </div>
-                </Link>
+                <div className="flex flex-1 justify-start">
+                    <Link href="/" className="flex items-center gap-2 group flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 rounded-lg">
+                        <div className="flex h-20 w-52 items-center justify-start transition-transform group-hover:scale-105">
+                            <img src="/logo.png" alt="Finance Tools Logo - Financial Tools" className="h-full w-full object-contain" />
+                        </div>
+                    </Link>
+                </div>
 
                 {/* Desktop Nav Links */}
                 <nav className="hidden md:flex items-center gap-1">
@@ -83,7 +85,7 @@ export default function Navbar() {
                 </nav>
 
                 {/* Right side */}
-                <div className="flex items-center gap-2 relative" ref={menuRef}>
+                <div className="flex flex-1 items-center justify-end gap-2 relative" ref={menuRef}>
                     {/* Desktop Theme Toggle */}
                     <button
                         suppressHydrationWarning

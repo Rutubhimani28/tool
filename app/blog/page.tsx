@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
-import { ArrowBack, Search, Article, PictureAsPdf, Image as ImageIcon, Security, Speed, Folder, SwapHoriz, TrendingUp } from "@mui/icons-material";
+import { ArrowBack, Search, Article,  Security, Speed, Folder, SwapHoriz, TrendingUp } from "@mui/icons-material";
 import { articles } from "../data/articles";
 
 export default function BlogPage() {
@@ -15,7 +15,7 @@ export default function BlogPage() {
     // Mock data generation for features not in the original articles array
     const enhancedArticles = useMemo(() => {
         return articles.map((article, index) => {
-            const tagsList = [["PDF", "Compression"], ["Security", "Encryption"], ["Images", "WebP"], ["Organization", "Merge"]];
+            const tagsList = [["Loans", "EMI"], ["Investment", "SIP"], ["Retirement", "Planning"], ["Taxes", "Savings"]];
 
             return {
                 ...article,
@@ -43,12 +43,12 @@ export default function BlogPage() {
 
     const featuredArticle = enhancedArticles.find(a => a.isFeatured);
     const popularArticles = enhancedArticles.filter(a => a.isPopular);
-    const trendingTopics = ["PDF Compression", "Image Optimization", "Document Security", "WebP vs JPG"];
+    const trendingTopics = ["EMI Calculation", "SIP Investment", "Retirement Planning", "Home Loans"];
 
     const getCategoryIcon = (category: string, className: string = "") => {
         switch (category) {
-            case "PDF Tools": return <PictureAsPdf className={className} />;
-            case "Image Tools": return <ImageIcon className={className} />;
+            case "Finance Tools": return <TrendingUp className={className} />;
+            case "Investment Tools": return <TrendingUp className={className} />;
             case "Security": return <Security className={className} />;
             case "Optimize": return <Speed className={className} />;
             case "Organize": return <Folder className={className} />;
@@ -78,7 +78,7 @@ export default function BlogPage() {
                             Insights & Guides
                         </h1>
                         <p className="text-lg text-zinc-600 dark:text-zinc-400">
-                            Master your digital workflow with our comprehensive guides, expert tips, and tutorials on document management and image optimization.
+                            Master your personal finances with our comprehensive guides, expert tips, and tutorials on loans, investments, and retirement planning.
                         </p>
                     </div>
 

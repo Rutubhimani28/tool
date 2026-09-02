@@ -28,12 +28,12 @@ export default function PrivacyPage() {
             <div className="rounded-2xl sm:rounded-3xl border border-zinc-200 bg-white p-6 sm:p-10 shadow-sm dark:border-zinc-800 dark:bg-zinc-950 transition-all duration-300">
                 <div className="prose prose-zinc dark:prose-invert max-w-none">
                     <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
-                        At Pdfimage Convert, we take your privacy seriously. This Privacy Policy explains how we collect, use, and protect your personal information and financial inputs when you use our website and services.
+                        At Finance Tools, we take your privacy seriously. This Privacy Policy explains how we collect, use, and protect your personal information and financial inputs when you use our website and services.
                     </p>
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">1. Data Processing and Storage</h2>
                     <p className="text-zinc-600 dark:text-zinc-300 mb-4 leading-relaxed">
-                        Pdfimage Convert provides web-based financial calculators. The calculations you perform are processed locally in your web browser.
+                        Finance Tools provides web-based financial calculators. The calculations you perform are processed locally in your web browser.
                     </p>
                     <ul className="list-disc pl-5 space-y-2 text-zinc-600 dark:text-zinc-300 mb-6">
                         <li><strong>Local Processing:</strong> Our calculators perform their mathematical operations within your browser. We do not transmit your calculator inputs to our servers for calculation processing.</li>
