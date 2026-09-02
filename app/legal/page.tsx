@@ -32,22 +32,15 @@ export default function LegalPage() {
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 dark:bg-emerald-950/30 dark:text-emerald-400 mb-4">
                         <Security className="h-6 w-6" />
                     </div>
-                    <h3 className="font-semibold text-zinc-900 dark:text-white mb-2">Secure Processing</h3>
-                    <p className="text-sm text-zinc-500 dark:text-zinc-400">All file transfers are secured with advanced TLS encryption.</p>
-                </div>
-                <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-950">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-50 text-red-600 dark:bg-red-950/30 dark:text-red-400 mb-4">
-                        <Delete className="h-6 w-6" />
-                    </div>
-                    <h3 className="font-semibold text-zinc-900 dark:text-white mb-2">Auto Deletion</h3>
-                    <p className="text-sm text-zinc-500 dark:text-zinc-400">Files are automatically and permanently deleted after 1 hour.</p>
+                    <h3 className="font-semibold text-zinc-900 dark:text-white mb-2">Secure & Local</h3>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400">All calculations happen locally in your browser.</p>
                 </div>
                 <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-950">
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-50 text-blue-600 dark:bg-blue-950/30 dark:text-blue-400 mb-4">
                         <VisibilityOff className="h-6 w-6" />
                     </div>
                     <h3 className="font-semibold text-zinc-900 dark:text-white mb-2">No Tracking</h3>
-                    <p className="text-sm text-zinc-500 dark:text-zinc-400">We don&apos;t track your file contents or sell your data to third parties.</p>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400">We don&apos;t track your financial data or sell it to third parties.</p>
                 </div>
             </div>
 
@@ -56,14 +49,13 @@ export default function LegalPage() {
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mb-4">1. Data Collection and Usage</h2>
                     <p className="text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed">
                         When you use Finance Tools, we only collect the minimum amount of data necessary to provide our services.
-                        The files you upload are temporarily stored on our secure servers solely for the purpose of processing your conversion request.
-                        We do not analyze, read, or extract any information from the contents of your files.
+                        Calculator inputs are processed locally in your browser and are not uploaded to our servers for calculation.
+                        We do not collect or store your personal financial data.
                     </p>
 
-                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mb-4">2. File Retention Policy</h2>
+                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white mb-4">2. Financial Disclaimer</h2>
                     <p className="text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed">
-                        To ensure your privacy and security, all uploaded files and their converted outputs are automatically and permanently deleted from our servers within 1 hour of processing.
-                        We do not keep backups or copies of your documents.
+                        Financial calculators and articles on this website are provided for educational and informational purposes only. Results are estimates and should not be considered financial, investment, tax, or legal advice. Actual results may vary depending on individual circumstances, rates, fees, taxes, and applicable rules.
                     </p>
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mb-4">3. Cookies and Analytics</h2>
@@ -74,7 +66,7 @@ export default function LegalPage() {
 
                     <h2 className="text-xl font-bold text-zinc-900 dark:text-white mb-4">4. Terms of Service</h2>
                     <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                        By using our services, you agree not to use Finance Tools for any illegal activities or to process malicious files.
+                        By using our services, you agree not to use Finance Tools for any illegal activities.
                         We provide our tools &quot;as is&quot; without any warranties. We reserve the right to block access to our services if we detect abuse or violations of these terms.
                     </p>
                 </div>

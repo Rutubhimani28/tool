@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
-import { ArrowBack, Search, Article,  Security, Speed, Folder, SwapHoriz, TrendingUp } from "@mui/icons-material";
+import { ArrowBack, Search, Article, Security, TrendingUp } from "@mui/icons-material";
 import { articles } from "../data/articles";
 
 export default function BlogPage() {
@@ -50,9 +50,6 @@ export default function BlogPage() {
             case "Finance Tools": return <TrendingUp className={className} />;
             case "Investment Tools": return <TrendingUp className={className} />;
             case "Security": return <Security className={className} />;
-            case "Optimize": return <Speed className={className} />;
-            case "Organize": return <Folder className={className} />;
-            case "Convert": return <SwapHoriz className={className} />;
             default: return <Article className={className} />;
         }
     };
@@ -170,7 +167,7 @@ export default function BlogPage() {
                     {/* Categories Widget */}
                     <div className="bg-white dark:bg-zinc-900 rounded-3xl p-6 border border-zinc-200 dark:border-zinc-800">
                         <h3 className="text-lg font-bold text-zinc-900 dark:text-white mb-4 flex items-center gap-2">
-                            <Folder className="w-5 h-5 text-blue-500" /> Categories
+                            Categories
                         </h3>
                         <div className="flex flex-col gap-2">
                             {categories.map(category => (

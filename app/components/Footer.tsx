@@ -84,9 +84,11 @@ export default function Footer() {
                     </div>
                 </div>
 
-                {/* Bottom bar */}
                 <div className="mt-10 pt-6 border-t border-zinc-100 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-                    <p className="text-xs text-zinc-400 dark:text-zinc-500">
+                    <p className="text-xs text-zinc-400 dark:text-zinc-500 max-w-2xl">
+                        Disclaimer: The calculators and articles on Finance Tools are provided for educational and informational purposes only. Results are estimates and should not be considered financial, investment, tax, or legal advice. Actual results may vary.
+                        <br />
+                        <br />
                         © {new Date().getFullYear()} Finance Tools. All rights reserved.
                     </p>
                     <div className="flex gap-5 text-xs text-zinc-400 dark:text-zinc-500 justify-center sm:justify-start">
