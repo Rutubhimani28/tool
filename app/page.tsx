@@ -12,7 +12,6 @@ import {
   AccountBalanceWallet,
   HealthAndSafety,
 } from "@mui/icons-material";
-import AdBanner from "./components/AdBanner";
 
 import { tools } from "./data/tools";
 import { categories } from "./data/categories";
@@ -236,10 +235,11 @@ export default function Home() {
           <div className="mt-6 flex items-center justify-start sm:justify-center gap-2 overflow-x-auto scrollbar-hide pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
             <button
               onClick={() => setSelectedCategory("all")}
-              className={`flex-shrink-0 flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 whitespace-nowrap ${selectedCategory === "all"
-                ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 shadow-sm"
-                : "bg-white text-zinc-600 hover:bg-zinc-100 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800"
-                }`}
+              className={`flex-shrink-0 flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                selectedCategory === "all"
+                  ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 shadow-sm"
+                  : "bg-white text-zinc-600 hover:bg-zinc-100 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800"
+              }`}
             >
               All Tools
             </button>
@@ -247,10 +247,11 @@ export default function Home() {
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`flex-shrink-0 flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 whitespace-nowrap ${selectedCategory === category.id
-                  ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 shadow-sm"
-                  : "bg-white text-zinc-600 hover:bg-zinc-100 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800"
-                  }`}
+                className={`flex-shrink-0 flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                  selectedCategory === category.id
+                    ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 shadow-sm"
+                    : "bg-white text-zinc-600 hover:bg-zinc-100 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800"
+                }`}
               >
                 {category.title}
               </button>
@@ -335,9 +336,6 @@ export default function Home() {
             <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-12 text-center">
               Calculate your financials accurately in three simple steps.
             </p>
-            <div className="flex justify-center">
-              <AdBanner dataAdSlot="how-it-works-ad" />
-            </div>
             <div className="space-y-8">
               <div className="flex gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 font-bold text-xl">
