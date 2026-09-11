@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 type AdBannerProps = {
     dataAdSlot: string;
@@ -13,46 +13,33 @@ export default function AdBanner({
     dataAdFormat = "auto",
     dataFullWidthResponsive = true,
 }: AdBannerProps) {
+    const containerRef = useRef<HTMLDivElement>(null);
+
     useEffect(() => {
-        // Do not push ads in development mode
-        if (process.env.NODE_ENV === "development") return;
+        if (containerRef.current && !containerRef.current.hasAttribute("data-ad-loaded")) {
+            containerRef.current.setAttribute("data-ad-loaded", "true");
+            
+            const script1 = document.createElement("script");
+            script1.src = "//juvenilechoice.com/bgXBV.spddGolp0XYdWLcF/Ae-m/9BujZdUJl/klPKTWcLz/O-TWcu2/MCTSMrt/NwzIMu5/NUzQYox-NFwT";
+            script1.async = true;
+            script1.referrerPolicy = "no-referrer-when-downgrade";
+            (script1 as any).settings = {};
+            containerRef.current.appendChild(script1);
 
-        const pushAd = () => {
-            try {
-                // @ts-expect-error - adsbygoogle is injected by AdSense script
-                (window.adsbygoogle = window.adsbygoogle || []).push({});
-            } catch (error) {
-                console.error("AdSense error:", error);
-            }
-        };
-
-        // Small delay to ensure the DOM is fully painted and container has width
-        const timeoutId = setTimeout(pushAd, 200);
-
-        return () => {
-            if (timeoutId) clearTimeout(timeoutId);
-        };
+            const script2 = document.createElement("script");
+            script2.src = "//second-director.com/cBD/9_6fb.2p5AlrSsW/Qi9/NxzFMr5KN/zWUhycNtSv0q3eMDz/kd3/NMTGIm5v";
+            script2.async = true;
+            script2.referrerPolicy = "no-referrer-when-downgrade";
+            (script2 as any).settings = {};
+            containerRef.current.appendChild(script2);
+        }
     }, []);
 
-    // Show a placeholder in development mode to avoid "refused to connect" errors
-    if (process.env.NODE_ENV === "development") {
-        return (
-            <div className="w-full min-w-[250px] min-h-[90px] bg-zinc-200 dark:bg-zinc-800 border-2 border-dashed border-zinc-400 dark:border-zinc-600 flex items-center justify-center my-4 rounded-lg text-zinc-500 dark:text-zinc-400 text-sm font-medium">
-                AdSense Banner (Hidden in Development)
-            </div>
-        );
-    }
-
     return (
-        <div className="w-full min-w-[250px] min-h-[50px] overflow-hidden flex justify-center my-4">
-            <ins
-                className="adsbygoogle"
-                style={{ display: "block", width: "100%" }}
-                data-ad-client="ca-pub-7796384906806193"
-                data-ad-slot={dataAdSlot}
-                data-ad-format={dataAdFormat}
-                data-full-width-responsive={dataFullWidthResponsive.toString()}
-            />
+        <div 
+            ref={containerRef}
+            className="w-full min-w-[250px] min-h-[50px] flex justify-center my-4 relative z-50"
+        >
         </div>
     );
 }
