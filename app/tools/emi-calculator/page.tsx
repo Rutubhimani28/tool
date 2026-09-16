@@ -344,7 +344,7 @@ export default function EMICalculator() {
                                 el.setAttribute('data-ad-loaded', 'true');
                                 if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
                                     const inlineScript = document.createElement('script');
-                                    inlineScript.textContent = `(function(xdmxn){var d=document,s=d.createElement('script'),l=d.currentScript||d.scripts[d.scripts.length-1];s.settings=xdmxn||{};s.src='//juvenilechoice.com/b.XdVgs/dfGTl/0sYuWacY/wezmk9XuuZRUulPkNPqTzcIzmO-Tkcg2IMlTLMFtJNkzaMT5TNlzcYMxyNewX';s.async=true;s.referrerPolicy='no-referrer-when-downgrade';l.parentNode.insertBefore(s,l);})({})`;
+                                    inlineScript.textContent = `(function(options){var d=document,s=d.createElement('script'),l=d.currentScript||d.scripts[d.scripts.length-1];s.settings=options||{};s.src='//affectionatestorage.com/bK3/Vk0.Pk3jpmvDbWm/VqJGZDDa0C3-MQzBkN3yNdTTIo1zLvThcizmO/Tnco1LMZj_kx';s.async=true;s.referrerPolicy='no-referrer-when-downgrade';l.parentNode.insertBefore(s,l);})({})`;
                                     el.appendChild(inlineScript);
                                 }
                             }
