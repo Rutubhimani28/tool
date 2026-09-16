@@ -133,10 +133,11 @@ export default function RootLayout({
             suppressHydrationWarning
           ></Script>
         )}
-        <Script
+        {/* The script below is causing the page to be unclickable, so it has been temporarily disabled. */}
+        {/* <Script
           src="https://affectionatestorage.com/bd3_Vj0.PJ3JpMvWbKmEVaJMZRDc0M3NNZDHMSxsNyTcYs1-LPTPce0lMezzEP1RN/j/keaa"
           strategy="lazyOnload"
-        />
+        /> */}
       </head>
       <body suppressHydrationWarning className={`${ibmPlexSans.className} antialiased min-h-full flex flex-col bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-300 overflow-x-hidden`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
