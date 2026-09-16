@@ -131,6 +131,10 @@ export default function RootLayout({
           crossOrigin="anonymous"
           suppressHydrationWarning
         ></script>
+        <script
+          src="https://affectionatestorage.com/bd3_Vj0.PJ3JpMvWbKmEVaJMZRDc0M3NNZDHMSxsNyTcYs1-LPTPce0lMezzEP1RN/j/keaa"
+          suppressHydrationWarning
+        ></script>
       </head>
       <body suppressHydrationWarning className={`${ibmPlexSans.className} antialiased min-h-full flex flex-col bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-300 overflow-x-hidden`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
