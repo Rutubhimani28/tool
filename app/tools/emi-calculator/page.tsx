@@ -151,17 +151,8 @@ export default function EMICalculator() {
                             }
                         }}
                     >
-                        <a href="https://affectionatestorage.com/bL3IV.0YPL3zpyvQb/mLViJ/Z/DX0N3OMlzokN3LNRT-I/1KLLT_c/zjOYTIcN1RMHjek-" target="_blank" rel="noopener noreferrer" className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center group transition-colors hover:bg-emerald-50 dark:hover:bg-emerald-900/10 cursor-pointer -z-10 bg-gradient-to-br from-emerald-500/5 to-teal-500/5">
-                            <span className="absolute text-[10px] uppercase tracking-wider text-emerald-500/50 top-2 right-3 border border-emerald-500/20 px-2 py-0.5 rounded-full">Ad</span>
-                            <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/50 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform shadow-sm text-emerald-600 dark:text-emerald-400">
-                                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            </div>
-                            <span className="text-emerald-700 dark:text-emerald-400 font-bold text-lg mb-1 group-hover:text-emerald-800 dark:group-hover:text-emerald-300 transition-colors">Instant Cash Loan</span>
-                            <span className="text-emerald-600/80 dark:text-emerald-400/80 text-sm leading-tight mb-4">Get approved in 5 minutes with zero paperwork.</span>
-                            <span className="px-4 py-1.5 bg-emerald-500 text-white text-xs font-bold rounded-full shadow-md group-hover:bg-emerald-600 transition-colors w-full">Apply Now</span>
-                        </a>
+                        {/* The fake banner was removed so that the real JS ad can render properly without overlapping issues */}
+                        <span className="text-zinc-400 text-sm">Advertisement</span>
                     </div>
 
                     {/* New Ad 1 */}
