@@ -338,19 +338,15 @@ export default function EMICalculator() {
 
                 {/* Right Ad (Desktop Only) */}
                 <div className="hidden xl:flex flex-col items-start w-[300px] pt-8 gap-6">
-                    <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative"
-                        ref={(el) => {
-                            if (el && !el.hasAttribute('data-ad-loaded')) {
-                                el.setAttribute('data-ad-loaded', 'true');
-                                if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-                                    const inlineScript = document.createElement('script');
-                                    inlineScript.textContent = `(function(options){var d=document,s=d.createElement('script'),l=d.currentScript||d.scripts[d.scripts.length-1];s.settings=options||{};s.src='//affectionatestorage.com/bK3/Vk0.Pk3jpmvDbWm/VqJGZDDa0C3-MQzBkN3yNdTTIo1zLvThcizmO/Tnco1LMZj_kx';s.async=true;s.referrerPolicy='no-referrer-when-downgrade';l.parentNode.insertBefore(s,l);})({})`;
-                                    el.appendChild(inlineScript);
-                                }
-                            }
-                        }}
-                    >
-                        <span className="text-zinc-400 dark:text-zinc-600 text-xs"/>
+                    <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative">
+                        <iframe 
+                            src="https://affectionatestorage.com/bK3/Vk0.Pk3jpmvDbWm/VqJGZDDa0C3-MQzBkN3yNdTTIo1zLvThcizmO/Tnco1LMZj_kx"
+                            width="300"
+                            height="250"
+                            className="w-full h-full border-0"
+                            sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+                            title="Advertisement"
+                        />
                     </div>
                 </div>
             </div>
