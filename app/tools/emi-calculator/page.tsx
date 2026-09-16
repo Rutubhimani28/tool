@@ -150,7 +150,7 @@ export default function EMICalculator() {
                             }
                         }}
                     >
-                        <span className="text-zinc-400 dark:text-zinc-600 text-xs">Ad</span>
+                        <span className="text-zinc-400 dark:text-zinc-600 text-xs"/>
                     </div>
                 </div>
 
@@ -335,6 +335,26 @@ export default function EMICalculator() {
                     </div>
 
                 </div> {/* End Main Content Area */}
+
+                {/* Right Ad (Desktop Only) */}
+                <div className="hidden xl:flex flex-col items-start w-[300px] pt-8 gap-6">
+                    <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative"
+                        ref={(el) => {
+                            if (el && !el.hasAttribute('data-ad-loaded')) {
+                                el.setAttribute('data-ad-loaded', 'true');
+                                if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+                                    const s = document.createElement('script');
+                                    s.src = "//second-director.com/c-Df9/6vb.2/5wl-SGWYQz9vNgzJMY5SN/zYYYysOvSo0u3EMAz/kw3xNdjMMyzs";
+                                    s.async = true;
+                                    s.referrerPolicy = 'no-referrer-when-downgrade';
+                                    el.appendChild(s);
+                                }
+                            }
+                        }}
+                    >
+                        <span className="text-zinc-400 dark:text-zinc-600 text-xs"/>
+                    </div>
+                </div>
             </div>
             {/* End Flex Layout Wrapper */}
         </>
