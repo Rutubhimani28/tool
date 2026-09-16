@@ -134,63 +134,6 @@ export default function EMICalculator() {
                 suppressHydrationWarning
             />
             <div className="w-full max-w-[1600px] mx-auto flex justify-center gap-6 px-4">
-                {/* Left Ad (Desktop Only) */}
-                <div className="hidden xl:flex flex-col items-end w-[300px] pt-8 gap-6">
-                    {/* Original Ad */}
-                    <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative z-10"
-                        ref={(el) => {
-                            if (el && !el.hasAttribute('data-ad-loaded')) {
-                                el.setAttribute('data-ad-loaded', 'true');
-                                if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-                                    const s = document.createElement('script');
-                                    s.src = "//juvenilechoice.com/bxX.VxsTdjGT1f0/YkWWcp/_ePm/9Hu_ZaUBlXkxPOTFcC0bMRTEYAy1MuzCcUtIN_z/QQxwNzjXIA0yM/Qc";
-                                    s.async = true;
-                                    s.referrerPolicy = 'no-referrer-when-downgrade';
-                                    el.appendChild(s);
-                                }
-                            }
-                        }}
-                    >
-                        {/* The fake banner was removed so that the real JS ad can render properly without overlapping issues */}
-                        <span className="text-zinc-400 text-sm">Advertisement</span>
-                    </div>
-
-                    {/* New Ad 1 */}
-                    <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative z-10"
-                        ref={(el) => {
-                            if (el && !el.hasAttribute('data-ad-loaded')) {
-                                el.setAttribute('data-ad-loaded', 'true');
-                                if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-                                    const s = document.createElement('script');
-                                    s.src = "//juvenilechoice.com/hAxvV.s/dcGFlT0CYRWrcs/kegm/9/uEZVUQiAkfPQT_c/zzORTdcY2/M-TtMDtaNEzxMLSVNrzuYrx/NOwq";
-                                    s.async = true;
-                                    s.referrerPolicy = 'no-referrer-when-downgrade';
-                                    el.appendChild(s);
-                                }
-                            }
-                        }}
-                    >
-                        <a href="https://affectionatestorage.com/bL3IV.0YPL3zpyvQb/mLViJ/Z/DX0N3OMlzokN3LNRT-I/1KLLT_c/zjOYTIcN1RMHjek-" target="_blank" rel="noopener noreferrer" className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center group transition-colors hover:bg-violet-50 dark:hover:bg-violet-900/10 cursor-pointer -z-10 bg-gradient-to-br from-violet-500/5 to-fuchsia-500/5">
-                            <span className="absolute text-[10px] uppercase tracking-wider text-violet-500/50 top-2 right-3 border border-violet-500/20 px-2 py-0.5 rounded-full">Ad</span>
-                            <div className="w-12 h-12 bg-violet-100 dark:bg-violet-900/50 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform shadow-sm text-violet-600 dark:text-violet-400">
-                                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                                </svg>
-                            </div>
-                            <span className="text-violet-700 dark:text-violet-400 font-bold text-lg mb-1 group-hover:text-violet-800 dark:group-hover:text-violet-300 transition-colors">Lifetime Free Credit Card</span>
-                            <span className="text-violet-600/80 dark:text-violet-400/80 text-sm leading-tight mb-4">Earn 5% cashback on all your online spends.</span>
-                            <span className="px-4 py-1.5 bg-violet-500 text-white text-xs font-bold rounded-full shadow-md group-hover:bg-violet-600 transition-colors w-full">Check Eligibility</span>
-                        </a>
-                    </div>
-
-                    {/* Direct Link Ad */}
-                    <a href="https://affectionatestorage.com/bL3IV.0YPL3zpyvQb/mLViJ/Z/DX0N3OMlzokN3LNRT-I/1KLLT_c/zjOYTIcN1RMHjek-" target="_blank" rel="noopener noreferrer" className="w-[300px] min-h-[250px] bg-blue-50/50 hover:bg-blue-50 dark:bg-blue-900/10 dark:hover:bg-blue-900/20 border border-blue-200/50 dark:border-blue-800/50 rounded-lg overflow-hidden flex flex-col items-center justify-center relative transition-colors p-6 text-center group cursor-pointer shadow-sm hover:shadow-md">
-                        <span className="absolute text-[10px] uppercase tracking-wider text-blue-400/60 top-2 right-3">Sponsored</span>
-                        <span className="text-blue-600 dark:text-blue-400 font-bold text-lg mb-2 group-hover:scale-105 transition-transform">Exclusive Offer</span>
-                        <span className="text-blue-500/80 dark:text-blue-300/80 text-sm">Click here to learn more and claim your reward</span>
-                    </a>
-                </div>
-
                 {/* Main Content Area */}
                 <div className="flex-1 w-full max-w-5xl min-w-0">
                     <ToolWrapper
@@ -339,36 +282,6 @@ export default function EMICalculator() {
                         </div>
                     </ToolWrapper>
 
-                    {/* Ad Section (300x250) - Hidden on desktop where side ads show */}
-                    <div className="w-full flex xl:hidden justify-center my-8">
-                        <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative z-10"
-                            ref={(el) => {
-                                if (el && !el.hasAttribute('data-ad-loaded')) {
-                                    el.setAttribute('data-ad-loaded', 'true');
-                                    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-                                        const s = document.createElement('script');
-                                        s.src = "//juvenilechoice.com/bxX.VxsTdjGT1f0/YkWWcp/_ePm/9Hu_ZaUBlXkxPOTFcC0bMRTEYAy1MuzCcUtIN_z/QQxwNzjXIA0yM/Qc";
-                                        s.async = true;
-                                        s.referrerPolicy = 'no-referrer-when-downgrade';
-                                        el.appendChild(s);
-                                    }
-                                }
-                            }}
-                        >
-                            <a href="https://affectionatestorage.com/bL3IV.0YPL3zpyvQb/mLViJ/Z/DX0N3OMlzokN3LNRT-I/1KLLT_c/zjOYTIcN1RMHjek-" target="_blank" rel="noopener noreferrer" className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center group transition-colors hover:bg-amber-50 dark:hover:bg-amber-900/10 cursor-pointer -z-10 bg-gradient-to-br from-amber-500/5 to-orange-500/5">
-                                <span className="absolute text-[10px] uppercase tracking-wider text-amber-500/50 top-2 right-3 border border-amber-500/20 px-2 py-0.5 rounded-full">Ad</span>
-                                <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/50 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform shadow-sm text-amber-600 dark:text-amber-400">
-                                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                                    </svg>
-                                </div>
-                                <span className="text-amber-700 dark:text-amber-400 font-bold text-lg mb-1 group-hover:text-amber-800 dark:group-hover:text-amber-300 transition-colors">Invest & Grow Wealth</span>
-                                <span className="text-amber-600/80 dark:text-amber-400/80 text-sm leading-tight mb-4">Start SIP with just ₹500 and get highest returns.</span>
-                                <span className="px-4 py-1.5 bg-amber-500 text-white text-xs font-bold rounded-full shadow-md group-hover:bg-amber-600 transition-colors w-full">Start Investing</span>
-                            </a>
-                        </div>
-                    </div>
-
                     {/* SEO Content Section */}
                     <div className="mx-auto w-full max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
                         <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
@@ -402,84 +315,8 @@ export default function EMICalculator() {
                     </div>
 
                 </div> {/* End Main Content Area */}
-
-                {/* Right Ad (Desktop Only) */}
-                <div className="hidden xl:flex flex-col items-start w-[300px] pt-8 gap-6">
-                    {/* Original Ad */}
-                    <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative z-10"
-                        ref={(el) => {
-                            if (el && !el.hasAttribute('data-ad-loaded')) {
-                                el.setAttribute('data-ad-loaded', 'true');
-                                if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-                                    const s = document.createElement('script');
-                                    s.src = "//juvenilechoice.com/bxX.VxsTdjGT1f0/YkWWcp/_ePm/9Hu_ZaUBlXkxPOTFcC0bMRTEYAy1MuzCcUtIN_z/QQxwNzjXIA0yM/Qc";
-                                    s.async = true;
-                                    s.referrerPolicy = 'no-referrer-when-downgrade';
-                                    el.appendChild(s);
-                                }
-                            }
-                        }}
-                    >
-                        <a href="https://affectionatestorage.com/bL3IV.0YPL3zpyvQb/mLViJ/Z/DX0N3OMlzokN3LNRT-I/1KLLT_c/zjOYTIcN1RMHjek-" target="_blank" rel="noopener noreferrer" className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center group transition-colors hover:bg-rose-50 dark:hover:bg-rose-900/10 cursor-pointer -z-10 bg-gradient-to-br from-rose-500/5 to-pink-500/5">
-                            <span className="absolute text-[10px] uppercase tracking-wider text-rose-500/50 top-2 right-3 border border-rose-500/20 px-2 py-0.5 rounded-full">Ad</span>
-                            <div className="w-12 h-12 bg-rose-100 dark:bg-rose-900/50 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform shadow-sm text-rose-600 dark:text-rose-400">
-                                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                                </svg>
-                            </div>
-                            <span className="text-rose-700 dark:text-rose-400 font-bold text-lg mb-1 group-hover:text-rose-800 dark:group-hover:text-rose-300 transition-colors">Low Interest Home Loan</span>
-                            <span className="text-rose-600/80 dark:text-rose-400/80 text-sm leading-tight mb-4">Transfer your home loan and save up to ₹5 Lakhs.</span>
-                            <span className="px-4 py-1.5 bg-rose-500 text-white text-xs font-bold rounded-full shadow-md group-hover:bg-rose-600 transition-colors w-full">Calculate Savings</span>
-                        </a>
-                    </div>
-                    {/* New Ad 2 */}
-                    <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative z-10"
-                        ref={(el) => {
-                            if (el && !el.hasAttribute('data-ad-loaded')) {
-                                el.setAttribute('data-ad-loaded', 'true');
-                                if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-                                    const s = document.createElement('script');
-                                    s.src = "//juvenilechoice.com/byX.Vzs-dKG/1r0FYNWLcg/le/mb9GuKZVUW1Wk/P/TkcHzHOxTucV1dOtTDcVtYN/z/MoSsNvzAYEwuMuQd";
-                                    s.async = true;
-                                    s.referrerPolicy = 'no-referrer-when-downgrade';
-                                    el.appendChild(s);
-                                }
-                            }
-                        }}
-                    >
-                        <a href="https://affectionatestorage.com/bL3IV.0YPL3zpyvQb/mLViJ/Z/DX0N3OMlzokN3LNRT-I/1KLLT_c/zjOYTIcN1RMHjek-" target="_blank" rel="noopener noreferrer" className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center group transition-colors hover:bg-cyan-50 dark:hover:bg-cyan-900/10 cursor-pointer -z-10 bg-gradient-to-br from-cyan-500/5 to-blue-500/5">
-                            <span className="absolute text-[10px] uppercase tracking-wider text-cyan-500/50 top-2 right-3 border border-cyan-500/20 px-2 py-0.5 rounded-full">Ad</span>
-                            <div className="w-12 h-12 bg-cyan-100 dark:bg-cyan-900/50 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform shadow-sm text-cyan-600 dark:text-cyan-400">
-                                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                </svg>
-                            </div>
-                            <span className="text-cyan-700 dark:text-cyan-400 font-bold text-lg mb-1 group-hover:text-cyan-800 dark:group-hover:text-cyan-300 transition-colors">Free Credit Score Check</span>
-                            <span className="text-cyan-600/80 dark:text-cyan-400/80 text-sm leading-tight mb-4">Check your CIBIL score for free in 2 minutes.</span>
-                            <span className="px-4 py-1.5 bg-cyan-500 text-white text-xs font-bold rounded-full shadow-md group-hover:bg-cyan-600 transition-colors w-full">Check Now</span>
-                        </a>
-                    </div>
-
-                    {/* Direct Link Ad (Duplicate for balance) */}
-                    <a href="https://affectionatestorage.com/bL3IV.0YPL3zpyvQb/mLViJ/Z/DX0N3OMlzokN3LNRT-I/1KLLT_c/zjOYTIcN1RMHjek-" target="_blank" rel="noopener noreferrer" className="w-[300px] min-h-[250px] bg-blue-50/50 hover:bg-blue-50 dark:bg-blue-900/10 dark:hover:bg-blue-900/20 border border-blue-200/50 dark:border-blue-800/50 rounded-lg overflow-hidden flex flex-col items-center justify-center relative transition-colors p-6 text-center group cursor-pointer shadow-sm hover:shadow-md">
-                        <span className="absolute text-[10px] uppercase tracking-wider text-blue-400/60 top-2 right-3">Sponsored</span>
-                        <span className="text-blue-600 dark:text-blue-400 font-bold text-lg mb-2 group-hover:scale-105 transition-transform">Exclusive Offer</span>
-                        <span className="text-blue-500/80 dark:text-blue-300/80 text-sm">Click here to learn more and claim your reward</span>
-                    </a>
-                </div>
             </div>
             {/* End Flex Layout Wrapper */}
-
-            {/* Popunder Ad Script - Only run in production */}
-            <Script id="popunder-loader" strategy="afterInteractive">
-                {`
-                    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-                        const s = document.createElement('script');
-                        s.src = '/popunder.js';
-                        document.body.appendChild(s);
-                    }
-                `}
-            </Script>
         </>
     );
 }

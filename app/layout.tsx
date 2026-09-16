@@ -56,7 +56,6 @@ export const metadata: Metadata = {
   },
 
   other: {
-    "google-adsense-account": "ca-pub-7796384906806193",
     "ff798ddb2835c2248764bcc390c440b9ab04b787": "ff798ddb2835c2248764bcc390c440b9ab04b787",
   },
   robots: {
@@ -100,7 +99,6 @@ const jsonLd = {
 
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
-import AdBanner from "@/app/components/AdBanner";
 import { ThemeProvider } from "next-themes";
 import Script from "next/script";
 
@@ -125,19 +123,6 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
           suppressHydrationWarning
         />
-        {process.env.NODE_ENV !== "development" && (
-          <Script
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7796384906806193"
-            crossOrigin="anonymous"
-            suppressHydrationWarning
-          ></Script>
-        )}
-        {/* The script below is causing the page to be unclickable, so it has been temporarily disabled. */}
-        {/* <Script
-          src="https://affectionatestorage.com/bd3_Vj0.PJ3JpMvWbKmEVaJMZRDc0M3NNZDHMSxsNyTcYs1-LPTPce0lMezzEP1RN/j/keaa"
-          strategy="lazyOnload"
-        /> */}
       </head>
       <body suppressHydrationWarning className={`${ibmPlexSans.className} antialiased min-h-full flex flex-col bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-300 overflow-x-hidden`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
