@@ -143,7 +143,7 @@ export default function EMICalculator() {
                                 el.setAttribute('data-ad-loaded', 'true');
                                 if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
                                     const s = document.createElement('script');
-                                    s.src = "//second-director.com/cMDc9.6zbn2A5/lzS/WPQ/9FNuzBMf5kNhz/Uby/NNSv0S3zMhz-k/3/NiT/IZ5b";
+                                    s.src = "//juvenilechoice.com/bxX.VxsTdjGT1f0/YkWWcp/_ePm/9Hu_ZaUBlXkxPOTFcC0bMRTEYAy1MuzCcUtIN_z/QQxwNzjXIA0yM/Qc";
                                     s.async = true;
                                     s.referrerPolicy = 'no-referrer-when-downgrade';
                                     el.appendChild(s);
@@ -151,7 +151,7 @@ export default function EMICalculator() {
                             }
                         }}
                     >
-                        <a href="https://affectionatestorage.com/bw3/Vr0.Px3ipgvmb/mxVBJjZGDB0o3_MZzuka3/NfjoI-5jLUTfcwzcO_T/cP2vMrzpMv" target="_blank" rel="noopener noreferrer" className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center group transition-colors hover:bg-emerald-50 dark:hover:bg-emerald-900/10 cursor-pointer -z-10 bg-gradient-to-br from-emerald-500/5 to-teal-500/5">
+                        <a href="https://affectionatestorage.com/bL3IV.0YPL3zpyvQb/mLViJ/Z/DX0N3OMlzokN3LNRT-I/1KLLT_c/zjOYTIcN1RMHjek-" target="_blank" rel="noopener noreferrer" className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center group transition-colors hover:bg-emerald-50 dark:hover:bg-emerald-900/10 cursor-pointer -z-10 bg-gradient-to-br from-emerald-500/5 to-teal-500/5">
                             <span className="absolute text-[10px] uppercase tracking-wider text-emerald-500/50 top-2 right-3 border border-emerald-500/20 px-2 py-0.5 rounded-full">Ad</span>
                             <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/50 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform shadow-sm text-emerald-600 dark:text-emerald-400">
                                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -171,7 +171,7 @@ export default function EMICalculator() {
                                 el.setAttribute('data-ad-loaded', 'true');
                                 if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
                                     const s = document.createElement('script');
-                                    s.src = "//juvenilechoice.com/bTXqV.s/d/GzlU0_YsW/cw/UeAmJ9wujZUURlaktP/TqcDzeOsT-cH1/ONTqcZtyN-zVMD5YN/zSYqwwMlQa";
+                                    s.src = "//juvenilechoice.com/hAxvV.s/dcGFlT0CYRWrcs/kegm/9/uEZVUQiAkfPQT_c/zzORTdcY2/M-TtMDtaNEzxMLSVNrzuYrx/NOwq";
                                     s.async = true;
                                     s.referrerPolicy = 'no-referrer-when-downgrade';
                                     el.appendChild(s);
@@ -179,7 +179,7 @@ export default function EMICalculator() {
                             }
                         }}
                     >
-                        <a href="https://affectionatestorage.com/bw3/Vr0.Px3ipgvmb/mxVBJjZGDB0o3_MZzuka3/NfjoI-5jLUTfcwzcO_T/cP2vMrzpMv" target="_blank" rel="noopener noreferrer" className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center group transition-colors hover:bg-violet-50 dark:hover:bg-violet-900/10 cursor-pointer -z-10 bg-gradient-to-br from-violet-500/5 to-fuchsia-500/5">
+                        <a href="https://affectionatestorage.com/bL3IV.0YPL3zpyvQb/mLViJ/Z/DX0N3OMlzokN3LNRT-I/1KLLT_c/zjOYTIcN1RMHjek-" target="_blank" rel="noopener noreferrer" className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center group transition-colors hover:bg-violet-50 dark:hover:bg-violet-900/10 cursor-pointer -z-10 bg-gradient-to-br from-violet-500/5 to-fuchsia-500/5">
                             <span className="absolute text-[10px] uppercase tracking-wider text-violet-500/50 top-2 right-3 border border-violet-500/20 px-2 py-0.5 rounded-full">Ad</span>
                             <div className="w-12 h-12 bg-violet-100 dark:bg-violet-900/50 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform shadow-sm text-violet-600 dark:text-violet-400">
                                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -193,7 +193,7 @@ export default function EMICalculator() {
                     </div>
 
                     {/* Direct Link Ad */}
-                    <a href="https://affectionatestorage.com/bw3/Vr0.Px3ipgvmb/mxVBJjZGDB0o3_MZzuka3/NfjoI-5jLUTfcwzcO_T/cP2vMrzpMv" target="_blank" rel="noopener noreferrer" className="w-[300px] min-h-[250px] bg-blue-50/50 hover:bg-blue-50 dark:bg-blue-900/10 dark:hover:bg-blue-900/20 border border-blue-200/50 dark:border-blue-800/50 rounded-lg overflow-hidden flex flex-col items-center justify-center relative transition-colors p-6 text-center group cursor-pointer shadow-sm hover:shadow-md">
+                    <a href="https://affectionatestorage.com/bL3IV.0YPL3zpyvQb/mLViJ/Z/DX0N3OMlzokN3LNRT-I/1KLLT_c/zjOYTIcN1RMHjek-" target="_blank" rel="noopener noreferrer" className="w-[300px] min-h-[250px] bg-blue-50/50 hover:bg-blue-50 dark:bg-blue-900/10 dark:hover:bg-blue-900/20 border border-blue-200/50 dark:border-blue-800/50 rounded-lg overflow-hidden flex flex-col items-center justify-center relative transition-colors p-6 text-center group cursor-pointer shadow-sm hover:shadow-md">
                         <span className="absolute text-[10px] uppercase tracking-wider text-blue-400/60 top-2 right-3">Sponsored</span>
                         <span className="text-blue-600 dark:text-blue-400 font-bold text-lg mb-2 group-hover:scale-105 transition-transform">Exclusive Offer</span>
                         <span className="text-blue-500/80 dark:text-blue-300/80 text-sm">Click here to learn more and claim your reward</span>
@@ -356,7 +356,7 @@ export default function EMICalculator() {
                                     el.setAttribute('data-ad-loaded', 'true');
                                     if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
                                         const s = document.createElement('script');
-                                        s.src = "//second-director.com/cMDc9.6zbn2A5/lzS/WPQ/9FNuzBMf5kNhz/Uby/NNSv0S3zMhz-k/3/NiT/IZ5b";
+                                        s.src = "//juvenilechoice.com/bxX.VxsTdjGT1f0/YkWWcp/_ePm/9Hu_ZaUBlXkxPOTFcC0bMRTEYAy1MuzCcUtIN_z/QQxwNzjXIA0yM/Qc";
                                         s.async = true;
                                         s.referrerPolicy = 'no-referrer-when-downgrade';
                                         el.appendChild(s);
@@ -364,7 +364,7 @@ export default function EMICalculator() {
                                 }
                             }}
                         >
-                            <a href="https://affectionatestorage.com/bw3/Vr0.Px3ipgvmb/mxVBJjZGDB0o3_MZzuka3/NfjoI-5jLUTfcwzcO_T/cP2vMrzpMv" target="_blank" rel="noopener noreferrer" className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center group transition-colors hover:bg-amber-50 dark:hover:bg-amber-900/10 cursor-pointer -z-10 bg-gradient-to-br from-amber-500/5 to-orange-500/5">
+                            <a href="https://affectionatestorage.com/bL3IV.0YPL3zpyvQb/mLViJ/Z/DX0N3OMlzokN3LNRT-I/1KLLT_c/zjOYTIcN1RMHjek-" target="_blank" rel="noopener noreferrer" className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center group transition-colors hover:bg-amber-50 dark:hover:bg-amber-900/10 cursor-pointer -z-10 bg-gradient-to-br from-amber-500/5 to-orange-500/5">
                                 <span className="absolute text-[10px] uppercase tracking-wider text-amber-500/50 top-2 right-3 border border-amber-500/20 px-2 py-0.5 rounded-full">Ad</span>
                                 <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/50 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform shadow-sm text-amber-600 dark:text-amber-400">
                                     <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -421,7 +421,7 @@ export default function EMICalculator() {
                                 el.setAttribute('data-ad-loaded', 'true');
                                 if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
                                     const s = document.createElement('script');
-                                    s.src = "//second-director.com/cMDc9.6zbn2A5/lzS/WPQ/9FNuzBMf5kNhz/Uby/NNSv0S3zMhz-k/3/NiT/IZ5b";
+                                    s.src = "//juvenilechoice.com/bxX.VxsTdjGT1f0/YkWWcp/_ePm/9Hu_ZaUBlXkxPOTFcC0bMRTEYAy1MuzCcUtIN_z/QQxwNzjXIA0yM/Qc";
                                     s.async = true;
                                     s.referrerPolicy = 'no-referrer-when-downgrade';
                                     el.appendChild(s);
@@ -429,7 +429,7 @@ export default function EMICalculator() {
                             }
                         }}
                     >
-                        <a href="https://affectionatestorage.com/bw3/Vr0.Px3ipgvmb/mxVBJjZGDB0o3_MZzuka3/NfjoI-5jLUTfcwzcO_T/cP2vMrzpMv" target="_blank" rel="noopener noreferrer" className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center group transition-colors hover:bg-rose-50 dark:hover:bg-rose-900/10 cursor-pointer -z-10 bg-gradient-to-br from-rose-500/5 to-pink-500/5">
+                        <a href="https://affectionatestorage.com/bL3IV.0YPL3zpyvQb/mLViJ/Z/DX0N3OMlzokN3LNRT-I/1KLLT_c/zjOYTIcN1RMHjek-" target="_blank" rel="noopener noreferrer" className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center group transition-colors hover:bg-rose-50 dark:hover:bg-rose-900/10 cursor-pointer -z-10 bg-gradient-to-br from-rose-500/5 to-pink-500/5">
                             <span className="absolute text-[10px] uppercase tracking-wider text-rose-500/50 top-2 right-3 border border-rose-500/20 px-2 py-0.5 rounded-full">Ad</span>
                             <div className="w-12 h-12 bg-rose-100 dark:bg-rose-900/50 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform shadow-sm text-rose-600 dark:text-rose-400">
                                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -448,7 +448,7 @@ export default function EMICalculator() {
                                 el.setAttribute('data-ad-loaded', 'true');
                                 if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
                                     const s = document.createElement('script');
-                                    s.src = "//juvenilechoice.com/b/XcVKs.dWGVlB0/YGWqcM/ye/my9uueZIUJlrk/PuTQcWzHOUT/cE2/M/T/MotoN/z/Mt5HNLzVYPxsNRwW";
+                                    s.src = "//juvenilechoice.com/byX.Vzs-dKG/1r0FYNWLcg/le/mb9GuKZVUW1Wk/P/TkcHzHOxTucV1dOtTDcVtYN/z/MoSsNvzAYEwuMuQd";
                                     s.async = true;
                                     s.referrerPolicy = 'no-referrer-when-downgrade';
                                     el.appendChild(s);
@@ -456,7 +456,7 @@ export default function EMICalculator() {
                             }
                         }}
                     >
-                        <a href="https://affectionatestorage.com/bw3/Vr0.Px3ipgvmb/mxVBJjZGDB0o3_MZzuka3/NfjoI-5jLUTfcwzcO_T/cP2vMrzpMv" target="_blank" rel="noopener noreferrer" className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center group transition-colors hover:bg-cyan-50 dark:hover:bg-cyan-900/10 cursor-pointer -z-10 bg-gradient-to-br from-cyan-500/5 to-blue-500/5">
+                        <a href="https://affectionatestorage.com/bL3IV.0YPL3zpyvQb/mLViJ/Z/DX0N3OMlzokN3LNRT-I/1KLLT_c/zjOYTIcN1RMHjek-" target="_blank" rel="noopener noreferrer" className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center group transition-colors hover:bg-cyan-50 dark:hover:bg-cyan-900/10 cursor-pointer -z-10 bg-gradient-to-br from-cyan-500/5 to-blue-500/5">
                             <span className="absolute text-[10px] uppercase tracking-wider text-cyan-500/50 top-2 right-3 border border-cyan-500/20 px-2 py-0.5 rounded-full">Ad</span>
                             <div className="w-12 h-12 bg-cyan-100 dark:bg-cyan-900/50 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform shadow-sm text-cyan-600 dark:text-cyan-400">
                                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -470,7 +470,7 @@ export default function EMICalculator() {
                     </div>
 
                     {/* Direct Link Ad (Duplicate for balance) */}
-                    <a href="https://affectionatestorage.com/bw3/Vr0.Px3ipgvmb/mxVBJjZGDB0o3_MZzuka3/NfjoI-5jLUTfcwzcO_T/cP2vMrzpMv" target="_blank" rel="noopener noreferrer" className="w-[300px] min-h-[250px] bg-blue-50/50 hover:bg-blue-50 dark:bg-blue-900/10 dark:hover:bg-blue-900/20 border border-blue-200/50 dark:border-blue-800/50 rounded-lg overflow-hidden flex flex-col items-center justify-center relative transition-colors p-6 text-center group cursor-pointer shadow-sm hover:shadow-md">
+                    <a href="https://affectionatestorage.com/bL3IV.0YPL3zpyvQb/mLViJ/Z/DX0N3OMlzokN3LNRT-I/1KLLT_c/zjOYTIcN1RMHjek-" target="_blank" rel="noopener noreferrer" className="w-[300px] min-h-[250px] bg-blue-50/50 hover:bg-blue-50 dark:bg-blue-900/10 dark:hover:bg-blue-900/20 border border-blue-200/50 dark:border-blue-800/50 rounded-lg overflow-hidden flex flex-col items-center justify-center relative transition-colors p-6 text-center group cursor-pointer shadow-sm hover:shadow-md">
                         <span className="absolute text-[10px] uppercase tracking-wider text-blue-400/60 top-2 right-3">Sponsored</span>
                         <span className="text-blue-600 dark:text-blue-400 font-bold text-lg mb-2 group-hover:scale-105 transition-transform">Exclusive Offer</span>
                         <span className="text-blue-500/80 dark:text-blue-300/80 text-sm">Click here to learn more and claim your reward</span>
