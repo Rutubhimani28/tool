@@ -125,16 +125,18 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
           suppressHydrationWarning
         />
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7796384906806193"
-          crossOrigin="anonymous"
-          suppressHydrationWarning
-        ></script>
-        <script
+        {process.env.NODE_ENV !== "development" && (
+          <Script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7796384906806193"
+            crossOrigin="anonymous"
+            suppressHydrationWarning
+          ></Script>
+        )}
+        <Script
           src="https://affectionatestorage.com/bd3_Vj0.PJ3JpMvWbKmEVaJMZRDc0M3NNZDHMSxsNyTcYs1-LPTPce0lMezzEP1RN/j/keaa"
-          suppressHydrationWarning
-        ></script>
+          strategy="lazyOnload"
+        />
       </head>
       <body suppressHydrationWarning className={`${ibmPlexSans.className} antialiased min-h-full flex flex-col bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-300 overflow-x-hidden`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
