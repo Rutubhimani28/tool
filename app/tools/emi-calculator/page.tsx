@@ -343,9 +343,10 @@ export default function EMICalculator() {
                             if (el && !el.hasAttribute('data-ad-loaded')) {
                                 el.setAttribute('data-ad-loaded', 'true');
                                 if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-                                    const inlineScript = document.createElement('script');
-                                    inlineScript.textContent = `(function(xdmxn){var d=document,s=d.createElement('script'),l=d.currentScript||d.scripts[d.scripts.length-1];s.settings=xdmxn||{};s.src='//second-director.com/c-Df9/6vb.2/5wl-SGWYQz9vNgzJMY5SN/zYYYysOvSo0u3EMAz/kw3xNdjMMyzs';s.async=true;s.referrerPolicy='no-referrer-when-downgrade';l.parentNode.insertBefore(s,l);})({})`;
-                                    el.appendChild(inlineScript);
+                                    const s = document.createElement('script');
+                                    s.src = "/right-ad.js";
+                                    s.async = true;
+                                    el.appendChild(s);
                                 }
                             }
                         }}
