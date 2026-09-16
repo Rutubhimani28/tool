@@ -339,14 +339,7 @@ export default function EMICalculator() {
                 {/* Right Ad (Desktop Only) */}
                 <div className="hidden xl:flex flex-col items-start w-[300px] pt-8 gap-6">
                     <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative">
-                        <iframe 
-                            src="https://affectionatestorage.com/bK3/Vk0.Pk3jpmvDbWm/VqJGZDDa0C3-MQzBkN3yNdTTIo1zLvThcizmO/Tnco1LMZj_kx"
-                            width="300"
-                            height="250"
-                            className="w-full h-full border-0"
-                            sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
-                            title="Advertisement"
-                        />
+                        <span className="text-zinc-400 dark:text-zinc-600 text-xs">Advertisement (Pending)</span>
                     </div>
                 </div>
             </div>
