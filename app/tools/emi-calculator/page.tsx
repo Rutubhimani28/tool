@@ -152,6 +152,23 @@ export default function EMICalculator() {
                     >
                         <span className="text-zinc-400 dark:text-zinc-600 text-xs"/>
                     </div>
+                    {/* Left Ad 2 */}
+                    <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative"
+                        ref={(el) => {
+                            if (el && !el.hasAttribute('data-ad-loaded-2')) {
+                                el.setAttribute('data-ad-loaded-2', 'true');
+                                if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+                                    const s = document.createElement('script');
+                                    s.src = "https://second-director.com/d.moFizGdYGNMgvWZ/GQUu/Qe1mZ9/uNZ/UFl/kXPWT1c/0KMYz/Qw0INcT0MLt_N_zWQOzhNJOIQS1_NtwH";
+                                    s.async = true;
+                                    s.referrerPolicy = 'no-referrer-when-downgrade';
+                                    el.appendChild(s);
+                                }
+                            }
+                        }}
+                    >
+                        <span className="text-zinc-400 dark:text-zinc-600 text-xs"/>
+                    </div>
                 </div>
 
                 {/* Main Content Area */}
