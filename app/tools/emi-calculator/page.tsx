@@ -159,7 +159,7 @@ export default function EMICalculator() {
                                 el.setAttribute('data-ad-loaded-2', 'true');
                                 if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
                                     const s = document.createElement('script');
-                                    s.src = "https://second-director.com/d.moFizGdYGNMgvWZ/GQUu/Qe1mZ9/uNZ/UFl/kXPWT1c/0KMYz/Qw0INcT0MLt_N_zWQOzhNJOIQS1_NtwH";
+                                    s.src = "//second-director.com/cmD.9z6qb-2C5/l/StWNQ-9KN/zjMV5ONLzYY/y/O/ST0/3JMSz/kY3zN/jQMAzz";
                                     s.async = true;
                                     s.referrerPolicy = 'no-referrer-when-downgrade';
                                     el.appendChild(s);
