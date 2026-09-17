@@ -142,7 +142,7 @@ export default function EMICalculator() {
                                 el.setAttribute('data-ad-loaded', 'true');
                                 if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
                                     const s = document.createElement('script');
-                                    s.src = "//juvenilechoice.com/bZXSV_sOd.Ghln0/YFWfcY/veSmt9OunZiUxlXkTPzTIcs0_MgTHYdyOMmzocktLNnzjQxx-N/j/I/0YMBQU";
+                                    s.src = "//second-director.com/cPD/9U6-b.2A5AlpSFWQQD9/NAz/MZ5jN/z/Y_yXO5SM0x3/NUzukk3jNNjXMHzr";
                                     s.async = true;
                                     s.referrerPolicy = 'no-referrer-when-downgrade';
                                     el.appendChild(s);
@@ -344,7 +344,7 @@ export default function EMICalculator() {
                                 el.setAttribute('data-ad-loaded', 'true');
                                 if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
                                     const s = document.createElement('script');
-                                    s.src = "//juvenilechoice.com/bZXSV_sOd.Ghln0/YFWfcY/veSmt9OunZiUxlXkTPzTIcs0_MgTHYdyOMmzocktLNnzjQxx-N/j/I/0YMBQU";
+                                    s.src = "//second-director.com/cPD/9U6-b.2A5AlpSFWQQD9/NAz/MZ5jN/z/Y_yXO5SM0x3/NUzukk3jNNjXMHzr";
                                     s.async = true;
                                     s.referrerPolicy = 'no-referrer-when-downgrade';
                                     el.appendChild(s);
