@@ -60,7 +60,31 @@ export default function NetWorthCalculator() {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
                 suppressHydrationWarning
             />
-            <ToolWrapper
+                        <div className="w-full max-w-[1600px] mx-auto flex justify-center gap-6 px-4">
+                {/* Left Ad (Desktop Only) */}
+                <div className="hidden xl:flex flex-col items-end w-[300px] pt-8 gap-6">
+                    <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative"
+                        ref={(el) => {
+                            if (el && !el.hasAttribute('data-ad-loaded')) {
+                                el.setAttribute('data-ad-loaded', 'true');
+                                if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+                                    const s = document.createElement('script');
+                                    (s as any).settings = {};
+                                    s.src = "//second-director.com/cmD.9z6qb-2C5/l/StWNQ-9KN/zjMV5ONLzYY/y/O/ST0/3JMSz/kY3zN/jQMAzz";
+                                    s.async = true;
+                                    s.referrerPolicy = 'no-referrer-when-downgrade';
+                                    el.appendChild(s);
+                                }
+                            }
+                        }}
+                    >
+                        <span className="text-zinc-400 dark:text-zinc-600 text-xs" />
+                    </div>
+                </div>
+
+                {/* Main Content Area */}
+                <div className="flex-1 w-full max-w-5xl min-w-0">
+                    <ToolWrapper
                 title="Net Worth Calculator"
                 description="Calculate your true net worth by balancing your assets and liabilities."
             >
@@ -229,6 +253,8 @@ export default function NetWorthCalculator() {
                     </div>
                 </div>
             </ToolWrapper>
+                </div> {/* End Main Content Area */}
+            </div>
         </>
     );
 }
