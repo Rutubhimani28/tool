@@ -140,23 +140,16 @@ export default function AdvancedLoanCalculator() {
                         <div className="w-full max-w-[1600px] mx-auto flex justify-center gap-6 px-4">
                 {/* Left Ad (Desktop Only) */}
                 <div className="hidden xl:flex flex-col items-end w-[300px] pt-8 gap-6">
-                    <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative"
-                        ref={(el) => {
-                            if (el && !el.hasAttribute('data-ad-loaded')) {
-                                el.setAttribute('data-ad-loaded', 'true');
-                                if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-                                    const s = document.createElement('script');
-                                    (s as any).settings = {};
-                                    s.src = "//juvenilechoice.com/bZXSV_sOd.Ghln0/YFWfcY/veSmt9OunZiUxlXkTPzTIcs0_MgTHYdyOMmzocktLNnzjQxx-N/j/I/0YMBQU";
-                                    s.async = true;
-                                    s.referrerPolicy = 'no-referrer-when-downgrade';
-                                    el.appendChild(s);
-                                }
-                            }
-                        }}
-                    >
-                        <span className="text-zinc-400 dark:text-zinc-600 text-xs" />
-                    </div>
+                    <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative">
+                    <iframe 
+                        src="/ad1.html" 
+                        width="300" 
+                        height="250" 
+                        style={{ border: 'none', overflow: 'hidden' }}
+                        scrolling="no"
+                        title="Advertisement"
+                    />
+                </div>
                 </div>
 
                 {/* Main Content Area */}

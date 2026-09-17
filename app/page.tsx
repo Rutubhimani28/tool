@@ -262,23 +262,16 @@ export default function Home() {
 
       {/* Ad Section */}
       <section className="mx-auto max-w-5xl px-4 py-8 flex justify-center">
-        <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative"
-            ref={(el) => {
-                if (el && !el.hasAttribute('data-ad-loaded')) {
-                    el.setAttribute('data-ad-loaded', 'true');
-                    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-                        const s = document.createElement('script');
-                        (s as any).settings = {};
-                        s.src = "//juvenilechoice.com/bZXSV_sOd.Ghln0/YFWfcY/veSmt9OunZiUxlXkTPzTIcs0_MgTHYdyOMmzocktLNnzjQxx-N/j/I/0YMBQU";
-                        s.async = true;
-                        s.referrerPolicy = 'no-referrer-when-downgrade';
-                        el.appendChild(s);
-                    }
-                }
-            }}
-        >
-            <span className="text-zinc-400 dark:text-zinc-600 text-xs">Advertisement</span>
-        </div>
+        <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative">
+                    <iframe 
+                        src="/ad1.html" 
+                        width="300" 
+                        height="250" 
+                        style={{ border: 'none', overflow: 'hidden' }}
+                        scrolling="no"
+                        title="Advertisement"
+                    />
+                </div>
       </section>
 
 
