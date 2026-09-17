@@ -150,7 +150,7 @@ export default function EMICalculator() {
                             }
                         }}
                     >
-                        <span className="text-zinc-400 dark:text-zinc-600 text-xs"/>
+                        <span className="text-zinc-400 dark:text-zinc-600 text-xs" />
                     </div>
                     {/* Left Ad 2 */}
                     <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative"
@@ -159,6 +159,7 @@ export default function EMICalculator() {
                                 el.setAttribute('data-ad-loaded-2', 'true');
                                 if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
                                     const s = document.createElement('script');
+                                    (s as any).settings = {};
                                     s.src = "//second-director.com/cmD.9z6qb-2C5/l/StWNQ-9KN/zjMV5ONLzYY/y/O/ST0/3JMSz/kY3zN/jQMAzz";
                                     s.async = true;
                                     s.referrerPolicy = 'no-referrer-when-downgrade';
@@ -167,7 +168,7 @@ export default function EMICalculator() {
                             }
                         }}
                     >
-                        <span className="text-zinc-400 dark:text-zinc-600 text-xs"/>
+                        <span className="text-zinc-400 dark:text-zinc-600 text-xs" />
                     </div>
                 </div>
 
@@ -361,6 +362,7 @@ export default function EMICalculator() {
                                 el.setAttribute('data-ad-loaded', 'true');
                                 if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
                                     const s = document.createElement('script');
+                                    (s as any).settings = {};
                                     s.src = "//juvenilechoice.com/bZXSV_sOd.Ghln0/YFWfcY/veSmt9OunZiUxlXkTPzTIcs0_MgTHYdyOMmzocktLNnzjQxx-N/j/I/0YMBQU";
                                     s.async = true;
                                     s.referrerPolicy = 'no-referrer-when-downgrade';
@@ -369,7 +371,23 @@ export default function EMICalculator() {
                             }
                         }}
                     >
-                        <span className="text-zinc-400 dark:text-zinc-600 text-xs"/>
+                        <span className="text-zinc-400 dark:text-zinc-600 text-xs" />
+                    </div>
+                    <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative"
+                        ref={(el) => {
+                            if (el && !el.hasAttribute('data-ad-loaded')) {
+                                el.setAttribute('data-ad-loaded', 'true');
+                                if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+                                    const s = document.createElement('script');
+                                    s.src = "//juvenilechoice.com/bZXSV_sOd.Ghln0/YFWfcY/veSmt9OunZiUxlXkTPzTIcs0_MgTHYdyOMmzocktLNnzjQxx-N/j/I/0YMBQU";
+                                    s.async = true;
+                                    s.referrerPolicy = 'no-referrer-when-downgrade';
+                                    el.appendChild(s);
+                                }
+                            }
+                        }}
+                    >
+                        <span className="text-zinc-400 dark:text-zinc-600 text-xs" />
                     </div>
                 </div>
             </div>
