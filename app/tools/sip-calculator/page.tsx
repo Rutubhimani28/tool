@@ -130,9 +130,9 @@ export default function SIPCalculator() {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
                 suppressHydrationWarning
             />
-                        <div className="w-full max-w-[1600px] mx-auto flex justify-center gap-6 px-4">
+                        <div className="w-full max-w-[1600px] mx-auto flex flex-col xl:flex-row justify-center gap-6 px-4">
                 {/* Left Ad (Desktop Only) */}
-                <div className="hidden xl:flex flex-col items-end w-[300px] pt-8 gap-6">
+                <div className="flex flex-col items-center xl:items-end w-full xl:w-[300px] pt-4 xl:pt-8 gap-6">
                     <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative">
                     <iframe 
                         src="/ad1.html" 
