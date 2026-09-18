@@ -180,6 +180,20 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Ad Section Below Hero */}
+      <section className="mx-auto max-w-5xl px-4 py-8 flex justify-center">
+        <div className="w-full max-w-[728px] min-h-[90px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative">
+          <iframe 
+              src="/ad1.html" 
+              width="100%" 
+              height="90" 
+              style={{ border: 'none', overflow: 'hidden' }}
+              scrolling="no"
+              title="Advertisement"
+          />
+        </div>
+      </section>
+
       {/* SEO Content Section */}
       <section className="bg-white dark:bg-zinc-950 px-4 py-16 sm:px-6 lg:px-8 border-b border-zinc-200 dark:border-zinc-800">
         <div className="mx-auto max-w-4xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
@@ -380,6 +394,20 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Ad Section Above FAQ */}
+      <section className="mx-auto max-w-5xl px-4 py-8 flex justify-center border-t border-zinc-200 dark:border-zinc-800">
+        <div className="w-full max-w-[728px] min-h-[90px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative">
+          <iframe 
+              src="/ad2.html" 
+              width="100%" 
+              height="90" 
+              style={{ border: 'none', overflow: 'hidden' }}
+              scrolling="no"
+              title="Advertisement"
+          />
         </div>
       </section>
 

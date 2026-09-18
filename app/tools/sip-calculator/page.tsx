@@ -320,6 +320,21 @@ export default function SIPCalculator() {
                     </ul>
                 </div>
             </div>
+                
+            {/* Global Content Ad */}
+            <div className="w-full flex justify-center py-4 my-6 bg-zinc-50 dark:bg-zinc-950 border-y border-zinc-200 dark:border-zinc-800">
+              <div className="w-full max-w-[728px] min-h-[90px] bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative">
+                <iframe 
+                    src="/ad1.html" 
+                    width="100%" 
+                    height="90" 
+                    style={{ border: 'none', overflow: 'hidden' }}
+                    scrolling="no"
+                    title="Advertisement"
+                />
+              </div>
+            </div>
+
                 </div> {/* End Main Content Area */}
             </div>
         </>
