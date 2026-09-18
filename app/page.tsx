@@ -185,7 +185,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Ad */}
-            <div className="hidden lg:flex w-full h-[600px] rounded-lg overflow-hidden items-center justify-center relative">
+            <div className="hidden lg:flex w-full h-[800px] rounded-lg overflow-hidden items-center justify-center relative">
               <iframe src="/ad1.html" width="100%" height="100%" style={{ border: 'none', overflow: 'hidden', minHeight: '600px' }} scrolling="no" title="Ad" />
             </div>
             {/* Content (Right Side) */}
