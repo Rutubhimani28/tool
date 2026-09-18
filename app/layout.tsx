@@ -126,44 +126,8 @@ export default function RootLayout({
       </head>
       <body suppressHydrationWarning className={`${ibmPlexSans.className} antialiased min-h-full flex flex-col bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-300 overflow-x-hidden`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          {/* Left Floating Ad */}
-          <div className="hidden 2xl:flex fixed top-1/2 -translate-y-1/2 left-4 w-[160px] h-[600px] z-40 bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden items-center justify-center">
-            <iframe src="/ad1.html" width="160" height="600" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Left Ad" />
-          </div>
-          {/* Right Floating Ad */}
-          <div className="hidden 2xl:flex fixed top-1/2 -translate-y-1/2 right-4 w-[160px] h-[600px] z-40 bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden items-center justify-center">
-            <iframe src="/ad2.html" width="160" height="600" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Right Ad" />
-          </div>
           <Navbar />
-          <main className="flex-1 flex flex-col">
-            {/* Global Header Ad */}
-            <div className="w-full flex justify-center py-4 bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800">
-              <div className="w-full max-w-[728px] min-h-[90px] bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative">
-                <iframe 
-                    src="/ad2.html" 
-                    width="100%" 
-                    height="90" 
-                    style={{ border: 'none', overflow: 'hidden' }}
-                    scrolling="no"
-                    title="Advertisement"
-                />
-              </div>
-            </div>
-            {children}
-            {/* Global Footer Ad */}
-            <div className="w-full flex justify-center py-4 bg-zinc-50 dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800 mt-auto">
-              <div className="w-full max-w-[728px] min-h-[90px] bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative">
-                <iframe 
-                    src="/ad1.html" 
-                    width="100%" 
-                    height="90" 
-                    style={{ border: 'none', overflow: 'hidden' }}
-                    scrolling="no"
-                    title="Advertisement"
-                />
-              </div>
-            </div>
-          </main>
+          <main className="flex-1 flex flex-col">{children}</main>
           <Footer />
           <Toaster
             position="top-center"

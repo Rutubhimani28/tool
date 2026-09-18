@@ -21,19 +21,6 @@ export default function AboutPage() {
                     About Us
                 </h1>
             </div>
-            {/* Global Content Ad */}
-            <div className="w-full flex justify-center py-4 my-6 bg-zinc-50 dark:bg-zinc-950 border-y border-zinc-200 dark:border-zinc-800">
-              <div className="w-full max-w-[728px] min-h-[90px] bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative">
-                <iframe 
-                    src="/ad1.html" 
-                    width="100%" 
-                    height="90" 
-                    style={{ border: 'none', overflow: 'hidden' }}
-                    scrolling="no"
-                    title="Advertisement"
-                />
-              </div>
-            </div>
 
 
             <div className="rounded-2xl sm:rounded-3xl border border-zinc-200 bg-white p-6 sm:p-10 shadow-sm dark:border-zinc-800 dark:bg-zinc-950 transition-all duration-300">
@@ -77,20 +64,6 @@ export default function AboutPage() {
                         <strong>Disclaimer:</strong> Finance Tools provides calculators and educational information for general informational purposes. Calculator results are estimates based on the inputs and assumptions provided and should not be considered financial, investment, tax, or legal advice.
                     </p>
                 </div>
-            </div>
-        
-            {/* Global Content Ad */}
-            <div className="w-full flex justify-center py-4 my-6 bg-zinc-50 dark:bg-zinc-950 border-y border-zinc-200 dark:border-zinc-800">
-              <div className="w-full max-w-[728px] min-h-[90px] bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative">
-                <iframe 
-                    src="/ad1.html" 
-                    width="100%" 
-                    height="90" 
-                    style={{ border: 'none', overflow: 'hidden' }}
-                    scrolling="no"
-                    title="Advertisement"
-                />
-              </div>
             </div>
 </div>
     );
