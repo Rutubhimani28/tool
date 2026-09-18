@@ -127,7 +127,22 @@ export default function RootLayout({
       <body suppressHydrationWarning className={`${ibmPlexSans.className} antialiased min-h-full flex flex-col bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-300 overflow-x-hidden`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <Navbar />
-          <main className="flex-1 flex flex-col">{children}</main>
+          <main className="flex-1 flex flex-col">
+            {/* Global Header Ad */}
+            <div className="w-full flex justify-center py-4 bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800">
+              <div className="w-full max-w-[728px] min-h-[90px] bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative">
+                <iframe 
+                    src="/ad2.html" 
+                    width="100%" 
+                    height="90" 
+                    style={{ border: 'none', overflow: 'hidden' }}
+                    scrolling="no"
+                    title="Advertisement"
+                />
+              </div>
+            </div>
+            {children}
+          </main>
           <Footer />
           <Toaster
             position="top-center"
