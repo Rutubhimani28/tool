@@ -184,7 +184,7 @@ export default function Home() {
       <section className="bg-white dark:bg-zinc-950 px-4 py-16 sm:px-6 lg:px-8 border-b border-zinc-200 dark:border-zinc-800">
         <div className="mx-auto max-w-[1400px] flex flex-col xl:flex-row gap-8 items-start justify-center">
           {/* Left Ad */}
-          <div className="hidden xl:flex w-[300px] h-[600px] shrink-0 bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden items-center justify-center relative">
+          <div className="hidden xl:flex w-[300px] h-[600px] shrink-0 rounded-lg overflow-hidden items-center justify-center relative">
             <iframe src="/ad1.html" width="300" height="600" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Ad" />
           </div>
           <div className="mx-auto max-w-4xl text-zinc-600 dark:text-zinc-400 leading-relaxed flex-1">
@@ -215,8 +215,8 @@ export default function Home() {
           </p>
         </div>
           {/* Right Ad */}
-          <div className="hidden xl:flex w-[300px] h-[600px] shrink-0 bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden items-center justify-center relative">
-            <iframe src="/ad2.html" width="300" height="600" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Ad" />
+          <div className="hidden xl:flex w-[300px] h-[600px] shrink-0 rounded-lg overflow-hidden items-center justify-center relative">
+            <iframe src="/ad3.html" width="300" height="600" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Ad" />
           </div>
         </div>
       </section>
@@ -339,7 +339,7 @@ export default function Home() {
       <section className="bg-zinc-50 dark:bg-zinc-900/50 py-12 sm:py-16 border-b border-zinc-200 dark:border-zinc-800">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 flex flex-col xl:flex-row gap-8 items-start justify-center">
           {/* Left Ad */}
-          <div className="hidden xl:flex w-[300px] h-[600px] shrink-0 bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden items-center justify-center relative">
+          <div className="hidden xl:flex w-[300px] h-[600px] shrink-0 rounded-lg overflow-hidden items-center justify-center relative">
             <iframe src="/ad1.html" width="300" height="600" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Ad" />
           </div>
           <div className="max-w-3xl mx-auto flex-1">
@@ -380,8 +380,8 @@ export default function Home() {
             </div>
           </div>
           {/* Right Ad */}
-          <div className="hidden xl:flex w-[300px] h-[600px] shrink-0 bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden items-center justify-center relative">
-            <iframe src="/ad2.html" width="300" height="600" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Ad" />
+          <div className="hidden xl:flex w-[300px] h-[600px] shrink-0 rounded-lg overflow-hidden items-center justify-center relative">
+            <iframe src="/ad3.html" width="300" height="600" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Ad" />
           </div>
         </div>
       </section>
@@ -477,7 +477,7 @@ export default function Home() {
           {/* Bottom section with Ads and Pagination */}
           <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-8">
             {/* Left Ad */}
-            <div className="hidden md:flex w-[300px] h-[90px] shrink-0 bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden items-center justify-center relative">
+            <div className="hidden md:flex w-[300px] h-[90px] shrink-0 rounded-lg overflow-hidden items-center justify-center relative">
               <iframe src="/ad1.html" width="300" height="90" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Ad" />
             </div>
 
@@ -495,8 +495,8 @@ export default function Home() {
             </div>
 
             {/* Right Ad */}
-            <div className="hidden md:flex w-[300px] h-[90px] shrink-0 bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden items-center justify-center relative">
-              <iframe src="/ad2.html" width="300" height="90" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Ad" />
+            <div className="hidden md:flex w-[300px] h-[90px] shrink-0 rounded-lg overflow-hidden items-center justify-center relative">
+              <iframe src="/ad3.html" width="300" height="90" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Ad" />
             </div>
           </div>
         </div>
