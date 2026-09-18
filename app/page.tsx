@@ -11,7 +11,9 @@ import {
   ShowChart,
   AccountBalanceWallet,
   HealthAndSafety,
+  Close,
 } from "@mui/icons-material";
+import { useRouter } from "next/navigation";
 
 import { tools } from "./data/tools";
 import { categories } from "./data/categories";
@@ -31,9 +33,12 @@ const categoryColorMap: Record<string, string> = {
 };
 
 export default function Home() {
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [faqIndex, setFaqIndex] = useState(0);
+  const [pendingToolUrl, setPendingToolUrl] = useState<string | null>(null);
+  const [isAdModalOpen, setIsAdModalOpen] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
@@ -286,6 +291,11 @@ export default function Home() {
                   <Link
                     key={tool.id}
                     href={tool.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setPendingToolUrl(tool.href);
+                      setIsAdModalOpen(true);
+                    }}
                     className="group relative flex flex-col rounded-2xl sm:rounded-3xl border border-zinc-200 bg-white p-5 sm:p-6 shadow-sm hover:shadow-lg dark:border-zinc-800 dark:bg-zinc-900 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
                   >
                     <div className="relative">
@@ -487,6 +497,58 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Ad Modal */}
+      {isAdModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm transition-opacity duration-300">
+          <div className="relative w-full max-w-4xl bg-white dark:bg-zinc-900 rounded-3xl overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-200 flex flex-col">
+            {/* Header */}
+            <div className="flex items-center justify-between p-4 border-b border-zinc-200 dark:border-zinc-800 shrink-0">
+              <h3 className="text-lg font-bold text-zinc-900 dark:text-white flex items-center gap-2">
+                <span className="text-sm bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 px-2 py-0.5 rounded">Advertisement</span>
+              </h3>
+              <button 
+                onClick={() => {
+                  setIsAdModalOpen(false);
+                  if (pendingToolUrl) {
+                    router.push(pendingToolUrl);
+                  }
+                }}
+                className="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors text-zinc-500"
+              >
+                <Close className="h-5 w-5" />
+              </button>
+            </div>
+            
+            {/* Ad Content */}
+            <div className="w-full h-[60vh] sm:h-[70vh] bg-zinc-50 dark:bg-black/50 relative flex-1">
+              <iframe 
+                src="https://affectionatestorage.com/b.3oVm0UPs3_pDvJbnmbV/JhZfDm0/3UMcz/kC3LNCjQIr5lLoT/c-zHOsTact2EMFz/Mi" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 'none' }}
+                title="Advertisement"
+              />
+            </div>
+            
+            {/* Footer */}
+            <div className="p-4 border-t border-zinc-200 dark:border-zinc-800 flex justify-end bg-zinc-50 dark:bg-zinc-900/50 shrink-0">
+              <button 
+                onClick={() => {
+                  setIsAdModalOpen(false);
+                  if (pendingToolUrl) {
+                    router.push(pendingToolUrl);
+                  }
+                }}
+                className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium transition-colors shadow-sm shadow-blue-500/20"
+              >
+                Continue to Tool
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
