@@ -129,23 +129,22 @@ export default function FixedDepositCalculator() {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
                 suppressHydrationWarning
             />
-                        <div className="w-full max-w-[1600px] mx-auto flex flex-col xl:flex-row justify-center gap-6 px-4">
-                {/* Left Ad (Desktop Only) */}
-                <div className="flex flex-col items-center xl:items-end w-full xl:w-[300px] pt-4 xl:pt-8 gap-6">
+                        <div className="w-full max-w-[1600px] mx-auto flex flex-col xl:flex-row justify-center items-start gap-8 px-4 relative">
+                {/* Left Ads (Sticky) */}
+                <div className="hidden xl:flex flex-col w-[300px] shrink-0 sticky top-24 gap-6">
                     <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative">
-                    <iframe 
-                        src="/ad1.html" 
-                        width="300" 
-                        height="250" 
-                        style={{ border: 'none', overflow: 'hidden' }}
-                        scrolling="no"
-                        title="Advertisement"
-                    />
-                </div>
+                        <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
+                    </div>
+                    <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative">
+                        <iframe src="/ad2.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
+                    </div>
+                    <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative">
+                        <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
+                    </div>
                 </div>
 
-                {/* Main Content Area */}
-                <div className="flex-1 w-full max-w-5xl min-w-0">
+                {/* Main Content */}
+                <div className="flex-1 w-full max-w-5xl min-w-0 flex flex-col gap-8">
                     <ToolWrapper
                 title="Fixed Deposit (FD) Calculator"
                 description="Calculate maturity amount and interest earned on your fixed deposits."
@@ -291,6 +290,19 @@ export default function FixedDepositCalculator() {
             </ToolWrapper>
 
                 </div> {/* End Main Content Area */}
+            
+                {/* Right Ads (Sticky) */}
+                <div className="hidden xl:flex flex-col w-[300px] shrink-0 sticky top-24 gap-6">
+                    <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative">
+                        <iframe src="/ad2.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
+                    </div>
+                    <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative">
+                        <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
+                    </div>
+                    <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative">
+                        <iframe src="/ad2.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
+                    </div>
+                </div>
             </div>
         </>
     );
