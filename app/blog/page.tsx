@@ -9,6 +9,7 @@ export default function BlogPage() {
     const [searchQuery, setSearchQuery] = useState("");
     const [activeCategory, setActiveCategory] = useState("All");
     const [visibleCount, setVisibleCount] = useState(4);
+    const [hasClickedLoadMoreAd, setHasClickedLoadMoreAd] = useState(false);
 
     const categories = ["All", ...Array.from(new Set(articles.map(a => a.category)))];
 
@@ -157,7 +158,16 @@ export default function BlogPage() {
                             {filteredArticles.length > visibleCount && (
                                 <div className="flex justify-center mt-4">
                                     <button
-                                        onClick={() => setVisibleCount(prev => prev + 8)}
+                                        onClick={(e) => {
+                                            if (!hasClickedLoadMoreAd) {
+                                                e.preventDefault();
+                                                window.open('/pop2.html', '_blank', 'noopener,noreferrer');
+                                                setHasClickedLoadMoreAd(true);
+                                            } else {
+                                                setVisibleCount(prev => prev + 8);
+                                                setHasClickedLoadMoreAd(false);
+                                            }
+                                        }}
                                         className="px-8 py-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white rounded-full font-semibold hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors shadow-sm"
                                     >
                                         Load More Articles
