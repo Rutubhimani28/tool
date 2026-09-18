@@ -59,7 +59,7 @@ export default function BlogPage() {
 
             {/* Hero Section */}
             <section className="bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 pt-12 pb-20">
-                <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 relative">
                     <div className="mb-8">
                         <Link
                             href="/"
@@ -70,27 +70,34 @@ export default function BlogPage() {
                         </Link>
                     </div>
 
-                    <div className="text-center max-w-3xl mx-auto mb-12">
-                        <h1 className="text-4xl md:text-5xl font-extrabold text-zinc-900 dark:text-white tracking-tight mb-6">
-                            Insights & Guides
-                        </h1>
-                        <p className="text-lg text-zinc-600 dark:text-zinc-400">
-                            Master your personal finances with our comprehensive guides, expert tips, and tutorials on loans, investments, and retirement planning.
-                        </p>
-                    </div>
-
-                    {/* Search Bar */}
-                    <div className="relative max-w-2xl mx-auto w-full mb-16">
-                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <Search className="h-5 w-5 text-zinc-400" />
+                    <div className="relative">
+                        <div className="text-center max-w-3xl mx-auto mb-12 relative z-10">
+                            <h1 className="text-4xl md:text-5xl font-extrabold text-zinc-900 dark:text-white tracking-tight mb-6">
+                                Insights & Guides
+                            </h1>
+                            <p className="text-lg text-zinc-600 dark:text-zinc-400">
+                                Master your personal finances with our comprehensive guides, expert tips, and tutorials on loans, investments, and retirement planning.
+                            </p>
                         </div>
-                        <input
-                            type="text"
-                            className="block w-full pl-11 pr-4 py-4 bg-zinc-100 dark:bg-zinc-800 border-transparent rounded-2xl text-zinc-900 dark:text-white placeholder-zinc-500 focus:bg-white dark:focus:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm transition-all"
-                            placeholder="Search articles, guides, and tutorials..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                        />
+
+                        {/* Search Bar */}
+                        <div className="relative max-w-2xl mx-auto w-full mb-16 z-10">
+                            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <Search className="h-5 w-5 text-zinc-400" />
+                            </div>
+                            <input
+                                type="text"
+                                className="block w-full pl-11 pr-4 py-4 bg-zinc-100 dark:bg-zinc-800 border-transparent rounded-2xl text-zinc-900 dark:text-white placeholder-zinc-500 focus:bg-white dark:focus:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm transition-all"
+                                placeholder="Search articles, guides, and tutorials..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
+                        </div>
+
+                        {/* Floating Right Ad */}
+                        <div className="hidden xl:flex absolute top-0 right-0 w-[300px] h-[250px] overflow-hidden rounded-2xl justify-center items-center z-0">
+                            <iframe src="/ad3.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
+                        </div>
                     </div>
                 </div>
             </section>

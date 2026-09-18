@@ -182,41 +182,40 @@ export default function Home() {
 
       {/* SEO Content Section */}
       <section className="bg-white dark:bg-zinc-950 px-4 py-16 sm:px-6 lg:px-8 border-b border-zinc-200 dark:border-zinc-800">
-        <div className="mx-auto max-w-[1400px] flex flex-col xl:flex-row gap-8 items-start justify-center">
-          {/* Left Ad */}
-          <div className="hidden xl:flex w-[300px] h-[600px] shrink-0 rounded-lg overflow-hidden items-center justify-center relative">
-            <iframe src="/ad1.html" width="300" height="600" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Ad" />
-          </div>
-          <div className="mx-auto max-w-4xl text-zinc-600 dark:text-zinc-400 leading-relaxed flex-1">
-            <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mb-6">Your Complete Local Financial Toolkit</h2>
-          <p className="mb-6 text-lg">
-            Our platform provides a comprehensive suite of tools to manage and calculate your finances. Whether you need to calculate an EMI for a loan, estimate SIP returns, or check compound interest, our platform offers fast, reliable, and completely free solutions.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-            <div>
-              <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">Why Choose Our Tools?</h3>
-              <ul className="list-disc pl-6 space-y-2">
-                <li><strong className="text-zinc-900 dark:text-white">100% Free:</strong> No hidden fees or subscriptions.</li>
-                <li><strong className="text-zinc-900 dark:text-white">Accurate:</strong> We use industry-standard formulas.</li>
-                <li><strong className="text-zinc-900 dark:text-white">No Registration:</strong> Start using the tools immediately.</li>
-              </ul>
+        <div className="mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Ad */}
+            <div className="hidden lg:flex w-full h-[600px] rounded-lg overflow-hidden items-center justify-center relative">
+              <iframe src="/ad1.html" width="100%" height="100%" style={{ border: 'none', overflow: 'hidden', minHeight: '600px' }} scrolling="no" title="Ad" />
             </div>
-            <div>
-              <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">Uncompromising Privacy</h3>
-              <ul className="list-disc pl-6 space-y-2">
-                <li><strong className="text-zinc-900 dark:text-white">Local Processing:</strong> All calculations happen in your browser.</li>
-                <li><strong className="text-zinc-900 dark:text-white">No Uploads:</strong> Your data never leaves your device.</li>
-                <li><strong className="text-zinc-900 dark:text-white">No Server Storage:</strong> Your data is processed locally and is not uploaded to our servers.</li>
-              </ul>
+            {/* Content (Right Side) */}
+            <div className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mb-6">Your Complete Local Financial Toolkit</h2>
+              <p className="mb-6 text-lg">
+                Our platform provides a comprehensive suite of tools to manage and calculate your finances. Whether you need to calculate an EMI for a loan, estimate SIP returns, or check compound interest, our platform offers fast, reliable, and completely free solutions.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div>
+                  <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">Why Choose Our Tools?</h3>
+                  <ul className="list-disc pl-6 space-y-2">
+                    <li><strong className="text-zinc-900 dark:text-white">100% Free:</strong> No hidden fees or subscriptions.</li>
+                    <li><strong className="text-zinc-900 dark:text-white">Accurate:</strong> We use industry-standard formulas.</li>
+                    <li><strong className="text-zinc-900 dark:text-white">No Registration:</strong> Start using the tools immediately.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">Uncompromising Privacy</h3>
+                  <ul className="list-disc pl-6 space-y-2">
+                    <li><strong className="text-zinc-900 dark:text-white">Local Processing:</strong> All calculations happen in your browser.</li>
+                    <li><strong className="text-zinc-900 dark:text-white">No Uploads:</strong> Your data never leaves your device.</li>
+                    <li><strong className="text-zinc-900 dark:text-white">No Server Storage:</strong> Your data is processed locally and is not uploaded to our servers.</li>
+                  </ul>
+                </div>
+              </div>
+              <p>
+                Explore our collection of calculators below. Use the search bar or category filters to quickly find exactly what you need.
+              </p>
             </div>
-          </div>
-          <p>
-            Explore our collection of calculators below. Use the search bar or category filters to quickly find exactly what you need.
-          </p>
-        </div>
-          {/* Right Ad */}
-          <div className="hidden xl:flex w-[300px] h-[600px] shrink-0 rounded-lg overflow-hidden items-center justify-center relative">
-            <iframe src="/ad3.html" width="300" height="600" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Ad" />
           </div>
         </div>
       </section>
@@ -336,52 +335,51 @@ export default function Home() {
 
 
       {/* How It Works */}
-      <section className="bg-zinc-50 dark:bg-zinc-900/50 py-12 sm:py-16 border-b border-zinc-200 dark:border-zinc-800">
-        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 flex flex-col xl:flex-row gap-8 items-start justify-center">
-          {/* Left Ad */}
-          <div className="hidden xl:flex w-[300px] h-[600px] shrink-0 rounded-lg overflow-hidden items-center justify-center relative">
-            <iframe src="/ad1.html" width="300" height="600" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Ad" />
-          </div>
-          <div className="max-w-3xl mx-auto flex-1">
-            <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl mb-4 text-center">
-              How It Works
-            </h2>
-            <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-12 text-center">
-              Calculate your financials accurately in three simple steps.
-            </p>
-            <div className="space-y-8">
-              <div className="flex gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 font-bold text-xl">
-                  1
+      <section className="bg-zinc-50 dark:bg-zinc-900/50 px-4 py-16 sm:px-6 lg:px-8 border-b border-zinc-200 dark:border-zinc-800">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Ad */}
+            <div className="hidden lg:flex w-full h-[600px] rounded-lg overflow-hidden items-center justify-center relative">
+              <iframe src="/ad3.html" width="100%" height="100%" style={{ border: 'none', overflow: 'hidden', minHeight: '600px' }} scrolling="no" title="Ad" />
+            </div>
+            {/* Content (Right Side) */}
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl mb-4">
+                How It Works
+              </h2>
+              <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-12">
+                Calculate your financials accurately in three simple steps.
+              </p>
+              <div className="space-y-8">
+                <div className="flex gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 font-bold text-xl">
+                    1
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">Select a Calculator</h3>
+                    <p className="mt-2 text-zinc-600 dark:text-zinc-400">Choose the specific tool you need from our collection (e.g., EMI Calculator, SIP Calculator).</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">Select a Calculator</h3>
-                  <p className="mt-2 text-zinc-600 dark:text-zinc-400">Choose the specific tool you need from our collection (e.g., EMI Calculator, SIP Calculator).</p>
+                <div className="flex gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 font-bold text-xl">
+                    2
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">Enter Your Details</h3>
+                    <p className="mt-2 text-zinc-600 dark:text-zinc-400">Provide the required inputs like loan amount, interest rate, or investment duration.</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 font-bold text-xl">
-                  2
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">Enter Your Details</h3>
-                  <p className="mt-2 text-zinc-600 dark:text-zinc-400">Provide the required inputs like loan amount, interest rate, or investment duration.</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 font-bold text-xl">
-                  3
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">View Results</h3>
-                  <p className="mt-2 text-zinc-600 dark:text-zinc-400">Instantly see the breakdown, graphs, and complete schedule.</p>
+                <div className="flex gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 font-bold text-xl">
+                    3
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">View Results</h3>
+                    <p className="mt-2 text-zinc-600 dark:text-zinc-400">Instantly see the breakdown, graphs, and complete schedule.</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          {/* Right Ad */}
-          <div className="hidden xl:flex w-[300px] h-[600px] shrink-0 rounded-lg overflow-hidden items-center justify-center relative">
-            <iframe src="/ad3.html" width="300" height="600" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Ad" />
           </div>
         </div>
       </section>
@@ -474,15 +472,10 @@ export default function Home() {
             })}
           </div>
 
-          {/* Bottom section with Ads and Pagination */}
-          <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-8">
-            {/* Left Ad */}
-            <div className="hidden md:flex w-[300px] h-[90px] shrink-0 rounded-lg overflow-hidden items-center justify-center relative">
-              <iframe src="/ad1.html" width="300" height="90" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Ad" />
-            </div>
-
+          {/* Bottom section with Pagination */}
+          <div className="mt-12 flex justify-center">
             {/* Pagination Dots */}
-            <div className="flex justify-center gap-2">
+            <div className="flex gap-2">
               {[0, 1, 2, 3, 4, 5].map((idx) => (
                 <button
                   key={idx}
@@ -492,11 +485,6 @@ export default function Home() {
                   aria-label={`Go to slide ${idx + 1}`}
                 />
               ))}
-            </div>
-
-            {/* Right Ad */}
-            <div className="hidden md:flex w-[300px] h-[90px] shrink-0 rounded-lg overflow-hidden items-center justify-center relative">
-              <iframe src="/ad3.html" width="300" height="90" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Ad" />
             </div>
           </div>
         </div>
