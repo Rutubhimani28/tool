@@ -39,6 +39,7 @@ export default function Home() {
   const [faqIndex, setFaqIndex] = useState(0);
   const [pendingToolUrl, setPendingToolUrl] = useState<string | null>(null);
   const [isAdModalOpen, setIsAdModalOpen] = useState(false);
+  const [hasClickedContinueAd, setHasClickedContinueAd] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
@@ -534,10 +535,17 @@ export default function Home() {
             {/* Footer */}
             <div className="p-4 border-t border-zinc-200 dark:border-zinc-800 flex justify-end bg-zinc-50 dark:bg-zinc-900/50 shrink-0">
               <button 
-                onClick={() => {
-                  setIsAdModalOpen(false);
-                  if (pendingToolUrl) {
-                    router.push(pendingToolUrl);
+                onClick={(e) => {
+                  if (!hasClickedContinueAd) {
+                    e.preventDefault();
+                    window.open('https://affectionatestorage.com/b.3oVm0UPs3_pDvJbnmbV/JhZfDm0/3UMcz/kC3LNCjQIr5lLoT/c-zHOsTact2EMFz/Mi', '_blank', 'noopener,noreferrer');
+                    setHasClickedContinueAd(true);
+                  } else {
+                    setIsAdModalOpen(false);
+                    setHasClickedContinueAd(false);
+                    if (pendingToolUrl) {
+                      router.push(pendingToolUrl);
+                    }
                   }
                 }}
                 className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium transition-colors shadow-sm shadow-blue-500/20"
