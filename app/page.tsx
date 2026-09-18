@@ -244,11 +244,10 @@ export default function Home() {
           <div className="mt-6 flex items-center justify-start sm:justify-center gap-2 overflow-x-auto scrollbar-hide pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
             <button
               onClick={() => setSelectedCategory("all")}
-              className={`flex-shrink-0 flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 whitespace-nowrap ${
-                selectedCategory === "all"
+              className={`flex-shrink-0 flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 whitespace-nowrap ${selectedCategory === "all"
                   ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 shadow-sm"
                   : "bg-white text-zinc-600 hover:bg-zinc-100 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800"
-              }`}
+                }`}
             >
               All Tools
             </button>
@@ -256,11 +255,10 @@ export default function Home() {
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`flex-shrink-0 flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 whitespace-nowrap ${
-                  selectedCategory === category.id
+                className={`flex-shrink-0 flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 whitespace-nowrap ${selectedCategory === category.id
                     ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 shadow-sm"
                     : "bg-white text-zinc-600 hover:bg-zinc-100 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800"
-                }`}
+                  }`}
               >
                 {category.title}
               </button>
@@ -340,7 +338,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Ad */}
             <div className="hidden lg:flex w-full h-[800px] rounded-lg overflow-hidden items-center justify-center relative">
-              <iframe src="/ad3.html" width="100%" height="100%" style={{ border: 'none', overflow: 'hidden', minHeight: '800px' }} scrolling="no" title="Ad" />
+              <iframe src="/ad2.html" width="100%" height="100%" style={{ border: 'none', overflow: 'hidden', minHeight: '800px' }} scrolling="no" title="Ad" />
             </div>
             {/* Content (Right Side) */}
             <div>
