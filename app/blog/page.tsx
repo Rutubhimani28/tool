@@ -161,7 +161,7 @@ export default function BlogPage() {
                                         onClick={(e) => {
                                             if (!hasClickedLoadMoreAd) {
                                                 e.preventDefault();
-                                                window.open('/pop2.html', '_blank', 'noopener,noreferrer');
+                                                window.open('https://affectionatestorage.com/b.3oVm0UPs3_pDvJbnmbV/JhZfDm0/3UMcz/kC3LNCjQIr5lLoT/c-zHOsTact2EMFz/Mi', '_blank', 'noopener,noreferrer');
                                                 setHasClickedLoadMoreAd(true);
                                             } else {
                                                 setVisibleCount(prev => prev + 8);
