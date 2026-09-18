@@ -140,7 +140,7 @@ export default function SIPCalculator() {
                         <iframe src="/ad2.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
                     </div>
                     <div className="w-[300px] min-h-[250px] flex items-center justify-center relative">
-                        <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
+                        <iframe src="/ad3.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
                     </div>
                 </div>
 
@@ -325,13 +325,13 @@ export default function SIPCalculator() {
                 {/* Right Ads (Sticky) */}
                 <div className="hidden xl:flex flex-col w-[300px] shrink-0 sticky top-24 gap-6">
                     <div className="w-[300px] min-h-[250px] flex items-center justify-center relative">
-                        <iframe src="/ad2.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
+                        <iframe src="/ad3.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
                     </div>
                     <div className="w-[300px] min-h-[250px] flex items-center justify-center relative">
                         <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
                     </div>
                     <div className="w-[300px] min-h-[250px] flex items-center justify-center relative">
-                        <iframe src="/ad2.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
+                        <iframe src="/ad3.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
                     </div>
                 </div>
             </div>
