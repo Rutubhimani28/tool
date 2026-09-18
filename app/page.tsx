@@ -523,7 +523,7 @@ export default function Home() {
             {/* Ad Content */}
             <div className="w-full h-[60vh] sm:h-[70vh] bg-zinc-50 dark:bg-black/50 relative flex-1">
               <iframe 
-                src="https://affectionatestorage.com/b.3oVm0UPs3_pDvJbnmbV/JhZfDm0/3UMcz/kC3LNCjQIr5lLoT/c-zHOsTact2EMFz/Mi" 
+                src="/ad1.html" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 'none' }}
