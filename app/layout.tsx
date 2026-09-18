@@ -103,6 +103,7 @@ import { ThemeProvider } from "next-themes";
 import Script from "next/script";
 
 import { Toaster } from "react-hot-toast";
+import GlobalScrollAd from "@/app/components/GlobalScrollAd";
 
 export default function RootLayout({
   children,
@@ -146,6 +147,7 @@ export default function RootLayout({
             }}
           />
           <ScrollToTop />
+          <GlobalScrollAd />
         </ThemeProvider>
       </body>
     </html >
