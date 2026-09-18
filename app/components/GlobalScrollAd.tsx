@@ -25,7 +25,7 @@ export default function GlobalScrollAd() {
 
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-sm transition-opacity duration-300">
-      <div className="relative w-full max-w-4xl bg-white dark:bg-zinc-900 rounded-3xl overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-200 flex flex-col">
+      <div className="relative w-full max-w-xl bg-white dark:bg-zinc-900 rounded-3xl overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-200 flex flex-col">
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-zinc-200 dark:border-zinc-800 shrink-0">
           <h3 className="text-lg font-bold text-zinc-900 dark:text-white flex items-center gap-2">
@@ -55,7 +55,7 @@ export default function GlobalScrollAd() {
         </div>
 
         {/* Ad Content */}
-        <div className="w-full h-[85vh] sm:h-[80vh] min-h-[600px] max-h-[800px] bg-zinc-50 dark:bg-black/50 relative flex-1 cursor-pointer"
+        <div className="w-full h-[350px] sm:h-[400px] bg-zinc-50 dark:bg-black/50 relative flex-1 cursor-pointer flex items-center justify-center"
              onClick={(e) => {
                if (!hasClickedAd) {
                  e.preventDefault();
