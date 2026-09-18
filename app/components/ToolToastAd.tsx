@@ -6,7 +6,7 @@ import { Close } from "@mui/icons-material";
 export default function ToolToastAd() {
   const [isVisible, setIsVisible] = useState(false);
   const [hasClickedAd, setHasClickedAd] = useState(false);
-  const AD_SOURCES = ["/ad1.html", "/ad2.html", "/ad3.html"];
+  const AD_SOURCES = ["/ad1.html"];
   const [adIndex, setAdIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const AD_DURATION = 15000; // 15 seconds
