@@ -182,8 +182,13 @@ export default function Home() {
 
       {/* SEO Content Section */}
       <section className="bg-white dark:bg-zinc-950 px-4 py-16 sm:px-6 lg:px-8 border-b border-zinc-200 dark:border-zinc-800">
-        <div className="mx-auto max-w-4xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
-          <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mb-6">Your Complete Local Financial Toolkit</h2>
+        <div className="mx-auto max-w-[1400px] flex flex-col xl:flex-row gap-8 items-start justify-center">
+          {/* Left Ad */}
+          <div className="hidden xl:flex w-[300px] h-[600px] shrink-0 bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden items-center justify-center relative">
+            <iframe src="/ad1.html" width="300" height="600" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Ad" />
+          </div>
+          <div className="mx-auto max-w-4xl text-zinc-600 dark:text-zinc-400 leading-relaxed flex-1">
+            <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mb-6">Your Complete Local Financial Toolkit</h2>
           <p className="mb-6 text-lg">
             Our platform provides a comprehensive suite of tools to manage and calculate your finances. Whether you need to calculate an EMI for a loan, estimate SIP returns, or check compound interest, our platform offers fast, reliable, and completely free solutions.
           </p>
@@ -208,6 +213,11 @@ export default function Home() {
           <p>
             Explore our collection of calculators below. Use the search bar or category filters to quickly find exactly what you need.
           </p>
+        </div>
+          {/* Right Ad */}
+          <div className="hidden xl:flex w-[300px] h-[600px] shrink-0 bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden items-center justify-center relative">
+            <iframe src="/ad2.html" width="300" height="600" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Ad" />
+          </div>
         </div>
       </section>
 
@@ -259,21 +269,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Ad Section */}
-      <section className="mx-auto max-w-5xl px-4 py-8 flex justify-center">
-        <div className="w-[300px] min-h-[250px] bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex items-center justify-center relative">
-                    <iframe 
-                        src="/ad1.html" 
-                        width="300" 
-                        height="250" 
-                        style={{ border: 'none', overflow: 'hidden' }}
-                        scrolling="no"
-                        title="Advertisement"
-                    />
-                </div>
-      </section>
-
 
       {/* Tools Sections */}
       <section className="mx-auto max-w-[1600px] px-4 pt-8 pb-24 sm:px-6 lg:px-8 flex flex-col gap-16">
@@ -342,8 +337,12 @@ export default function Home() {
 
       {/* How It Works */}
       <section className="bg-zinc-50 dark:bg-zinc-900/50 py-12 sm:py-16 border-b border-zinc-200 dark:border-zinc-800">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 flex flex-col xl:flex-row gap-8 items-start justify-center">
+          {/* Left Ad */}
+          <div className="hidden xl:flex w-[300px] h-[600px] shrink-0 bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden items-center justify-center relative">
+            <iframe src="/ad1.html" width="300" height="600" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Ad" />
+          </div>
+          <div className="max-w-3xl mx-auto flex-1">
             <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl mb-4 text-center">
               How It Works
             </h2>
@@ -380,12 +379,16 @@ export default function Home() {
               </div>
             </div>
           </div>
+          {/* Right Ad */}
+          <div className="hidden xl:flex w-[300px] h-[600px] shrink-0 bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden items-center justify-center relative">
+            <iframe src="/ad2.html" width="300" height="600" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Ad" />
+          </div>
         </div>
       </section>
 
       {/* FAQ Section */}
       <section className="bg-white dark:bg-zinc-950 py-16 sm:py-24 border-t border-zinc-200 dark:border-zinc-800">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10 flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 pb-4">
             <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white m-0">
               Most people ask about
@@ -401,7 +404,7 @@ export default function Home() {
               </button>
               <button
                 suppressHydrationWarning
-                onClick={() => setFaqIndex((prev) => (prev + 1) % 6)}
+                onClick={() => setFaqIndex((prev) => (prev + 6 + 1) % 6)}
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
                 aria-label="Next FAQ"
               >
@@ -470,16 +473,31 @@ export default function Home() {
               );
             })}
           </div>
-          <div className="mt-8 flex justify-center gap-2">
-            {[0, 1, 2, 3, 4, 5].map((idx) => (
-              <button
-                key={idx}
-                suppressHydrationWarning
-                onClick={() => setFaqIndex(idx)}
-                className={`h-2.5 rounded-full transition-all duration-300 ${faqIndex === idx ? "w-8 bg-blue-600" : "w-2.5 bg-zinc-300 dark:bg-zinc-700"}`}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
-            ))}
+
+          {/* Bottom section with Ads and Pagination */}
+          <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-8">
+            {/* Left Ad */}
+            <div className="hidden md:flex w-[300px] h-[90px] shrink-0 bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden items-center justify-center relative">
+              <iframe src="/ad1.html" width="300" height="90" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Ad" />
+            </div>
+
+            {/* Pagination Dots */}
+            <div className="flex justify-center gap-2">
+              {[0, 1, 2, 3, 4, 5].map((idx) => (
+                <button
+                  key={idx}
+                  suppressHydrationWarning
+                  onClick={() => setFaqIndex(idx)}
+                  className={`h-2.5 rounded-full transition-all duration-300 ${faqIndex === idx ? "w-8 bg-blue-600" : "w-2.5 bg-zinc-300 dark:bg-zinc-700"}`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+
+            {/* Right Ad */}
+            <div className="hidden md:flex w-[300px] h-[90px] shrink-0 bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden items-center justify-center relative">
+              <iframe src="/ad2.html" width="300" height="90" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Ad" />
+            </div>
           </div>
         </div>
       </section>
