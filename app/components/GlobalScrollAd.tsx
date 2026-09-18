@@ -55,7 +55,7 @@ export default function GlobalScrollAd() {
         </div>
 
         {/* Ad Content */}
-        <div className="w-full h-[60vh] sm:h-[70vh] bg-zinc-50 dark:bg-black/50 relative flex-1 cursor-pointer"
+        <div className="w-full h-[85vh] sm:h-[80vh] min-h-[600px] max-h-[800px] bg-zinc-50 dark:bg-black/50 relative flex-1 cursor-pointer"
              onClick={(e) => {
                if (!hasClickedAd) {
                  e.preventDefault();
