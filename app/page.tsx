@@ -40,6 +40,7 @@ export default function Home() {
   const [pendingToolUrl, setPendingToolUrl] = useState<string | null>(null);
   const [isAdModalOpen, setIsAdModalOpen] = useState(false);
   const [hasClickedContinueAd, setHasClickedContinueAd] = useState(false);
+  const [hasClickedFaqAd, setHasClickedFaqAd] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
@@ -403,7 +404,15 @@ export default function Home() {
             <div className="flex items-center gap-2">
               <button
                 suppressHydrationWarning
-                onClick={() => setFaqIndex((prev) => (prev - 1 + 6) % 6)}
+                onClick={(e) => {
+                  if (!hasClickedFaqAd) {
+                    e.preventDefault();
+                    window.open('https://affectionatestorage.com/b.3oVm0UPs3_pDvJbnmbV/JhZfDm0/3UMcz/kC3LNCjQIr5lLoT/c-zHOsTact2EMFz/Mi', '_blank', 'noopener,noreferrer');
+                    setHasClickedFaqAd(true);
+                  } else {
+                    setFaqIndex((prev) => (prev - 1 + 6) % 6);
+                  }
+                }}
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
                 aria-label="Previous FAQ"
               >
@@ -411,7 +420,15 @@ export default function Home() {
               </button>
               <button
                 suppressHydrationWarning
-                onClick={() => setFaqIndex((prev) => (prev + 6 + 1) % 6)}
+                onClick={(e) => {
+                  if (!hasClickedFaqAd) {
+                    e.preventDefault();
+                    window.open('https://affectionatestorage.com/b.3oVm0UPs3_pDvJbnmbV/JhZfDm0/3UMcz/kC3LNCjQIr5lLoT/c-zHOsTact2EMFz/Mi', '_blank', 'noopener,noreferrer');
+                    setHasClickedFaqAd(true);
+                  } else {
+                    setFaqIndex((prev) => (prev + 6 + 1) % 6);
+                  }
+                }}
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
                 aria-label="Next FAQ"
               >
