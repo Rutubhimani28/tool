@@ -99,11 +99,6 @@ export default function BlogPage() {
                         <div className="hidden xl:flex absolute top-0 left-0 w-[300px] h-[250px] overflow-hidden rounded-2xl justify-center items-center z-0">
                             <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
                         </div>
-
-                        {/* Floating Right Ad */}
-                        <div className="hidden xl:flex absolute top-0 right-0 w-[300px] h-[250px] overflow-hidden rounded-2xl justify-center items-center z-0">
-                            <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
-                        </div>
                     </div>
                 </div>
             </section>

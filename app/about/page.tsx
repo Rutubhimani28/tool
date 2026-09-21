@@ -4,18 +4,15 @@ import { ArrowBack } from "@mui/icons-material";
 
 export default function AboutPage() {
     return (
-        <div className="mx-auto w-full max-w-[1400px] px-4 py-8 sm:px-6 sm:py-12 lg:px-8 flex-1 flex flex-col relative">
-            {/* Floating Left Ad */}
-            <div className="hidden xl:flex absolute bottom-12 left-4 w-[300px] h-[250px] overflow-hidden rounded-2xl justify-center items-center z-0">
-                <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
+        <div className="mx-auto w-full max-w-[1400px] px-4 py-8 sm:px-6 sm:py-12 lg:px-8 flex-1 flex justify-between gap-8 relative">
+            {/* Left Ad Sidebar */}
+            <div className="hidden xl:flex flex-col justify-end w-[300px] shrink-0">
+                <div className="sticky bottom-12 w-[300px] h-[250px] overflow-hidden rounded-2xl flex justify-center items-center pointer-events-auto">
+                    <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
+                </div>
             </div>
 
-            {/* Floating Right Ad */}
-            <div className="hidden xl:flex absolute bottom-12 right-4 w-[300px] h-[250px] overflow-hidden rounded-2xl justify-center items-center z-0">
-                <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
-            </div>
-
-            <div className="max-w-3xl mx-auto w-full relative z-10">
+            <div className="flex-1 max-w-3xl w-full min-w-0 relative z-10 flex flex-col">
                 <div className="mb-6">
                     <Link
                         href="/"
@@ -76,6 +73,13 @@ export default function AboutPage() {
                     </p>
                 </div>
             </div>
+            </div>
+
+            {/* Right Ad Sidebar */}
+            <div className="hidden xl:flex flex-col justify-end w-[300px] shrink-0">
+                <div className="sticky bottom-12 w-[300px] h-[250px] overflow-hidden rounded-2xl flex justify-center items-center pointer-events-auto">
+                    <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
+                </div>
             </div>
         </div>
     );
