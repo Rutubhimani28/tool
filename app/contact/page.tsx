@@ -32,26 +32,37 @@ export default function ContactPage() {
     };
 
     return (
-        <div className="mx-auto w-full max-w-4xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 flex-1 flex flex-col">
-            <div className="mb-6">
-                <Link
-                    href="/"
-                    className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-white transition-colors group"
-                >
-                    <ArrowBack className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-                    Back to Home
-                </Link>
+        <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 flex-1 flex flex-col relative">
+            {/* Floating Left Ad */}
+            <div className="hidden xl:flex absolute top-12 left-4 w-[300px] h-[250px] overflow-hidden rounded-2xl justify-center items-center z-0">
+                <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
             </div>
 
-            <div className="mb-8">
-                <div className="h-1 w-12 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 mb-4" />
-                <h1 className="text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
-                    Contact Us
-                </h1>
-                <p className="mt-2 text-base text-zinc-500 dark:text-zinc-400 max-w-2xl">
-                    Have a question, feedback, or need support? We&apos;d love to hear from you.
-                </p>
+            {/* Floating Right Ad */}
+            <div className="hidden xl:flex absolute top-12 right-4 w-[300px] h-[250px] overflow-hidden rounded-2xl justify-center items-center z-0">
+                <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
             </div>
+
+            <div className="max-w-3xl mx-auto w-full relative z-10">
+                <div className="mb-6">
+                    <Link
+                        href="/"
+                        className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-white transition-colors group"
+                    >
+                        <ArrowBack className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
+                        Back to Home
+                    </Link>
+                </div>
+
+                <div className="mb-8">
+                    <div className="h-1 w-12 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 mb-4" />
+                    <h1 className="text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
+                        Contact Us
+                    </h1>
+                    <p className="mt-2 text-base text-zinc-500 dark:text-zinc-400 max-w-2xl">
+                        Have a question, feedback, or need support? We&apos;d love to hear from you.
+                    </p>
+                </div>
 
             <div className="max-w-6xl">
                 <div className="rounded-2xl sm:rounded-3xl border border-zinc-200 bg-white p-6 sm:p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-950">
@@ -97,6 +108,7 @@ export default function ContactPage() {
                     </form>
                 </div>
             </div>
-</div>
+            </div>
+        </div>
     );
 }
