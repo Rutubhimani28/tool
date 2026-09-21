@@ -60,7 +60,7 @@ export default function BlogPage() {
 
             {/* Hero Section */}
             <section className="bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 pt-12 pb-20">
-                <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 relative">
+                <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8 relative">
                     <div className="mb-8">
                         <Link
                             href="/"

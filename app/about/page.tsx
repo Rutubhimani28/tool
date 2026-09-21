@@ -4,14 +4,14 @@ import { ArrowBack } from "@mui/icons-material";
 
 export default function AboutPage() {
     return (
-        <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 flex-1 flex flex-col relative">
+        <div className="mx-auto w-full max-w-[1400px] px-4 py-8 sm:px-6 sm:py-12 lg:px-8 flex-1 flex flex-col relative">
             {/* Floating Left Ad */}
-            <div className="hidden xl:flex absolute top-12 left-4 w-[300px] h-[250px] overflow-hidden rounded-2xl justify-center items-center z-0">
+            <div className="hidden xl:flex absolute bottom-12 left-4 w-[300px] h-[250px] overflow-hidden rounded-2xl justify-center items-center z-0">
                 <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
             </div>
 
             {/* Floating Right Ad */}
-            <div className="hidden xl:flex absolute top-12 right-4 w-[300px] h-[250px] overflow-hidden rounded-2xl justify-center items-center z-0">
+            <div className="hidden xl:flex absolute bottom-12 right-4 w-[300px] h-[250px] overflow-hidden rounded-2xl justify-center items-center z-0">
                 <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
             </div>
 
