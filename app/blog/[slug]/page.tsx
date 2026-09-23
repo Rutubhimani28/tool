@@ -64,13 +64,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             {/* Right Side Ads */}
             <aside className="hidden xl:flex w-[300px] shrink-0 flex-col gap-8 sticky top-24">
                 {/* Toaster Style Top Right Ad */}
-                <div className="w-[300px] bg-white dark:bg-zinc-900 rounded-2xl shadow-sm border border-zinc-200 dark:border-zinc-800 flex flex-col overflow-hidden relative">
-                    
-                    <div className="w-full h-[250px] bg-zinc-50 dark:bg-black/50 relative flex items-center justify-center">
-                        <iframe src="/ad2.html" width="100%" height="100%" style={{ border: "none" }} title="Advertisement" scrolling="no" className="absolute inset-0" />
-                    </div>
-                   
-                </div>
+            
                 
                 {/* Second Right Ad */}
                 <div className="w-[300px] h-[250px] bg-zinc-100 dark:bg-zinc-800/50 rounded-xl overflow-hidden shadow-sm border border-zinc-200 dark:border-zinc-800 relative">
