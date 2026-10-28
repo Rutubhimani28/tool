@@ -1,5 +1,7 @@
 "use client";
 
+import ResponsiveAdBanner from "@/app/components/ResponsiveAdBanner";
+
 import React, { useState, useEffect } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import { AccountBalanceWallet as AccountBalanceWalletIcon } from "@mui/icons-material";
@@ -76,6 +78,7 @@ export default function NetWorthCalculator() {
 
                 {/* Main Content */}
                 <div className="flex-1 w-full max-w-5xl min-w-0 flex flex-col gap-8">
+                    <ResponsiveAdBanner slot="ad1" className="mb-4" />
                     <ToolWrapper
                 title="Net Worth Calculator"
                 description="Calculate your true net worth by balancing your assets and liabilities."
@@ -246,6 +249,7 @@ export default function NetWorthCalculator() {
                 </div>
             </ToolWrapper>
 
+                <ResponsiveAdBanner slot="ad2" className="mt-8" />
                 </div> {/* End Main Content Area */}
             
                 {/* Right Ads (Sticky) */}

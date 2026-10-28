@@ -1,5 +1,7 @@
 "use client";
 
+import ResponsiveAdBanner from "@/app/components/ResponsiveAdBanner";
+
 import React, { useState, useEffect } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import Button from "@/app/components/Button";
@@ -145,6 +147,7 @@ export default function FixedDepositCalculator() {
 
                 {/* Main Content */}
                 <div className="flex-1 w-full max-w-5xl min-w-0 flex flex-col gap-8">
+                    <ResponsiveAdBanner slot="ad1" className="mb-4" />
                     <ToolWrapper
                 title="Fixed Deposit (FD) Calculator"
                 description="Calculate maturity amount and interest earned on your fixed deposits."
@@ -289,6 +292,7 @@ export default function FixedDepositCalculator() {
                 </div>
             </ToolWrapper>
 
+                <ResponsiveAdBanner slot="ad2" className="mt-8" />
                 </div> {/* End Main Content Area */}
             
                 {/* Right Ads (Sticky) */}

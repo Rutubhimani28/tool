@@ -1,5 +1,7 @@
 "use client";
 
+import ResponsiveAdBanner from "@/app/components/ResponsiveAdBanner";
+
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import { ArrowBack, Search, Article, Security, TrendingUp } from "@mui/icons-material";
@@ -99,6 +101,11 @@ export default function BlogPage() {
                         <div className="hidden xl:flex absolute top-0 left-0 w-[300px] h-[250px] overflow-hidden rounded-2xl justify-center items-center z-0">
                             <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
                         </div>
+
+                        {/* Floating Right Ad */}
+                        <div className="hidden xl:flex absolute top-0 right-0 w-[300px] h-[250px] overflow-hidden rounded-2xl justify-center items-center z-0">
+                            <iframe src="/ad2.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
+                        </div>
                     </div>
                 </div>
             </section>
@@ -156,22 +163,30 @@ export default function BlogPage() {
                             </div>
 
                             {filteredArticles.length > visibleCount && (
-                                <div className="flex justify-center mt-4">
-                                    <button
-                                        onClick={(e) => {
-                                            if (!hasClickedLoadMoreAd) {
-                                                e.preventDefault();
-                                                window.open('https://affectionatestorage.com/b.3oVm0UPs3_pDvJbnmbV/JhZfDm0/3UMcz/kC3LNCjQIr5lLoT/c-zHOsTact2EMFz/Mi', '_blank', 'noopener,noreferrer');
-                                                setHasClickedLoadMoreAd(true);
-                                            } else {
-                                                setVisibleCount(prev => prev + 8);
-                                                setHasClickedLoadMoreAd(false);
-                                            }
-                                        }}
-                                        className="px-8 py-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white rounded-full font-semibold hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors shadow-sm"
-                                    >
-                                        Load More Articles
-                                    </button>
+                                <div className="w-full my-6 flex flex-col md:flex-row items-center justify-between gap-6">
+                                    <div className="hidden md:flex w-[300px] h-[250px] items-center justify-center">
+                                        <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
+                                    </div>
+                                    <div className="flex justify-center flex-1">
+                                        <button
+                                            onClick={(e) => {
+                                                if (!hasClickedLoadMoreAd) {
+                                                    e.preventDefault();
+                                                    window.open('https://affectionatestorage.com/b.3oVm0UPs3_pDvJbnmbV/JhZfDm0/3UMcz/kC3LNCjQIr5lLoT/c-zHOsTact2EMFz/Mi', '_blank', 'noopener,noreferrer');
+                                                    setHasClickedLoadMoreAd(true);
+                                                } else {
+                                                    setVisibleCount(prev => prev + 8);
+                                                    setHasClickedLoadMoreAd(false);
+                                                }
+                                            }}
+                                            className="px-8 py-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white rounded-full font-semibold hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors shadow-sm"
+                                        >
+                                            Load More Articles
+                                        </button>
+                                    </div>
+                                    <div className="hidden md:flex w-[300px] h-[250px] items-center justify-center">
+                                        <iframe src="/ad2.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
+                                    </div>
                                 </div>
                             )}
                         </div>
@@ -239,6 +254,7 @@ export default function BlogPage() {
                     </div>
 
                 </aside>
+                <ResponsiveAdBanner slot="ad2" className="mt-8" />
             </div>
         </div>
     );

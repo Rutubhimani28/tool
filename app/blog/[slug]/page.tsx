@@ -1,3 +1,4 @@
+import ResponsiveAdBanner from "@/app/components/ResponsiveAdBanner";
 import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -32,6 +33,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
             {/* Main Article Content */}
             <div className="flex-1 w-full max-w-4xl flex flex-col min-w-0">
+                <ResponsiveAdBanner slot="ad1" className="mb-4" />
                 <div className="mb-8">
                     <Link
                         href="/blog"
@@ -59,6 +61,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                         dangerouslySetInnerHTML={{ __html: article.content }}
                     />
                 </article>
+                <ResponsiveAdBanner slot="ad2" className="mt-8" />
             </div>
 
             {/* Right Side Ads */}

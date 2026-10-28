@@ -1,5 +1,7 @@
 "use client";
 
+import ResponsiveAdBanner from "@/app/components/ResponsiveAdBanner";
+
 import React, { useState, useEffect } from "react";
 import Script from "next/script";
 import ToolWrapper from "@/app/components/ToolWrapper";
@@ -149,6 +151,7 @@ export default function EMICalculator() {
 
                 {/* Main Content */}
                 <div className="flex-1 w-full max-w-5xl min-w-0 flex flex-col gap-8">
+                    <ResponsiveAdBanner slot="ad1" className="mb-4" />
                     <ToolWrapper
                         title="EMI Calculator"
                         description="Calculate your Equated Monthly Installment (EMI) for home, car, and personal loans."

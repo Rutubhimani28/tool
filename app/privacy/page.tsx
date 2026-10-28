@@ -1,30 +1,14 @@
 import React from "react";
+import PageWithSidebarsLayout from "@/app/components/PageWithSidebarsLayout";
 import Link from "next/link";
-import { ArrowBack } from "@mui/icons-material";
 
 export default function PrivacyPage() {
     return (
-        <div className="mx-auto w-full max-w-4xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 flex-1 flex flex-col">
-            <div className="mb-6">
-                <Link
-                    href="/"
-                    className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-white transition-colors group"
-                >
-                    <ArrowBack className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-                    Back to Home
-                </Link>
-            </div>
-
-            <div className="mb-8">
-                <div className="h-1 w-12 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 mb-4" />
-                <h1 className="text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
-                    Privacy Policy
-                </h1>
-                <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
-                    Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-                </p>
-            </div>
-
+        <PageWithSidebarsLayout
+            title="Privacy Policy"
+            subtitle={`Last updated: ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`}
+            badgeGradient="from-emerald-500 to-teal-600"
+        >
             <div className="rounded-2xl sm:rounded-3xl border border-zinc-200 bg-white p-6 sm:p-10 shadow-sm dark:border-zinc-800 dark:bg-zinc-950 transition-all duration-300">
                 <div className="prose prose-zinc dark:prose-invert max-w-none">
                     <p className="text-zinc-600 dark:text-zinc-300 mb-6 leading-relaxed">
@@ -77,6 +61,6 @@ export default function PrivacyPage() {
                     </p>
                 </div>
             </div>
-</div>
+        </PageWithSidebarsLayout>
     );
 }

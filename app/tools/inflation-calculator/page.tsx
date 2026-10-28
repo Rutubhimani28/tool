@@ -1,5 +1,7 @@
 "use client";
 
+import ResponsiveAdBanner from "@/app/components/ResponsiveAdBanner";
+
 import React, { useState, useEffect } from "react";
 import ToolWrapper from "@/app/components/ToolWrapper";
 import { ShowChart as ShowChartIcon } from "@mui/icons-material";
@@ -129,6 +131,7 @@ export default function InflationCalculator() {
 
                 {/* Main Content */}
                 <div className="flex-1 w-full max-w-5xl min-w-0 flex flex-col gap-8">
+                    <ResponsiveAdBanner slot="ad1" className="mb-4" />
                     <ToolWrapper
                 title="Inflation Calculator"
                 description="See how inflation degrades the purchasing power of your money over time."
@@ -221,6 +224,7 @@ export default function InflationCalculator() {
                 </div>
             </ToolWrapper>
 
+                <ResponsiveAdBanner slot="ad2" className="mt-8" />
                 </div> {/* End Main Content Area */}
             
                 {/* Right Ads (Sticky) */}

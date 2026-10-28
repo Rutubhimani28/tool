@@ -1,5 +1,7 @@
 "use client";
 
+import ResponsiveAdBanner from "@/app/components/ResponsiveAdBanner";
+
 import React from "react";
 import Link from "next/link";
 import { ArrowBack, Security, Delete, VisibilityOff } from "@mui/icons-material";
@@ -7,6 +9,7 @@ import { ArrowBack, Security, Delete, VisibilityOff } from "@mui/icons-material"
 export default function LegalPage() {
     return (
         <div className="mx-auto w-full max-w-4xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 flex-1 flex flex-col">
+            <ResponsiveAdBanner slot="ad1" showOnDesktop={true} className="mb-6" />
             <div className="mb-6">
                 <Link
                     href="/"

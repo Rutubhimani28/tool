@@ -1,3 +1,4 @@
+import ResponsiveAdBanner from "@/app/components/ResponsiveAdBanner";
 import React from "react";
 import Link from "next/link";
 import { ArrowBack } from "@mui/icons-material";
@@ -13,6 +14,7 @@ export default function AboutPage() {
             </div>
 
             <div className="flex-1 max-w-3xl w-full min-w-0 relative z-10 flex flex-col">
+                <ResponsiveAdBanner slot="ad1" className="mb-4" />
                 <div className="mb-6">
                     <Link
                         href="/"

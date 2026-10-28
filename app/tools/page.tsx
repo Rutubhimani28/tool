@@ -1,5 +1,7 @@
 "use client";
 
+import ResponsiveAdBanner from "@/app/components/ResponsiveAdBanner";
+
 import React from "react";
 import Link from "next/link";
 import { ArrowBack } from "@mui/icons-material";
@@ -13,6 +15,7 @@ const categories = [
 export default function ToolsPage() {
     return (
         <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 flex-1 flex flex-col">
+            <ResponsiveAdBanner slot="ad1" showOnDesktop={true} className="mb-6" />
             <div className="mb-6">
                 <Link
                     href="/"
@@ -34,6 +37,7 @@ export default function ToolsPage() {
             </div>
 
             <div className="flex flex-col gap-12">
+                <ResponsiveAdBanner slot="ad3" showOnDesktop={true} className="my-6" />
                 {categories.map(category => {
                     const categoryTools = tools.filter(t => t.categoryId === category.id);
                     if (categoryTools.length === 0) return null;
@@ -72,6 +76,7 @@ export default function ToolsPage() {
                     );
                 })}
             </div>
+            <ResponsiveAdBanner slot="ad2" showOnDesktop={true} className="mt-8" />
         </div>
     );
 }

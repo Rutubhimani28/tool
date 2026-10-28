@@ -1,5 +1,7 @@
 "use client";
 
+import ResponsiveAdBanner from "@/app/components/ResponsiveAdBanner";
+
 import React, { useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowBack } from "@mui/icons-material";
@@ -44,6 +46,7 @@ export default function ContactPage() {
             </div>
 
             <div className="flex-1 max-w-3xl w-full min-w-0 relative z-10 flex flex-col">
+                <ResponsiveAdBanner slot="ad1" className="mb-4" />
                 <div className="mb-6">
                     <Link
                         href="/"
@@ -106,12 +109,20 @@ export default function ContactPage() {
                             )}
                         </button>
                     </form>
-                </div>
+                    <ResponsiveAdBanner slot="ad2" className="mt-8" />
+            </div>
             </div>
             </div>
             
-            {/* Empty Right Sidebar for balance */}
-            <div className="hidden xl:block w-[300px] shrink-0"></div>
+            {/* Right Ad Sidebar */}
+            <div className="hidden xl:flex flex-col justify-between w-[300px] shrink-0" style={{ minHeight: 'calc(100vh - 200px)' }}>
+                <div className="sticky top-12 w-[300px] h-[250px] overflow-hidden rounded-2xl flex justify-center items-center pointer-events-auto">
+                    <iframe src="/ad2.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
+                </div>
+                <div className="sticky bottom-12 mt-12 w-[300px] h-[250px] overflow-hidden rounded-2xl flex justify-center items-center pointer-events-auto">
+                    <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
+                </div>
+            </div>
         </div>
     );
 }

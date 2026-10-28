@@ -1,5 +1,7 @@
 "use client";
 
+import ResponsiveAdBanner from "@/app/components/ResponsiveAdBanner";
+
 import React, { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { ArrowBack, Search, ExpandMore, ContentCopy, ThumbUp, ThumbDown, CheckCircle } from "@mui/icons-material";
@@ -80,6 +82,7 @@ export default function FAQPage() {
 
     return (
         <div className="mx-auto w-full max-w-4xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 flex-1 flex flex-col">
+            <ResponsiveAdBanner slot="ad1" showOnDesktop={true} className="mb-6" />
             <div className="mb-6">
                 <Link
                     href="/"
@@ -234,6 +237,7 @@ export default function FAQPage() {
                     ))
                 )}
             </div>
+            <ResponsiveAdBanner slot="ad2" showOnDesktop={true} className="mt-8" />
 </div>
     );
 }
