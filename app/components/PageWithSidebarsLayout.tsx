@@ -21,35 +21,35 @@ export default function PageWithSidebarsLayout({
   children,
 }: PageWithSidebarsLayoutProps) {
   return (
-    <div className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 sm:py-12 lg:px-8 flex-1 flex flex-col xl:flex-row justify-center items-start gap-8 relative">
+    <div className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 sm:py-12 lg:px-8 flex-1 flex flex-col xl:flex-row justify-center items-start gap-8 relative bg-transparent">
       {/* Left Sidebar Ads (Sticky on desktop XL) */}
-      <aside className="hidden xl:flex flex-col w-[300px] shrink-0 sticky top-24 gap-6">
-        <div className="w-[300px] min-h-[250px] flex items-center justify-center relative">
+      <aside className="hidden xl:flex flex-col w-[300px] shrink-0 sticky top-24 gap-6 bg-transparent">
+        <div className="w-[300px] h-[250px] flex items-center justify-center relative bg-transparent">
           <iframe
             src="/ad1.html"
             width="300"
             height="250"
-            style={{ border: "none", overflow: "hidden" }}
+            style={{ border: "none", overflow: "hidden", background: "transparent" }}
             scrolling="no"
             title="Advertisement"
           />
         </div>
-        <div className="w-[300px] min-h-[250px] flex items-center justify-center relative">
+        <div className="w-[300px] h-[250px] flex items-center justify-center relative bg-transparent">
           <iframe
             src="/ad2.html"
             width="300"
             height="250"
-            style={{ border: "none", overflow: "hidden" }}
+            style={{ border: "none", overflow: "hidden", background: "transparent" }}
             scrolling="no"
             title="Advertisement"
           />
         </div>
-        <div className="w-[300px] min-h-[250px] flex items-center justify-center relative">
+        <div className="w-[300px] h-[250px] flex items-center justify-center relative bg-transparent">
           <iframe
             src="/ad3.html"
             width="300"
             height="250"
-            style={{ border: "none", overflow: "hidden" }}
+            style={{ border: "none", overflow: "hidden", background: "transparent" }}
             scrolling="no"
             title="Advertisement"
           />
@@ -57,7 +57,7 @@ export default function PageWithSidebarsLayout({
       </aside>
 
       {/* Main Center Content Column */}
-      <div className="flex-1 w-full max-w-4xl min-w-0 flex flex-col">
+      <div className="flex-1 w-full max-w-4xl min-w-0 flex flex-col bg-transparent">
         {/* Mobile/Tablet Top Ad */}
         <ResponsiveAdBanner slot="ad1" className="mb-4" />
 
@@ -91,33 +91,33 @@ export default function PageWithSidebarsLayout({
       </div>
 
       {/* Right Sidebar Ads (Sticky on desktop XL) */}
-      <aside className="hidden xl:flex flex-col w-[300px] shrink-0 sticky top-24 gap-6">
-        <div className="w-[300px] min-h-[250px] flex items-center justify-center relative">
+      <aside className="hidden xl:flex flex-col w-[300px] shrink-0 sticky top-24 gap-6 bg-transparent">
+        <div className="w-[300px] h-[250px] flex items-center justify-center relative bg-transparent">
           <iframe
             src="/ad2.html"
             width="300"
             height="250"
-            style={{ border: "none", overflow: "hidden" }}
+            style={{ border: "none", overflow: "hidden", background: "transparent" }}
             scrolling="no"
             title="Advertisement"
           />
         </div>
-        <div className="w-[300px] min-h-[250px] flex items-center justify-center relative">
+        <div className="w-[300px] h-[250px] flex items-center justify-center relative bg-transparent">
           <iframe
             src="/ad1.html"
             width="300"
             height="250"
-            style={{ border: "none", overflow: "hidden" }}
+            style={{ border: "none", overflow: "hidden", background: "transparent" }}
             scrolling="no"
             title="Advertisement"
           />
         </div>
-        <div className="w-[300px] min-h-[250px] flex items-center justify-center relative">
+        <div className="w-[300px] h-[250px] flex items-center justify-center relative bg-transparent">
           <iframe
-            src="/ad2.html"
+            src="/ad3.html"
             width="300"
             height="250"
-            style={{ border: "none", overflow: "hidden" }}
+            style={{ border: "none", overflow: "hidden", background: "transparent" }}
             scrolling="no"
             title="Advertisement"
           />
@@ -126,4 +126,3 @@ export default function PageWithSidebarsLayout({
     </div>
   );
 }
-

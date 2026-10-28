@@ -133,7 +133,7 @@ export default function Home() {
         suppressHydrationWarning
       />
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white px-4 pt-8 pb-4 sm:px-6 sm:pt-12 sm:pb-8 lg:px-8 dark:bg-zinc-950">
+      <section className="relative overflow-hidden bg-zinc-50 px-4 pt-8 pb-4 sm:px-6 sm:pt-12 sm:pb-8 lg:px-8 dark:bg-zinc-950">
         {/* Background decoration */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[1000px] h-[600px] bg-gradient-to-b from-blue-500/10 to-transparent rounded-full blur-3xl" />
@@ -191,12 +191,12 @@ export default function Home() {
       </div>
 
       {/* SEO Content Section */}
-      <section className="bg-white dark:bg-zinc-950 px-4 py-16 sm:px-6 lg:px-8 border-b border-zinc-200 dark:border-zinc-800">
+      <section className="bg-transparent px-4 py-16 sm:px-6 lg:px-8 border-b border-zinc-200 dark:border-zinc-800">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Ad */}
-            <div className="hidden lg:flex w-full h-[800px] rounded-lg overflow-hidden items-center justify-center relative">
-              <iframe src="/ad1.html" width="100%" height="100%" style={{ border: 'none', overflow: 'hidden', minHeight: '600px' }} scrolling="no" title="Ad" />
+            <div className="hidden lg:flex w-full h-auto items-center justify-center relative bg-transparent">
+              <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden', background: 'transparent' }} scrolling="no" title="Ad" />
             </div>
             <ResponsiveAdBanner slot="ad1" className="mb-8" />
             {/* Content (Right Side) */}
@@ -351,8 +351,8 @@ export default function Home() {
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Ad */}
-            <div className="hidden lg:flex w-full h-[800px] rounded-lg overflow-hidden items-center justify-center relative">
-              <iframe src="/ad1.html" width="100%" height="100%" style={{ border: 'none', overflow: 'hidden', minHeight: '800px' }} scrolling="no" title="Ad" />
+            <div className="hidden lg:flex w-full h-auto items-center justify-center relative bg-transparent">
+              <iframe src="/ad2.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden', background: 'transparent' }} scrolling="no" title="Ad" />
             </div>
             {/* Content (Right Side) */}
             <div>
@@ -402,7 +402,7 @@ export default function Home() {
       </div>
 
       {/* FAQ Section */}
-      <section className="bg-white dark:bg-zinc-950 py-16 sm:py-24 border-t border-zinc-200 dark:border-zinc-800 overflow-hidden">
+      <section className="bg-zinc-50 dark:bg-zinc-950 py-16 sm:py-24 border-t border-zinc-200 dark:border-zinc-800 overflow-hidden">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10 flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 pb-4">
             <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white m-0">

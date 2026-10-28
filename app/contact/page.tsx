@@ -1,12 +1,11 @@
 "use client";
 
-import ResponsiveAdBanner from "@/app/components/ResponsiveAdBanner";
-
 import React, { useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowBack } from "@mui/icons-material";
 import emailjs from '@emailjs/browser';
 import toast from 'react-hot-toast';
+import ResponsiveAdBanner from "@/app/components/ResponsiveAdBanner";
 
 export default function ContactPage() {
     const form = useRef<HTMLFormElement>(null);
@@ -34,18 +33,19 @@ export default function ContactPage() {
     };
 
     return (
-        <div className="mx-auto w-full max-w-[1400px] px-4 py-8 sm:px-6 sm:py-12 lg:px-8 flex-1 flex justify-between gap-8 relative">
-            {/* Left Ad Sidebar */}
-            <div className="hidden xl:flex flex-col justify-between w-[300px] shrink-0" style={{ minHeight: 'calc(100vh - 200px)' }}>
-                <div className="sticky top-12 w-[300px] h-[250px] overflow-hidden rounded-2xl flex justify-center items-center pointer-events-auto">
-                    <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
+        <div className="w-full max-w-[1600px] mx-auto flex flex-col xl:flex-row justify-center items-start gap-8 px-4 py-8 sm:px-6 sm:py-12 lg:px-8 relative">
+            {/* Left Ad Sidebar (Sticky, matching Tool & Legal pages) */}
+            <aside className="hidden xl:flex flex-col w-[300px] shrink-0 sticky top-24 gap-6">
+                <div className="w-[300px] min-h-[250px] flex items-center justify-center relative">
+                    <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden', background: 'transparent' }} scrolling="no" title="Advertisement" />
                 </div>
-                <div className="sticky bottom-12 mt-12 w-[300px] h-[250px] overflow-hidden rounded-2xl flex justify-center items-center pointer-events-auto">
-                    <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
+                <div className="w-[300px] min-h-[250px] flex items-center justify-center relative">
+                    <iframe src="/ad2.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden', background: 'transparent' }} scrolling="no" title="Advertisement" />
                 </div>
-            </div>
+            </aside>
 
-            <div className="flex-1 max-w-3xl w-full min-w-0 relative z-10 flex flex-col">
+            {/* Main Center Form */}
+            <div className="flex-1 w-full max-w-3xl min-w-0 flex flex-col">
                 <ResponsiveAdBanner slot="ad1" className="mb-4" />
                 <div className="mb-6">
                     <Link
@@ -67,7 +67,6 @@ export default function ContactPage() {
                     </p>
                 </div>
 
-            <div className="max-w-6xl">
                 <div className="rounded-2xl sm:rounded-3xl border border-zinc-200 bg-white p-6 sm:p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-950">
                     <form ref={form} className="flex flex-col gap-5" onSubmit={sendEmail}>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -109,20 +108,19 @@ export default function ContactPage() {
                             )}
                         </button>
                     </form>
-                    <ResponsiveAdBanner slot="ad2" className="mt-8" />
-            </div>
-            </div>
-            </div>
-            
-            {/* Right Ad Sidebar */}
-            <div className="hidden xl:flex flex-col justify-between w-[300px] shrink-0" style={{ minHeight: 'calc(100vh - 200px)' }}>
-                <div className="sticky top-12 w-[300px] h-[250px] overflow-hidden rounded-2xl flex justify-center items-center pointer-events-auto">
-                    <iframe src="/ad2.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
                 </div>
-                <div className="sticky bottom-12 mt-12 w-[300px] h-[250px] overflow-hidden rounded-2xl flex justify-center items-center pointer-events-auto">
-                    <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" title="Advertisement" />
-                </div>
+                <ResponsiveAdBanner slot="ad2" className="mt-8" />
             </div>
+
+            {/* Right Ad Sidebar (Sticky, matching Tool & Legal pages) */}
+            <aside className="hidden xl:flex flex-col w-[300px] shrink-0 sticky top-24 gap-6">
+                <div className="w-[300px] min-h-[250px] flex items-center justify-center relative">
+                    <iframe src="/ad2.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden', background: 'transparent' }} scrolling="no" title="Advertisement" />
+                </div>
+                <div className="w-[300px] min-h-[250px] flex items-center justify-center relative">
+                    <iframe src="/ad1.html" width="300" height="250" style={{ border: 'none', overflow: 'hidden', background: 'transparent' }} scrolling="no" title="Advertisement" />
+                </div>
+            </aside>
         </div>
     );
 }

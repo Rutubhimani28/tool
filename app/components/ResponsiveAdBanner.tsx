@@ -18,7 +18,7 @@ export default function ResponsiveAdBanner({
     <div
       className={`w-full max-w-full my-4 flex-col items-center justify-center overflow-hidden bg-transparent ${visibilityClass} ${className}`}
     >
-      <div className="w-[300px] max-w-[100vw] h-[250px] mx-auto flex items-center justify-center overflow-hidden relative">
+      <div className="w-[300px] max-w-[100vw] h-[250px] mx-auto flex items-center justify-center overflow-hidden relative bg-transparent">
         <iframe
           src={`/${slot}.html`}
           width="300"
